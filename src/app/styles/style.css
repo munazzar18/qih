@@ -8100,7 +8100,6 @@ ul.dropdown-menu > li.has-dropdown > a:before {
   .team-grid.team-grid-2 {
     padding-top: 275px;
     padding-bottom: 50px;
-    background: url("../images/background/pattern.png") no-repeat;
     background-size: cover; }
     @media screen and (max-width: 991.98px) {
       .team-grid.team-grid-2 {

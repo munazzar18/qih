@@ -1,14 +1,4 @@
-@font-face {
-  font-family: 'dental';
-  src:  url('../fonts/dental.eot?foktzu');
-  src:  url('../fonts/dental.eot?foktzu#iefix') format('embedded-opentype'),
-    url('../fonts/dental.ttf?foktzu') format('truetype'),
-    url('../fonts/dental.woff?foktzu') format('woff'),
-    url('../fonts/dental.svg?foktzu#dental') format('svg');
-  font-weight: normal;
-  font-style: normal;
-  font-display: block;
-}
+
 
 [class^="dental-"], [class*=" dental-"] {
   /* use !important to prevent issues with browser extensions that change fonts */

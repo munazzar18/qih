@@ -1,14 +1,4 @@
-@font-face {
-  font-family: 'carousel';
-  src:  url('../fonts/carousel.eot?almtfs');
-  src:  url('../fonts/carousel.eot?almtfs#iefix') format('embedded-opentype'),
-    url('../fonts/carousel.ttf?almtfs') format('truetype'),
-    url('../fonts/carousel.woff?almtfs') format('woff'),
-    url('../fonts/carousel.svg?almtfs#carousel') format('svg');
-  font-weight: normal;
-  font-style: normal;
-  font-display: block;
-}
+
 
 [class^="carousel-"], [class*=" carousel-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
