@@ -165,9 +165,6 @@ body {
   font-weight: 400;
   color: var(--global--color-body);
   margin: 0; }
-  @media screen and (min-width: 992px) {
-    body {
-      cursor: none; } }
 
 .wrapper {
   background-color: var(--global--color-white); }
@@ -176,29 +173,7 @@ body {
     opacity: 1;
     right: 0; }
 
-/* Cursor */
-@media screen and (max-width: 991.98px) {
-  .cursor {
-    display: none; } }
 
-.cursor .cursor__inner {
-  z-index: 9999;
-  pointer-events: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  mix-blend-mode: difference;
-  border-radius: 50%; }
-  .cursor .cursor__inner.cursor__inner--dot {
-    width: 6px;
-    height: 6px;
-    background: var(--global--color-white); }
-  .cursor .cursor__inner.cursor__inner--circle {
-    width: 20px;
-    height: 20px;
-    border: 1px solid var(--global--color-white); }
-
-/* Cursor */
 ::-moz-selection {
   background-color: var(--global--color-primary);
   color: var(--global--color-white);
