@@ -12,9 +12,7 @@ const page = () => {
         <div className="cursor__inner cursor__inner--dot"></div>
       </div>
       <div className="wrapper clearfix" id="wrapperParallax">
-        <Topbar />
-        <NavbarSearch />
-        <Navbar />
+    
 
         <section className="slider slider-2" id="slider-2">
           <div className="container-fluid pr-0 pl-0">
