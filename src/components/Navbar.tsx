@@ -1,8 +1,13 @@
+'use client'
 import Link from 'next/link'
-import React from 'react'
+import { usePathname } from 'next/navigation'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import { FaMagnifyingGlass } from 'react-icons/fa6'
 
 const Navbar = () => {
+  const currentPath = usePathname()
+
   return (
     <header className="header header-light header-topbar" id="navbar-spy">
       <nav className="navbar navbar-expand-xl navbar-sticky" id="primary-menu">
@@ -61,12 +66,21 @@ const Navbar = () => {
 
         <div className="collapse navbar-collapse" id="navbarContent">
           <ul className="navbar-nav ">
-            <li className="nav-item active" id="contact" data-hover="">
+            <li
+              className={`nav-item ${currentPath === '/' ? 'active' : ''}`}
+              id="contact"
+              data-hover=""
+            >
               <Link className="" href="/">
                 Home
               </Link>
             </li>
-            <li className="nav-item has-dropdown" data-hover="">
+            <li
+              className={`nav-item has-dropdown ${
+                currentPath.includes('about-us') ? 'active' : ''
+              } `}
+              data-hover=""
+            >
               <Link
                 className="dropdown-toggle"
                 href="/about-us"
@@ -102,7 +116,12 @@ const Navbar = () => {
                 </li>
               </ul>
             </li>
-            <li className="nav-item has-dropdown" data-hover="">
+            <li
+              className={`nav-item has-dropdown ${
+                currentPath.includes('services') ? 'active' : ''
+              } `}
+              data-hover=""
+            >
               <Link
                 className="dropdown-toggle"
                 href="/services"
@@ -148,14 +167,19 @@ const Navbar = () => {
                 </li>
               </ul>
             </li>
-            <li className="nav-item has-dropdown" data-hover="">
-              <a
+            <li
+              className={`nav-item has-dropdown ${
+                currentPath.includes('gallery') ? 'active' : ''
+              } `}
+              data-hover=""
+            >
+              <Link
                 className="dropdown-toggle"
                 href="/gallery"
                 data-toggle="dropdown"
               >
                 <span>Gallery</span>
-              </a>
+              </Link>
               <ul className="dropdown-menu">
                 <li className="nav-item">
                   <Link href="/gallery/photo-gallery">
@@ -179,7 +203,13 @@ const Navbar = () => {
                 <span>User Pannel</span>
               </Link>
             </li>
-            <li className="nav-item" id="contact" data-hover="">
+            <li
+              className={`nav-item  ${
+                currentPath.includes('career') ? 'active' : ''
+              } `}
+              id="contact"
+              data-hover=""
+            >
               <Link className="" href="/career">
                 <span>Career</span>
               </Link>
@@ -189,13 +219,13 @@ const Navbar = () => {
               id="departments"
               data-hover=""
             >
-              <a
+              <Link
                 className="dropdown-toggle"
-                href="page-departments.html"
+                href="/departments"
                 data-toggle="dropdown"
               >
                 <span>departments</span>
-              </a>
+              </Link>
               <ul className="dropdown-menu">
                 <li className="nav-item">
                   <a href="neurology-clinic.html">
@@ -229,14 +259,19 @@ const Navbar = () => {
                 </li>
               </ul>
             </li>
-            <li className="nav-item has-dropdown" data-hover="">
-              <a
+            <li
+              className={`nav-item has-dropdown ${
+                currentPath.includes('contact') ? 'active' : ''
+              } `}
+              data-hover=""
+            >
+              <Link
                 className="dropdown-toggle"
                 href="/contact"
                 data-toggle="dropdown"
               >
                 <span>Contact</span>
-              </a>
+              </Link>
               <ul className="dropdown-menu">
                 <li className="nav-item">
                   <Link href="/contact/management">

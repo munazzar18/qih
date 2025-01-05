@@ -181,7 +181,7 @@ body {
 }
 @media screen and (min-width: 992px) {
   body {
-    cursor: none;
+    /* cursor: none; */
   }
 }
 
@@ -195,7 +195,7 @@ body {
 }
 
 /* Cursor */
-@media screen and (max-width: 991.98px) {
+/* @media screen and (max-width: 991.98px) {
   .cursor {
     display: none;
   }
@@ -219,7 +219,7 @@ body {
   width: 20px;
   height: 20px;
   border: 1px solid var(--global--color-white);
-}
+} */
 
 /* Cursor */
 ::-moz-selection {

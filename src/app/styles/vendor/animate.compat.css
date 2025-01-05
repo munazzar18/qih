@@ -103,7 +103,7 @@
     -webkit-animation-iteration-count: 1 !important;
     animation-iteration-count: 1 !important;
   }
-  .animated[class*="Out"] {
+  .animated[class*='Out'] {
     opacity: 0;
   }
 }
@@ -221,25 +221,21 @@
     transform: scaleX(1);
   }
 }
-@keyframes pulse-50 {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.1);
-    }
-    100% {
-      transform: scale(1);
-    }
+@keyframes pulse {
+  0% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
   }
-  
-  .pulse-animation {
-    -webkit-animation: pulse-50 1s infinite;
-    animation: pulse-50 1s infinite;
-    -webkit-animation-timing-function: ease-in-out;
-    animation-timing-function: ease-in-out;
+  50% {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
   }
-  
+  to {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+}
+
 @-webkit-keyframes rubberBand {
   0% {
     -webkit-transform: scaleX(1);
