@@ -4,10 +4,14 @@ import { usePathname } from 'next/navigation'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { FaMagnifyingGlass } from 'react-icons/fa6'
+import departmentArray from '../../public/assets/department'
+
+
 
 const Navbar = () => {
   const currentPath = usePathname()
 
+  
   return (
     <header className="header header-light header-topbar" id="navbar-spy">
       <nav className="navbar navbar-expand-xl navbar-sticky" id="primary-menu">
@@ -227,36 +231,17 @@ const Navbar = () => {
                 <span>departments</span>
               </Link>
               <ul className="dropdown-menu">
-                <li className="nav-item">
-                  <a href="neurology-clinic.html">
-                    <span>neurology clinic</span>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a href="pathology-clinic.html">
-                    <span>pathology clinic</span>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a href="laboratory-analysis.html">
-                    <span>laboratory analysis</span>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a href="pediatric-clinic.html">
-                    <span>pediatric clinic</span>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a href="cardiac-clinic.html">
-                    <span>cardiac clinic</span>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a href="ophthalmology-clinic.html">
-                    <span>ophthalmology clinic</span>
-                  </a>
-                </li>
+                {
+                  departmentArray.map((item)=>{
+                    return(
+                      <li key={item.id} className="nav-item">
+                      <a href="neurology-clinic.html">
+                        <span>{item.title}</span>
+                      </a>
+                    </li> 
+                    )
+                  })
+                }
               </ul>
             </li>
             <li
