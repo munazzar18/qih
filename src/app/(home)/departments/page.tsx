@@ -1,14 +1,13 @@
-import Link from "next/link";
-import React from "react";
-import departmentArray from "../../../../public/assets/department";
-
+import Link from 'next/link'
+import React from 'react'
+import departmentArray from '../../../../public/assets/department'
 
 const DepartmentsPage = () => {
   return (
     <div className="wrapper clearfix" id="wrapperParallax">
       <section className="hero hero-9 bg-overlay bg-overlay-dark">
         <div className="bg-section">
-          {" "}
+          {' '}
           <img src="/assets/images/departments/3.jpg" alt="background" />
         </div>
         <div className="container">
@@ -23,12 +22,12 @@ const DepartmentsPage = () => {
                   teamwill always be our priorty, so we best practices
                 </p>
                 <div className="hero-action">
-                  {" "}
+                  {' '}
                   <a
                     className="btn btn--white btn-line btn-line-after btn-line-inversed"
-                    href="#"
+                    href=""
                   >
-                    {" "}
+                    {' '}
                     <span>more about us</span>
                     <span className="line">
                       <span></span>
@@ -38,7 +37,7 @@ const DepartmentsPage = () => {
                     className="popup-video btn-video btn-video-2"
                     href="https://www.youtube.com/watch?v=nrJtHemSPW4"
                   >
-                    {" "}
+                    {' '}
                     <i className="fas fa-play"></i>
                   </a>
                 </div>
@@ -94,13 +93,13 @@ const DepartmentsPage = () => {
                     </div>
                   </div>
                 </div>
-              );
+              )
             })}
           </div>
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default DepartmentsPage;
+export default DepartmentsPage

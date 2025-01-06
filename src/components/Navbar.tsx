@@ -6,12 +6,9 @@ import { useEffect, useState } from 'react'
 import { FaMagnifyingGlass } from 'react-icons/fa6'
 import departmentArray from '../../public/assets/department'
 
-
-
 const Navbar = () => {
   const currentPath = usePathname()
 
-  
   return (
     <header className="header header-light header-topbar" id="navbar-spy">
       <nav className="navbar navbar-expand-xl navbar-sticky" id="primary-menu">
@@ -230,18 +227,21 @@ const Navbar = () => {
               >
                 <span>departments</span>
               </Link>
-              <ul className="dropdown-menu">
-                {
-                  departmentArray.map((item)=>{
-                    return(
-                      <li key={item.id} className="nav-item">
-                      <a href="neurology-clinic.html">
+              <ul
+                className="dropdown-menu"
+                style={{ height: '300px', overflowY: 'scroll' }}
+              >
+                {departmentArray.map((item) => {
+                  return (
+                    <li key={item.id} className="nav-item">
+                      <Link
+                        href={`/departments/${item.title.split(' ').join('-')}`}
+                      >
                         <span>{item.title}</span>
-                      </a>
-                    </li> 
-                    )
-                  })
-                }
+                      </Link>
+                    </li>
+                  )
+                })}
               </ul>
             </li>
             <li
