@@ -9,7 +9,7 @@ const page = () => {
       <section className="features-bar" id="featuresBar-1">
         <div className="bg-section">
           {' '}
-          <img src="assets/images/background/pattern-2.jpg" alt="background" />
+          <img src="assets/images/departments/28.jpg" alt="background" />
         </div>
         <div className="container">
           <div className="row g-0 features-holder">
@@ -142,7 +142,7 @@ const page = () => {
               <div className="about-img">
                 <img
                   className="img-fluid"
-                  src="assets/images/about/5.jpg"
+                  src="assets/images/departments/7.jpg"
                   alt="about Image"
                 />
                 <a
@@ -202,7 +202,7 @@ const page = () => {
                   <div className="department-img">
                     <a href="page-departments.html"></a>
                     <img
-                      src="assets/images/departments/1.jpg"
+                      src="assets/images/departments/18.jpg"
                       alt="department img"
                     />
                   </div>
@@ -384,7 +384,7 @@ const page = () => {
                   <div className="doctor-info">
                     <div className="doctor-img">
                       {' '}
-                      <img src="assets/images/testimonial/5.jpg" alt="image" />
+                      <img src="assets/images/departments/20.jpg" alt="image" />
                     </div>
                     <div className="doctor-body">
                       {' '}
@@ -405,7 +405,7 @@ const page = () => {
       >
         <div className="bg-section">
           {' '}
-          <img src="assets/images/background/1.jpg" alt="Background" />
+          <img src="assets/images/departments/1.jpg" alt="Background" />
         </div>
         <div className="container">
           <div className="heading heading-14 heading-light">
@@ -599,7 +599,7 @@ const page = () => {
             <div className="col-12 col-lg-5">
               <div className="clients-img">
                 {' '}
-                <img src="assets/images/testimonial/image.png" alt="image" />
+                <img src="assets/images/departments/23.jpg" alt="image" />
               </div>
             </div>
             <div className="col-12 col-lg-6 offset-lg-1">
@@ -633,7 +633,7 @@ const page = () => {
                         <div className="thumb-img">
                           {' '}
                           <img
-                            src="assets/images/testimonial/1.jpg"
+                            src="assets/images/departments/24.jpg"
                             alt="Testimonial Author"
                           />
                           <i className="icon-Quote-Icon"></i>
@@ -662,7 +662,7 @@ const page = () => {
                         <div className="thumb-img">
                           {' '}
                           <img
-                            src="assets/images/testimonial/2.jpg"
+                            src="assets/images/departments/32.jpg"
                             alt="Testimonial Author"
                           />
                           <i className="icon-Quote-Icon"></i>
@@ -691,7 +691,7 @@ const page = () => {
                         <div className="thumb-img">
                           {' '}
                           <img
-                            src="assets/images/testimonial/3.jpg"
+                            src="assets/images/departments/30.jpg"
                             alt="Testimonial Author"
                           />
                           <i className="icon-Quote-Icon"></i>
@@ -745,7 +745,7 @@ const page = () => {
                           href="doctors-single-modern.html"
                         ></a>
                         <img
-                          src="assets/images/team/grid/1.jpg"
+                          src="assets/images/departments/16.jpg"
                           alt="team member"
                         />
                       </div>
@@ -799,7 +799,7 @@ const page = () => {
                           href="doctors-single-modern.html"
                         ></a>
                         <img
-                          src="assets/images/team/grid/2.jpg"
+                          src="assets/images/departments/9.jpg"
                           alt="team member"
                         />
                       </div>
@@ -853,7 +853,7 @@ const page = () => {
                           href="doctors-single-modern.html"
                         ></a>
                         <img
-                          src="assets/images/team/grid/3.jpg"
+                          src="assets/images/departments/38.jpg"
                           alt="team member"
                         />
                       </div>
@@ -906,7 +906,7 @@ const page = () => {
                           href="doctors-single-modern.html"
                         ></a>
                         <img
-                          src="assets/images/team/grid/4.jpg"
+                          src="assets/images/departments/36.jpg"
                           alt="team member"
                         />
                       </div>
@@ -959,7 +959,7 @@ const page = () => {
                           href="doctors-single-modern.html"
                         ></a>
                         <img
-                          src="assets/images/team/grid/5.jpg"
+                          src="assets/images/departments/25.jpg"
                           alt="team member"
                         />
                       </div>
@@ -1012,7 +1012,7 @@ const page = () => {
                           href="doctors-single-modern.html"
                         ></a>
                         <img
-                          src="assets/images/team/grid/6.jpg"
+                          src="assets/images/departments/16.jpg"
                           alt="team member"
                         />
                       </div>
@@ -1249,7 +1249,7 @@ const page = () => {
         id="donations-3"
       >
         <div className="bg-section">
-          <img src="assets/images/background/3.jpg" alt="background" />
+          <img src="assets/images/departments/3.jpg" alt="background" />
         </div>
         <div className="container">
           <div className="contact-panel contact-panel-3">
@@ -1477,7 +1477,7 @@ const page = () => {
                   </div>
                   <a href="blog-single-sidebar.html">
                     <img
-                      src="assets/images/blog/grid/1.jpg"
+                      src="assets/images/departments/1.jpg"
                       alt="6 tips to protect your mental health when sick"
                     />
                   </a>
@@ -1536,7 +1536,7 @@ const page = () => {
                   </div>
                   <a href="blog-single-sidebar.html">
                     <img
-                      src="assets/images/blog/grid/2.jpg"
+                      src="assets/images/departments/12.jpg"
                       alt="Unsure About Wearing a Face Mask? How and Why"
                     />
                   </a>
@@ -1595,7 +1595,7 @@ const page = () => {
                   </div>
                   <a href="blog-single-sidebar.html">
                     <img
-                      src="assets/images/blog/grid/3.jpg"
+                      src="assets/images/departments/17.jpg"
                       alt="Tips for Eating Healthy When Working From Home"
                     />
                   </a>
@@ -1654,7 +1654,7 @@ const page = () => {
                   </div>
                   <a href="blog-single-sidebar.html">
                     <img
-                      src="assets/images/blog/grid/4.jpg"
+                      src="assets/images/departments/4.jpg"
                       alt="Why Coronavirus Cases Among Adults Is Bad News"
                     />
                   </a>
@@ -1713,7 +1713,7 @@ const page = () => {
                   </div>
                   <a href="blog-single-sidebar.html">
                     <img
-                      src="assets/images/blog/grid/5.jpg"
+                      src="assets/images/departments/40.jpg"
                       alt="Why Do People Get Kidney Stones in the Summer?"
                     />
                   </a>
@@ -1772,7 +1772,7 @@ const page = () => {
                   </div>
                   <a href="blog-single-sidebar.html">
                     <img
-                      src="assets/images/blog/grid/6.jpg"
+                      src="assets/images/departments/6.jpg"
                       alt="Do Any Drugs Really Work to Treat Coronavirus?"
                     />
                   </a>

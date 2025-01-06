@@ -9,7 +9,7 @@ const DepartmentsPage = () => {
       <section className="hero hero-9 bg-overlay bg-overlay-dark">
         <div className="bg-section">
           {" "}
-          <img src="/assets/images/sliders/3.jpg" alt="background" />
+          <img src="/assets/images/departments/3.jpg" alt="background" />
         </div>
         <div className="container">
           <div className="hero-content">

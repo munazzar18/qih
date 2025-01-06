@@ -9,7 +9,7 @@ const page = () => {
         id="page-title"
       >
         <div className="bg-section">
-          <img src="//assets/images/page-titles/7.jpg" alt="Background" />
+          <img src="/assets/images/departments/7.jpg" alt="Background" />
         </div>
         <div className="container">
           <div className="row">
@@ -50,7 +50,7 @@ const page = () => {
                   </div>
                   <a href="">
                     <img
-                      src="/assets/images/blog/grid/1.jpg"
+                      src="/assets/images/departments/1.jpg"
                       alt="6 tips to protect your mental health when sick"
                     />
                   </a>
@@ -108,7 +108,7 @@ const page = () => {
                   </div>
                   <a href="">
                     <img
-                      src="/assets/images/blog/grid/2.jpg"
+                      src="/assets/images/departments/14.jpg"
                       alt="Unsure About Wearing a Face Mask? How and Why"
                     />
                   </a>
@@ -166,7 +166,7 @@ const page = () => {
                   </div>
                   <a href="">
                     <img
-                      src="/assets/images/blog/grid/3.jpg"
+                      src="/assets/images/departments/13.jpg"
                       alt="Tips for Eating Healthy When Working From Home"
                     />
                   </a>
@@ -224,7 +224,7 @@ const page = () => {
                   </div>
                   <a href="">
                     <img
-                      src="/assets/images/blog/grid/4.jpg"
+                      src="/assets/images/departments/4.jpg"
                       alt="Why Coronavirus Cases Among Adults Is Bad News"
                     />
                   </a>
@@ -282,7 +282,7 @@ const page = () => {
                   </div>
                   <a href="">
                     <img
-                      src="/assets/images/blog/grid/5.jpg"
+                      src="/assets/images/departments/5.jpg"
                       alt="Why Do People Get Kidney Stones in the Summer?"
                     />
                   </a>
@@ -340,7 +340,7 @@ const page = () => {
                   </div>
                   <a href="">
                     <img
-                      src="/assets/images/blog/grid/6.jpg"
+                      src="/assets/images/departments/6.jpg"
                       alt="Do Any Drugs Really Work to Treat Coronavirus?"
                     />
                   </a>
