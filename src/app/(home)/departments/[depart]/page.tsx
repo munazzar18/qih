@@ -1,12 +1,7 @@
 import React from 'react'
 
-interface PageProps {
-  params: {
-    depart: string
-  }
-}
-
-const Page: React.FC<PageProps> = ({ params }) => {
+const Page = async (props: { params: Promise<{ depart: string }> }) => {
+  const params = await props.params
   return (
     <div>
       <section
