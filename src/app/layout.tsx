@@ -18,6 +18,7 @@ import Script from 'next/script'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import './styles/style.css'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import Wrapper from '@/components/Wrapper'
 
 const heebo = Heebo({
   weight: ['400', '500', '600', '700'],
@@ -73,10 +74,6 @@ export default function RootLayout({
           strategy="afterInteractive"
         ></Script>
         <Script
-          src="/assets/js/vendor/jquery-3.6.0.min.js"
-          strategy="afterInteractive"
-        ></Script>
-        <Script
           src="/assets/js/vendor/jquery-ui.min.js"
           strategy="afterInteractive"
         ></Script>
@@ -88,15 +85,15 @@ export default function RootLayout({
           src="/assets/js/vendor/owl.carousel2.thumbs.min.js"
           strategy="afterInteractive"
         ></Script>
-        <Script
+        {/* <Script
           src="/assets/js/functions.js"
           strategy="afterInteractive"
-        ></Script>
+        ></Script> */}
       </head>
       <body
         className={`${heebo.className} ${roboto.className} ${rubik.className}`}
       >
-        {children}
+        <Wrapper>{children}</Wrapper>
         <div className="backtop" id="back-to-top" data-hover="">
           <svg
             className="bi bi-chevron-up"
