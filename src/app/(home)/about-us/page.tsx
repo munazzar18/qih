@@ -6,8 +6,6 @@ const page = () => {
       <section className="features-bar" id="featuresBar-1">
         <div className="container">
           <div>
-            {/* Changing style */}
-
             <div className="">
               <h1>Our Mission</h1>
               <div>
