@@ -1,4 +1,5 @@
 import CarousalComponent from '@/components/CarousalComponent'
+import Image from 'next/image'
 
 const page = () => {
   return (
@@ -9,7 +10,12 @@ const page = () => {
       <section className="features-bar" id="featuresBar-1">
         <div className="bg-section">
           {' '}
-          <img src="assets/images/departments/28.jpg" alt="background" />
+          <Image
+            src="/assets/images/departments/28.jpg"
+            width={500}
+            height={500}
+            alt="background"
+          />
         </div>
         <div className="container">
           <div className="row g-0 features-holder">
@@ -140,9 +146,11 @@ const page = () => {
           <div className="row">
             <div className="col-12 col-lg-8">
               <div className="about-img">
-                <img
+                <Image
                   className="img-fluid"
-                  src="assets/images/departments/7.jpg"
+                  src="/assets/images/departments/7.jpg"
+                  width={500}
+                  height={500}
                   alt="about Image"
                 />
                 <a
@@ -201,8 +209,10 @@ const page = () => {
                 <div className="department-panel-holder">
                   <div className="department-img">
                     <a href="page-departments.html"></a>
-                    <img
-                      src="assets/images/departments/18.jpg"
+                    <Image
+                      src="/assets/images/departments/18.jpg"
+                      width={500}
+                       height={500}
                       alt="department img"
                     />
                   </div>
@@ -255,8 +265,10 @@ const page = () => {
                 <div className="department-panel-holder">
                   <div className="department-img">
                     <a href="page-departments.html"></a>
-                    <img
-                      src="assets/images/departments/2.jpg"
+                    <Image
+                      src="/assets/images/departments/2.jpg"
+                      width={500}
+                       height={500}
                       alt="department img"
                     />
                   </div>
@@ -309,8 +321,10 @@ const page = () => {
                 <div className="department-panel-holder">
                   <div className="department-img">
                     <a href="page-departments.html"></a>
-                    <img
-                      src="assets/images/departments/3.jpg"
+                    <Image
+                      src="/assets/images/departments/3.jpg"
+                      width={500}
+                      height={500}
                       alt="department img"
                     />
                   </div>
@@ -384,7 +398,12 @@ const page = () => {
                   <div className="doctor-info">
                     <div className="doctor-img">
                       {' '}
-                      <img src="assets/images/departments/20.jpg" alt="image" />
+                      <Image
+                        src="/assets/images/departments/20.jpg"
+                        width={60}
+                       height={60}
+                        alt="image"
+                      />
                     </div>
                     <div className="doctor-body">
                       {' '}
@@ -405,7 +424,11 @@ const page = () => {
       >
         <div className="bg-section">
           {' '}
-          <img src="assets/images/departments/1.jpg" alt="Background" />
+          <Image
+           src="/assets/images/departments/1.jpg"
+           width={500}
+           height={500}
+           alt="Background" />
         </div>
         <div className="container">
           <div className="heading heading-14 heading-light">
@@ -446,9 +469,11 @@ const page = () => {
                   <div className="signature-body">
                     <h6>john winston</h6>
                     <p>pediatrician</p>
-                    <img
+                    <Image
                       className="signature-img"
-                      src="assets/images/signature/2.png"
+                      src="/assets/images/signature/2.png"
+                      width={500}
+                       height={500}
                       alt="signature"
                     />
                   </div>
@@ -599,7 +624,11 @@ const page = () => {
             <div className="col-12 col-lg-5">
               <div className="clients-img">
                 {' '}
-                <img src="assets/images/departments/23.jpg" alt="image" />
+                <Image 
+                src="/assets/images/departments/23.jpg" 
+                width={700}
+                height={300}
+                alt="image" />
               </div>
             </div>
             <div className="col-12 col-lg-6 offset-lg-1">
@@ -632,8 +661,10 @@ const page = () => {
                       <div className="testimonial-thumb">
                         <div className="thumb-img">
                           {' '}
-                          <img
-                            src="assets/images/departments/24.jpg"
+                          <Image
+                            src="/assets/images/departments/24.jpg"
+                            width={80}
+                            height={80}
                             alt="Testimonial Author"
                           />
                           <i className="icon-Quote-Icon"></i>
@@ -661,8 +692,10 @@ const page = () => {
                       <div className="testimonial-thumb">
                         <div className="thumb-img">
                           {' '}
-                          <img
-                            src="assets/images/departments/32.jpg"
+                          <Image
+                            src="/assets/images/departments/32.jpg"
+                            width={80}
+                            height={80}
                             alt="Testimonial Author"
                           />
                           <i className="icon-Quote-Icon"></i>
@@ -690,8 +723,10 @@ const page = () => {
                       <div className="testimonial-thumb">
                         <div className="thumb-img">
                           {' '}
-                          <img
-                            src="assets/images/departments/30.jpg"
+                          <Image
+                            src="/assets/images/departments/30.jpg"
+                            width={80}
+                            height={80}
                             alt="Testimonial Author"
                           />
                           <i className="icon-Quote-Icon"></i>
@@ -710,7 +745,7 @@ const page = () => {
         </div>
       </section>
 
-      <section className="team team-modern team-carousel" id="teamCarousel-1">
+      {/* <section className="team team-modern team-carousel" id="teamCarousel-1">
         <div className="container">
           <div className="row">
             <div className="col-12 col-lg-5">
@@ -744,7 +779,7 @@ const page = () => {
                           className="link"
                           href="doctors-single-modern.html"
                         ></a>
-                        <img
+                        <Image
                           src="assets/images/departments/16.jpg"
                           alt="team member"
                         />
@@ -798,7 +833,7 @@ const page = () => {
                           className="link"
                           href="doctors-single-modern.html"
                         ></a>
-                        <img
+                        <Image
                           src="assets/images/departments/9.jpg"
                           alt="team member"
                         />
@@ -852,7 +887,7 @@ const page = () => {
                           className="link"
                           href="doctors-single-modern.html"
                         ></a>
-                        <img
+                        <Image
                           src="assets/images/departments/38.jpg"
                           alt="team member"
                         />
@@ -905,7 +940,7 @@ const page = () => {
                           className="link"
                           href="doctors-single-modern.html"
                         ></a>
-                        <img
+                        <Image
                           src="assets/images/departments/36.jpg"
                           alt="team member"
                         />
@@ -958,7 +993,7 @@ const page = () => {
                           className="link"
                           href="doctors-single-modern.html"
                         ></a>
-                        <img
+                        <Image
                           src="assets/images/departments/25.jpg"
                           alt="team member"
                         />
@@ -1011,7 +1046,7 @@ const page = () => {
                           className="link"
                           href="doctors-single-modern.html"
                         ></a>
-                        <img
+                        <Image
                           src="assets/images/departments/16.jpg"
                           alt="team member"
                         />
@@ -1080,7 +1115,7 @@ const page = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section className="cta cta-3" id="cta-3">
         <div className="container">
@@ -1249,7 +1284,11 @@ const page = () => {
         id="donations-3"
       >
         <div className="bg-section">
-          <img src="assets/images/departments/3.jpg" alt="background" />
+          <Image
+           src="/assets/images/departments/3.jpg"
+           width={500}
+                       height={500}
+            alt="background" />
         </div>
         <div className="container">
           <div className="contact-panel contact-panel-3">
@@ -1277,8 +1316,10 @@ const page = () => {
                 <div className="img-hotspot-wrap">
                   <div className="img-hotspot-bg">
                     {' '}
-                    <img
-                      src="assets/images/background/world-map.png"
+                    <Image
+                      src="/assets/images/background/world-map.png"
+                      width={500}
+                       height={300}
                       alt="image"
                     />
                   </div>
@@ -1288,8 +1329,10 @@ const page = () => {
                       data-spot-x="15%"
                       data-spot-y="29%"
                     >
-                      <img
-                        src="assets/images/background/map-pointer.png"
+                      <Image
+                        src="/assets/images/background/map-pointer.png"
+                        width={30}
+                        height={30}
                         alt="pointer"
                       />
                       <div
@@ -1307,8 +1350,10 @@ const page = () => {
                       data-spot-x="48%"
                       data-spot-y="48%"
                     >
-                      <img
-                        src="assets/images/background/map-pointer.png"
+                      <Image
+                        src="/assets/images/background/map-pointer.png"
+                        width={30}
+                        height={30}
                         alt="pointer"
                       />
                       <div
@@ -1326,8 +1371,10 @@ const page = () => {
                       data-spot-x="68%"
                       data-spot-y="23%"
                     >
-                      <img
-                        src="assets/images/background/map-pointer.png"
+                      <Image
+                        src="/assets/images/background/map-pointer.png"
+                        width={30}
+                        height={30}
                         alt="pointer"
                       />
                       <div
@@ -1476,8 +1523,10 @@ const page = () => {
                     </div>
                   </div>
                   <a href="blog-single-sidebar.html">
-                    <img
-                      src="assets/images/departments/1.jpg"
+                    <Image
+                      src="/assets/images/departments/1.jpg"
+                      width={500}
+                       height={500}
                       alt="6 tips to protect your mental health when sick"
                     />
                   </a>
@@ -1535,8 +1584,10 @@ const page = () => {
                     </div>
                   </div>
                   <a href="blog-single-sidebar.html">
-                    <img
-                      src="assets/images/departments/12.jpg"
+                    <Image
+                      src="/assets/images/departments/12.jpg"
+                      width={500}
+                       height={500}
                       alt="Unsure About Wearing a Face Mask? How and Why"
                     />
                   </a>
@@ -1594,8 +1645,10 @@ const page = () => {
                     </div>
                   </div>
                   <a href="blog-single-sidebar.html">
-                    <img
-                      src="assets/images/departments/17.jpg"
+                    <Image
+                      src="/assets/images/departments/17.jpg"
+                      width={500}
+                      height={500}
                       alt="Tips for Eating Healthy When Working From Home"
                     />
                   </a>
@@ -1653,8 +1706,10 @@ const page = () => {
                     </div>
                   </div>
                   <a href="blog-single-sidebar.html">
-                    <img
-                      src="assets/images/departments/4.jpg"
+                    <Image
+                      src="/assets/images/departments/4.jpg"
+                      width={500}
+                      height={500}
                       alt="Why Coronavirus Cases Among Adults Is Bad News"
                     />
                   </a>
@@ -1712,8 +1767,10 @@ const page = () => {
                     </div>
                   </div>
                   <a href="blog-single-sidebar.html">
-                    <img
-                      src="assets/images/departments/40.jpg"
+                    <Image
+                      src="/assets/images/departments/40.jpg"
+                      width={500}
+                      height={500}
                       alt="Why Do People Get Kidney Stones in the Summer?"
                     />
                   </a>
@@ -1770,12 +1827,14 @@ const page = () => {
                       <span className="year">2021</span>
                     </div>
                   </div>
-                  <a href="blog-single-sidebar.html">
-                    <img
-                      src="assets/images/departments/6.jpg"
-                      alt="Do Any Drugs Really Work to Treat Coronavirus?"
-                    />
-                  </a>
+                  {/* <a href="blog-single-sidebar.html"> */}
+                  <Image
+                    src="/assets/images/departments/6.jpg"
+                    width={500}
+                    height={500}
+                    alt="Do Any Drugs Really Work to Treat Coronavirus?"
+                  />
+                  {/* </a> */}
                 </div>
 
                 <div className="entry-content">

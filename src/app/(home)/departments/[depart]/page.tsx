@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React from 'react'
 
 const Page = async (props: { params: Promise<{ depart: string }> }) => {
@@ -9,7 +10,11 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
         id="page-title"
       >
         <div className="bg-section">
-          <img src="/assets/images/departments/3.jpg" alt="Background" />
+          <Image
+           src="/assets/images/departments/3.jpg"
+           width={500}
+                       height={500}
+            alt="Background" />
         </div>
         <div className="container">
           <div className="row">
@@ -91,8 +96,10 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                 id="video-3"
               >
                 <div className="bg-section">
-                  <img
+                  <Image
                     src="/assets/images/departments/6.jpg"
+                    width={500}
+                       height={500}
                     alt="background"
                   />
                 </div>
@@ -404,8 +411,10 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                       <div className="team-member-holder">
                         <div className="team-img">
                           <a className="link" href="doctors-grid.html"></a>
-                          <img
+                          <Image
                             src="/assets/images/team/grid/1.jpg"
+                            width={500}
+                       height={500}
                             alt="team member"
                           />
                         </div>
@@ -429,8 +438,10 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                       <div className="team-member-holder">
                         <div className="team-img">
                           <a className="link" href="doctors-grid.html"></a>
-                          <img
+                          <Image
                             src="/assets/images/team/grid/2.jpg"
+                            width={500}
+                       height={500}
                             alt="team member"
                           />
                         </div>
@@ -452,8 +463,10 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                       <div className="team-member-holder">
                         <div className="team-img">
                           <a className="link" href="doctors-grid.html"></a>
-                          <img
+                          <Image
                             src="/assets/images/team/grid/3.jpg"
+                            width={500}
+                       height={500}
                             alt="team member"
                           />
                         </div>
@@ -476,7 +489,11 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                 <div className="contact-panel bg-overlay bg-overlay-theme3">
                   <div className="bg-section">
                     {' '}
-                    <img src="/assets/images/sliders/1.jpg" alt="background" />
+                    <Image 
+                    src="/assets/images/sliders/1.jpg" 
+                    width={500}
+                       height={500}
+                    alt="background" />
                   </div>
                   <div className="contact-card">
                     <div className="contact-body">
@@ -652,8 +669,10 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                 </div>
 
                 <div className="widget widget-reservation">
-                  <img
+                  <Image
                     src="/assets/images/blog/sidebar/reservation.jpg"
+                    width={500}
+                       height={500}
                     alt="image"
                   />
                   <div className="widget-content">

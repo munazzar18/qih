@@ -19304,3 +19304,35 @@ ul.dropdown-menu > li.has-dropdown > a:before {
 }
 
 /*# sourceMappingURL=style.css.map */
+/* Card Styling */
+.specialty-card {
+  background-color: #28a745; /* Bootstrap success green */
+  border: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.specialty-card:hover {
+  transform: translateY(-10px); /* Lift the card on hover */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  background-color: #218838; /* Slightly darker green */
+}
+
+.specialty-card .card-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.specialty-card:hover .card-title {
+  color: #ffffff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* General Styling */
+body {
+  background-color: #f8f9fa; /* Light gray background */
+}
+
+h1 {
+  color: #343a40; /* Bootstrap dark color */
+}

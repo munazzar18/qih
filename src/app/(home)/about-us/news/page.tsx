@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
@@ -9,7 +10,11 @@ const page = () => {
         id="page-title"
       >
         <div className="bg-section">
-          <img src="/assets/images/departments/7.jpg" alt="Background" />
+          <Image
+           src="/assets/images/departments/7.jpg"
+           width={500}
+                       height={500}
+            alt="Background" />
         </div>
         <div className="container">
           <div className="row">
@@ -49,8 +54,10 @@ const page = () => {
                     </div>
                   </div>
                   <a href="">
-                    <img
+                    <Image
                       src="/assets/images/departments/1.jpg"
+                      width={500}
+                       height={500}
                       alt="6 tips to protect your mental health when sick"
                     />
                   </a>
@@ -107,8 +114,10 @@ const page = () => {
                     </div>
                   </div>
                   <a href="">
-                    <img
+                    <Image
                       src="/assets/images/departments/14.jpg"
+                      width={500}
+                       height={500}
                       alt="Unsure About Wearing a Face Mask? How and Why"
                     />
                   </a>
@@ -165,8 +174,10 @@ const page = () => {
                     </div>
                   </div>
                   <a href="">
-                    <img
+                    <Image
                       src="/assets/images/departments/13.jpg"
+                      width={500}
+                       height={500}
                       alt="Tips for Eating Healthy When Working From Home"
                     />
                   </a>
@@ -223,8 +234,10 @@ const page = () => {
                     </div>
                   </div>
                   <a href="">
-                    <img
+                    <Image
                       src="/assets/images/departments/4.jpg"
+                      width={500}
+                       height={500}
                       alt="Why Coronavirus Cases Among Adults Is Bad News"
                     />
                   </a>
@@ -281,8 +294,10 @@ const page = () => {
                     </div>
                   </div>
                   <a href="">
-                    <img
+                    <Image
                       src="/assets/images/departments/5.jpg"
+                      width={500}
+                       height={500}
                       alt="Why Do People Get Kidney Stones in the Summer?"
                     />
                   </a>
@@ -339,8 +354,10 @@ const page = () => {
                     </div>
                   </div>
                   <a href="">
-                    <img
+                    <Image
                       src="/assets/images/departments/6.jpg"
+                      width={500}
+                       height={500}
                       alt="Do Any Drugs Really Work to Treat Coronavirus?"
                     />
                   </a>

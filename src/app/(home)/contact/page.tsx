@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const page = () => {
@@ -123,7 +124,11 @@ const page = () => {
                   <div className="col-12 col-lg-5 offset-lg-1 img-card-holder">
                     <div className="img-card img-card-2 bg-overlay bg-overlay-theme">
                       <div className="bg-section">
-                        <img src="assets/images/contact/2.jpg" alt="image" />
+                        <Image 
+                        src="/assets/images/contact/2.jpg" 
+                        width={500}
+                       height={500}
+                        alt="image" />
                       </div>
                       <div className="card-content">
                         <h3>delivering the best care for family</h3>
@@ -163,8 +168,10 @@ const page = () => {
                     <div className="img-hotspot-wrap">
                       <div className="img-hotspot-bg">
                         {" "}
-                        <img
-                          src="assets/images/background/world-map.png"
+                        <Image
+                          src="/assets/images/background/world-map.png"
+                          width={500}
+                       height={500}
                           alt="image"
                         />
                       </div>
@@ -174,8 +181,10 @@ const page = () => {
                           data-spot-x="15%"
                           data-spot-y="29%"
                         >
-                          <img
-                            src="assets/images/background/map-pointer.png"
+                          <Image
+                            src="/assets/images/background/map-pointer.png"
+                            width={500}
+                       height={500}
                             alt="pointer"
                           />
                           <div
@@ -193,8 +202,10 @@ const page = () => {
                           data-spot-x="48%"
                           data-spot-y="48%"
                         >
-                          <img
-                            src="assets/images/background/map-pointer.png"
+                          <Image
+                            src="/assets/images/background/map-pointer.png"
+                            width={500}
+                       height={500}
                             alt="pointer"
                           />
                           <div
@@ -212,8 +223,10 @@ const page = () => {
                           data-spot-x="68%"
                           data-spot-y="23%"
                         >
-                          <img
-                            src="assets/images/background/map-pointer.png"
+                          <Image
+                            src="/assets/images/background/map-pointer.png"
+                            width={500}
+                       height={500}
                             alt="pointer"
                           />
                           <div

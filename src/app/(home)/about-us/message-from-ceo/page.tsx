@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 const page = () => {
   return (
     <div className="wrapper clearfix" id="wrapperParallax">
@@ -9,7 +11,11 @@ const page = () => {
                 <div className="team-member">
                   <div className="team-member-holder">
                     <div className="team-img">
-                      <img src="/assets/photos/DrShb.jpeg" alt="team member" />
+                      <Image
+                       src="/assets/photos/DrShb.jpeg" 
+                       width={500}
+                       height={500}
+                       alt="team member" />
                     </div>
                     <div className="team-content-holder">
                       <div className="team-content">

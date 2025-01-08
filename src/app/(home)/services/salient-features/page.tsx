@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-const page = () => {
-  let Features = [
+const Page = () => {
+  const features = [
     '400 Bed Hospital',
     'Most well Planned Hospital',
     'Ideal location',
@@ -25,33 +25,24 @@ const page = () => {
     'Spacious rooms',
     'Labour and Delivery rooms close to Nursery and Neonatal ICU',
     'Mosque',
-  ]
+  ];
 
   return (
-    <div className='container'>
-         <h3>Salient Features</h3>
-      <div className="widget widget-services">
-        {Features.map((item,index) => {
-          return (
-            <div key={index} className="widget-content">
-              <ul className="list-unstyled">
-                <li>
-                  <a  href="#">
-                    {' '}
-                    <span className="line">
-                      {' '}
-                      <span></span>
-                    </span>
-                    <span className='mt-10'>{item}</span>
-                  </a>
-                </li>
-              </ul>
+    <div className="container my-5">
+      <h3 className="text-center mb-4">Salient Features</h3>
+      <div className="row">
+        {features.map((feature, index) => (
+          <div key={index} className="col-md-6 mb-3">
+            <div className="card shadow-sm">
+              <div className="card-body">
+                <p className="mb-0">{feature}</p>
+              </div>
             </div>
-          )
-        })}
+          </div>
+        ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default Page;

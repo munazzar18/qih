@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 import departmentArray from '../../../../public/assets/department'
+import Image from 'next/image'
 
 const DepartmentsPage = () => {
   return (
@@ -8,7 +9,12 @@ const DepartmentsPage = () => {
       <section className="hero hero-9 bg-overlay bg-overlay-dark">
         <div className="bg-section">
           {' '}
-          <img src="/assets/images/departments/3.jpg" alt="background" />
+          <Image
+            src="/assets/images/departments/3.jpg"
+            width={500}
+            height={500}
+            alt="background"
+          />
         </div>
         <div className="container">
           <div className="hero-content">
@@ -78,8 +84,10 @@ const DepartmentsPage = () => {
                     <div className="department-panel-holder">
                       <div className="department-img">
                         <Link href="/departments"></Link>
-                        <img
-                          src={`assets/images/departments/${item.id}.jpg `}
+                        <Image
+                          src={`/assets/images/departments/${item.id}.jpg`}
+                          width={500}
+                       height={500}
                           alt={`${item.title} img`}
                         />
                       </div>
