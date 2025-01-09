@@ -20,17 +20,20 @@ const Page = () => {
 
   return (
     <div className="container py-5">
-      <h1 className="text-center mb-4">Medical Specialties</h1>
-      <div className="row g-3">
+      <h1 className="text-center mb-4 fw-bold text-primary">Explore Our Medical Specialties</h1>
+      <p className="text-center text-muted mb-5">
+        Choose from a wide range of specialties to find the care you need.
+      </p>
+      <div className="row g-4">
         {specialties.map((specialty, index) => (
           <div className="col-6 col-md-4 col-lg-3" key={index}>
             <Link
               href={`/${specialty.replace(/\s+/g, "-").toLowerCase()}`}
               className="text-decoration-none"
             >
-              <div className="card specialty-card text-white shadow-sm">
-                <div className="card-body text-center">
-                  <h6 className="card-title">{specialty}</h6>
+              <div className="card specialty-card text-white shadow rounded border-0">
+                <div className="card-body text-center d-flex flex-column align-items-center justify-content-center">
+                  <h6 className="card-title fw-semibold">{specialty}</h6>
                 </div>
               </div>
             </Link>

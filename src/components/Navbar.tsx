@@ -7,7 +7,11 @@ import { FaMagnifyingGlass } from 'react-icons/fa6'
 import departmentArray from '../../public/assets/department'
 
 const Navbar = () => {
-  const currentPath = usePathname()
+  const currentPath = usePathname();
+
+  const [drop, setdrop] = useState(false);
+
+  console.log(drop)
 
   return (
     <header className="header header-light header-topbar" id="navbar-spy">
@@ -53,6 +57,7 @@ const Navbar = () => {
             </div>
           </div>
           <button
+            onClick={() => setdrop(!drop)}
             className="navbar-toggler collapsed"
             type="button"
             data-bs-toggle="collapse"
@@ -65,7 +70,7 @@ const Navbar = () => {
           </button>
         </div>
 
-        <div className="collapse navbar-collapse" id="navbarContent">
+        <div className={`collapse navbar-collapse ${drop ? 'show' : ''}`} id="navbarContent">
           <ul className="navbar-nav ">
             <li
               className={`nav-item ${currentPath === '/' ? 'active' : ''}`}
