@@ -8,9 +8,9 @@ import departmentArray from '../../public/assets/department'
 import Image from 'next/image'
 
 const Navbar = () => {
-  const currentPath = usePathname();
+  const currentPath = usePathname()
 
-  const [drop, setdrop] = useState(false);
+  const [drop, setdrop] = useState(false)
 
   console.log(drop)
 
@@ -43,10 +43,11 @@ const Navbar = () => {
           <div className="module module-language">
             <div className="selected">
               <Image
-               src="/assets/images/module-language/en.png" 
-               width={30}
-            height={30}
-               alt="alt" />
+                src="/assets/images/module-language/en.png"
+                width={30}
+                height={30}
+                alt="alt"
+              />
               <span>english</span>
               <i className="fas fa-chevron-down"></i>
             </div>
@@ -54,20 +55,22 @@ const Navbar = () => {
               <ul>
                 <li>
                   {' '}
-                  <Image 
-                  src="/assets/images/module-language/en.png"
-                  width={400}
-            height={400}
-                   alt="alt" />
+                  <Image
+                    src="/assets/images/module-language/en.png"
+                    width={400}
+                    height={400}
+                    alt="alt"
+                  />
                   <a href="#">english</a>
                 </li>
                 <li>
                   {' '}
                   <Image
-                   src="/assets/images/module-language/ar.png"
-                   width={400}
+                    src="/assets/images/module-language/ar.png"
+                    width={400}
                     height={400}
-                    alt="alt" />
+                    alt="alt"
+                  />
                   <a href="#">arabic</a>
                 </li>
               </ul>
@@ -75,19 +78,21 @@ const Navbar = () => {
           </div>
           <button
             onClick={() => setdrop(!drop)}
-            className="navbar-toggler collapsed"
+            className={`navbar-toggler ${drop ? '' : 'collapsed'}`}
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#navbarContent"
             aria-controls="navbarContent"
-            aria-expanded="false"
+            aria-expanded={!drop}
             aria-label="Toggle navigation"
           >
             <span className="navbar-toggler-icon"></span>
           </button>
         </div>
 
-        <div className={`collapse navbar-collapse ${drop ? 'show' : ''}`} id="navbarContent">
+        <div
+          className={`collapse navbar-collapse ${drop ? 'show' : ''}`}
+          id="navbarContent"
+        >
           <ul className="navbar-nav ">
             <li
               className={`nav-item ${currentPath === '/' ? 'active' : ''}`}

@@ -19319,7 +19319,7 @@ ul.dropdown-menu > li.has-dropdown > a:before {
 
 .card-title {
   font-size: 16px;
-  background: linear-gradient(90deg, #eee, #333); /* Use standard gradient syntax */
+  background: black; /* Use standard gradient syntax */
   -webkit-background-clip: text; /* Required for WebKit browsers */
   -webkit-text-fill-color: transparent; /* Ensures text appears as gradient */
   display: inline-block; /* Ensures proper rendering for clipped text */
