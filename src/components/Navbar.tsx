@@ -44,8 +44,8 @@ const Navbar = () => {
             <div className="selected">
               <Image
                src="/assets/images/module-language/en.png" 
-               width={400}
-            height={400}
+               width={30}
+            height={30}
                alt="alt" />
               <span>english</span>
               <i className="fas fa-chevron-down"></i>
