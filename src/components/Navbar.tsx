@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { FaMagnifyingGlass } from 'react-icons/fa6'
 import departmentArray from '../../public/assets/department'
+import Image from 'next/image'
 
 const Navbar = () => {
   const currentPath = usePathname();
@@ -17,15 +18,19 @@ const Navbar = () => {
     <header className="header header-light header-topbar" id="navbar-spy">
       <nav className="navbar navbar-expand-xl navbar-sticky" id="primary-menu">
         <Link className="navbar-brand" href="/">
-          <img
+          <Image
             className="logo logo-dark"
             src="/assets/photos/logo_dark.png"
+            width={400}
+            height={400}
             alt="QIH logo"
           />
 
-          <img
+          <Image
             className="logo logo-mobile"
             src="/assets/photos/logo_dark.png"
+            width={400}
+            height={400}
             alt="QIH logo"
           />
         </Link>
@@ -37,7 +42,11 @@ const Navbar = () => {
           </div>
           <div className="module module-language">
             <div className="selected">
-              <img src="assets/images/module-language/en.png" alt="alt" />
+              <Image
+               src="/assets/images/module-language/en.png" 
+               width={400}
+            height={400}
+               alt="alt" />
               <span>english</span>
               <i className="fas fa-chevron-down"></i>
             </div>
@@ -45,12 +54,20 @@ const Navbar = () => {
               <ul>
                 <li>
                   {' '}
-                  <img src="assets/images/module-language/en.png" alt="alt" />
+                  <Image 
+                  src="/assets/images/module-language/en.png"
+                  width={400}
+            height={400}
+                   alt="alt" />
                   <a href="#">english</a>
                 </li>
                 <li>
                   {' '}
-                  <img src="assets/images/module-language/ar.png" alt="alt" />
+                  <Image
+                   src="/assets/images/module-language/ar.png"
+                   width={400}
+                    height={400}
+                    alt="alt" />
                   <a href="#">arabic</a>
                 </li>
               </ul>
