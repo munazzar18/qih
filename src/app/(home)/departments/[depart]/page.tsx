@@ -11,10 +11,11 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
       >
         <div className="bg-section">
           <Image
-           src="/assets/images/departments/3.jpg"
-           width={500}
-                       height={500}
-            alt="Background" />
+            src="/assets/images/departments/3.jpg"
+            width={500}
+            height={500}
+            alt="Background"
+          />
         </div>
         <div className="container">
           <div className="row">
@@ -22,7 +23,7 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
               <div className="title">
                 <ol className="breadcrumb">
                   <li className="breadcrumb-item">
-                    <a href="index.html">Home</a>
+                    <a href="">Home</a>
                   </li>
                   <li className="breadcrumb-item">
                     <a href="">services</a>
@@ -49,7 +50,7 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                     </div>
                     <a
                       className="btn btn--white btn-line btn-line-before btn-line-inversed"
-                      href="doctors-moder.html"
+                      href=""
                     >
                       <span className="line">
                         {' '}
@@ -99,7 +100,7 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                   <Image
                     src="/assets/images/departments/6.jpg"
                     width={500}
-                       height={500}
+                    height={500}
                     alt="background"
                   />
                 </div>
@@ -388,7 +389,7 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                   </p>
                   <a
                     className="btn btn--secondary btn-line btn-line-before"
-                    href="page-pricing.html"
+                    href=""
                   >
                     <span className="line">
                       <span></span>
@@ -410,18 +411,18 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                     <div className="team-member" data-hover="">
                       <div className="team-member-holder">
                         <div className="team-img">
-                          <a className="link" href="doctors-grid.html"></a>
+                          <a className="link" href=""></a>
                           <Image
                             src="/assets/images/team/grid/1.jpg"
                             width={500}
-                       height={500}
+                            height={500}
                             alt="team member"
                           />
                         </div>
                         <div className="team-content">
                           <div className="team-title">
                             <h4>
-                              <a href="doctors-grid.html">Richard Muldon</a>
+                              <a href="">Richard Muldon</a>
                             </h4>
                           </div>
                           <div className="team-cat">
@@ -437,18 +438,18 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                     <div className="team-member" data-hover="">
                       <div className="team-member-holder">
                         <div className="team-img">
-                          <a className="link" href="doctors-grid.html"></a>
+                          <a className="link" href=""></a>
                           <Image
                             src="/assets/images/team/grid/2.jpg"
                             width={500}
-                       height={500}
+                            height={500}
                             alt="team member"
                           />
                         </div>
                         <div className="team-content">
                           <div className="team-title">
                             <h4>
-                              <a href="doctors-grid.html">Michael Brian</a>
+                              <a href="">Michael Brian</a>
                             </h4>
                           </div>
                           <div className="team-cat">
@@ -462,18 +463,18 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                     <div className="team-member" data-hover="">
                       <div className="team-member-holder">
                         <div className="team-img">
-                          <a className="link" href="doctors-grid.html"></a>
+                          <a className="link" href=""></a>
                           <Image
                             src="/assets/images/team/grid/3.jpg"
                             width={500}
-                       height={500}
+                            height={500}
                             alt="team member"
                           />
                         </div>
                         <div className="team-content">
                           <div className="team-title">
                             <h4>
-                              <a href="doctors-grid.html">Maria Andaloro</a>
+                              <a href="">Maria Andaloro</a>
                             </h4>
                           </div>
                           <div className="team-cat">
@@ -489,11 +490,12 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                 <div className="contact-panel bg-overlay bg-overlay-theme3">
                   <div className="bg-section">
                     {' '}
-                    <Image 
-                    src="/assets/images/sliders/1.jpg" 
-                    width={500}
-                       height={500}
-                    alt="background" />
+                    <Image
+                      src="/assets/images/sliders/1.jpg"
+                      width={500}
+                      height={500}
+                      alt="background"
+                    />
                   </div>
                   <div className="contact-card">
                     <div className="contact-body">
@@ -605,7 +607,7 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                   <div className="widget-content">
                     <ul className="list-unstyled">
                       <li>
-                        <a href="single-service.html">
+                        <a href="">
                           {' '}
                           <span className="line">
                             {' '}
@@ -615,7 +617,7 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                         </a>
                       </li>
                       <li>
-                        <a href="single-service.html">
+                        <a href="">
                           {' '}
                           <span className="line">
                             {' '}
@@ -625,7 +627,7 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                         </a>
                       </li>
                       <li>
-                        <a href="single-service.html">
+                        <a href="">
                           {' '}
                           <span className="line">
                             {' '}
@@ -635,7 +637,7 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                         </a>
                       </li>
                       <li>
-                        <a href="single-service.html">
+                        <a href="">
                           {' '}
                           <span className="line">
                             {' '}
@@ -645,7 +647,7 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                         </a>
                       </li>
                       <li>
-                        <a href="single-service.html">
+                        <a href="">
                           {' '}
                           <span className="line">
                             {' '}
@@ -655,7 +657,7 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                         </a>
                       </li>
                       <li>
-                        <a href="single-service.html">
+                        <a href="">
                           {' '}
                           <span className="line">
                             {' '}
@@ -672,7 +674,7 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                   <Image
                     src="/assets/images/blog/sidebar/reservation.jpg"
                     width={500}
-                       height={500}
+                    height={500}
                     alt="image"
                   />
                   <div className="widget-content">

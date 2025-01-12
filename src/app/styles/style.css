@@ -3123,7 +3123,7 @@ ul.list-icons li i {
 }
 @media screen and (min-width: 768px) {
   .header.header-topbar {
-    height: 155px;
+    height: 125px;
   }
 }
 @media screen and (max-width: 991.98px) {
@@ -3132,7 +3132,7 @@ ul.list-icons li i {
   }
 }
 .header.header-topbar .navbar {
-  padding: 0 20px;
+  padding: 0 15px;
 }
 @media screen and (min-width: 1200px) {
   .header.header-topbar .navbar {
@@ -19309,7 +19309,6 @@ ul.dropdown-menu > li.has-dropdown > a:before {
   background: white;
   box-shadow: #0e204d;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
- 
 }
 
 .specialty-card:hover {
@@ -19324,7 +19323,6 @@ ul.dropdown-menu > li.has-dropdown > a:before {
   -webkit-text-fill-color: transparent; /* Ensures text appears as gradient */
   display: inline-block; /* Ensures proper rendering for clipped text */
 }
-
 
 .card-body {
   min-height: 100px;

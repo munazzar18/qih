@@ -1,3 +1,4 @@
+import { cookies } from 'next/headers'
 
 import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar'
@@ -9,11 +10,14 @@ export default async function HomeLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const token = (await cookies()).get('token')?.value
+  const user = JSON.parse((await cookies()).get('user')?.value ?? '')
+
   return (
     <div>
       <Topbar />
       <NavbarSearch />
-      <Navbar />
+      <Navbar token={token ?? ''} user={user} />
       {children}
       <Footer />
     </div>

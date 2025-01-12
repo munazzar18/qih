@@ -6,13 +6,38 @@ import { useEffect, useState } from 'react'
 import { FaMagnifyingGlass } from 'react-icons/fa6'
 import departmentArray from '../../public/assets/department'
 import Image from 'next/image'
+import Logout from './Logout'
+import { getDepartments } from '@/app/lib/getDepartments'
 
-const Navbar = () => {
+interface User {
+  id: number
+  name: string
+  email: string
+}
+
+interface Department {
+  id: number
+  title: string
+  description: string
+  image: string
+  user_id: number
+  created_at: Date
+}
+
+const Navbar = ({ token, user }: { token: string; user: User }) => {
   const currentPath = usePathname()
+  const [departments, setDepartments] = useState<Department[]>([])
 
   const [drop, setdrop] = useState(false)
 
-  console.log(drop)
+  const getAllDepartments = async () => {
+    const res = await getDepartments()
+    setDepartments(res)
+  }
+
+  useEffect(() => {
+    getAllDepartments()
+  }, [])
 
   return (
     <header className="header header-light header-topbar" id="navbar-spy">
@@ -226,11 +251,7 @@ const Navbar = () => {
                 </li>
               </ul>
             </li>
-            <li className="nav-item" id="contact" data-hover="">
-              <Link className="" href="/user/pannel">
-                <span>User Pannel</span>
-              </Link>
-            </li>
+
             <li
               className={`nav-item  ${
                 currentPath.includes('career') ? 'active' : ''
@@ -258,7 +279,7 @@ const Navbar = () => {
                 className="dropdown-menu"
                 style={{ height: '300px', overflowY: 'scroll' }}
               >
-                {departmentArray.map((item) => {
+                {departments.map((item) => {
                   return (
                     <li key={item.id} className="nav-item">
                       <Link
@@ -297,6 +318,19 @@ const Navbar = () => {
                 </li>
               </ul>
             </li>
+            <li className="nav-item" id="contact" data-hover="">
+              {token ? (
+                <Link className="" href="/">
+                  <span>
+                    <Logout />
+                  </span>
+                </Link>
+              ) : (
+                <Link className="" href="/auth/login">
+                  <span>Login</span>
+                </Link>
+              )}
+            </li>
           </ul>
           <div className="module-holder">
             <div className="module module-search float-left">
@@ -306,12 +340,12 @@ const Navbar = () => {
               </div>
             </div>
             <div className="module-contact">
-              <a className="btn btn--secondary" href="doctors-timetable.html">
+              <a className="btn btn--secondary" href="">
                 doctors' timetable
               </a>
-              <a
+              <Link
                 className="btn btn--primary btn-line btn-line-after"
-                href="page-appointments.html"
+                href="/make-appointment"
               >
                 {' '}
                 <span>make appointment</span>
@@ -319,7 +353,7 @@ const Navbar = () => {
                   {' '}
                   <span></span>
                 </span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
