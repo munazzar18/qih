@@ -24,7 +24,7 @@ interface Department {
   created_at: Date
 }
 
-const Navbar = ({ token, user }: { token: string; user: User }) => {
+const Navbar = ({ token, user }: { token: string; user: User | null }) => {
   const currentPath = usePathname()
   const [departments, setDepartments] = useState<Department[]>([])
 
