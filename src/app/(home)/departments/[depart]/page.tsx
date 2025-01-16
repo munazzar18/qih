@@ -412,7 +412,7 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                         <div className="team-img">
                           <a className="link" href="doctors-grid.html"></a>
                           <Image
-                            src="/assets/images/team/grid/1.jpg"
+                            src="/assets/images/departments/1.jpg"
                             width={500}
                        height={500}
                             alt="team member"
@@ -439,7 +439,7 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                         <div className="team-img">
                           <a className="link" href="doctors-grid.html"></a>
                           <Image
-                            src="/assets/images/team/grid/2.jpg"
+                            src="/assets/images/departments/2.jpg"
                             width={500}
                        height={500}
                             alt="team member"
@@ -464,7 +464,7 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                         <div className="team-img">
                           <a className="link" href="doctors-grid.html"></a>
                           <Image
-                            src="/assets/images/team/grid/3.jpg"
+                            src="/assets/images/departments/3.jpg"
                             width={500}
                        height={500}
                             alt="team member"
@@ -490,7 +490,7 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                   <div className="bg-section">
                     {' '}
                     <Image 
-                    src="/assets/images/sliders/1.jpg" 
+                    src="/assets/images/departments/1.jpg" 
                     width={500}
                        height={500}
                     alt="background" />

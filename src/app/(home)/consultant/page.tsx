@@ -31,10 +31,17 @@ const Page = () => {
               href={`/${specialty.replace(/\s+/g, "-").toLowerCase()}`}
               className="text-decoration-none"
             >
-              <div className="card specialty-card text-white shadow rounded border-0">
-                <div className="card-body text-center d-flex flex-column align-items-center justify-content-center">
-                  <h6 className="card-title fw-semibold">{specialty}</h6>
-                </div>
+              <div
+                className="p-4 bg-gradient rounded shadow-sm d-flex flex-column align-items-center justify-content-center specialty-card"
+                style={{
+                  background: "linear-gradient(135deg, #6a11cb, #2575fc)",
+                  transition: "transform 0.3s, box-shadow 0.3s",
+                  color: "white",
+                  textAlign: "center",
+                  height: "150px",
+                }}
+              >
+                <h6 className="fw-semibold">{specialty}</h6>
               </div>
             </Link>
           </div>

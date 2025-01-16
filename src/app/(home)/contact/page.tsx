@@ -170,8 +170,8 @@ const page = () => {
                         {" "}
                         <Image
                           src="/assets/images/background/world-map.png"
-                          width={500}
-                       height={500}
+                          width={700}
+                       height={400}
                           alt="image"
                         />
                       </div>
@@ -183,8 +183,8 @@ const page = () => {
                         >
                           <Image
                             src="/assets/images/background/map-pointer.png"
-                            width={500}
-                       height={500}
+                            width={30}
+                       height={30}
                             alt="pointer"
                           />
                           <div
@@ -204,8 +204,8 @@ const page = () => {
                         >
                           <Image
                             src="/assets/images/background/map-pointer.png"
-                            width={500}
-                       height={500}
+                            width={30}
+                       height={30}
                             alt="pointer"
                           />
                           <div
@@ -225,8 +225,8 @@ const page = () => {
                         >
                           <Image
                             src="/assets/images/background/map-pointer.png"
-                            width={500}
-                       height={500}
+                            width={30}
+                       height={30}
                             alt="pointer"
                           />
                           <div
