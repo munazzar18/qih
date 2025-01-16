@@ -37,3 +37,25 @@ export const departmentSchema = z.object({
 })
 
 export type DepartmentSchema = z.infer<typeof departmentSchema>
+
+export const consultantSchema = z.object({
+    name: z
+        .string()
+        .min(1, "Name is required"),
+    email: z
+        .string()
+        .min(1, "Email is required")
+        .email("Email is invalid"),
+    office_extention: z
+        .string()
+        .min(1, "Office extention is required"),
+    photo: z
+        .custom<File | null>((file) => file === null || file instanceof File, {
+            message: "Photo is required",
+        }),
+    department_id: z
+        .number()
+        .min(1, "Department is required")
+})
+
+export type ConstultantSchema = z.infer<typeof consultantSchema>

@@ -1,4 +1,6 @@
-import UserSideBar from '@/components/AdminPannel'
+import React from 'react'
+import AdminSideBar from '@/components/AdminPannel'
+import { cookies } from 'next/headers'
 import Link from 'next/link'
 
 interface User {
@@ -8,16 +10,18 @@ interface User {
   role: string
 }
 
-export default function Layout({
+export default async function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const token = (await cookies()).get('token')?.value
+
   return (
     <>
-      <div className="d-flex min-vh-100">
+      <div className="d-flex min-vh-100" suppressHydrationWarning>
         {/* Sidebar */}
-        <UserSideBar />
+        <AdminSideBar />
 
         {/* Main Content */}
         <div className="flex-grow-1 p-0 p-md-4 p-lg-5">

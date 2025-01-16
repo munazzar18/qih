@@ -87,3 +87,33 @@ export const EditDepartmentAction = async (formData: FormData) => {
         return error
     }
 }
+
+export const ConsultantCreateAction = async (formData: FormData) => {
+    const token = (await cookies()).get('token')?.value
+    const name = formData.get('name')
+    const email = formData.get('email')
+    const office_extention = formData.get('office_extention')
+    const photo = formData.get('photo')
+    const department_id = Number(formData.get('department_id'))
+    try {
+        const response = await fetch(`${url}consultants`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                office_extention,
+                photo,
+                department_id
+            })
+        })
+        const data = await response.json();
+        return data
+    } catch (error) {
+        return error
+    }
+}
