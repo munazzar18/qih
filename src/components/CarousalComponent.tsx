@@ -20,13 +20,27 @@ const CarousalComponent = () => {
           <div className="container">
             <div className="slide-content">
               <div className="row">
-                <div className="col-12 col-lg-7">
-                  <h1 className="slide-headline">
+                <div className="col-12 col-lg-7 ">
+                  <h1
+                    className="slide-headline"
+                    style={{
+                      backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                      padding: '10px',
+                      borderRadius: '10px',
+                    }}
+                  >
                     true healthcare for your family
                   </h1>
                 </div>
                 <div className="col-12 col-lg-6">
-                  <p className="slide-desc">
+                  <p
+                    className="slide-desc"
+                    style={{
+                      backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                      padding: '10px',
+                      borderRadius: '10px',
+                    }}
+                  >
                     The health and well-being of our patients and their health
                     care team will always be our priority, so we follow the best
                     practices.{' '}
@@ -66,12 +80,26 @@ const CarousalComponent = () => {
             <div className="slide-content">
               <div className="row">
                 <div className="col-12 col-lg-7">
-                  <h1 className="slide-headline">
+                  <h1
+                    className="slide-headline"
+                    style={{
+                      backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                      padding: '10px',
+                      borderRadius: '10px',
+                    }}
+                  >
                     provide aspects of medical care
                   </h1>
                 </div>
                 <div className="col-12 col-lg-6">
-                  <p className="slide-desc">
+                  <p
+                    className="slide-desc"
+                    style={{
+                      backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                      padding: '10px',
+                      borderRadius: '10px',
+                    }}
+                  >
                     The health and well-being of our patients and their health
                     care team will always be our priority, so we follow the best
                     practices.{' '}

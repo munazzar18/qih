@@ -19,6 +19,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css'
 import './styles/style.css'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import Wrapper from '@/components/Wrapper'
+import { Toaster } from 'react-hot-toast'
 
 const heebo = Heebo({
   weight: ['400', '500', '600', '700'],
@@ -93,6 +94,8 @@ export default function RootLayout({
       <body
         className={`${heebo.className} ${roboto.className} ${rubik.className}`}
       >
+        <Toaster position="top-right" toastOptions={{ duration: 3000 }} />
+
         <Wrapper>{children}</Wrapper>
         <div className="backtop" id="back-to-top" data-hover="">
           <svg

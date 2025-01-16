@@ -3123,7 +3123,7 @@ ul.list-icons li i {
 }
 @media screen and (min-width: 768px) {
   .header.header-topbar {
-    height: 155px;
+    height: 125px;
   }
 }
 @media screen and (max-width: 991.98px) {
@@ -3132,7 +3132,7 @@ ul.list-icons li i {
   }
 }
 .header.header-topbar .navbar {
-  padding: 0 20px;
+  padding: 0 15px;
 }
 @media screen and (min-width: 1200px) {
   .header.header-topbar .navbar {

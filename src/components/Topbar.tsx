@@ -22,7 +22,7 @@ const Topbar = () => {
           data-loop="true"
           data-speed="800"
         >
-          <a href="blog-grid-fullwidth.html">
+          <a href="">
             {' '}
             Hear their real stories
             <svg

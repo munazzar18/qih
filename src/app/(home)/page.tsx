@@ -123,7 +123,7 @@ const page = () => {
                 <div className="actions-holder">
                   <a
                     className="btn btn--primary btn-line btn-line-after"
-                    href="doctors-grid.html"
+                    href=""
                   >
                     {' '}
                     <span>find a doctor</span>
@@ -132,7 +132,7 @@ const page = () => {
                       <span></span>
                     </span>
                   </a>
-                  <a className="btn btn--white" href="page-about.html">
+                  <a className="btn btn--white" href="">
                     more about us
                   </a>
                 </div>
@@ -208,18 +208,18 @@ const page = () => {
               <div className="department-panel" data-hover="">
                 <div className="department-panel-holder">
                   <div className="department-img">
-                    <a href="page-departments.html"></a>
+                    <a href=""></a>
                     <Image
                       src="/assets/images/departments/18.jpg"
                       width={500}
-                       height={500}
+                      height={500}
                       alt="department img"
                     />
                   </div>
                   <div className="department-content">
                     <div className="department-title">
                       <h4>
-                        <a href="page-departments.html">Neurology Clinic</a>
+                        <a href="">Neurology Clinic</a>
                       </h4>
                     </div>
                     <div className="department-desc">
@@ -246,7 +246,7 @@ const page = () => {
                     <div className="department-more">
                       <a
                         className="btn btn--white btn-line btn-line-before btn-line-inversed"
-                        href="page-departments.html"
+                        href=""
                       >
                         {' '}
                         <span className="line">
@@ -264,18 +264,18 @@ const page = () => {
               <div className="department-panel" data-hover="">
                 <div className="department-panel-holder">
                   <div className="department-img">
-                    <a href="page-departments.html"></a>
+                    <a href=""></a>
                     <Image
                       src="/assets/images/departments/2.jpg"
                       width={500}
-                       height={500}
+                      height={500}
                       alt="department img"
                     />
                   </div>
                   <div className="department-content">
                     <div className="department-title">
                       <h4>
-                        <a href="page-departments.html">Cardiology Clinic</a>
+                        <a href="">Cardiology Clinic</a>
                       </h4>
                     </div>
                     <div className="department-desc">
@@ -302,7 +302,7 @@ const page = () => {
                     <div className="department-more">
                       <a
                         className="btn btn--white btn-line btn-line-before btn-line-inversed"
-                        href="page-departments.html"
+                        href=""
                       >
                         {' '}
                         <span className="line">
@@ -320,7 +320,7 @@ const page = () => {
               <div className="department-panel" data-hover="">
                 <div className="department-panel-holder">
                   <div className="department-img">
-                    <a href="page-departments.html"></a>
+                    <a href=""></a>
                     <Image
                       src="/assets/images/departments/3.jpg"
                       width={500}
@@ -331,7 +331,7 @@ const page = () => {
                   <div className="department-content">
                     <div className="department-title">
                       <h4>
-                        <a href="page-departments.html">Pathology Clinic</a>
+                        <a href="">Pathology Clinic</a>
                       </h4>
                     </div>
                     <div className="department-desc">
@@ -358,7 +358,7 @@ const page = () => {
                     <div className="department-more">
                       <a
                         className="btn btn--white btn-line btn-line-before btn-line-inversed"
-                        href="page-departments.html"
+                        href=""
                       >
                         {' '}
                         <span className="line">
@@ -386,7 +386,7 @@ const page = () => {
                 <div className="doctor-action">
                   <a
                     className="btn btn--secondary btn-line btn-line-after"
-                    href="page-appointments.html"
+                    href=""
                   >
                     {' '}
                     <span>make appointment</span>
@@ -401,7 +401,7 @@ const page = () => {
                       <Image
                         src="/assets/images/departments/20.jpg"
                         width={60}
-                       height={60}
+                        height={60}
                         alt="image"
                       />
                     </div>
@@ -425,10 +425,11 @@ const page = () => {
         <div className="bg-section">
           {' '}
           <Image
-           src="/assets/images/departments/1.jpg"
-           width={500}
-           height={500}
-           alt="Background" />
+            src="/assets/images/departments/1.jpg"
+            width={500}
+            height={500}
+            alt="Background"
+          />
         </div>
         <div className="container">
           <div className="heading heading-14 heading-light">
@@ -473,7 +474,7 @@ const page = () => {
                       className="signature-img"
                       src="/assets/images/signature/2.png"
                       width={500}
-                       height={500}
+                      height={500}
                       alt="signature"
                     />
                   </div>
@@ -568,7 +569,7 @@ const page = () => {
           <div className="more-features more-features-2">
             <p>
               Delivering tomorrow’s health care for your family.{' '}
-              <a href="doctors-timetable.html">view doctors' timetable </a>
+              <a href="">view doctors' timetable </a>
             </p>
           </div>
           <div className="features-card">
@@ -624,11 +625,12 @@ const page = () => {
             <div className="col-12 col-lg-5">
               <div className="clients-img">
                 {' '}
-                <Image 
-                src="/assets/images/departments/23.jpg" 
-                width={700}
-                height={300}
-                alt="image" />
+                <Image
+                  src="/assets/images/departments/23.jpg"
+                  width={700}
+                  height={300}
+                  alt="image"
+                />
               </div>
             </div>
             <div className="col-12 col-lg-6 offset-lg-1">
@@ -745,378 +747,6 @@ const page = () => {
         </div>
       </section>
 
-      {/* <section className="team team-modern team-carousel" id="teamCarousel-1">
-        <div className="container">
-          <div className="row">
-            <div className="col-12 col-lg-5">
-              <div className="heading heading-5">
-                <h2 className="heading-title">meet our doctors</h2>
-                <p className="heading-desc">
-                  Our administration and support staff have exceptional skills
-                  and trained to assist you with all enquiries.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-12">
-              <div
-                className="carousel owl-carousel carousel-navs"
-                data-slide="3"
-                data-slide-rs="2"
-                data-autoplay="true"
-                data-nav="true"
-                data-dots="false"
-                data-space="30"
-                data-loop="true"
-                data-speed="3000"
-              >
-                <div>
-                  <div className="team-member" data-hover="">
-                    <div className="team-member-holder">
-                      <div className="team-img">
-                        <a
-                          className="link"
-                          href="doctors-single-modern.html"
-                        ></a>
-                        <Image
-                          src="assets/images/departments/16.jpg"
-                          alt="team member"
-                        />
-                      </div>
-
-                      <div className="team-content-holder">
-                        <div className="team-content">
-                          <div className="team-title">
-                            <h4>
-                              <a href="doctors-single-modern.html">
-                                Richard Muldoone
-                              </a>
-                            </h4>
-                          </div>
-                          <div className="team-cat">
-                            <a href="#">Cardiology Specialist</a>
-                          </div>
-                          <div className="team-desc">
-                            <p>
-                              Muldoone obtained his undergraduate degree in
-                              Biomedical Engineering at Tulane University prior
-                              to attending St George University School of
-                              Medicine.
-                            </p>
-                          </div>
-                          <div className="team-social">
-                            {' '}
-                            <a href="javascript:void(0)">
-                              <i className="fab fa-facebook-f"> </i>
-                            </a>
-                            <a href="javascript:void(0)">
-                              <i className="fab fa-twitter"></i>
-                            </a>
-                            <a href="javascript:void(0)">
-                              <i className="fas fa-envelope"></i>
-                            </a>
-                            <a href="javascript:void(0)">
-                              <i className="fas fa-phone-alt"></i>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <div className="team-member" data-hover="">
-                    <div className="team-member-holder">
-                      <div className="team-img">
-                        <a
-                          className="link"
-                          href="doctors-single-modern.html"
-                        ></a>
-                        <Image
-                          src="assets/images/departments/9.jpg"
-                          alt="team member"
-                        />
-                      </div>
-
-                      <div className="team-content-holder">
-                        <div className="team-content">
-                          <div className="team-title">
-                            <h4>
-                              <a href="doctors-single-modern.html">
-                                Michael Brian
-                              </a>
-                            </h4>
-                          </div>
-                          <div className="team-cat">
-                            <a href="#">Dermatologists</a>
-                          </div>
-                          <div className="team-desc">
-                            <p>
-                              Brian specializes in treating skin, hair, nail,
-                              and mucous membrane. He also address cosmetic
-                              issues, helping to revitalize the skin, hair,
-                              and...
-                            </p>
-                          </div>
-                          <div className="team-social">
-                            {' '}
-                            <a href="javascript:void(0)">
-                              <i className="fab fa-facebook-f"> </i>
-                            </a>
-                            <a href="javascript:void(0)">
-                              <i className="fab fa-twitter"></i>
-                            </a>
-                            <a href="javascript:void(0)">
-                              <i className="fas fa-envelope"></i>
-                            </a>
-                            <a href="javascript:void(0)">
-                              <i className="fas fa-phone-alt"></i>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <div className="team-member" data-hover="">
-                    <div className="team-member-holder">
-                      <div className="team-img">
-                        <a
-                          className="link"
-                          href="doctors-single-modern.html"
-                        ></a>
-                        <Image
-                          src="assets/images/departments/38.jpg"
-                          alt="team member"
-                        />
-                      </div>
-
-                      <div className="team-content-holder">
-                        <div className="team-content">
-                          <div className="team-title">
-                            <h4>
-                              <a href="doctors-single-modern.html">
-                                Maria Andaloro
-                              </a>
-                            </h4>
-                          </div>
-                          <div className="team-cat">
-                            <a href="#">Pediatrician</a>
-                          </div>
-                          <div className="team-desc">
-                            <p>
-                              Andaloro graduated from medical school and
-                              completed 3 years residency program in pediatrics.
-                              She passed by the American Board of Pediatrics.
-                            </p>
-                          </div>
-                          <div className="team-social">
-                            {' '}
-                            <a href="javascript:void(0)">
-                              <i className="fab fa-facebook-f"> </i>
-                            </a>
-                            <a href="javascript:void(0)">
-                              <i className="fab fa-twitter"></i>
-                            </a>
-                            <a href="javascript:void(0)">
-                              <i className="fas fa-envelope"></i>
-                            </a>
-                            <a href="javascript:void(0)">
-                              <i className="fas fa-phone-alt"></i>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <div className="team-member" data-hover="">
-                    <div className="team-member-holder">
-                      <div className="team-img">
-                        <a
-                          className="link"
-                          href="doctors-single-modern.html"
-                        ></a>
-                        <Image
-                          src="assets/images/departments/36.jpg"
-                          alt="team member"
-                        />
-                      </div>
-
-                      <div className="team-content-holder">
-                        <div className="team-content">
-                          <div className="team-title">
-                            <h4>
-                              <a href="doctors-single-modern.html">
-                                Dupree Black
-                              </a>
-                            </h4>
-                          </div>
-                          <div className="team-cat">
-                            <a href="#">Urologist</a>
-                          </div>
-                          <div className="team-desc">
-                            <p>
-                              Black diagnose and treat diseases of the urinary
-                              tract in both men and women. He also diagnose and
-                              treat anything involving...
-                            </p>
-                          </div>
-                          <div className="team-social">
-                            {' '}
-                            <a href="javascript:void(0)">
-                              <i className="fab fa-facebook-f"> </i>
-                            </a>
-                            <a href="javascript:void(0)">
-                              <i className="fab fa-twitter"></i>
-                            </a>
-                            <a href="javascript:void(0)">
-                              <i className="fas fa-envelope"></i>
-                            </a>
-                            <a href="javascript:void(0)">
-                              <i className="fas fa-phone-alt"></i>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <div className="team-member" data-hover="">
-                    <div className="team-member-holder">
-                      <div className="team-img">
-                        <a
-                          className="link"
-                          href="doctors-single-modern.html"
-                        ></a>
-                        <Image
-                          src="assets/images/departments/25.jpg"
-                          alt="team member"
-                        />
-                      </div>
-
-                      <div className="team-content-holder">
-                        <div className="team-content">
-                          <div className="team-title">
-                            <h4>
-                              <a href="doctors-single-modern.html">
-                                Markus Skar
-                              </a>
-                            </h4>
-                          </div>
-                          <div className="team-cat">
-                            <a href="#">laboratory</a>
-                          </div>
-                          <div className="team-desc">
-                            <p>
-                              Skar play a very important role in your health
-                              care. People working in the clinical laboratory
-                              are responsible for conducting tests.
-                            </p>
-                          </div>
-                          <div className="team-social">
-                            {' '}
-                            <a href="javascript:void(0)">
-                              <i className="fab fa-facebook-f"> </i>
-                            </a>
-                            <a href="javascript:void(0)">
-                              <i className="fab fa-twitter"></i>
-                            </a>
-                            <a href="javascript:void(0)">
-                              <i className="fas fa-envelope"></i>
-                            </a>
-                            <a href="javascript:void(0)">
-                              <i className="fas fa-phone-alt"></i>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <div className="team-member" data-hover="">
-                    <div className="team-member-holder">
-                      <div className="team-img">
-                        <a
-                          className="link"
-                          href="doctors-single-modern.html"
-                        ></a>
-                        <Image
-                          src="assets/images/departments/16.jpg"
-                          alt="team member"
-                        />
-                      </div>
-
-                      <div className="team-content-holder">
-                        <div className="team-content">
-                          <div className="team-title">
-                            <h4>
-                              <a href="doctors-single-modern.html">
-                                Kiano Barker
-                              </a>
-                            </h4>
-                          </div>
-                          <div className="team-cat">
-                            <a href="#">Pathologist</a>
-                          </div>
-                          <div className="team-desc">
-                            <p>
-                              Barker help care for patients every day by
-                              providing their doctors with the information
-                              needed to ensure appropriate care.
-                            </p>
-                          </div>
-                          <div className="team-social">
-                            {' '}
-                            <a href="javascript:void(0)">
-                              <i className="fab fa-facebook-f"> </i>
-                            </a>
-                            <a href="javascript:void(0)">
-                              <i className="fab fa-twitter"></i>
-                            </a>
-                            <a href="javascript:void(0)">
-                              <i className="fas fa-envelope"></i>
-                            </a>
-                            <a href="javascript:void(0)">
-                              <i className="fas fa-phone-alt"></i>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-12">
-              <div className="action-bar">
-                <p className="note">
-                  <span>
-                    <i className="fas fa-calendar-day"></i> on monday,{' '}
-                  </span>{' '}
-                  Doctors will be available from 8 am : 12 am , kindly call to
-                  confirm your Appointment{' '}
-                </p>
-                <a
-                  className="btn btn--primary btn-line btn-line-after"
-                  href="page-appointments.html"
-                >
-                  <span>make appointment</span>
-                  <span className="line">
-                    <span></span>
-                  </span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
       <section className="cta cta-3" id="cta-3">
         <div className="container">
           <div className="heading heading-6">
@@ -1179,7 +809,7 @@ const page = () => {
                     </p>
                     <a
                       className="btn-line btn-line-before btn-line-inversed"
-                      href="doctors-timetable.html"
+                      href=""
                     >
                       <span className="line">
                         {' '}
@@ -1263,7 +893,7 @@ const page = () => {
                     </p>
                     <a
                       className="btn-line btn-line-before btn-line-inversed"
-                      href="page-appointments.html"
+                      href=""
                     >
                       <span className="line">
                         {' '}
@@ -1285,10 +915,11 @@ const page = () => {
       >
         <div className="bg-section">
           <Image
-           src="/assets/images/departments/3.jpg"
-           width={500}
-                       height={500}
-            alt="background" />
+            src="/assets/images/departments/3.jpg"
+            width={500}
+            height={500}
+            alt="background"
+          />
         </div>
         <div className="container">
           <div className="contact-panel contact-panel-3">
@@ -1302,13 +933,10 @@ const page = () => {
                 Hospital by making a much-needed donation today
               </p>
               <div className="donations-action">
-                <a className="btn btn--white" href="contact.html">
+                <a className="btn btn--white" href="">
                   make a gift <i className="fas fa-heart"></i>
                 </a>
-                <a
-                  className="btn btn--transparent btn--inversed"
-                  href="page-faqs.html"
-                >
+                <a className="btn btn--transparent btn--inversed" href="">
                   help &amp; faqs
                 </a>
               </div>
@@ -1319,7 +947,7 @@ const page = () => {
                     <Image
                       src="/assets/images/background/world-map.png"
                       width={500}
-                       height={300}
+                      height={300}
                       alt="image"
                     />
                   </div>
@@ -1522,11 +1150,11 @@ const page = () => {
                       <span className="year">2021</span>
                     </div>
                   </div>
-                  <a href="blog-single-sidebar.html">
+                  <a href="">
                     <Image
                       src="/assets/images/departments/1.jpg"
                       width={500}
-                       height={500}
+                      height={500}
                       alt="6 tips to protect your mental health when sick"
                     />
                   </a>
@@ -1545,7 +1173,7 @@ const page = () => {
                   </div>
                   <div className="entry-title">
                     <h4>
-                      <a href="blog-single-sidebar.html">
+                      <a href="">
                         6 tips to protect your mental health when sick
                       </a>
                     </h4>
@@ -1561,7 +1189,7 @@ const page = () => {
                     {' '}
                     <a
                       className="btn btn--white btn-line btn-line-before btn-line-inversed"
-                      href="blog-single-sidebar.html"
+                      href=""
                     >
                       <div className="line">
                         {' '}
@@ -1583,11 +1211,11 @@ const page = () => {
                       <span className="year">2021</span>
                     </div>
                   </div>
-                  <a href="blog-single-sidebar.html">
+                  <a href="">
                     <Image
                       src="/assets/images/departments/12.jpg"
                       width={500}
-                       height={500}
+                      height={500}
                       alt="Unsure About Wearing a Face Mask? How and Why"
                     />
                   </a>
@@ -1606,7 +1234,7 @@ const page = () => {
                   </div>
                   <div className="entry-title">
                     <h4>
-                      <a href="blog-single-sidebar.html">
+                      <a href="">
                         Unsure About Wearing a Face Mask? How and Why
                       </a>
                     </h4>
@@ -1622,7 +1250,7 @@ const page = () => {
                     {' '}
                     <a
                       className="btn btn--white btn-line btn-line-before btn-line-inversed"
-                      href="blog-single-sidebar.html"
+                      href=""
                     >
                       <div className="line">
                         {' '}
@@ -1644,7 +1272,7 @@ const page = () => {
                       <span className="year">2021</span>
                     </div>
                   </div>
-                  <a href="blog-single-sidebar.html">
+                  <a href="">
                     <Image
                       src="/assets/images/departments/17.jpg"
                       width={500}
@@ -1667,7 +1295,7 @@ const page = () => {
                   </div>
                   <div className="entry-title">
                     <h4>
-                      <a href="blog-single-sidebar.html">
+                      <a href="">
                         Tips for Eating Healthy When Working From Home
                       </a>
                     </h4>
@@ -1683,7 +1311,7 @@ const page = () => {
                     {' '}
                     <a
                       className="btn btn--white btn-line btn-line-before btn-line-inversed"
-                      href="blog-single-sidebar.html"
+                      href="l"
                     >
                       <div className="line">
                         {' '}
@@ -1705,7 +1333,7 @@ const page = () => {
                       <span className="year">2021</span>
                     </div>
                   </div>
-                  <a href="blog-single-sidebar.html">
+                  <a href="">
                     <Image
                       src="/assets/images/departments/4.jpg"
                       width={500}
@@ -1728,7 +1356,7 @@ const page = () => {
                   </div>
                   <div className="entry-title">
                     <h4>
-                      <a href="blog-single-sidebar.html">
+                      <a href="">
                         Why Coronavirus Cases Among Adults Is Bad News
                       </a>
                     </h4>
@@ -1744,7 +1372,7 @@ const page = () => {
                     {' '}
                     <a
                       className="btn btn--white btn-line btn-line-before btn-line-inversed"
-                      href="blog-single-sidebar.html"
+                      href=""
                     >
                       <div className="line">
                         {' '}
@@ -1766,7 +1394,7 @@ const page = () => {
                       <span className="year">2021</span>
                     </div>
                   </div>
-                  <a href="blog-single-sidebar.html">
+                  <a href="">
                     <Image
                       src="/assets/images/departments/40.jpg"
                       width={500}
@@ -1789,7 +1417,7 @@ const page = () => {
                   </div>
                   <div className="entry-title">
                     <h4>
-                      <a href="blog-single-sidebar.html">
+                      <a href="">
                         Why Do People Get Kidney Stones in the Summer?
                       </a>
                     </h4>
@@ -1805,7 +1433,7 @@ const page = () => {
                     {' '}
                     <a
                       className="btn btn--white btn-line btn-line-before btn-line-inversed"
-                      href="blog-single-sidebar.html"
+                      href=""
                     >
                       <div className="line">
                         {' '}
@@ -1827,14 +1455,12 @@ const page = () => {
                       <span className="year">2021</span>
                     </div>
                   </div>
-                  {/* <a href="blog-single-sidebar.html"> */}
                   <Image
                     src="/assets/images/departments/6.jpg"
                     width={500}
                     height={500}
                     alt="Do Any Drugs Really Work to Treat Coronavirus?"
                   />
-                  {/* </a> */}
                 </div>
 
                 <div className="entry-content">
@@ -1850,7 +1476,7 @@ const page = () => {
                   </div>
                   <div className="entry-title">
                     <h4>
-                      <a href="blog-single-sidebar.html">
+                      <a href="">
                         Do Any Drugs Really Work to Treat Coronavirus?
                       </a>
                     </h4>
@@ -1866,7 +1492,7 @@ const page = () => {
                     {' '}
                     <a
                       className="btn btn--white btn-line btn-line-before btn-line-inversed"
-                      href="blog-single-sidebar.html"
+                      href=""
                     >
                       <div className="line">
                         {' '}

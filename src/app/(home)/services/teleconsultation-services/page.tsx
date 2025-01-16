@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react'
 
 const Page = () => {
   return (
     <div className="container">
       <h3 className="text-center">QIH Teleconsultation Services</h3>
-      
+
       <section className="cta cta-3" id="cta-3">
         <div className="container">
           <div className="heading heading-6">
@@ -15,7 +15,7 @@ const Page = () => {
                 </p>
               </div>
             </div>
-            
+
             <div className="row">
               <div className="col-12 col-lg-5">
                 <p>
@@ -37,24 +37,24 @@ const Page = () => {
                   </h3>
                   <ul className="list-unstyled advantages-list">
                     <li>
-                      <i className="fas fa-check"></i> ☛ Please call at 
-                      <strong> 051 844 9100 </strong> for a Teleconsultation 
+                      <i className="fas fa-check"></i> ☛ Please call at
+                      <strong> 051 844 9100 </strong> for a Teleconsultation
                       appointment (Mon to Sun: 8 am to 10 pm).
                     </li>
                     <li>
-                      <i className="fas fa-check"></i> ☛ Get Teleconsultation 
+                      <i className="fas fa-check"></i> ☛ Get Teleconsultation
                       from our Consultant or General Physician.
                     </li>
                     <li>
-                      <i className="fas fa-check"></i> ☛ Our Call Center 
-                      representative will schedule the appointment as per the 
+                      <i className="fas fa-check"></i> ☛ Our Call Center
+                      representative will schedule the appointment as per the
                       doctor's availability and your needs.
                     </li>
                     <li>
-                      <i className="fas fa-check"></i> ☛ Our Call Center 
-                      representative will guide you on available payment options 
-                      for the Teleconsultation fee. Choose the preferred mode 
-                      of payment and follow the process.
+                      <i className="fas fa-check"></i> ☛ Our Call Center
+                      representative will guide you on available payment options
+                      for the Teleconsultation fee. Choose the preferred mode of
+                      payment and follow the process.
                     </li>
                   </ul>
                 </div>
@@ -93,7 +93,7 @@ const Page = () => {
             <p>
               Kindly send the screenshot of the online transfer receipt/scanned
               copy of the payment slip with your name and Medical Record number
-              to{" "}
+              to{' '}
               <a href="mailto:registration@qih.com.pk">
                 registration@qih.com.pk
               </a>
@@ -125,10 +125,22 @@ const Page = () => {
             </p>
           </div>
         </div>
-        <div className="module-contact"><a className="btn btn--secondary" href="doctors-timetable.html">Why' Waiting</a><a className="btn btn--primary btn-line btn-line-after" href="page-appointments.html"> <span>Book Online Toaday</span><span className="line"> <span></span></span></a></div>
+        <div className="module-contact">
+          <a className="btn btn--secondary" href="">
+            Why' Waiting
+          </a>
+          <a className="btn btn--primary btn-line btn-line-after" href="">
+            {' '}
+            <span>Book Online Toaday</span>
+            <span className="line">
+              {' '}
+              <span></span>
+            </span>
+          </a>
+        </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

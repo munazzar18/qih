@@ -1,65 +1,65 @@
-import Image from "next/image";
-import React from "react";
+import Image from 'next/image'
+import React from 'react'
 
 interface TeamMember {
-  name: string;
-  title: string;
-  docImage: string;
-  description: string;
-  qualifications: string;
-  experience: string;
-  skills: string;
+  name: string
+  title: string
+  docImage: string
+  description: string
+  qualifications: string
+  experience: string
+  skills: string
 }
 
 // Team data as a constant array
 const teamMembers: TeamMember[] = [
   {
-    name: "Dr. Rashid Akram",
-    title: "Associate Consultant Surgery",
-    docImage: "/assets/images/team/grid/1.jpg",
+    name: 'Dr. Rashid Akram',
+    title: 'Associate Consultant Surgery',
+    docImage: '/assets/images/team/grid/1.jpg',
     description:
-      "Dr. Rashid Akram is an Associate Consultant in Liver Transplantation and Hepatopancreatobiliary Surgery at Quaid e Azam International hospital Islamabad, Pakistan. He has special interest in Living Donor Liver Transplantation, Cholangiocarcinoma, Gall Bladder, bile duct and pancreatic pathologies both benign and malignant.",
+      'Dr. Rashid Akram is an Associate Consultant in Liver Transplantation and Hepatopancreatobiliary Surgery at Quaid e Azam International hospital Islamabad, Pakistan. He has special interest in Living Donor Liver Transplantation, Cholangiocarcinoma, Gall Bladder, bile duct and pancreatic pathologies both benign and malignant.',
     qualifications:
-      "MBBS, FCPS General Surgery Fellowship in Liver Transplant and Hepatopancreatobiliary Surgery.",
+      'MBBS, FCPS General Surgery Fellowship in Liver Transplant and Hepatopancreatobiliary Surgery.',
     experience:
-      "He worked as Senior registrar of Surgery at DHQ / Allied hospital Faisalabad. Dr. Rashid subsequently completed his fellowship in Liver Transplantation and Hepatopancreatobiliary Surgery from Shifa International Hospitals Ltd and Quaid e Azam international hospital Islamabad.",
-    skills: "Liver transplantation, Hepatopancreatobiliary surgery.",
+      'He worked as Senior registrar of Surgery at DHQ / Allied hospital Faisalabad. Dr. Rashid subsequently completed his fellowship in Liver Transplantation and Hepatopancreatobiliary Surgery from Shifa International Hospitals Ltd and Quaid e Azam international hospital Islamabad.',
+    skills: 'Liver transplantation, Hepatopancreatobiliary surgery.',
   },
   {
-    name: "Dr. Syed Hammad Wajid",
-    title: "Asst. Consultant Hepatologist",
-    docImage: "/assets/images/team/grid/1.jpg",
+    name: 'Dr. Syed Hammad Wajid',
+    title: 'Asst. Consultant Hepatologist',
+    docImage: '/assets/images/team/grid/1.jpg',
     description:
-      "He is a young qualified Gastroenterologist, Hepatologist and Liver transplant physician. He graduated from Rawalpindi Medical College and completed his fellowship from College of Physicians and Surgeons Pakistan.",
-    qualifications: "MBBS, FCPS Gastroenterology and Hepatology.",
-    experience: "Worked as Fellow in Transplant Hepatology at QIH.",
+      'He is a young qualified Gastroenterologist, Hepatologist and Liver transplant physician. He graduated from Rawalpindi Medical College and completed his fellowship from College of Physicians and Surgeons Pakistan.',
+    qualifications: 'MBBS, FCPS Gastroenterology and Hepatology.',
+    experience: 'Worked as Fellow in Transplant Hepatology at QIH.',
     skills:
-      "Upper and lower GI endoscopies both diagnostic and a wide range of therapeutic procedures including band ligation, clip placement, electrocauterization, foreign body removal, structure dilation and stenting, Argon plasma coagulation, Polypectomy, PEG tube placement, ERCP, Biliary stone removal, stricture dilation and stenting.",
+      'Upper and lower GI endoscopies both diagnostic and a wide range of therapeutic procedures including band ligation, clip placement, electrocauterization, foreign body removal, structure dilation and stenting, Argon plasma coagulation, Polypectomy, PEG tube placement, ERCP, Biliary stone removal, stricture dilation and stenting.',
   },
   {
-    name: "Dr. Sadaf Yousuf",
-    title: "Asst. Consultant Hepatologist",
-    docImage: "/assets/images/team/grid/1.jpg",
+    name: 'Dr. Sadaf Yousuf',
+    title: 'Asst. Consultant Hepatologist',
+    docImage: '/assets/images/team/grid/1.jpg',
     description:
-      "She is a qualified Gastroenterologist and Hepatologist and Liver Transplant Physician. She graduated from Sindh College of Medicine ISE and completed her fellowship in Gastroenterology and Hepatology from College of Physicians and Surgeons of Pakistan.",
-    qualifications: "MBBS, FCPS Gastroenterology.",
+      'She is a qualified Gastroenterologist and Hepatologist and Liver Transplant Physician. She graduated from Sindh College of Medicine ISE and completed her fellowship in Gastroenterology and Hepatology from College of Physicians and Surgeons of Pakistan.',
+    qualifications: 'MBBS, FCPS Gastroenterology.',
     experience:
-      "Fellowship, Transplant Hepatology, Shifa Int.Hospital. Fellowship Transplant Hepatology, Quaid e Azam Int. Hospital.",
+      'Fellowship, Transplant Hepatology, Shifa Int.Hospital. Fellowship Transplant Hepatology, Quaid e Azam Int. Hospital.',
     skills:
-      "Upper and lower GI endoscopies both diagnostic and a wide range of therapeutic procedures including band ligation, clip placement, electrocauterization, foreign body removal, structure dilation and stenting, Argon plasma coagulation, Polypectomy, PEG tube placement.",
+      'Upper and lower GI endoscopies both diagnostic and a wide range of therapeutic procedures including band ligation, clip placement, electrocauterization, foreign body removal, structure dilation and stenting, Argon plasma coagulation, Polypectomy, PEG tube placement.',
   },
   {
-    name: "Dr. Yasir Abbas",
-    title: "Asst. Consultant Hepatologist",
-    docImage: "/assets/images/team/grid/1.jpg",
+    name: 'Dr. Yasir Abbas',
+    title: 'Asst. Consultant Hepatologist',
+    docImage: '/assets/images/team/grid/1.jpg',
     description:
-      "He is a qualified Gastroenterologist and Hepatologist, well-versed in management of pre-transplant and post-transplant patients and skilled in endoscopy.",
-    qualifications: "MBBS, FCPS Gastroenterology.",
-    experience: "Trained and working in liver transplant units since 2014.",
+      'He is a qualified Gastroenterologist and Hepatologist, well-versed in management of pre-transplant and post-transplant patients and skilled in endoscopy.',
+    qualifications: 'MBBS, FCPS Gastroenterology.',
+    experience: 'Trained and working in liver transplant units since 2014.',
     skills:
-      "Upper and lower GI endoscopies – diagnostic and therapeutic including band ligation, polypectomy, structure dilation and stenting, foreign body removal, PEG tube placement, ERCP and biliary stone retrieval, biliary structure dilation and stenting.",
+      'Upper and lower GI endoscopies – diagnostic and therapeutic including band ligation, polypectomy, structure dilation and stenting, foreign body removal, PEG tube placement, ERCP and biliary stone retrieval, biliary structure dilation and stenting.',
   },
-];
+]
 
 const LiverTransplantPage = () => {
   return (
@@ -108,58 +108,63 @@ const LiverTransplantPage = () => {
 
       {/* Our Services Section */}
       <div className="services-section container py-5">
-  <h2 className="text-center fw-bold text-success mb-4">Our Services</h2>
-  <div className="row row-cols-1 row-cols-md-2 g-4">
-    {/* Surgical Services */}
-    <div className="col">
-      <div className="card border-0 h-100 shadow-lg service-card">
-        <div className="card-body p-4">
-          <h5 className="card-title text-primary fw-bold">Surgical Services</h5>
-          <p className="card-text">
-            <strong>Living Donor Liver Transplant:</strong> Surgeries related to
-            benign and cancerous disease of liver, gall bladder, pancreas, and
-            extra-hepatic biliary tree.
-          </p>
-          <p className="card-text">
-            <strong>ERCP:</strong> Biliary and pancreatic stone retrieval,
-            benign and malignant biliary/pancreatic stricture dilatation and
-            stenting, post-transplant stricture, and leak management.
-          </p>
-        </div>
-        <div className="card-footer bg-transparent border-0">
-          <button className="btn btn-outline-primary w-100 fw-bold">
-            Learn More
-          </button>
-        </div>
-      </div>
-    </div>
+        <h2 className="text-center fw-bold text-success mb-4">Our Services</h2>
+        <div className="row row-cols-1 row-cols-md-2 g-4">
+          {/* Surgical Services */}
+          <div className="col">
+            <div className="card border-0 h-100 shadow-lg service-card">
+              <div className="card-body p-4">
+                <h5 className="card-title text-primary fw-bold">
+                  Surgical Services
+                </h5>
+                <p className="card-text">
+                  <strong>Living Donor Liver Transplant:</strong> Surgeries
+                  related to benign and cancerous disease of liver, gall
+                  bladder, pancreas, and extra-hepatic biliary tree.
+                </p>
+                <p className="card-text">
+                  <strong>ERCP:</strong> Biliary and pancreatic stone retrieval,
+                  benign and malignant biliary/pancreatic stricture dilatation
+                  and stenting, post-transplant stricture, and leak management.
+                </p>
+              </div>
+              <div className="card-footer bg-transparent border-0">
+                <button className="btn btn-outline-primary w-100 fw-bold">
+                  Learn More
+                </button>
+              </div>
+            </div>
+          </div>
 
-    {/* Endoscopic Services */}
-    <div className="col">
-      <div className="card border-0 h-100 shadow-lg service-card">
-        <div className="card-body p-4">
-          <h5 className="card-title text-primary fw-bold">Endoscopic Services</h5>
-          <p className="card-text">
-            <strong>Diagnostic:</strong> Upper GI endoscopy, Colonoscopy, ERCP, EUS.
-          </p>
-          <p className="card-text">
-            <strong>Therapeutic:</strong> Endoscopic hemostasis, band ligation,
-            polypectomy, stricture dilation and stenting, foreign body removal,
-            PEG-tube placement.
-          </p>
-          <p className="card-text">
-            <strong>EUS:</strong> FNAC, FNAB, pseudo-cystogastrostomy.
-          </p>
-        </div>
-        <div className="card-footer bg-transparent border-0">
-          <button className="btn btn-outline-primary w-100 fw-bold">
-            Learn More
-          </button>
+          {/* Endoscopic Services */}
+          <div className="col">
+            <div className="card border-0 h-100 shadow-lg service-card">
+              <div className="card-body p-4">
+                <h5 className="card-title text-primary fw-bold">
+                  Endoscopic Services
+                </h5>
+                <p className="card-text">
+                  <strong>Diagnostic:</strong> Upper GI endoscopy, Colonoscopy,
+                  ERCP, EUS.
+                </p>
+                <p className="card-text">
+                  <strong>Therapeutic:</strong> Endoscopic hemostasis, band
+                  ligation, polypectomy, stricture dilation and stenting,
+                  foreign body removal, PEG-tube placement.
+                </p>
+                <p className="card-text">
+                  <strong>EUS:</strong> FNAC, FNAB, pseudo-cystogastrostomy.
+                </p>
+              </div>
+              <div className="card-footer bg-transparent border-0">
+                <button className="btn btn-outline-primary w-100 fw-bold">
+                  Learn More
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
 
       <div className="container my-5">
         {/* Successful Transplant Section */}
@@ -180,8 +185,8 @@ const LiverTransplantPage = () => {
                 <div className="col-md-4">
                   <Image
                     src="/assets/images/team/grid/1.jpg"
-                     width={400}
-                      height={400} // Replace with actual image URL
+                    width={400}
+                    height={400} // Replace with actual image URL
                     alt="Dr. Amjad Salamat"
                     className="img-fluid rounded-start"
                   />
@@ -214,7 +219,7 @@ const LiverTransplantPage = () => {
                   <Image
                     src="/assets/images/team/grid/1.jpg"
                     width={400}
-                      height={400}
+                    height={400}
                     alt="Dr. Sikandar Afridi"
                     className="img-fluid rounded-start"
                   />
@@ -245,14 +250,13 @@ const LiverTransplantPage = () => {
       <section className="team team-grid" id="teamGrid">
         <div className="container">
           <div className="row" id="team-all">
-            {
-              teamMembers.map((item, index)=>{
-                return(
-                  <div key={index} className="col-12 col-md-6 col-lg-4">
+            {teamMembers.map((item, index) => {
+              return (
+                <div key={index} className="col-12 col-md-6 col-lg-4">
                   <div className="team-member" data-hover="">
                     <div className="team-member-holder">
                       <div className="team-img">
-                        <a className="link" href="doctors-grid.html"></a>
+                        <a className="link" href=""></a>
                         <Image
                           src={item.docImage}
                           width={500}
@@ -260,7 +264,7 @@ const LiverTransplantPage = () => {
                           alt="team member"
                         />
                         <div className="team-social">
-                          {" "}
+                          {' '}
                           <a href="javascript:void(0)">
                             <i className="fab fa-facebook-f"> </i>
                           </a>
@@ -278,50 +282,39 @@ const LiverTransplantPage = () => {
                       <div className="team-content">
                         <div className="team-title">
                           <h4>
-                            <a href="doctors-grid.html">{item.name}</a>
+                            <a href="">{item.name}</a>
                           </h4>
                         </div>
                         <div className="team-cat">
                           <a href="javascript:void(0)">{item.title}</a>
                         </div>
                         <div className="team-desc">
-                          <p>
-                            {item.description}
-                          </p>
+                          <p>{item.description}</p>
                         </div>
                         <div className="team-cat">
                           <a href="javascript:void(0)">Qualifications</a>
                         </div>
                         <div className="team-desc">
-                          <p>
-                          {item.qualifications}
-                          </p>
+                          <p>{item.qualifications}</p>
                         </div>
                         <div className="team-cat">
                           <a href="javascript:void(0)">Experience</a>
                         </div>
                         <div className="team-desc">
-                          <p>
-                            { item.experience }
-                          </p>
+                          <p>{item.experience}</p>
                         </div>
                         <div className="team-cat">
                           <a href="javascript:void(0)">Skills:</a>
                         </div>
                         <div className="team-desc">
-                          <p>
-                            { item.skills }
-                          </p>
+                          <p>{item.skills}</p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                )
-              })
-            }
-           
-          
+              )
+            })}
           </div>
         </div>
       </section>
@@ -343,7 +336,7 @@ const LiverTransplantPage = () => {
               height={400}
               alt="Dr. Abdul Wahab Dogar"
               className="img-fluid rounded-circle shadow-lg"
-              style={{ maxWidth: "200px", maxHeight: "200px" }}
+              style={{ maxWidth: '200px', maxHeight: '200px' }}
             />
           </div>
           <div className="col-md-8">
@@ -376,7 +369,7 @@ const LiverTransplantPage = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LiverTransplantPage;
+export default LiverTransplantPage
