@@ -23,7 +23,7 @@ const CreateConsultant = ({
     email: '',
     office_extention: '',
     photo: null,
-    department_id: 0,
+    department_id: '',
   })
 
   const [errors, setErrors] = useState<{

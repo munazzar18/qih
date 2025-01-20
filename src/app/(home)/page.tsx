@@ -266,7 +266,7 @@ const page = () => {
                   <div className="department-img">
                     <a href=""></a>
                     <Image
-                      src="/assets/images/departments/2.jpg"
+                      src="/assets/images/departments/8.jpg"
                       width={500}
                       height={500}
                       alt="department img"
@@ -322,7 +322,7 @@ const page = () => {
                   <div className="department-img">
                     <a href=""></a>
                     <Image
-                      src="/assets/images/departments/3.jpg"
+                      src="/assets/images/departments/10.jpg"
                       width={500}
                       height={500}
                       alt="department img"
@@ -425,7 +425,7 @@ const page = () => {
         <div className="bg-section">
           {' '}
           <Image
-            src="/assets/images/departments/1.jpg"
+            src="/assets/images/departments/19.jpg"
             width={500}
             height={500}
             alt="Background"
@@ -1152,7 +1152,7 @@ const page = () => {
                   </div>
                   <a href="">
                     <Image
-                      src="/assets/images/departments/1.jpg"
+                      src="/assets/images/departments/10.jpg"
                       width={500}
                       height={500}
                       alt="6 tips to protect your mental health when sick"
@@ -1335,7 +1335,7 @@ const page = () => {
                   </div>
                   <a href="">
                     <Image
-                      src="/assets/images/departments/4.jpg"
+                      src="/assets/images/departments/15.jpg"
                       width={500}
                       height={500}
                       alt="Why Coronavirus Cases Among Adults Is Bad News"
@@ -1456,7 +1456,7 @@ const page = () => {
                     </div>
                   </div>
                   <Image
-                    src="/assets/images/departments/6.jpg"
+                    src="/assets/images/departments/8.jpg"
                     width={500}
                     height={500}
                     alt="Do Any Drugs Really Work to Treat Coronavirus?"

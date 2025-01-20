@@ -614,7 +614,7 @@
 
     /* ------------------  NICE SELECT INPUT  ------------------ */
 
-    $('select').niceSelect();
+    // $('select').niceSelect();
 
     /* ------------------  TIMETABLE FILTERIIG  ------------------ */
 

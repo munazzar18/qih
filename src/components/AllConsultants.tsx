@@ -26,6 +26,7 @@ const AllConsultants = ({
     setConsultants(allConsultants)
   }, [])
 
+
   return (
     <div className="container">
       <div className="m-5">
@@ -54,7 +55,9 @@ const AllConsultants = ({
             </tr>
           </thead>
           <tbody>
-            {consultants.map((consultant) => (
+            {
+
+            consultants.length ? (  consultants.map((consultant) => (
               <tr key={consultant.id}>
                 <th scope="row">{consultant.id}</th>
                 <td>{consultant.name}</td>
@@ -77,7 +80,10 @@ const AllConsultants = ({
                   <FiTrash type="button" />
                 </td>
               </tr>
-            ))}
+            ))) : ('no more data') 
+          
+            }
+          
           </tbody>
         </table>
       </div>

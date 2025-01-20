@@ -54,7 +54,7 @@ export const consultantSchema = z.object({
             message: "Photo is required",
         }),
     department_id: z
-        .number()
+        .string()
         .min(1, "Department is required")
 })
 

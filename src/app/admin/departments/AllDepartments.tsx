@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import { FiEdit, FiTrash } from 'react-icons/fi'
 
 interface Department {
@@ -13,8 +13,20 @@ interface Department {
 }
 
 const Departments = ({ departments }: { departments: Department[] }) => {
+
+  const [departmentsArr, setDepartmentsArr] = useState(departments);
+
   const handleEdit = async (id: number) => {}
-  const handleDelete = async (id: number) => {}
+
+
+  const handleDelete = async (id: number) => {
+    setDepartmentsArr(departmentsArr.filter((_, i) => i != id));
+
+    console.log(departmentsArr)
+  }
+
+
+
 
   return (
     <div className="container">
@@ -43,8 +55,8 @@ const Departments = ({ departments }: { departments: Department[] }) => {
             </tr>
           </thead>
           <tbody>
-            {Array.isArray(departments) &&
-              departments.map((department) => (
+            {Array.isArray(departmentsArr) &&
+              departmentsArr.map((department) => (
                 <tr key={department.id}>
                   <th scope="row">{department.id}</th>
                   <td>{department.title}</td>
@@ -65,7 +77,7 @@ const Departments = ({ departments }: { departments: Department[] }) => {
                     >
                       <FiEdit />
                     </Link>
-                    <FiTrash type="button" />
+                    <FiTrash onClick={() => handleDelete(department.id)} type="button" />
                   </td>
                 </tr>
               ))}
