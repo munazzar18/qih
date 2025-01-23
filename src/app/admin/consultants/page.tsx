@@ -3,9 +3,7 @@ import AllConsultants from '@/components/AllConsultants'
 import React from 'react'
 
 const ConsultantsPage = async () => {
-  const allConsultants = await getConsultants();
-  console.log('allConsultants',allConsultants);
-
+  const allConsultants = await getConsultants()
   return (
     <div>
       <AllConsultants allConsultants={allConsultants} />

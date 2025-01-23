@@ -39,6 +39,7 @@ const CreateConsultant = ({
   const handleChange = (e: React.ChangeEvent<any>) => {
     const { name, value, files } = e.target
     if (name === 'photo') {
+      console.log('FILE:', files[0])
       if (files && files[0]) {
         setMyForm({
           ...myForm,
@@ -71,6 +72,7 @@ const CreateConsultant = ({
       formData.append('department_id', result.data.department_id.toString())
 
       const res = await ConsultantCreateAction(formData)
+      console.log('RES:', res)
       toast.success('Consultant created successfully')
       //   if (res.message === 'Login successful') {
       //     toast.success(res.message)
@@ -149,7 +151,6 @@ const CreateConsultant = ({
                         name="photo"
                         type="file"
                         className="form-control text-center"
-                        id="inputGroupFile01"
                         onChange={handleChange}
                       />
                       {errors.photo && (
