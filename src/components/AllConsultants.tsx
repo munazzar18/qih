@@ -4,28 +4,38 @@ import React, { useEffect, useState } from 'react'
 import { FiEdit, FiTrash } from 'react-icons/fi'
 
 interface Consultants {
-  id: number
-  name: string
-  email: string
-  created_at: string
-  department: {
-    id: number
-    title: string
-    created_at: string
-  }
+  status: string
+  message: string
+  data: [
+    {
+      id: number
+      name: string
+      email: string
+      office_extention: string
+      photo: string
+      department_id: number
+      created_at: string
+      department: {
+        id: number
+        title: string
+        description: string
+        image: string
+        created_at: string
+      }
+    }
+  ]
 }
 
 const AllConsultants = ({
   allConsultants,
 }: {
-  allConsultants: Consultants[]
+  allConsultants: Consultants
 }) => {
-  const [consultants, setConsultants] = useState<Consultants[]>([])
+  const [consultants, setConsultants] = useState<Consultants>()
 
   useEffect(() => {
     setConsultants(allConsultants)
   }, [])
-
 
   return (
     <div className="container">
@@ -55,35 +65,35 @@ const AllConsultants = ({
             </tr>
           </thead>
           <tbody>
-            {
-
-            consultants.length ? (  consultants.map((consultant) => (
-              <tr key={consultant.id}>
-                <th scope="row">{consultant.id}</th>
-                <td>{consultant.name}</td>
-                <td>{consultant.email}</td>
-                <td>{consultant.department.title}</td>
-                <td>
-                  {new Date(consultant.created_at).toLocaleDateString('en-GB', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric',
-                  })}
-                </td>
-                <td>
-                  <Link
-                    className="me-4"
-                    href={`/admin/consultants/edit/${consultant.id}`}
-                  >
-                    <FiEdit />
-                  </Link>
-                  <FiTrash type="button" />
-                </td>
-              </tr>
-            ))) : ('no more data') 
-          
-            }
-          
+            {consultants?.data.length
+              ? consultants.data.map((consultant) => (
+                  <tr key={consultant.id}>
+                    <th scope="row">{consultant.id}</th>
+                    <td>{consultant.name}</td>
+                    <td>{consultant.email}</td>
+                    <td>{consultant.department.title}</td>
+                    <td>
+                      {new Date(consultant.created_at).toLocaleDateString(
+                        'en-GB',
+                        {
+                          day: '2-digit',
+                          month: '2-digit',
+                          year: 'numeric',
+                        }
+                      )}
+                    </td>
+                    <td>
+                      <Link
+                        className="me-4"
+                        href={`/admin/consultants/edit/${consultant.id}`}
+                      >
+                        <FiEdit />
+                      </Link>
+                      <FiTrash type="button" />
+                    </td>
+                  </tr>
+                ))
+              : 'no more data'}
           </tbody>
         </table>
       </div>

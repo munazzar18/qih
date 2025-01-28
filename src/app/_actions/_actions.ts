@@ -117,3 +117,20 @@ export const ConsultantCreateAction = async (formData: FormData) => {
         return error
     }
 }
+
+
+export const UploadFileAction = async (file: File) => {
+    try {
+        const formData = new FormData()
+        formData.append('file', file)
+        const response = await fetch(`${url}upload/v1`, {
+            method: 'POST',
+            body: formData
+        })
+        const data = await response.json();
+        return data
+    } catch (error) {
+        return error
+    }
+
+}

@@ -53,9 +53,8 @@ export const consultantSchema = z.object({
         .string()
         .min(1, "Office extention is required"),
     photo: z
-        .custom<File | null>((file) => file === null || file instanceof File, {
-            message: "Photo is required",
-        }),
+        .string()
+        .min(1, "Photo is required"),
     department_id: z
         .string()
         .min(1, "Department is required")

@@ -1,5 +1,8 @@
 'use client'
-import { ConsultantCreateAction } from '@/app/_actions/_actions'
+import {
+  ConsultantCreateAction,
+  UploadFileAction,
+} from '@/app/_actions/_actions'
 import {
   ConstultantSchema,
   consultantSchema,
@@ -22,7 +25,7 @@ const CreateConsultant = ({
     name: '',
     email: '',
     office_extention: '',
-    photo: null,
+    photo: '',
     department_id: '',
   })
 
@@ -36,22 +39,24 @@ const CreateConsultant = ({
     setDepartments(allDepartments)
   }, [])
 
+  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files
+    if (!files) return
+    const file = files[0]
+    const res = await UploadFileAction(file)
+    console.log('RES:', res)
+    // setMyForm({
+    //   ...myForm,
+    //   photo: res.url,
+    // })
+  }
+
   const handleChange = (e: React.ChangeEvent<any>) => {
-    const { name, value, files } = e.target
-    if (name === 'photo') {
-      console.log('FILE:', files[0])
-      if (files && files[0]) {
-        setMyForm({
-          ...myForm,
-          photo: files[0],
-        })
-      }
-    } else {
-      setMyForm({
-        ...myForm,
-        [name]: value,
-      })
-    }
+    const { name, value } = e.target
+    setMyForm({
+      ...myForm,
+      [name]: value,
+    })
     if (errors[name as keyof ConstultantSchema]) {
       setErrors({ ...errors, [name]: undefined })
     }
@@ -66,9 +71,7 @@ const CreateConsultant = ({
       formData.append('name', result.data.name)
       formData.append('email', result.data.email)
       formData.append('office_extention', result.data.office_extention)
-      if (result.data.photo !== null) {
-        formData.append('photo', result.data.photo)
-      }
+      formData.append('photo', result.data.photo)
       formData.append('department_id', result.data.department_id.toString())
 
       const res = await ConsultantCreateAction(formData)
@@ -151,7 +154,7 @@ const CreateConsultant = ({
                         name="photo"
                         type="file"
                         className="form-control text-center"
-                        onChange={handleChange}
+                        onChange={handleUpload}
                       />
                       {errors.photo && (
                         <p className="text-danger">{errors.photo}</p>
