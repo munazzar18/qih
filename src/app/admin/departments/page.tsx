@@ -2,16 +2,23 @@ import { getDepartments } from '@/app/lib/getDepartments'
 import React from 'react'
 import AllDepartments from './AllDepartments'
 
-interface Department {
-  id: number
-  title: string
-  description: string
-  image: string
-  user_id: number
-  created_at: Date
+interface DepartmentData {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  user_id: number;
+  created_at: Date;
 }
+
+interface Department {
+  status: string;
+  message: string;
+  data: DepartmentData[];
+}
+
 const AdminDepartment = async () => {
-  const departments: Department[] = await getDepartments()
+  const departments: Department = await getDepartments()
 
   return (
     <div>

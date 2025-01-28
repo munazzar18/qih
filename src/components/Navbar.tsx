@@ -279,17 +279,25 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                 className="dropdown-menu"
                 style={{ height: '300px', overflowY: 'scroll' }}
               >
-                {departments.map((item) => {
-                  return (
-                    <li key={item.id} className="nav-item">
-                      <Link
-                        href={`/departments/${item.title.split(' ').join('-')}`}
-                      >
-                        <span>{item.title}</span>
-                      </Link>
-                    </li>
-                  )
-                })}
+                {
+                departments.length ?
+                (departments?.map((item) => {
+                    return (
+                      <li key={item.id} className="nav-item">
+                        <Link
+                          href={`/departments/${item.title
+                            .split(' ')
+                            .join('-')}`}
+                        >
+                          <span>{item.title}</span>
+                        </Link>
+                      </li>
+                    )
+                  }))
+                  :
+                  (
+                  <li className='text-gray-500'>no departments</li>
+                )}
               </ul>
             </li>
             <li

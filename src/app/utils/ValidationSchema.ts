@@ -33,6 +33,9 @@ export type LoginScehma = z.infer<typeof loginSchema>
 export const departmentSchema = z.object({
     title: z
         .string()
+        .min(1, "Department name is required"),
+    description: z
+        .string()
         .min(1, "Department name is required")
 })
 

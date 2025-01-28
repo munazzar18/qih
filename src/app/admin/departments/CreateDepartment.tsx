@@ -10,6 +10,7 @@ import toast from 'react-hot-toast'
 const CreateDepartment = () => {
   const [myForm, setMyForm] = useState<DepartmentSchema>({
     title: '',
+    description: ''
   })
 
   const [errors, setErrors] = useState<{
@@ -34,12 +35,11 @@ const CreateDepartment = () => {
       const formData = new FormData()
       formData.append('title', result.data.title)
       const res = await DepartmentCreateAction(formData)
-      toast.success('Department created successfully')
-      //   if (res.message === 'Login successful') {
-      //     toast.success(res.message)
-      //   } else {
-      //     toast.error(res.message)
-      //   }
+        if (res.status === 'success') {
+          toast.success(res.message)
+        } else {
+          toast.error(res.message)
+        }
     } else {
       const fieldErrors: { [key in keyof DepartmentSchema]?: string } = {}
       result.error.errors.forEach((error) => {
@@ -63,17 +63,31 @@ const CreateDepartment = () => {
                 <form className="" onSubmit={handleSubmit}>
                   <div className="row">
                     <div className="col-12">
-                      <label>Department Name</label>
+                      <label>Department Title</label>
                       <input
                         className="form-control"
                         type="text"
                         name="title"
-                        placeholder="Enter Department Name"
+                        placeholder="Enter Department title"
                         value={myForm.title}
                         onChange={handleChange}
                       />
                       {errors.title && (
                         <p className="text-danger">{errors.title}</p>
+                      )}
+                    </div>
+                    <div className="col-12">
+                      <label>Department Description</label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="description"
+                        placeholder="Enter Department description"
+                        value={myForm.description}
+                        onChange={handleChange}
+                      />
+                      {errors.description && (
+                        <p className="text-danger">{errors.description}</p>
                       )}
                     </div>
 

@@ -1,32 +1,33 @@
-'use client'
-import Link from 'next/link'
-import React, { useState } from 'react'
-import { FiEdit, FiTrash } from 'react-icons/fi'
+'use client';
+import Link from 'next/link';
+import React, { useState } from 'react';
+import { FiEdit, FiTrash } from 'react-icons/fi';
 
-interface Department {
-  id: number
-  title: string
-  description: string
-  image: string
-  user_id: number
-  created_at: Date
+interface DepartmentData {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  user_id: number;
+  created_at: Date;
 }
 
-const Departments = ({ departments }: { departments: Department[] }) => {
+interface Department {
+  status: string;
+  message: string;
+  data: DepartmentData[];
+}
 
-  const [departmentsArr, setDepartmentsArr] = useState(departments);
+const Departments = ({ departments }: { departments: Department }) => {
+  const [departmentsArr, setDepartmentsArr] = useState(departments.data);
 
-  const handleEdit = async (id: number) => {}
-
+  const handleEdit = async (id: number) => {
+    console.log(`Edit department with id: ${id}`);
+  };
 
   const handleDelete = async (id: number) => {
-    setDepartmentsArr(departmentsArr.filter((_, i) => i != id));
-
-    console.log(departmentsArr)
-  }
-
-
-
+    setDepartmentsArr(departmentsArr.filter((department) => department.id !== id));
+  };
 
   return (
     <div className="container">
@@ -36,11 +37,7 @@ const Departments = ({ departments }: { departments: Department[] }) => {
             <h4>Departments</h4>
           </div>
           <div>
-            <Link
-              href="/admin/departments/create"
-              type="button"
-              className="btn btn-primary"
-            >
+            <Link href="/admin/departments/create" className="btn btn-primary">
               Add Department
             </Link>
           </div>
@@ -55,37 +52,36 @@ const Departments = ({ departments }: { departments: Department[] }) => {
             </tr>
           </thead>
           <tbody>
-            {Array.isArray(departmentsArr) &&
-              departmentsArr.map((department) => (
-                <tr key={department.id}>
-                  <th scope="row">{department.id}</th>
-                  <td>{department.title}</td>
-                  <td>
-                    {new Date(department.created_at).toLocaleDateString(
-                      'en-GB',
-                      {
-                        day: '2-digit',
-                        month: '2-digit',
-                        year: 'numeric',
-                      }
-                    )}
-                  </td>
-                  <td>
-                    <Link
-                      className="me-4"
-                      href={`/admin/departments/edit/${department.id}`}
-                    >
-                      <FiEdit />
-                    </Link>
-                    <FiTrash onClick={() => handleDelete(department.id)} type="button" />
-                  </td>
-                </tr>
-              ))}
+            {departmentsArr.map((department, index) => (
+              <tr key={department.id}>
+                <th scope="row">{index + 1}</th>
+                <td>{department.title}</td>
+                <td>
+                  {new Date(department.created_at).toLocaleDateString('en-GB', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                  })}
+                </td>
+                <td>
+                  <Link className="me-4" href={`/admin/departments/edit/${department.id}`}>
+                    <FiEdit role="button" aria-label="Edit department" />
+                  </Link>
+                  <FiTrash
+                    onClick={() => handleDelete(department.id)}
+                    type="button"
+                    role="button"
+                    aria-label="Delete department"
+                    style={{ cursor: 'pointer' }}
+                  />
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Departments
+export default Departments;
