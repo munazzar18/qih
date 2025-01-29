@@ -10,16 +10,25 @@ import {
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
-interface Department {
+interface DepartmentData {
   id: number
   title: string
+  description: string
+  image: string
+  user_id: number
   created_at: Date
+}
+
+interface Department {
+  status: string
+  message: string
+  data: DepartmentData[]
 }
 
 const CreateConsultant = ({
   allDepartments,
 }: {
-  allDepartments: Department[]
+  allDepartments: Department
 }) => {
   const [myForm, setMyForm] = useState<ConstultantSchema>({
     name: '',
@@ -29,16 +38,15 @@ const CreateConsultant = ({
     department_id: '1',
   })
 
-  const [errors, setErrors] = useState<
-    {
-      [key in keyof ConstultantSchema]?: string
-    }
-  >({})
+  const [errors, setErrors] = useState<{
+    [key in keyof ConstultantSchema]?: string
+  }>({})
 
-  const [departments, setDepartments] = useState<Department[]>([])
+  const [departments, setDepartments] = useState<DepartmentData[]>([])
 
   useEffect(() => {
-    setDepartments(allDepartments)
+    setDepartments(allDepartments.data)
+    console.log(allDepartments)
   }, [])
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,13 +57,13 @@ const CreateConsultant = ({
     formData.append('file', filePath)
     const res = await UploadFileAction(formData)
     if (res.status === 'success') {
-      toast.success(res.status)
+      toast.success(res.message)
       setMyForm({
         ...myForm,
         photo: res.data.file_path,
       })
     } else {
-      toast.error(res.status)
+      toast.error(res.message)
     }
   }
 
@@ -72,7 +80,6 @@ const CreateConsultant = ({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log('FormData:', myForm)
     const result = consultantSchema.safeParse(myForm)
     if (result.success) {
       const formData = new FormData()
@@ -82,12 +89,11 @@ const CreateConsultant = ({
       formData.append('photo', result.data.photo)
       formData.append('department_id', result.data.department_id.toString())
       const res = await ConsultantCreateAction(formData)
-      console.log('RESult:', res);
-        if (res.status === 'success') {
-          toast.success(res.message)
-        } else {
-          toast.error(res.message)
-        }
+      if (res.status === 'success') {
+        toast.success(res.message)
+      } else {
+        toast.error(res.message)
+      }
     } else {
       const fieldErrors: { [key in keyof ConstultantSchema]?: string } = {}
       result.error.errors.forEach((error) => {
