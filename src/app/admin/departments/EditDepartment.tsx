@@ -1,23 +1,40 @@
 'use client'
+import { DepartmentCreateAction, EditDepartmentAction } from '@/app/_actions/_actions';
 import {
   DepartmentSchema,
   departmentSchema,
 } from '@/app/utils/ValidationSchema'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
+interface DepartmentData {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  user_id: number;
+  created_at: Date;
+}
+
 interface Department {
-  id: number
-  title: string
-  description: string
-  image: string
-  user_id: number
-  created_at: Date
+  status: string;
+  message: string;
+  data: DepartmentData;
 }
 
 const EditDepartment = ({ department }: { department: Department }) => {
+
+  const [departmentId, setDeparmentId] = useState(0)
+
+  useEffect(() => {
+
+    setDeparmentId(department.data.id)
+
+  }, [department])
+  
   const [myForm, setMyForm] = useState<DepartmentSchema>({
-    title: department.title,
+    title: department.data.title,
+    description: department.data.description
   })
 
   const [errors, setErrors] = useState<{
@@ -25,6 +42,7 @@ const EditDepartment = ({ department }: { department: Department }) => {
   }>({})
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+
     const { name, value } = e.target
     setMyForm({
       ...myForm,
@@ -41,13 +59,14 @@ const EditDepartment = ({ department }: { department: Department }) => {
     if (result.success) {
       const formData = new FormData()
       formData.append('title', result.data.title)
-      //   const res = await DepartmentCreateAction(formData)
+      formData.append('description', result.data.description)
+      const res = await EditDepartmentAction(formData , departmentId)
       toast.success('Department created successfully')
-      //   if (res.message === 'Login successful') {
-      //     toast.success(res.message)
-      //   } else {
-      //     toast.error(res.message)
-      //   }
+        if (res.status === 'success') {
+          toast.success(res.message)
+        } else {
+          toast.error(res.message)
+        }
     } else {
       const fieldErrors: { [key in keyof DepartmentSchema]?: string } = {}
       result.error.errors.forEach((error) => {
@@ -82,6 +101,20 @@ const EditDepartment = ({ department }: { department: Department }) => {
                       />
                       {errors.title && (
                         <p className="text-danger">{errors.title}</p>
+                      )}
+                    </div>
+                    <div className="col-12">
+                      <label>Department Description</label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="description"
+                        placeholder="Enter Department Description"
+                        value={myForm.description}
+                        onChange={handleChange}
+                      />
+                      {errors.description && (
+                        <p className="text-danger">{errors.description}</p>
                       )}
                     </div>
 

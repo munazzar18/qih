@@ -1,6 +1,8 @@
 'use client';
+import { DepartmentDeleteAction } from '@/app/_actions/_actions';
 import Link from 'next/link';
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import { FiEdit, FiTrash } from 'react-icons/fi';
 
 interface DepartmentData {
@@ -21,12 +23,16 @@ interface Department {
 const Departments = ({ departments }: { departments: Department }) => {
   const [departmentsArr, setDepartmentsArr] = useState(departments.data);
 
-  const handleEdit = async (id: number) => {
-    console.log(`Edit department with id: ${id}`);
-  };
 
   const handleDelete = async (id: number) => {
-    setDepartmentsArr(departmentsArr.filter((department) => department.id !== id));
+    let res = await DepartmentDeleteAction(id);
+    console.log(res);
+    if(res.status === 'success'){
+      setDepartmentsArr(departmentsArr.filter((department) => department.id !== id));
+      toast.success(res.message);
+    }else{
+      toast.error(res.message);
+    }
   };
 
   return (
@@ -64,7 +70,7 @@ const Departments = ({ departments }: { departments: Department }) => {
                   })}
                 </td>
                 <td>
-                  <Link className="me-4" href={`/admin/departments/edit/${department.id}`}>
+                  <Link className="me-4" href={`/admin/departments/edit/${Number(department.id)}`}>
                     <FiEdit role="button" aria-label="Edit department" />
                   </Link>
                   <FiTrash

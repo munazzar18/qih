@@ -26,12 +26,14 @@ const CreateConsultant = ({
     email: '',
     office_extention: '',
     photo: '',
-    department_id: '',
+    department_id: '1',
   })
 
-  const [errors, setErrors] = useState<{
-    [key in keyof ConstultantSchema]?: string
-  }>({})
+  const [errors, setErrors] = useState<
+    {
+      [key in keyof ConstultantSchema]?: string
+    }
+  >({})
 
   const [departments, setDepartments] = useState<Department[]>([])
 
@@ -42,13 +44,19 @@ const CreateConsultant = ({
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files
     if (!files) return
-    const file = files[0]
-    const res = await UploadFileAction(file)
-    console.log('RES:', res)
-    // setMyForm({
-    //   ...myForm,
-    //   photo: res.url,
-    // })
+    const filePath = files[0]
+    const formData = new FormData()
+    formData.append('file', filePath)
+    const res = await UploadFileAction(formData)
+    if (res.status === 'success') {
+      toast.success(res.status)
+      setMyForm({
+        ...myForm,
+        photo: res.data.file_path,
+      })
+    } else {
+      toast.error(res.status)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<any>) => {
@@ -73,15 +81,13 @@ const CreateConsultant = ({
       formData.append('office_extention', result.data.office_extention)
       formData.append('photo', result.data.photo)
       formData.append('department_id', result.data.department_id.toString())
-
       const res = await ConsultantCreateAction(formData)
-      console.log('RES:', res)
-      toast.success('Consultant created successfully')
-      //   if (res.message === 'Login successful') {
-      //     toast.success(res.message)
-      //   } else {
-      //     toast.error(res.message)
-      //   }
+      console.log('RESult:', res);
+        if (res.status === 'success') {
+          toast.success(res.message)
+        } else {
+          toast.error(res.message)
+        }
     } else {
       const fieldErrors: { [key in keyof ConstultantSchema]?: string } = {}
       result.error.errors.forEach((error) => {
@@ -164,21 +170,26 @@ const CreateConsultant = ({
                       <label className="fw-bold text-black">
                         Select Department
                       </label>
-                      {departments.length > 0 && (
-                        <select
-                          className="form-control"
-                          name="department_id"
-                          value={myForm.department_id}
-                          onChange={handleChange}
-                        >
-                          <option value="">Select Department</option>
-                          {departments.map((department) => (
+                      <select
+                        className="form-control"
+                        name="department_id"
+                        value={myForm.department_id || ''} // Default to empty string if department_id is undefined or null
+                        onChange={handleChange}
+                      >
+                        <option value="">Select Department</option>
+                        {departments.length > 0 ? (
+                          departments.map((department) => (
                             <option key={department.id} value={department.id}>
                               {department.title}
                             </option>
-                          ))}
-                        </select>
-                      )}
+                          ))
+                        ) : (
+                          <option value="" disabled>
+                            No departments available
+                          </option>
+                        )}
+                      </select>
+
                       {errors.department_id && (
                         <p className="text-danger">{errors.department_id}</p>
                       )}

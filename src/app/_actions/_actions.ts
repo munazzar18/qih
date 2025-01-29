@@ -67,10 +67,10 @@ export const DepartmentCreateAction = async (formData: FormData) => {
     }
 }
 
-export const EditDepartmentAction = async (formData: FormData) => {
+export const EditDepartmentAction = async (formData: FormData , id: number) => {
     const token = (await cookies()).get('token')?.value
-    const id = formData.get('id')
     const title = formData.get('title')
+    const description = formData.get('description')
     try {
         const response = await fetch(`${url}departments/${id}`, {
             method: 'PUT',
@@ -79,7 +79,25 @@ export const EditDepartmentAction = async (formData: FormData) => {
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({ title })
+            body: JSON.stringify({ title , description })
+        })
+        const data = await response.json();
+        return data
+    } catch (error) {
+        return error
+    }
+}
+
+export const DepartmentDeleteAction = async (id: number) => {
+    const token = (await cookies()).get('token')?.value
+    try {
+        const response = await fetch(`${url}departments/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
         })
         const data = await response.json();
         return data
@@ -119,18 +137,35 @@ export const ConsultantCreateAction = async (formData: FormData) => {
 }
 
 
-export const UploadFileAction = async (file: File) => {
+
+export const UploadFileAction = async (formData: FormData) => {
     try {
-        const formData = new FormData()
-        formData.append('file', file)
+        const token = (await cookies()).get('token')?.value
+        const file = formData.get('file')
+        console.log('FILE:', file)
+
+        // Ensure the file is appended to FormData if it's not already
+        if (!file) {
+            throw new Error('No file provided')
+        }
+
+        // Append the file to FormData (this may be redundant if you already did it before)
+        const formDataWithFile = new FormData()
+        formDataWithFile.append('file', file)
+
+        // Send the request
         const response = await fetch(`${url}upload/v1`, {
             method: 'POST',
-            body: formData
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+            body: formDataWithFile
         })
-        const data = await response.json();
+
+        const data = await response.json()
+        console.log('this is image data', data)
         return data
     } catch (error) {
         return error
     }
-
 }
