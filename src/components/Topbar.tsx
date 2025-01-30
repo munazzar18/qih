@@ -28,8 +28,8 @@ const Topbar = () => {
         {/* Ticker Section (Left) */}
         <div className="ticker-container">
           <div className="ticker-content">
-            {tickers.length > 0 ? (
-              tickers.map((ticker) => (
+            {tickers?.length > 0 ? (
+              tickers?.map((ticker) => (
                 <div key={ticker.id} className="ticker-item">
                   <Link
                     href={ticker.url}
