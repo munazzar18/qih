@@ -67,7 +67,7 @@ export const DepartmentCreateAction = async (formData: FormData) => {
     }
 }
 
-export const EditDepartmentAction = async (formData: FormData , id: number) => {
+export const EditDepartmentAction = async (formData: FormData, id: number) => {
     const token = (await cookies()).get('token')?.value
     const title = formData.get('title')
     const description = formData.get('description')
@@ -79,7 +79,7 @@ export const EditDepartmentAction = async (formData: FormData , id: number) => {
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({ title , description })
+            body: JSON.stringify({ title, description })
         })
         const data = await response.json();
         return data
@@ -136,24 +136,48 @@ export const ConsultantCreateAction = async (formData: FormData) => {
     }
 }
 
+export const ConsultantEditAction = async (formData: FormData, id: number) => {
+    const token = (await cookies()).get('token')?.value
+    const name = formData.get('name')
+    const email = formData.get('email')
+    const office_extention = formData.get('office_extention')
+    const photo = formData.get('photo')
+    const department_id = Number(formData.get('department_id'))
+    try {
+        const response = await fetch(`${url}consultants/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                office_extention,
+                photo,
+                department_id
+            })
+        })
+        const data = await response.json();
+        return data
+    } catch (error) {
+        return error
+    }
+}
+
 
 
 export const UploadFileAction = async (formData: FormData) => {
     try {
         const token = (await cookies()).get('token')?.value
         const file = formData.get('file')
-        console.log('FILE:', file)
-
-        // Ensure the file is appended to FormData if it's not already
         if (!file) {
             throw new Error('No file provided')
         }
-
-        // Append the file to FormData (this may be redundant if you already did it before)
         const formDataWithFile = new FormData()
         formDataWithFile.append('file', file)
 
-        // Send the request
         const response = await fetch(`${url}upload/v1`, {
             method: 'POST',
             headers: {
@@ -161,9 +185,7 @@ export const UploadFileAction = async (formData: FormData) => {
             },
             body: formDataWithFile
         })
-
         const data = await response.json()
-        console.log('this is image data', data)
         return data
     } catch (error) {
         return error

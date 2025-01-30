@@ -20,7 +20,6 @@ export const getConsultants = async () => {
                 },
             })
         const data = await res.json()
-        console.log("COnstultants:", data)
         return data
     } catch (error) {
         return error

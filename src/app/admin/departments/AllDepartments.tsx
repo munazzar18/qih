@@ -1,39 +1,39 @@
-'use client';
-import { DepartmentDeleteAction } from '@/app/_actions/_actions';
-import Link from 'next/link';
-import React, { useState } from 'react';
-import toast from 'react-hot-toast';
-import { FiEdit, FiTrash } from 'react-icons/fi';
+'use client'
+import { DepartmentDeleteAction } from '@/app/_actions/_actions'
+import Link from 'next/link'
+import React, { useState } from 'react'
+import toast from 'react-hot-toast'
+import { FiEdit, FiTrash } from 'react-icons/fi'
 
 interface DepartmentData {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  user_id: number;
-  created_at: Date;
+  id: number
+  title: string
+  description: string
+  image: string
+  user_id: number
+  created_at: Date
 }
 
 interface Department {
-  status: string;
-  message: string;
-  data: DepartmentData[];
+  status: string
+  message: string
+  data: DepartmentData[]
 }
 
 const Departments = ({ departments }: { departments: Department }) => {
-  const [departmentsArr, setDepartmentsArr] = useState(departments.data);
-
+  const [departmentsArr, setDepartmentsArr] = useState(departments.data)
 
   const handleDelete = async (id: number) => {
-    let res = await DepartmentDeleteAction(id);
-    console.log(res);
-    if(res.status === 'success'){
-      setDepartmentsArr(departmentsArr.filter((department) => department.id !== id));
-      toast.success(res.message);
-    }else{
-      toast.error(res.message);
+    let res = await DepartmentDeleteAction(id)
+    if (res.status === 'success') {
+      setDepartmentsArr(
+        departmentsArr.filter((department) => department.id !== id)
+      )
+      toast.success(res.message)
+    } else {
+      toast.error(res.message)
     }
-  };
+  }
 
   return (
     <div className="container">
@@ -70,7 +70,10 @@ const Departments = ({ departments }: { departments: Department }) => {
                   })}
                 </td>
                 <td>
-                  <Link className="me-4" href={`/admin/departments/edit/${Number(department.id)}`}>
+                  <Link
+                    className="me-4"
+                    href={`/admin/departments/edit/${Number(department.id)}`}
+                  >
                     <FiEdit role="button" aria-label="Edit department" />
                   </Link>
                   <FiTrash
@@ -87,7 +90,7 @@ const Departments = ({ departments }: { departments: Department }) => {
         </table>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Departments;
+export default Departments

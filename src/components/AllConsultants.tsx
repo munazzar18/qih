@@ -37,7 +37,6 @@ const AllConsultants = ({
     setConsultants(allConsultants)
   }, [])
 
-
   return (
     <div className="container">
       <div className="m-5">
@@ -62,17 +61,19 @@ const AllConsultants = ({
               <th scope="col">Name</th>
               <th scope="col">Email</th>
               <th scope="col">Department</th>
+              <th scope="col">Office Extention</th>
               <th scope="col">Created At</th>
             </tr>
           </thead>
           <tbody>
             {consultants?.data.length
-              ? consultants.data.map((consultant) => (
+              ? consultants.data.map((consultant, index) => (
                   <tr key={consultant.id}>
-                    <th scope="row">{consultant.id}</th>
+                    <th scope="row">{index + 1}</th>
                     <td>{consultant.name}</td>
                     <td>{consultant.email}</td>
                     <td>{consultant.department.title}</td>
+                    <td>{consultant.office_extention}</td>
                     <td>
                       {new Date(consultant.created_at).toLocaleDateString(
                         'en-GB',

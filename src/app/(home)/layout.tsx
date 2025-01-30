@@ -16,10 +16,9 @@ export default async function HomeLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  let authUser : User | null = null
+  let authUser: User | null = null
   const token = (await cookies()).get('token')?.value
   const userCookies = (await cookies()).get('user')
-
 
   try {
     if (userCookies && userCookies.value) {
@@ -30,7 +29,7 @@ export default async function HomeLayout({
   }
 
   return (
-    <div>
+    <div suppressHydrationWarning>
       <Topbar />
       <NavbarSearch />
       <Navbar token={token ?? ''} user={authUser} />
@@ -39,4 +38,3 @@ export default async function HomeLayout({
     </div>
   )
 }
-
