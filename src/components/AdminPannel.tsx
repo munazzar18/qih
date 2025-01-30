@@ -12,6 +12,7 @@ import {
   FaDollarSign,
   FaGear,
   FaRegWindowMaximize,
+  FaTicket,
   FaUser,
   FaUserDoctor,
   FaUserLarge,
@@ -81,12 +82,18 @@ const AdminSideBar = async () => {
     },
     {
       id: 6,
+      name: 'Tickers',
+      link: `/admin/tickers`,
+      icon: <FaTicket />,
+    },
+    {
+      id: 7,
       name: 'Settings',
       link: `/admin/settings`,
       icon: <FaGear />,
     },
     {
-      id: 7,
+      id: 8,
       name: 'Users',
       link: `/admin/users`,
       icon: <FaUser />,

@@ -243,3 +243,43 @@ export const MakeAppointmentAction = async (formData: FormData) => {
         return error
     }
 }
+
+
+
+
+export const TickersCreationAction = async (formData: FormData) => {
+    try {
+        const token = (await cookies()).get('token')?.value;
+
+        if (!token) {
+            throw new Error('Token is missing or invalid');
+        }
+
+        const title = formData.get('title') as string;
+        const url = formData.get('url') as string;
+
+        if (!title || !url) {
+            throw new Error('Title or URL is missing');
+        }
+
+        const response = await fetch(`https://qih.driveo.pk/api/v1/tickers`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ title, url })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(error);
+        return { error: error || 'An unknown error occurred' };
+    }
+}

@@ -88,3 +88,14 @@ export const makeAppointmentSchema = z.object({
 })
 
 export type MakeAppointmentSchema = z.infer<typeof makeAppointmentSchema>
+
+export const makeTickersSechema = z.object({
+    title: z
+        .string()
+        .min(1, "Title is required"),
+    url: z
+        .string()
+        .min(1, "url is required")
+})
+
+export type MakeTickersSchema = z.infer<typeof makeTickersSechema>
