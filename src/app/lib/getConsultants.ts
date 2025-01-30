@@ -46,3 +46,39 @@ export const getConsultantById = async (id: number) => {
         return error
     }
 }
+
+export const getPublicConsultants = async () => {
+    try {
+        const res = await fetch(`${url}public/consultants`,
+            {
+                cache: 'no-cache',
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+            })
+        const data = await res.json()
+        return data
+    } catch (error) {
+        return error
+    }
+}
+
+export const getConsultantsByDepartmentId = async (id: number) => {
+    try {
+        const res = await fetch(`${url}public/getConsultantsByDepartment/${id}`,
+            {
+                cache: 'no-cache',
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+            })
+        const data = await res.json()
+        return data
+    } catch (error) {
+        return error
+    }
+}

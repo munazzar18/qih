@@ -46,7 +46,6 @@ const CreateConsultant = ({
 
   useEffect(() => {
     setDepartments(allDepartments.data)
-    console.log(allDepartments)
   }, [])
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -179,7 +178,7 @@ const CreateConsultant = ({
                       <select
                         className="form-control"
                         name="department_id"
-                        value={myForm.department_id || ''} // Default to empty string if department_id is undefined or null
+                        value={myForm.department_id || ''}
                         onChange={handleChange}
                       >
                         <option value="">Select Department</option>

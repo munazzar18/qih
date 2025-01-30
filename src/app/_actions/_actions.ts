@@ -166,6 +166,24 @@ export const ConsultantEditAction = async (formData: FormData, id: number) => {
     }
 }
 
+export const ConsultantDeleteAction = async (id: number) => {
+    const token = (await cookies()).get('token')?.value
+    try {
+        const response = await fetch(`${url}consultants/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+        })
+        const data = await response.json();
+        return data
+    } catch (error) {
+        return error
+    }
+}
+
 
 
 export const UploadFileAction = async (formData: FormData) => {
@@ -186,6 +204,40 @@ export const UploadFileAction = async (formData: FormData) => {
             body: formDataWithFile
         })
         const data = await response.json()
+        return data
+    } catch (error) {
+        return error
+    }
+}
+
+export const MakeAppointmentAction = async (formData: FormData) => {
+    const token = (await cookies()).get('token')?.value
+    const mr_no = formData.get('mr_no')
+    const patient_name = formData.get('patient_name')
+    const mobile_no = formData.get('mobile_no')
+    const appointment_datetime = formData.get('appointment_dateTime')
+    const department_id = Number(formData.get('department_id'))
+    const consultant_id = Number(formData.get('consultant_id'))
+    const message = formData.get('message')
+    try {
+        const response = await fetch(`${url}appointments`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                mr_no,
+                patient_name,
+                mobile_no,
+                appointment_datetime,
+                department_id,
+                consultant_id,
+                message
+            })
+        })
+        const data = await response.json();
         return data
     } catch (error) {
         return error

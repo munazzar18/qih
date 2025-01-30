@@ -279,9 +279,8 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                 className="dropdown-menu"
                 style={{ height: '300px', overflowY: 'scroll' }}
               >
-                {
-                departments.length ?
-                (departments?.map((item) => {
+                {departments.length ? (
+                  departments?.map((item) => {
                     return (
                       <li key={item.id} className="nav-item">
                         <Link
@@ -293,10 +292,9 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                         </Link>
                       </li>
                     )
-                  }))
-                  :
-                  (
-                  <li className='text-gray-500'>no departments</li>
+                  })
+                ) : (
+                  <li className="text-gray-500">no departments</li>
                 )}
               </ul>
             </li>
@@ -351,17 +349,24 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
               <a className="btn btn--secondary" href="">
                 doctors' timetable
               </a>
-              <Link
-                className="btn btn--primary btn-line btn-line-after"
-                href="/make-appointment"
-              >
-                {' '}
-                <span>make appointment</span>
-                <span className="line">
-                  {' '}
-                  <span></span>
-                </span>
-              </Link>
+              {token ? (
+                <Link
+                  className="btn btn--primary btn-line btn-line-after"
+                  href="/make-appointment"
+                >
+                  <span>make appointment</span>
+                  <span className="line">
+                    <span></span>
+                  </span>
+                </Link>
+              ) : (
+                <Link
+                  className="btn btn--primary btn-line btn-line-after"
+                  href="/auth/login"
+                >
+                  <span>make appointment</span>
+                </Link>
+              )}
             </div>
           </div>
         </div>

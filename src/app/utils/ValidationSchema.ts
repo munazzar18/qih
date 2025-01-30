@@ -61,3 +61,30 @@ export const consultantSchema = z.object({
 })
 
 export type ConstultantSchema = z.infer<typeof consultantSchema>
+
+export const makeAppointmentSchema = z.object({
+    mr_no: z
+        .string()
+        .min(1, "MR No is required"),
+    patient_name: z
+        .string()
+        .min(1, "Patient name is required"),
+    mobile_no: z
+        .string()
+        .min(1, "Mobile no is required")
+        .max(11, "Mobile must be 11 characters"),
+    appointment_dateTime: z
+        .string()
+        .min(1, "Date is required"),
+    department_id: z
+        .string()
+        .min(1, "Department is required"),
+    consultant_id: z
+        .string()
+        .min(1, "Consultant is required"),
+    message: z
+        .string()
+        .min(1, "Message is required")
+})
+
+export type MakeAppointmentSchema = z.infer<typeof makeAppointmentSchema>
