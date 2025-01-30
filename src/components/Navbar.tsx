@@ -32,7 +32,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
 
   const getAllDepartments = async () => {
     const res = await getDepartments()
-    setDepartments(res)
+    setDepartments(res.data)
   }
 
   useEffect(() => {
