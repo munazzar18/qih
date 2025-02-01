@@ -1,18 +1,53 @@
 'use client'
-import { TickersCreationAction } from '@/app/_actions/_actions'
+import { EditTickerAction } from '@/app/_actions/_actions'
 import {
   MakeTickersSchema,
   makeTickersSechema,
 } from '@/app/utils/ValidationSchema'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
-const page = () => {
-  const [myForm, setMyForm] = useState({
-    title: '',
-    url: '',
-  })
+interface TickersData {
+  id: number;
+  title: string;
+  url: string;
+  created_at: Date;
+}
 
+interface Tickers {
+  status: string;
+  message: string;
+  data: TickersData;
+}
+
+
+const EditTickers = ({ allTickers }: { allTickers: Tickers }) => {
+
+  const [tickerId, setTickerId] = useState<number>(0);
+  const [allTickerArr, setAllTickerArr] = useState<Tickers | null>(null);
+  const [myForm, setMyForm] = useState({
+    title: "",
+    url: "",
+  });
+
+  // First useEffect: Updates `allTickerArr` when `allTickers` changes
+  useEffect(() => {
+    if (allTickers) {
+      setAllTickerArr(allTickers);
+    }
+  }, [allTickers]);
+
+  // Second useEffect: Updates `tickerId` when `allTickerArr` is updated
+  useEffect(() => {
+    if (allTickerArr?.data) {
+      setTickerId(allTickerArr.data.id);
+      // Update myForm state with data from allTickerArr
+      setMyForm({
+        title: allTickerArr.data.title,
+        url: allTickerArr.data.url,
+      });
+    }
+  }, [allTickerArr]);
   const [errors, setErrors] = useState<{
     [key in keyof MakeTickersSchema]?: string
   }>({})
@@ -35,8 +70,7 @@ const page = () => {
       const formData = new FormData()
       formData.append('title', result.data.title)
       formData.append('url', result.data.url)
-      const res = await TickersCreationAction(formData)
-      console.log(res)
+      const res = await EditTickerAction(formData,tickerId)
       if (res.status === 'success') {
         toast.success(res.message)
       } else {
@@ -95,7 +129,7 @@ const page = () => {
 
                     <div className="col-12">
                       <button className="btn btn--primary" type="submit">
-                        Save
+                        Update
                       </button>
                     </div>
                     <div className="col-12">
@@ -112,4 +146,4 @@ const page = () => {
   )
 }
 
-export default page
+export default EditTickers

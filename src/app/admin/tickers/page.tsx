@@ -17,7 +17,9 @@ interface Ticker {
 }
 
 const TickersPage = async () => {
-  const tickers: Ticker = await getTickers()
+  
+  const tickers: Ticker = await getTickers();
+
 
   return (
     <div className="container">
@@ -61,12 +63,12 @@ const TickersPage = async () => {
                     })}
                   </td>
                   <td>
-                    <Link href={`/admin/tickers/${ticker.id}/edit`}>
+                    <Link href={`/admin/tickers/edit/${ticker.id}`}>
                       <FiEdit />
                     </Link>
-                    <Link href={`/admin/tickers/${ticker.id}/delete`}>
+                    <button>
                       <FiTrash />
-                    </Link>
+                    </button>
                   </td>
                 </tr>
               ))

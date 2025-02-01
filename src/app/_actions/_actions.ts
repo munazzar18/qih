@@ -88,6 +88,29 @@ export const EditDepartmentAction = async (formData: FormData, id: number) => {
     }
 }
 
+
+export const EditTickerAction = async (formData: FormData, id: number) => {
+    console.log('ticker id',id)
+    const token = (await cookies()).get('token')?.value
+    const title = formData.get('title')
+    const url = formData.get('url')
+    try {
+        const response = await fetch(`https://qih.driveo.pk/api/v1/tickers/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ title, url })
+        })
+        const data = await response.json();
+        return data
+    } catch (error) {
+        return error
+    }
+}
+
 export const DepartmentDeleteAction = async (id: number) => {
     const token = (await cookies()).get('token')?.value
     try {
