@@ -30,6 +30,7 @@ const CreateConsultant = ({
 }: {
   allDepartments: Department
 }) => {
+  
   const [myForm, setMyForm] = useState<ConstultantSchema>({
     name: '',
     email: '',

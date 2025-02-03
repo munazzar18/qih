@@ -1,6 +1,7 @@
-import { getTickersById } from '@/app/lib/getDepartments'
+import { getTickersById } from '@/app/lib/getTickers'
 import EditTickers from '@/components/EditTickers'
 import React from 'react'
+
 
 
 const page = async (props: {

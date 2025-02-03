@@ -1,4 +1,5 @@
 import { getTickers } from '@/app/lib/getTickers'
+import DeleteTickers from '@/components/DeleteTickers'
 import Link from 'next/link'
 import React from 'react'
 import { FiEdit, FiTrash } from 'react-icons/fi'
@@ -19,7 +20,6 @@ interface Ticker {
 const TickersPage = async () => {
   
   const tickers: Ticker = await getTickers();
-
 
   return (
     <div className="container">
@@ -66,9 +66,7 @@ const TickersPage = async () => {
                     <Link href={`/admin/tickers/edit/${ticker.id}`}>
                       <FiEdit />
                     </Link>
-                    <button>
-                      <FiTrash />
-                    </button>
+                     <DeleteTickers id={ticker.id} />
                   </td>
                 </tr>
               ))
