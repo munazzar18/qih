@@ -7,7 +7,7 @@ const url = process.env.NEXT_PUBLIC_API_URL as string
 export const getTickers = async () => {
     const token = ((await cookies()).get('token')?.value)
     try {
-        const res = await fetch(`${url}tickers`, {
+        const res = await fetch(`${url}public/tickers`, {
             cache: 'no-cache',
             method: 'GET',
             headers: {

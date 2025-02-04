@@ -17,20 +17,21 @@ interface Consultants {
       photo: string
       department_id: number
       created_at: string
-      department: {
-        id: number
-        title: string
-        description: string
-        image: string
-        created_at: string
-      }
+      departments: [
+        {
+          id: number
+          title: string
+          description: string
+          image: string
+          created_at: string
+        }
+      ]
     }
   ]
 }
 
 const ConsultantsPage = async () => {
   const consultants: Consultants = await getConsultants()
-
   return (
     <div>
       <div className="container">
@@ -67,7 +68,7 @@ const ConsultantsPage = async () => {
                       <th scope="row">{index + 1}</th>
                       <td>{consultant.name}</td>
                       <td>{consultant.email}</td>
-                      <td>{consultant.department.title}</td>
+                      <td>{consultant.departments?.map((d) => d.title)}</td>
                       <td>{consultant.office_extention}</td>
                       <td>
                         {new Date(consultant.created_at).toLocaleDateString(

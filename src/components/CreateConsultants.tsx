@@ -1,14 +1,29 @@
 'use client'
+import React, { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
+import toast from 'react-hot-toast'
+import Multiselect from 'multiselect-react-dropdown'
+import { FaPlus, FaMinus } from 'react-icons/fa'
 import {
   ConsultantCreateAction,
   UploadFileAction,
 } from '@/app/_actions/_actions'
+import { getDepartments } from '@/app/lib/getDepartments'
 import {
-  ConstultantSchema,
   consultantSchema,
+  ConstultantSchema,
 } from '@/app/utils/ValidationSchema'
-import React, { useEffect, useState } from 'react'
-import toast from 'react-hot-toast'
+import 'react-quill-new/dist/quill.snow.css'
+
+// Dynamically import ReactQuill (using react-quill-new)
+const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false })
+
+// Define the Education interface and update initial state as an array
+interface Education {
+  degree: string
+  institute: string
+  year: string
+}
 
 interface DepartmentData {
   id: number
@@ -19,35 +34,42 @@ interface DepartmentData {
   created_at: Date
 }
 
-interface Department {
-  status: string
-  message: string
-  data: DepartmentData[]
-}
+const CreateConsultant = () => {
+  // Set initial education as an array with one empty entry
+  const initialEducation: Education[] = [
+    { degree: '', institute: '', year: '' },
+  ]
 
-const CreateConsultant = ({
-  allDepartments,
-}: {
-  allDepartments: Department
-}) => {
+  // Update your form state type (ConstultantSchema) so that education is an array
   const [myForm, setMyForm] = useState<ConstultantSchema>({
     name: '',
     email: '',
+    password: '',
     office_extention: '',
+    work_experience: '',
+    membership: '',
+    education: initialEducation,
     photo: '',
-    department_id: '1',
+    departments: [],
   })
 
   const [errors, setErrors] = useState<{
     [key in keyof ConstultantSchema]?: string
   }>({})
-
+  const [selectedDepartments, setSelectedDepartments] = useState<
+    DepartmentData[]
+  >([])
   const [departments, setDepartments] = useState<DepartmentData[]>([])
 
   useEffect(() => {
-    setDepartments(allDepartments.data)
+    const getAllDepartments = async () => {
+      const res = await getDepartments()
+      setDepartments(res.data)
+    }
+    getAllDepartments()
   }, [])
 
+  // Handler for file upload (photo)
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files
     if (!files) return
@@ -57,28 +79,91 @@ const CreateConsultant = ({
     const res = await UploadFileAction(formData)
     if (res.status === 'success') {
       toast.success(res.message)
-      setMyForm({
-        ...myForm,
-        photo: res.data.file_path,
-      })
+      setMyForm({ ...myForm, photo: res.data.file_path })
     } else {
       toast.error(res.message)
     }
   }
 
-  const handleChange = (e: React.ChangeEvent<any>) => {
+  // Generic input change handler for text inputs
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    setMyForm({
-      ...myForm,
-      [name]: value,
-    })
+    setMyForm({ ...myForm, [name]: value })
     if (errors[name as keyof ConstultantSchema]) {
       setErrors({ ...errors, [name]: undefined })
     }
   }
 
+  // Handlers for dynamic education fields
+  const handleEducationChange = (
+    index: number,
+    field: keyof Education,
+    value: string
+  ) => {
+    const newEducations = [...myForm.education]
+    newEducations[index] = { ...newEducations[index], [field]: value }
+    setMyForm({ ...myForm, education: newEducations })
+  }
+
+  const handleAddEducation = () => {
+    setMyForm({
+      ...myForm,
+      education: [...myForm.education, { degree: '', institute: '', year: '' }],
+    })
+  }
+
+  const handleRemoveEducation = (index: number) => {
+    const newEducations = [...myForm.education]
+    newEducations.splice(index, 1)
+    setMyForm({ ...myForm, education: newEducations })
+  }
+
+  // Quill modules and formats for membership and work_experience editors
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, 3, false] }],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      [{ indent: '-1' }, { indent: '+1' }],
+      ['link', 'image', 'video'],
+      [{ color: [] }, { background: [] }],
+      [{ font: [] }],
+      [{ align: [] }],
+      ['code-block', 'formula'],
+      ['clean'],
+    ],
+  }
+
+  const formats = [
+    // Inline formats
+    'background',
+    'bold',
+    'color',
+    'font',
+    'code',
+    'italic',
+    'link',
+    'size',
+    'strike',
+    'script',
+    'underline',
+    // Block formats
+    'blockquote',
+    'header',
+    'indent',
+    'list',
+    'align',
+    'direction',
+    'code-block',
+    // Embeds
+    'formula',
+    'image',
+    'video',
+  ]
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    console.log('myForm', myForm)
     const result = consultantSchema.safeParse(myForm)
     if (result.success) {
       const formData = new FormData()
@@ -86,13 +171,19 @@ const CreateConsultant = ({
       formData.append('email', result.data.email)
       formData.append('office_extention', result.data.office_extention)
       formData.append('photo', result.data.photo)
-      formData.append('department_id', result.data.department_id.toString())
-      const res = await ConsultantCreateAction(formData)
-      if (res.status === 'success') {
-        toast.success(res.message)
-      } else {
-        toast.error(res.message)
-      }
+      formData.append('password', result.data.password)
+      formData.append('membership', result.data.membership)
+      // For education and work_experience, you might want to store the HTML string (or JSON-stringify it)
+      formData.append('education', JSON.stringify(result.data.education))
+      formData.append('work_experience', result.data.work_experience)
+      formData.append('department_id', result.data.departments.toString())
+      // Uncomment and adjust the next lines when ready to submit
+      // const res = await ConsultantCreateAction(formData)
+      // if (res.status === 'success') {
+      //   toast.success(res.message)
+      // } else {
+      //   toast.error(res.message)
+      // }
     } else {
       const fieldErrors: { [key in keyof ConstultantSchema]?: string } = {}
       result.error.errors.forEach((error) => {
@@ -107,14 +198,15 @@ const CreateConsultant = ({
     <div className="container">
       <div className="m-5">
         <div className="row">
-          <div className="col-12 col-md-12 col-lg-12 ">
+          <div className="col-12">
             <div className="login-card">
               <div className="heading heading-1 text--center">
                 <h2 className="heading-title">Create Consultant</h2>
               </div>
               <div className="login-body">
-                <form className="" onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                   <div className="row">
+                    {/* Name */}
                     <div className="col-6">
                       <label className="fw-bold text-black">Name</label>
                       <input
@@ -129,6 +221,7 @@ const CreateConsultant = ({
                         <p className="text-danger">{errors.name}</p>
                       )}
                     </div>
+                    {/* Email */}
                     <div className="col-6">
                       <label className="fw-bold text-black">Email</label>
                       <input
@@ -139,26 +232,43 @@ const CreateConsultant = ({
                         value={myForm.email}
                         onChange={handleChange}
                       />
-                      {errors.name && (
+                      {errors.email && (
                         <p className="text-danger">{errors.email}</p>
                       )}
                     </div>
+                    {/* Password */}
+                    <div className="col-6">
+                      <label className="fw-bold text-black">Password</label>
+                      <input
+                        className="form-control"
+                        type="password"
+                        name="password"
+                        placeholder="Enter password"
+                        value={myForm.password}
+                        onChange={handleChange}
+                      />
+                      {errors.password && (
+                        <p className="text-danger">{errors.password}</p>
+                      )}
+                    </div>
+                    {/* Office Extension */}
                     <div className="col-6">
                       <label className="fw-bold text-black">
-                        Office Extention
+                        Office Extension
                       </label>
                       <input
                         className="form-control"
                         type="text"
                         name="office_extention"
-                        placeholder="Enter office extention"
+                        placeholder="Enter office extension"
                         value={myForm.office_extention}
                         onChange={handleChange}
                       />
-                      {errors.name && (
+                      {errors.office_extention && (
                         <p className="text-danger">{errors.office_extention}</p>
                       )}
                     </div>
+                    {/* Photo */}
                     <div className="col-6">
                       <label className="fw-bold text-black">Photo</label>
                       <input
@@ -171,45 +281,149 @@ const CreateConsultant = ({
                         <p className="text-danger">{errors.photo}</p>
                       )}
                     </div>
-                    <div className="col-12">
-                      <label className="fw-bold text-black">
+                    {/* Departments */}
+                    <div className="col-6">
+                      <label className="fw-bold text-black mb-2">
                         Select Department
                       </label>
-                      <select
-                        className="form-control"
-                        name="department_id"
-                        value={myForm.department_id || ''}
-                        onChange={handleChange}
-                      >
-                        <option value="">Select Department</option>
-                        {departments.length > 0 ? (
-                          departments.map((department) => (
-                            <option key={department.id} value={department.id}>
-                              {department.title}
-                            </option>
-                          ))
-                        ) : (
-                          <option value="" disabled>
-                            No departments available
-                          </option>
-                        )}
-                      </select>
-
-                      {errors.department_id && (
-                        <p className="text-danger">{errors.department_id}</p>
+                      <Multiselect
+                        placeholder="Select Department"
+                        className="mb-5"
+                        options={departments}
+                        showArrow={true}
+                        selectedValues={selectedDepartments}
+                        onRemove={(selectedList: DepartmentData[]) => {
+                          setSelectedDepartments(selectedList)
+                          setMyForm({
+                            ...myForm,
+                            departments: selectedList.map((item) =>
+                              item.id.toString()
+                            ),
+                          })
+                        }}
+                        displayValue="title"
+                        onSelect={(selectedList: DepartmentData[]) => {
+                          setSelectedDepartments(selectedList)
+                          setMyForm({
+                            ...myForm,
+                            departments: selectedList.map((item) =>
+                              item.id.toString()
+                            ),
+                          })
+                        }}
+                      />
+                      {errors.departments && (
+                        <p className="text-danger">{errors.departments}</p>
                       )}
                     </div>
-
+                    {/* Dynamic Education Fields */}
+                    <div className="col-12 mb-5">
+                      <label className="fw-bold text-black">Education</label>
+                      {myForm.education.map((edu, index) => (
+                        <div
+                          key={index}
+                          className="education-row d-flex align-items-center mb-2"
+                        >
+                          <input
+                            type="text"
+                            name="degree"
+                            placeholder="Degree"
+                            value={edu.degree}
+                            onChange={(e) =>
+                              handleEducationChange(
+                                index,
+                                'degree',
+                                e.target.value
+                              )
+                            }
+                            className="form-control me-2"
+                          />
+                          <input
+                            type="text"
+                            name="institute"
+                            placeholder="Institute"
+                            value={edu.institute}
+                            onChange={(e) =>
+                              handleEducationChange(
+                                index,
+                                'institute',
+                                e.target.value
+                              )
+                            }
+                            className="form-control me-2"
+                          />
+                          <input
+                            type="text"
+                            name="year"
+                            placeholder="Year"
+                            value={edu.year}
+                            onChange={(e) =>
+                              handleEducationChange(
+                                index,
+                                'year',
+                                e.target.value
+                              )
+                            }
+                            className="form-control me-2"
+                          />
+                          {/* Render remove button if there is more than one education entry */}
+                          {myForm.education.length > 1 && (
+                            <button
+                              type="button"
+                              onClick={() => handleRemoveEducation(index)}
+                              className="me-2"
+                            >
+                              <FaMinus />
+                            </button>
+                          )}
+                          {/* Render the plus button on the last row */}
+                          {index === myForm.education.length - 1 && (
+                            <button type="button" onClick={handleAddEducation}>
+                              <FaPlus />
+                            </button>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                    {/* Membership using ReactQuill */}
+                    <div className="col-12 mb-5">
+                      <label className="fw-bold text-black">Membership</label>
+                      <ReactQuill
+                        theme="snow"
+                        modules={modules}
+                        formats={formats}
+                        value={myForm.membership}
+                        style={{ height: '200px' }}
+                        onChange={(value) =>
+                          setMyForm({ ...myForm, membership: value })
+                        }
+                      />
+                    </div>
+                    {/* Work Experience using ReactQuill */}
+                    <div className="col-12 mb-5">
+                      <label className="fw-bold text-black">
+                        Work Experience
+                      </label>
+                      <ReactQuill
+                        theme="snow"
+                        modules={modules}
+                        formats={formats}
+                        value={myForm.work_experience}
+                        style={{ height: '200px' }}
+                        onChange={(value) =>
+                          setMyForm({ ...myForm, work_experience: value })
+                        }
+                      />
+                    </div>
+                    {/* Submit Button */}
                     <div className="col-12">
                       <button className="btn btn--primary" type="submit">
                         Save
                       </button>
                     </div>
-                    <div className="col-12">
-                      <div className="login-result"></div>
-                    </div>
                   </div>
                 </form>
+                <div className="login-result"></div>
               </div>
             </div>
           </div>

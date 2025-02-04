@@ -49,15 +49,39 @@ export const consultantSchema = z.object({
         .string()
         .min(1, "Email is required")
         .email("Email is invalid"),
+    password: z
+        .string()
+        .min(1, "Password is required")
+        .min(6, "Password must be more than 6 characters")
+        .max(32, "Password must be less than 32 characters"),
     office_extention: z
         .string()
         .min(1, "Office extention is required"),
     photo: z
         .string()
         .min(1, "Photo is required"),
-    department_id: z
+    departments: z
+        .array(z.string())
+        .min(1, "Department is required"),
+    education: z
+        .array(z.object({
+            degree: z
+                .string()
+                .min(1, "Degree is required"),
+            institute: z
+                .string()
+                .min(1, "Institution is required"),
+            year: z
+                .string()
+                .min(1, "Year is required"),
+        }))
+        .min(1, "Education is required"),
+    work_experience: z
+        .string(z.string())
+        .min(1, "Experience is required"),
+    membership: z
         .string()
-        .min(1, "Department is required")
+        .min(1, "Membership is required"),
 })
 
 export type ConstultantSchema = z.infer<typeof consultantSchema>
@@ -76,7 +100,7 @@ export const makeAppointmentSchema = z.object({
     appointment_dateTime: z
         .string()
         .min(1, "Date is required"),
-    department_id: z
+    departments: z
         .string()
         .min(1, "Department is required"),
     consultant_id: z
