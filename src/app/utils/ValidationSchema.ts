@@ -100,7 +100,7 @@ export const makeAppointmentSchema = z.object({
     appointment_dateTime: z
         .string()
         .min(1, "Date is required"),
-    departments: z
+    department_id: z
         .string()
         .min(1, "Department is required"),
     consultant_id: z

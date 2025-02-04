@@ -173,11 +173,9 @@ const CreateConsultant = () => {
       formData.append('photo', result.data.photo)
       formData.append('password', result.data.password)
       formData.append('membership', result.data.membership)
-      // For education and work_experience, you might want to store the HTML string (or JSON-stringify it)
       formData.append('education', JSON.stringify(result.data.education))
       formData.append('work_experience', result.data.work_experience)
       formData.append('department_id', result.data.departments.toString())
-      // Uncomment and adjust the next lines when ready to submit
       const res = await ConsultantCreateAction(formData)
       if (res.status === 'success') {
         toast.success(res.message)
