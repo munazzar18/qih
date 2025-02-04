@@ -178,12 +178,12 @@ const CreateConsultant = () => {
       formData.append('work_experience', result.data.work_experience)
       formData.append('department_id', result.data.departments.toString())
       // Uncomment and adjust the next lines when ready to submit
-      // const res = await ConsultantCreateAction(formData)
-      // if (res.status === 'success') {
-      //   toast.success(res.message)
-      // } else {
-      //   toast.error(res.message)
-      // }
+      const res = await ConsultantCreateAction(formData)
+      if (res.status === 'success') {
+        toast.success(res.message)
+      } else {
+        toast.error(res.message)
+      }
     } else {
       const fieldErrors: { [key in keyof ConstultantSchema]?: string } = {}
       result.error.errors.forEach((error) => {

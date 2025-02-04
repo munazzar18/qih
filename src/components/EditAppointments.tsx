@@ -1,5 +1,5 @@
 'use client'
-import { MakeAppointmentAction } from '@/app/_actions/_actions'
+import { EditAppointmentAction } from '@/app/_actions/_actions'
 import {
   getConsultantsByDepartmentId,
   getPublicConsultants,
@@ -15,6 +15,20 @@ import { getDepartments } from '@/app/lib/getDepartments'
 import Loader from './Loader'
 import { formatDateTime } from '@/app/utils/helper'
 
+interface Appointment {
+    data: {
+    id: number,
+    mr_no: string,
+    patient_name: string,
+    mobile_no: string,
+    appointment_datetime: string,
+    department_id: string,
+    consultant_id: string,
+    message: string,
+    }
+
+}
+
 interface Consultant {
   id: number
   name: string
@@ -27,15 +41,16 @@ interface Department {
   description: string
 }
 
-const MakeAppointment = () => {
+const EditAppointments = ({ appointment }: { appointment: Appointment }) => {
+  const [appointmentId, setappointmentId] = useState(appointment.data.id)
   const [myForm, setMyForm] = useState<MakeAppointmentSchema>({
-    mr_no: '',
-    patient_name: '',
-    mobile_no: '',
-    appointment_dateTime: '',
-    department_id: '',
-    consultant_id: '',
-    message: '',
+    mr_no: appointment.data.mr_no,
+    patient_name: appointment.data.patient_name,
+    mobile_no: appointment.data.mobile_no,
+    appointment_dateTime: appointment.data.appointment_datetime,
+    department_id: appointment.data.department_id,
+    consultant_id: appointment.data.consultant_id,
+    message: appointment.data.message,
   })
 
   const [errors, setErrors] = useState<{
@@ -48,15 +63,16 @@ const MakeAppointment = () => {
 
   const getAllDepartments = async () => {
     setLoading(true)
-    const res = await getDepartments()
-    setDepartments(res.data)
+    const res = await getDepartments();
+    setDepartments(res.data);
     setLoading(false)
   }
 
   const getConsultants = async () => {
     if (!myForm.department_id) return
     setLoading(true)
-    const res = await getConsultantsByDepartmentId(+myForm.department_id)
+    const res = await getConsultantsByDepartmentId(+myForm.department_id);
+    console.log('res',res)
     setConsultants(res.data)
     setLoading(false)
   }
@@ -93,7 +109,7 @@ const MakeAppointment = () => {
       formData.append('department_id', result.data.department_id)
       formData.append('consultant_id', result.data.consultant_id)
       formData.append('message', result.data.message)
-      const res = await MakeAppointmentAction(formData)
+      const res = await EditAppointmentAction(appointmentId,formData)
       if (res.status === 'success') {
         toast.success(res.message)
         setMyForm({
@@ -165,7 +181,7 @@ const MakeAppointment = () => {
                   onChange={handleChange}
                 >
                   <option value="">Select Consultant</option>
-                  {/* {consultants && consultants?.length > 0 ? (
+                  {consultants && consultants?.length > 0 ? (
                     consultants?.map((consultant) => (
                       <option key={consultant.id} value={consultant.id}>
                         {consultant.name}
@@ -175,7 +191,7 @@ const MakeAppointment = () => {
                     <option value="" disabled>
                       No consultants available
                     </option>
-                  )} */}
+                  )}
                 </select>
                 {errors.consultant_id && (
                   <p className="text-danger">{errors.consultant_id}</p>
@@ -265,4 +281,4 @@ const MakeAppointment = () => {
   )
 }
 
-export default MakeAppointment
+export default EditAppointments

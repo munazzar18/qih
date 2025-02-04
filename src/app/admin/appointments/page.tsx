@@ -1,6 +1,8 @@
 import { getAppointments } from '@/app/lib/getAppointments'
+import DeleteAppointments from '@/components/DeleteAppointments'
 import Link from 'next/link'
 import React from 'react'
+import { FaEdit, FaTrash } from 'react-icons/fa'
 
 interface Appointment {
   status: string
@@ -60,6 +62,7 @@ const AdminAppointments = async () => {
               <th scope="col">Appointment Date Time</th>
               <th scope="col">Consultant</th>
               <th scope="col">Booked By</th>
+              <th scope="col">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -72,14 +75,22 @@ const AdminAppointments = async () => {
                     <td>{appointment.appointment_datetime}</td>
                     <td>{appointment.consultant.name}</td>
                     <td>{appointment.user.name}</td>
+                    <td>
+                      <Link href={`/admin/appointments/edit/${appointment.id}`} className="text-primary mx-2">
+                        <FaEdit />
+                      </Link>
+                      <DeleteAppointments id={appointment.id}/> 
+                    </td>
                   </tr>
                 ))
-              : 'no appointments booked'}
+              : 'No appointments booked'}
           </tbody>
         </table>
       </div>
     </div>
   )
 }
+
+
 
 export default AdminAppointments
