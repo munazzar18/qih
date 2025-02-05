@@ -2,7 +2,6 @@ import { getConsultants } from '@/app/lib/getConsultants'
 import DeleteConsultant from '@/components/DeleteConsultant'
 import Link from 'next/link'
 import React from 'react'
-import toast from 'react-hot-toast'
 import { FiEdit, FiTrash } from 'react-icons/fi'
 
 interface Consultants {
@@ -32,6 +31,7 @@ interface Consultants {
 
 const ConsultantsPage = async () => {
   const consultants: Consultants = await getConsultants()
+
   return (
     <div>
       <div className="container">
@@ -58,7 +58,7 @@ const ConsultantsPage = async () => {
                 <th scope="col">Email</th>
                 <th scope="col">Department</th>
                 <th scope="col">Office Extention</th>
-                <th scope="col">Created At</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -70,16 +70,7 @@ const ConsultantsPage = async () => {
                       <td>{consultant.email}</td>
                       <td>{consultant.departments?.map((d) => d.title)}</td>
                       <td>{consultant.office_extention}</td>
-                      <td>
-                        {new Date(consultant.created_at).toLocaleDateString(
-                          'en-GB',
-                          {
-                            day: '2-digit',
-                            month: '2-digit',
-                            year: 'numeric',
-                          }
-                        )}
-                      </td>
+
                       <td>
                         <Link
                           className="me-4"

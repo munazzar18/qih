@@ -58,8 +58,7 @@ export const consultantSchema = z.object({
         .string()
         .min(1, "Office extention is required"),
     photo: z
-        .string()
-        .min(1, "Photo is required"),
+        .string(),
     departments: z
         .array(z.string())
         .min(1, "Department is required"),
@@ -123,3 +122,18 @@ export const makeTickersSechema = z.object({
 })
 
 export type MakeTickersSchema = z.infer<typeof makeTickersSechema>
+
+
+export const addNewPageSchema = z.object({
+    title: z
+        .string()
+        .min(1, "Title is required"),
+    short_description: z
+        .string()
+        .min(1, "url is required"),
+    description: z
+        .string()
+        .min(1, "url is required")
+})
+
+export type AddNewPageSchema = z.infer<typeof addNewPageSchema>

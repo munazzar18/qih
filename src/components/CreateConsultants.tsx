@@ -175,8 +175,12 @@ const CreateConsultant = () => {
       formData.append('membership', result.data.membership)
       formData.append('education', JSON.stringify(result.data.education))
       formData.append('work_experience', result.data.work_experience)
-      formData.append('department_id', result.data.departments.toString())
+      formData.append(
+        'departments',
+        JSON.stringify(result.data.departments.map(Number))
+      )
       const res = await ConsultantCreateAction(formData)
+      console.log(res)
       if (res.status === 'success') {
         toast.success(res.message)
       } else {

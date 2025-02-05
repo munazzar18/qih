@@ -1,8 +1,12 @@
+import { getDepartmentById } from '@/app/lib/getDepartments'
 import Image from 'next/image'
 import React from 'react'
 
-const Page = async (props: { params: Promise<{ depart: string }> }) => {
+const Page = async (props: { params: Promise<{ depart: number }> }) => {
   const params = await props.params
+
+  const department = await getDepartmentById(params.depart)
+
   return (
     <div>
       <section
@@ -29,7 +33,7 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                     <a href="">services</a>
                   </li>
                   <li className="breadcrumb-item active" aria-current="page">
-                    {params.depart.split('-').join(' ')}
+                    {department.data.title}
                   </li>
                 </ol>
                 <div className="title-card">
@@ -39,7 +43,7 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                   </div>
                   <div className="card-content">
                     <div className="title-heading">
-                      <h1>{params.depart.split('-').join(' ')}</h1>
+                      <h1>{department.data.title}</h1>
                     </div>
                     <div className="title-sub-heading">
                       <p>
@@ -613,7 +617,7 @@ const Page = async (props: { params: Promise<{ depart: string }> }) => {
                             {' '}
                             <span></span>
                           </span>
-                          <span>{params.depart.split('-').join(' ')}</span>
+                          <span>{department.data.title}</span>
                         </a>
                       </li>
                       <li>

@@ -23,6 +23,8 @@ interface Department {
 const Departments = ({ departments }: { departments: Department }) => {
   const [departmentsArr, setDepartmentsArr] = useState(departments.data)
 
+  console.log('Department:', departmentsArr)
+
   const handleDelete = async (id: number) => {
     let res = await DepartmentDeleteAction(id)
     if (res.status === 'success') {
@@ -53,7 +55,6 @@ const Departments = ({ departments }: { departments: Department }) => {
             <tr>
               <th scope="col">Sr.</th>
               <th scope="col">Department</th>
-              <th scope="col">Created At</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -62,13 +63,7 @@ const Departments = ({ departments }: { departments: Department }) => {
               <tr key={department.id}>
                 <th scope="row">{index + 1}</th>
                 <td>{department.title}</td>
-                <td>
-                  {new Date(department.created_at).toLocaleDateString('en-GB', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric',
-                  })}
-                </td>
+
                 <td>
                   <Link
                     className="me-4"

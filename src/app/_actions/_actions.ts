@@ -90,7 +90,7 @@ export const EditDepartmentAction = async (formData: FormData, id: number) => {
 
 
 export const EditTickerAction = async (formData: FormData, id: number) => {
-    console.log('ticker id',id)
+    console.log('ticker id', id)
     const token = (await cookies()).get('token')?.value
     const title = formData.get('title')
     const url = formData.get('url')
@@ -135,7 +135,11 @@ export const ConsultantCreateAction = async (formData: FormData) => {
     const email = formData.get('email')
     const office_extention = formData.get('office_extention')
     const photo = formData.get('photo')
-    const department_id = Number(formData.get('department_id'))
+    const departments = formData.get('departments')
+    const password = formData.get('password')
+    const education = formData.get('education')
+    const work_experience = formData.get('work_experience')
+    const membership = formData.get('membership')
     try {
         const response = await fetch(`${url}consultants`, {
             method: 'POST',
@@ -149,7 +153,11 @@ export const ConsultantCreateAction = async (formData: FormData) => {
                 email,
                 office_extention,
                 photo,
-                department_id
+                departments,
+                password,
+                education,
+                work_experience,
+                membership
             })
         })
         const data = await response.json();
@@ -181,6 +189,28 @@ export const ConsultantEditAction = async (formData: FormData, id: number) => {
                 photo,
                 department_id
             })
+        })
+        const data = await response.json();
+        return data
+    } catch (error) {
+        return error
+    }
+}
+
+export const CreatePageAction = async (formData: FormData) => {
+    const token = (await cookies()).get('token')?.value
+    const title = formData.get('title')
+    const short_description = formData.get('short_description')
+    const description = formData.get('description')
+    try {
+        const response = await fetch(`${url}pages`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ title, short_description, description })
         })
         const data = await response.json();
         return data
@@ -241,6 +271,24 @@ export const AppointmentDeleteAction = async (id: number) => {
     }
 }
 
+export const PageDeleteAction = async (id: number) => {
+    const token = (await cookies()).get('token')?.value
+    try {
+        const response = await fetch(`${url}pages/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+        })
+        const data = await response.json();
+        return data
+    } catch (error) {
+        return error
+    }
+}
+
 
 
 export const UploadFileAction = async (formData: FormData) => {
@@ -252,8 +300,9 @@ export const UploadFileAction = async (formData: FormData) => {
         }
         const formDataWithFile = new FormData()
         formDataWithFile.append('file', file)
+        console.log('formDataWithFile', formDataWithFile)
 
-        const response = await fetch(`${url}upload/v1`, {
+        const response = await fetch(`${url}upload/test`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -261,6 +310,7 @@ export const UploadFileAction = async (formData: FormData) => {
             body: formDataWithFile
         })
         const data = await response.json()
+        console.log(data)
         return data
     } catch (error) {
         return error
@@ -300,7 +350,7 @@ export const MakeAppointmentAction = async (formData: FormData) => {
         return error
     }
 }
-export const EditAppointmentAction = async (id: number,formData: FormData) => {
+export const EditAppointmentAction = async (id: number, formData: FormData) => {
     const token = (await cookies()).get('token')?.value
     const mr_no = formData.get('mr_no')
     const patient_name = formData.get('patient_name')

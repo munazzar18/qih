@@ -276,18 +276,22 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                 <span>departments</span>
               </Link>
               <ul
-                className="dropdown-menu"
-                style={{ height: '300px', overflowY: 'scroll' }}
+                className="dropdown-menu d-flex flex-column flex-wrap"
+                style={{
+                  height: 'auto',
+                  width: '100%',
+                  overflowY: 'visible',
+                }}
               >
                 {departments.length ? (
                   departments?.map((item) => {
                     return (
-                      <li key={item.id} className="nav-item">
-                        <Link
-                          href={`/departments/${item.title
-                            .split(' ')
-                            .join('-')}`}
-                        >
+                      <li
+                        key={item.id}
+                        className="nav-item"
+                        style={{ flex: '0 0 50%' }}
+                      >
+                        <Link href={`/departments/${item.id}`}>
                           <span>{item.title}</span>
                         </Link>
                       </li>
