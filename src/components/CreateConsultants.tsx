@@ -163,7 +163,6 @@ const CreateConsultant = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log('myForm', myForm)
     const result = consultantSchema.safeParse(myForm)
     if (result.success) {
       const formData = new FormData()
@@ -180,7 +179,6 @@ const CreateConsultant = () => {
         JSON.stringify(result.data.departments.map(Number))
       )
       const res = await ConsultantCreateAction(formData)
-      console.log(res)
       if (res.status === 'success') {
         toast.success(res.message)
       } else {

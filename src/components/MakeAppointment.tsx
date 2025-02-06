@@ -54,7 +54,7 @@ const MakeAppointment = () => {
   }
 
   const getConsultants = async () => {
-    // if (!myForm.department_id) return
+    if (!myForm.department_id) return
     setLoading(true)
     const res = await getConsultantsByDepartmentId(+myForm.department_id)
     setConsultants(res.data)
