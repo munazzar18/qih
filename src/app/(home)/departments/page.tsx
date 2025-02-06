@@ -2,8 +2,25 @@ import Link from 'next/link'
 import React from 'react'
 import departmentArray from '../../../../public/assets/department'
 import Image from 'next/image'
+import { getDepartments } from '@/app/lib/getDepartments'
 
-const DepartmentsPage = () => {
+interface Department {
+  status: string
+  message: string
+  data: [
+    {
+      id: number
+      title: string
+      description: string
+      image: string
+      is_active: number
+    }
+  ]
+}
+
+const DepartmentsPage = async () => {
+  const departments: Department = await getDepartments()
+
   return (
     <div className="wrapper clearfix" id="wrapperParallax">
       <section className="hero hero-9 bg-overlay bg-overlay-dark">
@@ -77,24 +94,24 @@ const DepartmentsPage = () => {
             </div>
           </div>
           <div className="row">
-            {departmentArray.map((item) => {
+            {departments.data.map((dept) => {
               return (
-                <div key={item.id} className=" col-12 col-md-6 col-lg-4">
+                <div key={dept.id} className=" col-12 col-md-6 col-lg-4">
                   <div className="department-panel" data-hover="">
                     <div className="department-panel-holder">
                       <div className="department-img">
                         <Link href="/departments"></Link>
                         <Image
-                          src={`/assets/images/departments/${item.id}.jpg`}
+                          src={`/assets/images/departments/${dept.id}.jpg`}
                           width={500}
-                       height={500}
-                          alt={`${item.title} img`}
+                          height={500}
+                          alt={`${dept.title} img`}
                         />
                       </div>
                       <div className="department-content">
                         <div className="department-title">
                           <h4>
-                            <Link href="/departments">{item.title}</Link>
+                            <Link href="/departments">{dept.title}</Link>
                           </h4>
                         </div>
                       </div>

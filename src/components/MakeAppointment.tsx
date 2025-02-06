@@ -54,7 +54,7 @@ const MakeAppointment = () => {
   }
 
   const getConsultants = async () => {
-    if (!myForm.department_id) return
+    // if (!myForm.department_id) return
     setLoading(true)
     const res = await getConsultantsByDepartmentId(+myForm.department_id)
     setConsultants(res.data)
@@ -165,7 +165,7 @@ const MakeAppointment = () => {
                   onChange={handleChange}
                 >
                   <option value="">Select Consultant</option>
-                  {/* {consultants && consultants?.length > 0 ? (
+                  {consultants && consultants?.length > 0 ? (
                     consultants?.map((consultant) => (
                       <option key={consultant.id} value={consultant.id}>
                         {consultant.name}
@@ -175,7 +175,7 @@ const MakeAppointment = () => {
                     <option value="" disabled>
                       No consultants available
                     </option>
-                  )} */}
+                  )}
                 </select>
                 {errors.consultant_id && (
                   <p className="text-danger">{errors.consultant_id}</p>
