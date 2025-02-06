@@ -5,6 +5,39 @@ import { redirect } from 'next/navigation'
 
 const url = process.env.NEXT_PUBLIC_API_URL as string
 
+export const RegisterAction = async (formData: FormData) => {
+    const name = formData.get('name')
+    const email = formData.get('email')
+    const password = formData.get('password')
+    const password_confirmation = formData.get('password_confirmation')
+    try {
+        const response = await fetch(`${url}register`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ name, email, password, password_confirmation })
+        })
+        const data = await response.json();
+
+
+        (await cookies()).set('token', data.token, {
+            httpOnly: true,
+            secure: true,
+        });
+
+        (await cookies()).set('user', JSON.stringify(data.user), {
+            httpOnly: true,
+            secure: true,
+        })
+
+        return data
+    } catch (error) {
+        return error
+    }
+}
+
 export const LoginAction = async (formData: FormData) => {
     const email = formData.get('email')
     const password = formData.get('password')

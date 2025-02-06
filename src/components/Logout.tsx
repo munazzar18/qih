@@ -4,7 +4,9 @@ const Logout = () => {
   return (
     <form action={LogoutAction}>
       <div>
-        <button type="submit">Logout</button>
+        <button className="fw-bold" type="submit">
+          Logout
+        </button>
       </div>
     </form>
   )

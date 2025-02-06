@@ -2,20 +2,16 @@ import React from 'react'
 import AdminSideBar from '@/components/AdminPannel'
 import { cookies } from 'next/headers'
 import Link from 'next/link'
+import ConsultantSideBar from '@/components/ConsultantPannel'
 
 interface User {
-  id: number
-  name: string
+  id: string
+  username: string
   email: string
-  roles: [
-    {
-      id: number
-      name: string
-    }
-  ]
+  role: string
 }
 
-export default async function Layout({
+export default async function ConsultantLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
@@ -26,7 +22,7 @@ export default async function Layout({
     <>
       <div className="d-flex min-vh-100" suppressHydrationWarning>
         {/* Sidebar */}
-        <AdminSideBar />
+        <ConsultantSideBar />
 
         {/* Main Content */}
         <div className="flex-grow-1 p-0 p-md-4 p-lg-5">

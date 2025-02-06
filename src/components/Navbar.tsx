@@ -13,6 +13,12 @@ interface User {
   id: number
   name: string
   email: string
+  roles: [
+    {
+      id: number
+      name: string
+    }
+  ]
 }
 
 interface Department {
@@ -328,24 +334,115 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                 </li>
               </ul>
             </li>
-            <li className="nav-item" id="contact" data-hover="">
-              {token ? (
-                <Link className="" href="/">
-                  <span>
+            {token ? (
+              <li
+                className={`nav-item has-dropdown ${
+                  currentPath.includes('auth') ? 'active' : ''
+                }`}
+                data-hover=""
+              >
+                {user && user.roles[0].name === 'admin' ? (
+                  <>
+                    <Link
+                      className="dropdown-toggle"
+                      href="/admin"
+                      data-toggle="dropdown"
+                    >
+                      <span>Admin Dashboard</span>
+                    </Link>
+                    <ul className="dropdown-menu">
+                      <li className="nav-item">
+                        <Link href="/admin/departments">
+                          <span>Departments</span>
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link href="/admin/consultants">
+                          <span>Consultants</span>
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link href="/admin/tickers">
+                          <span>Tickers</span>
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link href="/admin/pages">
+                          <span>Pages</span>
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <a href="">
+                          <Logout />
+                        </a>
+                      </li>
+                    </ul>
+                  </>
+                ) : user && user.roles[0].name === 'consultant' ? (
+                  <>
+                    <Link
+                      className="dropdown-toggle"
+                      href="/consultant-dashboard"
+                      data-toggle="dropdown"
+                    >
+                      <span>Consultant Dashboard</span>
+                    </Link>
+                    <ul className="dropdown-menu">
+                      <li className="nav-item">
+                        <Link href="/consultant-dashboard/profile">
+                          <span>Profile</span>
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link href="/consultant-dashboard/settings">
+                          <span>Settings</span>
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <a href="">
+                          <Logout />
+                        </a>
+                      </li>
+                    </ul>
+                  </>
+                ) : (
+                  <a href="">
                     <Logout />
-                  </span>
+                  </a>
+                )}
+              </li>
+            ) : (
+              <li
+                className={`nav-item has-dropdown ${
+                  currentPath.includes('auth') ? 'active' : ''
+                }`}
+                data-hover=""
+              >
+                <Link
+                  className="dropdown-toggle"
+                  href="/contact"
+                  data-toggle="dropdown"
+                >
+                  <span>Sign In / Sign up</span>
                 </Link>
-              ) : (
-                <Link className="" href="/auth/login">
-                  <span>Login</span>
-                </Link>
-              )}
-            </li>
+                <ul className="dropdown-menu">
+                  <li className="nav-item">
+                    <Link href="/auth/login">
+                      <span>Sign in</span>
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link href="/auth/register">
+                      <span>Sign up</span>
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+            )}
           </ul>
           <div className="module-holder">
             <div className="module module-search float-left">
               <div className="module-icon search-icon">
-                {/* <i className="icon-search" data-hover=""></i> */}
                 <FaMagnifyingGlass />
               </div>
             </div>

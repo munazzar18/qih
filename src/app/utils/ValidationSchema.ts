@@ -1,6 +1,9 @@
 import { z } from "zod";
 
 export const registerSchema = z.object({
+    name: z
+        .string()
+        .min(1, "Name is required"),
     email: z
         .string()
         .min(1, "Email is required")
@@ -10,10 +13,14 @@ export const registerSchema = z.object({
         .min(1, "Password is required")
         .min(8, "Password must be more than 8 characters")
         .max(32, "Password must be less than 32 characters"),
-    mobile: z
+    password_confirmation: z
         .string()
-        .min(1, "Mobile is required")
-        .max(22, "Mobile must be 10 characters")
+        .min(1, "Password confirmation is required")
+        .min(8, "Password confirmation must be more than 8 characters")
+        .max(32, "Password confirmation must be less than 32 characters")
+}).refine(data => data.password === data.password_confirmation, {
+    message: "Passwords do not match",
+    path: ["password_confirmation"]
 })
 
 export type RegisterSchema = z.infer<typeof registerSchema>
