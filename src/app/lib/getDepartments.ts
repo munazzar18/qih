@@ -46,3 +46,23 @@ export const getDepartmentById = async (id: number) => {
 }
 
 
+
+export const getPublicDepartmentById = async (id: number) => {
+    try {
+        const res = await fetch(`${url}public/departments/${id}`,
+            {
+                cache: 'no-cache',
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+            })
+        const data = await res.json()
+        return data
+    } catch (error) {
+        return error
+    }
+}
+
+

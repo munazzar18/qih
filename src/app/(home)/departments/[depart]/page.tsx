@@ -1,11 +1,11 @@
-import { getDepartmentById } from '@/app/lib/getDepartments'
+import { getPublicDepartmentById } from '@/app/lib/getDepartments'
 import Image from 'next/image'
 import React from 'react'
 
 const Page = async (props: { params: Promise<{ depart: number }> }) => {
   const params = await props.params
 
-  const department = await getDepartmentById(params.depart)
+  const department = await getPublicDepartmentById(params.depart)
 
   return (
     <div>
