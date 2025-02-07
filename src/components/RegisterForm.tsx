@@ -1,5 +1,5 @@
 'use client'
-import { LoginAction } from '@/app/_actions/_actions'
+import { RegisterAction } from '@/app/_actions/_actions'
 import { RegisterSchema, registerSchema } from '@/app/utils/ValidationSchema'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
@@ -41,7 +41,7 @@ const RegisterForm = () => {
         'password_confirmation',
         result.data.password_confirmation
       )
-      const res = await LoginAction(formData)
+      const res = await RegisterAction(formData)
       setLoading(true)
       if (res.message === 'Login successful') {
         toast.success(res.message)
