@@ -123,7 +123,6 @@ export const EditDepartmentAction = async (formData: FormData, id: number) => {
 
 
 export const EditTickerAction = async (formData: FormData, id: number) => {
-    console.log('ticker id', id)
     const token = (await cookies()).get('token')?.value
     const title = formData.get('title')
     const url = formData.get('url')
@@ -333,8 +332,6 @@ export const UploadFileAction = async (formData: FormData) => {
         }
         const formDataWithFile = new FormData()
         formDataWithFile.append('file', file)
-        console.log('formDataWithFile', formDataWithFile)
-
         const response = await fetch(`${url}upload/test`, {
             method: 'POST',
             headers: {
@@ -343,7 +340,6 @@ export const UploadFileAction = async (formData: FormData) => {
             body: formDataWithFile
         })
         const data = await response.json()
-        console.log(data)
         return data
     } catch (error) {
         return error

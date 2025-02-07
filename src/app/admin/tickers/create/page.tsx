@@ -36,7 +36,6 @@ const page = () => {
       formData.append('title', result.data.title)
       formData.append('url', result.data.url)
       const res = await TickersCreationAction(formData)
-      console.log(res)
       if (res.status === 'success') {
         toast.success(res.message)
       } else {

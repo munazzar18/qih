@@ -7,6 +7,7 @@ const Page = async (props: { params: Promise<{ depart: number }> }) => {
 
   const department = await getPublicDepartmentById(params.depart)
 
+
   return (
     <div>
       <section
@@ -411,83 +412,38 @@ const Page = async (props: { params: Promise<{ depart: number }> }) => {
                   kindly call to confirm your Appointment.
                 </p>
                 <div className="row team-grid team-grid-4" id="team-all">
-                  <div className="col-12 col-md-6 col-lg-4">
-                    <div className="team-member" data-hover="">
-                      <div className="team-member-holder">
-                        <div className="team-img">
-                          <a className="link" href=""></a>
-                          <Image
-                            src="/assets/images/departments/1.jpg"
-                            width={500}
-                            height={500}
-                            alt="team member"
-                          />
-                        </div>
-                        <div className="team-content">
-                          <div className="team-title">
-                            <h4>
-                              <a href="">Richard Muldon</a>
-                            </h4>
+                  {department ? (
+                    department.data.consultants.map(
+                      (consultant: any, index: number) => {
+                        return (
+                          <div key={index} className="col-12 col-md-6 col-lg-4">
+                            <div className="team-member" data-hover="">
+                              <div className="team-member-holder">
+                                <div className="team-img">
+                                  <a className="link" href=""></a>
+                                  <Image
+                                    src="/assets/images/departments/1.jpg"
+                                    width={500}
+                                    height={500}
+                                    alt="team member"
+                                  />
+                                </div>
+                                <div className="team-content">
+                                  <div className="team-title">
+                                    <h4>
+                                      <a href="">{consultant.name}</a>
+                                    </h4>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                          <div className="team-cat">
-                            <a href="javascript:void(0)">
-                              Cardiology Specialist
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-12 col-md-6 col-lg-4">
-                    <div className="team-member" data-hover="">
-                      <div className="team-member-holder">
-                        <div className="team-img">
-                          <a className="link" href=""></a>
-                          <Image
-                            src="/assets/images/departments/2.jpg"
-                            width={500}
-                            height={500}
-                            alt="team member"
-                          />
-                        </div>
-                        <div className="team-content">
-                          <div className="team-title">
-                            <h4>
-                              <a href="">Michael Brian</a>
-                            </h4>
-                          </div>
-                          <div className="team-cat">
-                            <a href="javascript:void(0)">Dermatologists</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-12 col-md-6 col-lg-4">
-                    <div className="team-member" data-hover="">
-                      <div className="team-member-holder">
-                        <div className="team-img">
-                          <a className="link" href=""></a>
-                          <Image
-                            src="/assets/images/departments/3.jpg"
-                            width={500}
-                            height={500}
-                            alt="team member"
-                          />
-                        </div>
-                        <div className="team-content">
-                          <div className="team-title">
-                            <h4>
-                              <a href="">Maria Andaloro</a>
-                            </h4>
-                          </div>
-                          <div className="team-cat">
-                            <a href="javascript:void(0)">Pediatrician</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                        )
+                      }
+                    )
+                  ) : (
+                    <p>no consultant founds</p>
+                  )}
                 </div>
               </div>
               <div className="entry-contact">

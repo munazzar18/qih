@@ -1,7 +1,6 @@
 
 
 export const formatDateTime = (dateString: string) => {
-    console.log('this is dateString',dateString);
     const date = new Date(dateString)
     const yyyy = date.getFullYear()
     const mm = String(date.getMonth() + 1).padStart(2, '0')

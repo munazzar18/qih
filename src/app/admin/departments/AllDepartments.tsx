@@ -23,7 +23,6 @@ interface Department {
 const Departments = ({ departments }: { departments: Department }) => {
   const [departmentsArr, setDepartmentsArr] = useState(departments.data)
 
-  console.log('Department:', departmentsArr)
 
   const handleDelete = async (id: number) => {
     let res = await DepartmentDeleteAction(id)

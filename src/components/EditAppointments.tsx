@@ -71,7 +71,7 @@ const EditAppointments = ({ appointment }: { appointment: Appointment }) => {
   //   if (!myForm.department_id) return
   //   setLoading(true)
   //   const res = await getConsultantsByDepartmentId(+myForm.department_id);
-  //   console.log('res',res)
+  
   //   setConsultants(res.data)
   //   setLoading(false)
   // }

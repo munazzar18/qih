@@ -35,6 +35,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
   const [departments, setDepartments] = useState<Department[]>([])
 
   const [drop, setdrop] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   const getAllDepartments = async () => {
     const res = await getDepartments()
@@ -270,43 +271,66 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
               </Link>
             </li>
             <li
+              onMouseEnter={() => setIsOpen(true)}
+              onMouseLeave={() => setIsOpen(false)}
+              style={{ position: 'relative' }}
               className="nav-item has-dropdown"
               id="departments"
-              data-hover=""
             >
-              <Link
-                className="dropdown-toggle"
-                href="/departments"
-                data-toggle="dropdown"
-              >
-                <span>departments</span>
+              <Link className="dropdown-toggle nav-link" href="/departments">
+                <span>Departments</span>
               </Link>
-              <ul
-                className="dropdown-menu d-flex flex-column flex-wrap"
-                style={{
-                  height: 'auto',
-                  width: '100%',
-                  overflowY: 'visible',
-                }}
-              >
-                {departments.length ? (
-                  departments?.map((item) => {
-                    return (
+
+              {isOpen && (
+                <ul
+                  className="dropdown-menu"
+                  style={{
+                    position: 'absolute',
+                    top: '100%',
+                    left: 0,
+                    backgroundColor: '#f9f9f9',
+                    minWidth: '600px',
+                    boxShadow: '0px 4px 8px rgba(0,0,0,0.2)',
+                    zIndex: 1,
+                    padding: '20px',
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(3, 1fr)',
+                    gridGap: '15px',
+                  }}
+                >
+                  {departments.length ? (
+                    departments.map((item) => (
                       <li
                         key={item.id}
-                        className="nav-item"
-                        style={{ flex: '0 0 50%' }}
+                        style={{
+                          padding: '10px',
+                          listStyle: 'none',
+                        }}
                       >
-                        <Link href={`/departments/${item.id}`}>
-                          <span>{item.title}</span>
+                        <Link
+                          href={`/departments/${item.id}`}
+                          className="dropdown-item"
+                        >
+                          <span
+                            style={{
+                              textDecoration: 'none',
+                              color: '#333',
+                              fontWeight: 'bold',
+                              cursor: 'pointer',
+                            }}
+                          >
+                            {item.title}
+                          </span>
                         </Link>
                       </li>
-                    )
-                  })
-                ) : (
-                  <li className="text-gray-500">no departments</li>
-                )}
-              </ul>
+                    ))
+                  ) : (
+                    <li style={{ color: 'gray', padding: '10px' }}>
+                      Please wait...
+                    </li>
+                  )}
+                </ul>
+              )}
             </li>
             <li
               className={`nav-item has-dropdown ${

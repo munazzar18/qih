@@ -76,7 +76,6 @@ const AddPage = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log('myForm', myForm)
     const result = addNewPageSchema.safeParse(myForm)
     if (result.success) {
       const formData = new FormData()

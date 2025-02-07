@@ -3,7 +3,6 @@ import { NextResponse, NextRequest } from 'next/server';
 export function middleware(req: NextRequest) {
     const user = req.cookies.get('user')?.value;
     const userRole = user ? JSON.parse(user).roles[0].name : null;
-    console.log(userRole)
     const { pathname } = req.nextUrl;
     const url = req.nextUrl.clone();
 

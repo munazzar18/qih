@@ -6,7 +6,6 @@ import toast from 'react-hot-toast'
 import { FiTrash } from 'react-icons/fi'
 
 const DeleteAppointments = ({ id }: { id: number }) => {
-    
   const handleDelete = async () => {
     const res = await AppointmentDeleteAction(id)
     if (res.status === 'success') {
