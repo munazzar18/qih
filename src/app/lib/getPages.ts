@@ -24,5 +24,23 @@ export const getAllPages = async () => {
     }
 }
 
+export const getPublicPageBySlug = async (slug: string) => {
+    try {
+        const response = await fetch(`${url}public/getPageBySlug/${slug}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+        })
+
+        const data = await response.json()
+        return data
+    } catch (error) {
+        return error
+    }
+}
+
+
 
 

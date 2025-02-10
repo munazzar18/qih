@@ -82,6 +82,7 @@ const MakeAppointment = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setLoading(true)
     const result = makeAppointmentSchema.safeParse(myForm)
     if (result.success) {
       const formData = new FormData()
@@ -95,6 +96,7 @@ const MakeAppointment = () => {
       formData.append('message', result.data.message)
       const res = await MakeAppointmentAction(formData)
       if (res.status === 'success') {
+        setLoading(false)
         toast.success(res.message)
         setMyForm({
           mr_no: '',
@@ -106,9 +108,11 @@ const MakeAppointment = () => {
           message: '',
         })
       } else {
+        setLoading(false)
         toast.error(res.message)
       }
     } else {
+      setLoading(false)
       const fieldErrors: { [key in keyof MakeAppointmentSchema]?: string } = {}
       result.error.errors.forEach((error) => {
         const fieldName = error.path[0] as keyof MakeAppointmentSchema
@@ -228,6 +232,7 @@ const MakeAppointment = () => {
                 value={myForm.appointment_dateTime}
                 onChange={handleChange}
                 type="datetime-local"
+                min={Date.now()}
               />
               {errors.appointment_dateTime && (
                 <p className="text-danger">{errors.appointment_dateTime}</p>

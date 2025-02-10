@@ -1,4 +1,5 @@
 import CarousalComponent from '@/components/CarousalComponent'
+import MakeAppointment from '@/components/MakeAppointment'
 import Image from 'next/image'
 
 const page = () => {
@@ -11,7 +12,7 @@ const page = () => {
         <div className="bg-section">
           {' '}
           <Image
-            src="/assets/images/departments/28.jpg"
+            src="/assets/images/background/pattern-2.jpg"
             width={500}
             height={500}
             alt="background"
@@ -91,11 +92,14 @@ const page = () => {
               <div className="feature-panel feature-location">
                 <div className="feature-content">
                   <i className="flaticon-042-clinic"></i>
-                  <h5>location, directions </h5>
+                  <h5>Location & Directions</h5>
                   <p>Quaid-e-Azam International Hospital, Near Golra Morr,</p>
-                  <div className="map-img">
+                  <div className="map-img" style={{ marginBottom: '12px' }}>
                     <p>Peshawar Road, Islamabad, Pakistan</p>
                   </div>
+                  <p>
+                    <span className="fas fa-phone-alt"></span> (051) 8449100
+                  </p>
                 </div>
               </div>
             </div>
@@ -148,7 +152,7 @@ const page = () => {
               <div className="about-img">
                 <Image
                   className="img-fluid"
-                  src="/assets/images/departments/7.jpg"
+                  src="/assets/images/departments/21.jpg"
                   width={500}
                   height={500}
                   alt="about Image"
@@ -425,7 +429,7 @@ const page = () => {
         <div className="bg-section">
           {' '}
           <Image
-            src="/assets/images/departments/19.jpg"
+            src="/assets/images/background/dark-blue.jpg"
             width={500}
             height={500}
             alt="Background"
@@ -539,7 +543,7 @@ const page = () => {
                     <i className="flaticon-032-medicine"></i>
                   </div>
                   <div className="feature-content">
-                    <h4>Medical Research</h4>
+                    <h4>Medical Research Center</h4>
                     <p>Provide all medical aspects practice</p>
                   </div>
                   <a href="javascript:void(0)">
@@ -1019,102 +1023,7 @@ const page = () => {
                 </div>
               </div>
             </div>
-            <div className="contact-card">
-              <div className="contact-body">
-                <h5 className="card-heading">book an appointment</h5>
-                <p className="card-desc">
-                  Please feel welcome to contact our staff with any general or
-                  medical enquiry. Our doctors will receive or return any urgent
-                  calls.
-                </p>
-                <form
-                  className="contactForm"
-                  method="post"
-                  action="assets/php/contact.php"
-                >
-                  <div className="row">
-                    <div className="col-12 col-md-6">
-                      <div className="select-holder">
-                        <select className="form-control">
-                          <option value="default">bathology clinic</option>
-                          <option value="AL">neurology clinic </option>
-                          <option value="AK">cardiology clinic </option>
-                        </select>
-                        <div className="badge">department</div>
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-6">
-                      <div className="select-holder">
-                        <select className="form-control">
-                          <option value="default">michael brian</option>
-                          <option value="AL">maria andoloro</option>
-                          <option value="AK">richard muldoone</option>
-                        </select>
-                        <div className="badge">choose doctor</div>
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-12 col-lg-6">
-                      <input
-                        className="form-control"
-                        type="text"
-                        name="contact-name"
-                        placeholder="Name"
-                      />
-                    </div>
-                    <div className="col-12 col-md-6 col-lg-6">
-                      <input
-                        className="form-control"
-                        type="text"
-                        name="contact-email"
-                        placeholder="Email"
-                      />
-                    </div>
-                    <div className="col-12 col-md-6 col-lg-4">
-                      <input
-                        className="form-control"
-                        type="text"
-                        name="contact-phone"
-                        placeholder="Phone"
-                      />
-                    </div>
-                    <div className="col-12 col-md-6 col-lg-4">
-                      <div className="date-select">
-                        <input
-                          className="form-control"
-                          type="text"
-                          placeholder="select date"
-                          name="contact-date"
-                        />
-                        <i className="fas fa-calendar-day"></i>
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-6 col-lg-4">
-                      <div className="time-select">
-                        <input
-                          className="form-control"
-                          type="text"
-                          placeholder="select time"
-                          name="contact-date"
-                        />
-                        <i className="fas fa-clock"></i>
-                      </div>
-                    </div>
-                    <div className="col-12">
-                      <button className="btn btn--secondary btn-line btn-line-before btn--block">
-                        <span className="line">
-                          {' '}
-                          <span> </span>
-                        </span>
-                        <span>make appointment</span>
-                      </button>
-                    </div>
-                    <div className="col-12">
-                      <div className="contact-result"></div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
+            <MakeAppointment />
           </div>
         </div>
       </section>

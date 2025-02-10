@@ -111,7 +111,9 @@ const DepartmentsPage = async () => {
                       <div className="department-content">
                         <div className="department-title">
                           <h4>
-                            <Link href="/departments">{dept.title}</Link>
+                            <Link href={`/departments/${dept.id}`}>
+                              {dept.title}
+                            </Link>
                           </h4>
                         </div>
                       </div>

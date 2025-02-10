@@ -429,6 +429,33 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                       </li>
                     </ul>
                   </>
+                ) : user && user.roles[0].name === 'patient' ? (
+                  <>
+                    <Link
+                      className="dropdown-toggle"
+                      href="/patient-dashboard"
+                      data-toggle="dropdown"
+                    >
+                      <span>Patient Dashboard</span>
+                    </Link>
+                    <ul className="dropdown-menu">
+                      <li className="nav-item">
+                        <Link href="/patient-dashboard/profile">
+                          <span>Profile</span>
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link href="/patient-dashboard/settings">
+                          <span>Settings</span>
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <a href="">
+                          <Logout />
+                        </a>
+                      </li>
+                    </ul>
+                  </>
                 ) : (
                   <a href="">
                     <Logout />

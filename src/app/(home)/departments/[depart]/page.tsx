@@ -1,12 +1,12 @@
 import { getPublicDepartmentById } from '@/app/lib/getDepartments'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 const Page = async (props: { params: Promise<{ depart: number }> }) => {
   const params = await props.params
 
   const department = await getPublicDepartmentById(params.depart)
-
 
   return (
     <div>
@@ -61,7 +61,9 @@ const Page = async (props: { params: Promise<{ depart: number }> }) => {
                         {' '}
                         <span></span>
                       </span>
-                      <span>find a doctor </span>
+                      <a href="#departmentId">
+                        <span>find a doctor </span>
+                      </a>
                     </a>
                   </div>
                 </div>
@@ -386,7 +388,7 @@ const Page = async (props: { params: Promise<{ depart: number }> }) => {
                     </li>
                   </ul>
                 </div>
-                <div className="entry-action">
+                <div id="departmentId" className="entry-action">
                   <p>
                     {' '}
                     <span className="currency">$50</span>
@@ -418,24 +420,29 @@ const Page = async (props: { params: Promise<{ depart: number }> }) => {
                         return (
                           <div key={index} className="col-12 col-md-6 col-lg-4">
                             <div className="team-member" data-hover="">
-                              <div className="team-member-holder">
-                                <div className="team-img">
-                                  <a className="link" href=""></a>
-                                  <Image
-                                    src="/assets/images/departments/1.jpg"
-                                    width={500}
-                                    height={500}
-                                    alt="team member"
-                                  />
-                                </div>
-                                <div className="team-content">
-                                  <div className="team-title">
-                                    <h4>
-                                      <a href="">{consultant.name}</a>
-                                    </h4>
+                              <Link href={`/consultant/${consultant.id}`}>
+                                <div className="team-member-holder">
+                                  <div className="team-img">
+                                    <Image
+                                      src="/assets/images/departments/1.jpg"
+                                      width={500}
+                                      height={500}
+                                      alt="team member"
+                                    />
+                                  </div>
+                                  <div className="team-content">
+                                    <div className="team-title">
+                                      <h4>
+                                        <Link
+                                          href={`/consultant/${consultant.id}`}
+                                        >
+                                          {consultant.name}
+                                        </Link>
+                                      </h4>
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
+                              </Link>
                             </div>
                           </div>
                         )

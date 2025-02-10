@@ -24,7 +24,7 @@ const CarousalComponent = () => {
                   <h1
                     className="slide-headline"
                     style={{
-                      backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                      backgroundColor: '#283B6A',
                       padding: '10px',
                       borderRadius: '10px',
                     }}
@@ -36,7 +36,7 @@ const CarousalComponent = () => {
                   <p
                     className="slide-desc"
                     style={{
-                      backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                      backgroundColor: '#283B6A',
                       padding: '10px',
                       borderRadius: '10px',
                     }}
@@ -83,7 +83,7 @@ const CarousalComponent = () => {
                   <h1
                     className="slide-headline"
                     style={{
-                      backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                      backgroundColor: '#283B6A',
                       padding: '10px',
                       borderRadius: '10px',
                     }}
@@ -95,7 +95,7 @@ const CarousalComponent = () => {
                   <p
                     className="slide-desc"
                     style={{
-                      backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                      backgroundColor: '#283B6A',
                       padding: '10px',
                       borderRadius: '10px',
                     }}
