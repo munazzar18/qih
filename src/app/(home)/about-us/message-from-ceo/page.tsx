@@ -1,15 +1,21 @@
 import { getPublicPageBySlug } from '@/app/lib/getPages'
-import { headers } from 'next/headers'
 import Image from 'next/image'
 
+interface PagesData {
+  status: string
+  message: string
+  data: [
+    {
+      id: number
+      title: string
+      short_description: string
+      description: string
+    }
+  ]
+}
+
 const page = async () => {
-  const header = await headers()
-
-  const pathname = header.get('referer')
-
-  const result = pathname!.split('/').pop()
-
-  const data = await getPublicPageBySlug(result!)
+  const pageData: PagesData = await getPublicPageBySlug('message-from-ceo')
 
   return (
     <>
@@ -60,15 +66,15 @@ const page = async () => {
 
               <div className="col-12 col-lg-8">
                 <div className="entry-bio">
-                  <h5 className="entry-heading">{data.data[0].title}</h5>
+                  <h5 className="entry-heading">{pageData?.data[0]?.title}</h5>
                   <p className="entry-desc strong">
-                    {data.data[0].short_description}
+                    {pageData?.data[0]?.short_description}
                   </p>
                   <br />
                   <br />
                   <div
                     dangerouslySetInnerHTML={{
-                      __html: data.data[0].description,
+                      __html: pageData?.data[0].description,
                     }}
                   ></div>
                 </div>
