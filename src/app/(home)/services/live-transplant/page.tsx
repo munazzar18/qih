@@ -256,7 +256,6 @@ const LiverTransplantPage = () => {
                   <div className="team-member" data-hover="">
                     <div className="team-member-holder">
                       <div className="team-img">
-                        <a className="link" href=""></a>
                         <Image
                           src={item.docImage}
                           width={500}
@@ -265,16 +264,16 @@ const LiverTransplantPage = () => {
                         />
                         <div className="team-social">
                           {' '}
-                          <a href="javascript:void(0)">
+                          <a href="">
                             <i className="fab fa-facebook-f"> </i>
                           </a>
-                          <a href="javascript:void(0)">
+                          <a href="">
                             <i className="fab fa-twitter"></i>
                           </a>
-                          <a href="javascript:void(0)">
+                          <a href="">
                             <i className="fas fa-envelope"></i>
                           </a>
-                          <a href="javascript:void(0)">
+                          <a href="">
                             <i className="fas fa-phone-alt"></i>
                           </a>
                         </div>
@@ -286,25 +285,25 @@ const LiverTransplantPage = () => {
                           </h4>
                         </div>
                         <div className="team-cat">
-                          <a href="javascript:void(0)">{item.title}</a>
+                          <a href="">{item.title}</a>
                         </div>
                         <div className="team-desc">
                           <p>{item.description}</p>
                         </div>
                         <div className="team-cat">
-                          <a href="javascript:void(0)">Qualifications</a>
+                          <a href="">Qualifications</a>
                         </div>
                         <div className="team-desc">
                           <p>{item.qualifications}</p>
                         </div>
                         <div className="team-cat">
-                          <a href="javascript:void(0)">Experience</a>
+                          <a href="">Experience</a>
                         </div>
                         <div className="team-desc">
                           <p>{item.experience}</p>
                         </div>
                         <div className="team-cat">
-                          <a href="javascript:void(0)">Skills:</a>
+                          <a href="">Skills:</a>
                         </div>
                         <div className="team-desc">
                           <p>{item.skills}</p>

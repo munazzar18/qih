@@ -75,7 +75,7 @@ export const LogoutAction = async () => {
     (await cookieStore).delete('token');
     (await cookieStore).delete('user')
     // revalidatePath('/auth/login')
-    // redirect('/auth/login')
+    redirect('/auth/login')
     return
 }
 

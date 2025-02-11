@@ -46,25 +46,6 @@ const Page = async (props: { params: Promise<{ depart: number }> }) => {
                     <div className="title-heading">
                       <h1>{department.data.title}</h1>
                     </div>
-                    <div className="title-sub-heading">
-                      <p>
-                        All cardiologists study the disorders of the heart, but
-                        the study of adult and child heart disorders are trained
-                        to take care of small children.
-                      </p>
-                    </div>
-                    <a
-                      className="btn btn--white btn-line btn-line-before btn-line-inversed"
-                      href=""
-                    >
-                      <span className="line">
-                        {' '}
-                        <span></span>
-                      </span>
-                      <a href="#departmentId">
-                        <span>find a doctor </span>
-                      </a>
-                    </a>
                   </div>
                 </div>
               </div>
