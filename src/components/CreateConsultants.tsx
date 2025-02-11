@@ -14,8 +14,6 @@ import {
   ConstultantSchema,
 } from '@/app/utils/ValidationSchema'
 import 'react-quill-new/dist/quill.snow.css'
-
-// Dynamically import ReactQuill (using react-quill-new)
 const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false })
 
 // Define the Education interface and update initial state as an array

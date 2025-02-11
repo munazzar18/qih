@@ -98,26 +98,27 @@ const DepartmentsPage = async () => {
               return (
                 <div key={dept.id} className=" col-12 col-md-6 col-lg-4">
                   <div className="department-panel" data-hover="">
-                    <div className="department-panel-holder">
-                      <div className="department-img">
-                        <Link href="/departments"></Link>
-                        <Image
-                          src={`/assets/images/departments/${dept.id}.jpg`}
-                          width={500}
-                          height={500}
-                          alt={`${dept.title} img`}
-                        />
-                      </div>
-                      <div className="department-content">
-                        <div className="department-title">
-                          <h4>
-                            <Link href={`/departments/${dept.id}`}>
-                              {dept.title}
-                            </Link>
-                          </h4>
+                    <Link href={`/departments/${dept.id}`}>
+                      <div className="department-panel-holder">
+                        <div className="department-img">
+                          <Image
+                            src={`/assets/images/departments/${dept.id}.jpg`}
+                            width={500}
+                            height={500}
+                            alt={`${dept.title} img`}
+                          />
+                        </div>
+                        <div className="department-content">
+                          <div className="department-title">
+                            <h4>
+                              <Link href={`/departments/${dept.id}`}>
+                                {dept.title}
+                              </Link>
+                            </h4>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   </div>
                 </div>
               )
