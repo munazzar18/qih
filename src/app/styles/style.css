@@ -71,23 +71,42 @@ custom.css and it will override the style in this file. You have been warned! :)
     #CSS VARIBALES
 \*------------------------------------*/
 :root {
-  --global--color-primary: #13c5dd;
-  --global--color-primary-darken: #263967;
-  --global--color-primary-light: #e6f8fb;
-  --global--color-secondary: #283b6a;
-  --global--color-heading: #26365e;
-  --global--color-heading-darken: #435ba1;
-  --global--color-heading-light: #1d2a4d;
-  --global--color-body: #848e9f;
+  /* Primary – Client cyan */
+  --global--color-primary: #89c7bc;
+  /* Approximately 30% darker than #89c7bc */
+  --global--color-primary-darken: #608b83;
+  /* Approximately 40% lighter than #89c7bc */
+  --global--color-primary-light: #b8ddd7;
+
+  /* Secondary – Client dark green */
+  --global--color-secondary: #0b2d29;
+  /* Approximately 30% darker than #0b2d29 */
+  --global--color-secondary-darken: #081f1c;
+  /* Approximately 40% lighter than #0b2d29 */
+  --global--color-secondary-light: #6d817f;
+
+  /* Heading colors – using the dark green as the base */
+  --global--color-heading: var(--global--color-secondary); /* #0b2d29 */
+  --global--color-heading-darken: var(
+    --global--color-secondary-darken
+  ); /* #081f1c */
+  /* A mid-tone variant for lighter headings (adjust as needed) */
+  --global--color-heading-light: #3c5753;
+
+  /* Body text could use the lighter secondary shade */
+  --global--color-body: var(--global--color-secondary-light);
+
+  /* Whites and Grays – preserved from your original theme */
   --global--color-white: #ffffff;
   --global--color-gray: #f9f9f9;
   --global--color-gray-darken: #788fc8;
   --global--color-gray-light: #e6e8eb;
+
+  /* Fonts */
   --global--font-body: 'Roboto', sans-serif;
   --global--font-heading: 'Rubik', sans-serif;
   --global--font-secondary: 'Heebo', sans-serif;
 }
-
 /*------------------------------------*\
     #RESET
 \*------------------------------------*/
@@ -14295,7 +14314,7 @@ ul.dropdown-menu > li.has-dropdown > a:before {
   border-color: var(--global--color-primary);
 }
 .features-bar .features-holder .feature-panel.feature-opening-hours {
-  background-color: #354f8e;
+  background-color: var(--global--color-primary);
   padding-bottom: 36px;
 }
 .features-bar .features-holder .feature-panel.feature-opening-hours h5 {

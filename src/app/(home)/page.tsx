@@ -1,6 +1,7 @@
 import CarousalComponent from '@/components/CarousalComponent'
 import MakeAppointment from '@/components/MakeAppointment'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const page = () => {
   return (
@@ -22,21 +23,69 @@ const page = () => {
           <div className="row g-0 features-holder">
             <div className="col-12 col-lg-3">
               <div className="feature-panel feature-reservation">
-                <div className="feature-content">
-                  <i className="flaticon-022-medical"></i>
-                  <h5>emergency cases</h5>
-                  <p>
-                    Please feel welcome to contact our staff with any general or
-                    medical enquiry call us
-                  </p>
-                  <a href="">
-                    <span className="fas fa-phone-alt"></span> (051) 8449100
-                  </a>
-                </div>
+                <Link href="/about/message-from-ceo">
+                  <div
+                    className="feature-content"
+                    style={{
+                      position: 'relative',
+                      width: '100%',
+                      height: '265px',
+                    }}
+                  >
+                    {/* Image fills the whole container */}
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: -28,
+                        left: -45,
+                        width: '332px',
+                        height: '332px',
+                        borderRadius: '50%',
+                      }}
+                    >
+                      <Image
+                        src="/assets/photos/DrShb.jpeg"
+                        alt="Dr. Shaukat A. Bangash, M.D"
+                        layout="fill"
+                        objectFit="cover"
+                      />
+                    </div>
+
+                    {/* Text overlay positioned at the bottom */}
+                    <div
+                      style={{
+                        position: 'absolute',
+                        bottom: -40,
+                        left: -45,
+                        width: '332px',
+                        padding: '10px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        zIndex: 2,
+                        background: 'rgba(0, 0, 0, 0.7)',
+                      }}
+                    >
+                      <h5
+                        className="text-center"
+                        style={{ margin: 0, color: '#fff' }}
+                      >
+                        Dr. Shaukat A. Bangash, M.D
+                      </h5>
+                      <h6
+                        className="text-center"
+                        style={{ margin: 0, color: '#fff' }}
+                      >
+                        Founder, Chairman, Ceo
+                      </h6>
+                    </div>
+                  </div>
+                </Link>
               </div>
             </div>
             <div className="col-12 col-lg-3">
-              <div className="feature-panel feature-timetable">
+              <div className="feature-panel feature-timetable bg-secondary">
                 <div className="feature-content">
                   <i className="flaticon-028-book"></i>
                   <h5>doctors timetable</h5>
@@ -59,7 +108,7 @@ const page = () => {
               </div>
             </div>
             <div className="col-12 col-lg-3">
-              <div className="feature-panel feature-opening-hours">
+              <div className="feature-panel feature-opening-hours ">
                 <div className="feature-content">
                   <i className="flaticon-014-uniform"></i>
                   <h5>opening hours </h5>
