@@ -4,18 +4,20 @@ import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
 
 export default function Wrapper({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname() // Detect path changes
+  const pathname = usePathname()
 
   useEffect(() => {
-    // Dynamically reload the functions.js file on path change
+    // Dynamically load the functions.js file on path change
     const script = document.createElement('script')
     script.src = '/assets/js/functions.js'
     script.async = true
     document.body.appendChild(script)
 
-    // Cleanup old script to prevent duplication
+    // Cleanup: only remove the script if it is still in the DOM
     return () => {
-      document.body.removeChild(script)
+      if (script.parentNode) {
+        script.parentNode.removeChild(script)
+      }
     }
   }, [pathname]) // Run effect when pathname changes
 
