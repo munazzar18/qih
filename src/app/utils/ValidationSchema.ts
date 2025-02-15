@@ -144,3 +144,22 @@ export const addNewPageSchema = z.object({
 })
 
 export type AddNewPageSchema = z.infer<typeof addNewPageSchema>
+
+
+export const addNewSlideSchema = z.object({
+    title: z
+        .string()
+        .min(1, "Title is required"),
+    description: z
+        .string()
+        .min(1, "description is required"),
+    image: z
+        .string()
+        .min(1, "image is required"),
+    slideUrl: z
+        .string()
+        .min(1, "url is required")
+})
+
+export type AddNewSlideSchema = z.infer<typeof addNewSlideSchema>
+

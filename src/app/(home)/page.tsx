@@ -2,8 +2,29 @@ import CarousalComponent from '@/components/CarousalComponent'
 import MakeAppointment from '@/components/MakeAppointment'
 import Image from 'next/image'
 import Link from 'next/link'
+import { getDepartments } from '../lib/getDepartments'
 
-const page = () => {
+interface Department {
+  status: string
+  message: string
+  data: [
+    {
+      id: number
+      title: string
+      description: string
+      image: string
+      is_featured: number
+    }
+  ]
+}
+
+const page = async () => {
+  const departments: Department = await getDepartments()
+
+  function stripHtmlTags(str: string) {
+    return str.replace(/<[^>]*>?/gm, '')
+  }
+
   return (
     <div className="wrapper clearfix" id="wrapperParallax">
       <section className="slider slider-2" id="slider-2">
@@ -46,7 +67,7 @@ const page = () => {
                       <Image
                         src="/assets/photos/DrShb.jpeg"
                         alt="Dr. Shaukat A. Bangash, M.D"
-                        layout="fill"
+                        fill
                         objectFit="cover"
                       />
                     </div>
@@ -85,14 +106,14 @@ const page = () => {
               </div>
             </div>
             <div className="col-12 col-lg-3">
-              <div className="feature-panel feature-timetable bg-secondary">
+              <div
+                className="feature-panel feature-timetable bg-secondary"
+                style={{ height: '333px', minHeight: '333px' }}
+              >
                 <div className="feature-content">
                   <i className="flaticon-028-book"></i>
-                  <h5>doctors timetable</h5>
-                  <p>
-                    Qualified doctors available six days a week, view our
-                    timetable to make an appointment.
-                  </p>
+                  <h5>Evening Clinic</h5>
+                  <p>Evening clininc is open from 7:00 pm to 10:00 pm</p>
                   <a
                     className="btn btn--transparent btn-line btn-line-before"
                     href="#"
@@ -138,18 +159,20 @@ const page = () => {
               </div>
             </div>
             <div className="col-12 col-lg-3">
-              <div className="feature-panel feature-location">
-                <div className="feature-content">
-                  <i className="flaticon-042-clinic"></i>
-                  <h5>Location & Directions</h5>
-                  <p>Quaid-e-Azam International Hospital, Near Golra Morr,</p>
-                  <div className="map-img" style={{ marginBottom: '12px' }}>
-                    <p>Peshawar Road, Islamabad, Pakistan</p>
+              <div
+                className="feature-panel feature-location"
+                style={{ height: '333px', minHeight: '333px' }}
+              >
+                <a href="https://portal.qih.com.pk/" target="_blank">
+                  <div className="feature-content">
+                    <i className="flaticon-042-clinic"></i>
+                    <h5>Lab Reports</h5>
+                    <p>Get your lab reports in one click</p>
+                    <p>
+                      <span className="fas fa-phone-alt"></span> (051) 8449100
+                    </p>
                   </div>
-                  <p>
-                    <span className="fas fa-phone-alt"></span> (051) 8449100
-                  </p>
-                </div>
+                </a>
               </div>
             </div>
           </div>
@@ -208,7 +231,7 @@ const page = () => {
                 />
                 <a
                   className="popup-video btn-video"
-                  href="https://www.youtube.com/watch?v=nrJtHemSPW4"
+                  href="https://youtu.be/Gg70v5uvh-Q"
                 >
                   {' '}
                   <i className="fas fa-play"></i>
@@ -242,563 +265,86 @@ const page = () => {
           </div>
         </div>
       </section>
-      <section className="departments departments-2" id="departments-2">
+
+      {/* featured Department */}
+      <section className="blog blog-grid blog-grid-3" id="blog-2">
         <div className="container">
           <div className="row">
             <div className="col-12 col-lg-6 offset-lg-3">
-              <div className="heading heading-12 heading-13 text-center">
-                <p className="heading-subtitle">
-                  the best medical and general practice care!
-                </p>
-                <h2 className="heading-title">
-                  providing medical care for stickest in our community.
-                </h2>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className=" col-12 col-md-6 col-lg-4">
-              <div className="department-panel" data-hover="">
-                <div className="department-panel-holder">
-                  <div className="department-img">
-                    <a href=""></a>
-                    <Image
-                      src="/assets/images/departments/18.jpg"
-                      width={500}
-                      height={500}
-                      alt="department img"
-                    />
-                  </div>
-                  <div className="department-content">
-                    <div className="department-title">
-                      <h4>
-                        <a href="">Neurology Clinic</a>
-                      </h4>
-                    </div>
-                    <div className="department-desc">
-                      <p>
-                        Some neurologists receive subspecialty training focusing
-                        on a particular area of the fields, these training
-                        programs called fellowships, and one to two years.
-                      </p>
-                    </div>
-                    <ul className="department-list list-unstyled">
-                      <li>
-                        <i className="fas fa-check"></i>{' '}
-                        <span>neurocritical care</span>
-                      </li>
-                      <li>
-                        <i className="fas fa-check"></i>{' '}
-                        <span>neuro oncolgy</span>
-                      </li>
-                      <li>
-                        <i className="fas fa-check"></i>{' '}
-                        <span>geriatric neurology</span>
-                      </li>
-                    </ul>
-                    <div className="department-more">
-                      <a
-                        className="btn btn--white btn-line btn-line-before btn-line-inversed"
-                        href=""
-                      >
-                        {' '}
-                        <span className="line">
-                          {' '}
-                          <span></span>
-                        </span>
-                        <span>read more</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className=" col-12 col-md-6 col-lg-4">
-              <div className="department-panel" data-hover="">
-                <div className="department-panel-holder">
-                  <div className="department-img">
-                    <a href=""></a>
-                    <Image
-                      src="/assets/images/departments/8.jpg"
-                      width={500}
-                      height={500}
-                      alt="department img"
-                    />
-                  </div>
-                  <div className="department-content">
-                    <div className="department-title">
-                      <h4>
-                        <a href="">Cardiology Clinic</a>
-                      </h4>
-                    </div>
-                    <div className="department-desc">
-                      <p>
-                        All cardiologists study the disorders of the heart, but
-                        the study of adult and child heart disorders are trained
-                        to take care of small children...
-                      </p>
-                    </div>
-                    <ul className="department-list list-unstyled">
-                      <li>
-                        <i className="fas fa-check"></i>{' '}
-                        <span>neurocritical care</span>
-                      </li>
-                      <li>
-                        <i className="fas fa-check"></i>{' '}
-                        <span>neuro oncolgy</span>
-                      </li>
-                      <li>
-                        <i className="fas fa-check"></i>{' '}
-                        <span>geriatric neurology</span>
-                      </li>
-                    </ul>
-                    <div className="department-more">
-                      <a
-                        className="btn btn--white btn-line btn-line-before btn-line-inversed"
-                        href=""
-                      >
-                        {' '}
-                        <span className="line">
-                          {' '}
-                          <span></span>
-                        </span>
-                        <span>read more</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className=" col-12 col-md-6 col-lg-4">
-              <div className="department-panel" data-hover="">
-                <div className="department-panel-holder">
-                  <div className="department-img">
-                    <a href=""></a>
-                    <Image
-                      src="/assets/images/departments/10.jpg"
-                      width={500}
-                      height={500}
-                      alt="department img"
-                    />
-                  </div>
-                  <div className="department-content">
-                    <div className="department-title">
-                      <h4>
-                        <a href="">Pathology Clinic</a>
-                      </h4>
-                    </div>
-                    <div className="department-desc">
-                      <p>
-                        Pathology is the study of disease, it is the bridge
-                        between science and medicine. Also it underpins every
-                        aspect of patient care, from diagnostic testing...
-                      </p>
-                    </div>
-                    <ul className="department-list list-unstyled">
-                      <li>
-                        <i className="fas fa-check"></i>{' '}
-                        <span>neurocritical care</span>
-                      </li>
-                      <li>
-                        <i className="fas fa-check"></i>{' '}
-                        <span>neuro oncolgy</span>
-                      </li>
-                      <li>
-                        <i className="fas fa-check"></i>{' '}
-                        <span>geriatric neurology</span>
-                      </li>
-                    </ul>
-                    <div className="department-more">
-                      <a
-                        className="btn btn--white btn-line btn-line-before btn-line-inversed"
-                        href=""
-                      >
-                        {' '}
-                        <span className="line">
-                          {' '}
-                          <span></span>
-                        </span>
-                        <span>read more</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="departments-action">
-            <div className="row">
-              <div className="col-12 col-lg-5">
-                <p>
-                  Today hospital is recognised as a world renowned institution,
-                  not only providing outstanding care and treatment, but
-                  improving the outcomes for all.
-                </p>
-              </div>
-              <div className="col-12 col-lg-5 offset-lg-2">
-                <div className="doctor-action">
-                  <a
-                    className="btn btn--secondary btn-line btn-line-after"
-                    href=""
-                  >
-                    {' '}
-                    <span>make appointment</span>
-                    <span className="line">
-                      {' '}
-                      <span></span>
-                    </span>
-                  </a>
-                  <div className="doctor-info">
-                    <div className="doctor-img">
-                      {' '}
-                      <Image
-                        src="/assets/images/departments/20.jpg"
-                        width={60}
-                        height={60}
-                        alt="image"
-                      />
-                    </div>
-                    <div className="doctor-body">
-                      {' '}
-                      <a href="tel:0106123214">01061245741</a>
-                      <p>Call 24HR / 7Days</p>
-                    </div>
-                    <i className="fas fa-phone-alt"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section
-        className="features features-2 bg-overlay bg-overlay-theme3 bg-parallax"
-        id="features-2"
-      >
-        <div className="bg-section">
-          {' '}
-          <Image
-            src="/assets/images/background/dark-blue.jpg"
-            width={500}
-            height={500}
-            alt="Background"
-          />
-        </div>
-        <div className="container">
-          <div className="heading heading-14 heading-light">
-            <div className="row">
-              <div className="col-12 col-lg-5">
-                <p className="heading-subtitle">
-                  Sets The Standard For High Quality Care Since
-                </p>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-12 col-lg-5">
-                <h2 className="heading-title">1987</h2>
-              </div>
-              <div className="col-12 col-lg-6 offset-lg-1">
-                <p className="paragraph">
-                  Our doctors include highly qualified male and female
-                  practitioners who come from a range of backgrounds and bring a
-                  diversity of skills. Our administration and support staff all
-                  have exceptional people skills.
-                </p>
-                <p className="heading-desc">
-                  Our administration and support staff all have exceptional
-                  people skills and trained to assist you with all medical
-                  enquiries.
-                </p>
-                <div className="signature-block">
-                  <a
-                    className="btn btn--primary btn--inversed btn-line btn-line-after"
-                    href="#"
-                  >
-                    <span>our core values</span>
-                    <span className="line">
-                      {' '}
-                      <span></span>
-                    </span>
-                  </a>
-                  <div className="signature-body">
-                    <h6>john winston</h6>
-                    <p>pediatrician</p>
-                    <Image
-                      className="signature-img"
-                      src="/assets/images/signature/2.png"
-                      width={500}
-                      height={500}
-                      alt="signature"
-                    />
-                  </div>
-                </div>
+              <div className="heading heading-7 text-center">
+                <h2 className="heading-title">Featured Departments</h2>
               </div>
             </div>
           </div>
 
-          <div className="features-holder">
-            <div>
-              <div className="feature-panel-holder" data-hover="">
-                <div className="feature-panel feature-panel-dark">
-                  <div className="feature-icon">
-                    <i className="flaticon-007-stethoscope"></i>
-                  </div>
-                  <div className="feature-content">
-                    <h4>Medical Advices &amp; Check Ups</h4>
-                    <p>Consult our doctors any time.</p>
-                  </div>
-                  <a href="javascript:void(0)">
-                    <i className="fas fa-angle-down"></i>{' '}
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className="feature-panel-holder" data-hover="">
-                <div className="feature-panel feature-panel-dark">
-                  <div className="feature-icon">
-                    <i className="flaticon-026-education"></i>
-                  </div>
-                  <div className="feature-content">
-                    <h4>Trusted Medical Treatment</h4>
-                    <p>Free coverage adults with limited income.</p>
-                  </div>
-                  <a href="javascript:void(0)">
-                    <i className="fas fa-angle-down"></i>{' '}
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className="feature-panel-holder" data-hover="">
-                <div className="feature-panel feature-panel-dark">
-                  <div className="feature-icon">
-                    <i className="flaticon-036-aid"></i>
-                  </div>
-                  <div className="feature-content">
-                    <h4>Emergency Help Available</h4>
-                    <p>Contact our reception staff any time.</p>
-                  </div>
-                  <a href="javascript:void(0)">
-                    <i className="fas fa-angle-down"></i>{' '}
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className="feature-panel-holder" data-hover="">
-                <div className="feature-panel feature-panel-dark">
-                  <div className="feature-icon">
-                    <i className="flaticon-032-medicine"></i>
-                  </div>
-                  <div className="feature-content">
-                    <h4>Medical Research Center</h4>
-                    <p>Provide all medical aspects practice</p>
-                  </div>
-                  <a href="javascript:void(0)">
-                    <i className="fas fa-angle-down"></i>{' '}
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className="feature-panel-holder" data-hover="">
-                <div className="feature-panel feature-panel-dark">
-                  <div className="feature-icon">
-                    <i className="flaticon-046-blood-pressure"></i>
-                  </div>
-                  <div className="feature-content">
-                    <h4>Only Qualified Doctors</h4>
-                    <p>Qualified doctors available 24/7</p>
-                  </div>
-                  <a href="javascript:void(0)">
-                    <i className="fas fa-angle-down"></i>{' '}
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div
+            className="carousel owl-carousel carousel-dots"
+            data-slide="3"
+            data-slide-rs="2"
+            data-autoplay="true"
+            data-nav="false"
+            data-dots="true"
+            data-space="30"
+            data-loop="true"
+            data-speed="200"
+          >
+            {departments && departments.data.length ? (
+              departments.data
+                .filter((dept) => dept.is_featured === 1)
+                .map((dept, index) => (
+                  <div key={dept.id}>
+                    <div className="blog-entry" data-hover="">
+                      <div className="entry-img">
+                        <a href="">
+                          <Image
+                            src={
+                              dept.image
+                                ? `https://driveo.pk/${dept.image}`
+                                : `/assets/images/departments/${index + 1}.jpg`
+                            }
+                            width={500}
+                            height={500}
+                            alt="6 tips to protect your mental health when sick"
+                          />
+                        </a>
+                      </div>
 
-          <div className="more-features more-features-2">
-            <p>
-              Delivering tomorrow’s health care for your family.{' '}
-              <a href="">view doctors' timetable </a>
-            </p>
-          </div>
-          <div className="features-card">
-            <div className="card-panel reversed">
-              <div className="panel-icon">
-                <i className="flaticon-004-transplant-box"></i>
-              </div>
-              <div className="panel-body">
-                <h4>Healthcare Programs</h4>
-                <p>
-                  We have put protocols to protect our patients to provide
-                  medically necessary care.
-                </p>
-                <a className="btn btn-line btn-line-after" href="#">
-                  <span>explore programs</span>
-                  <span className="line">
-                    {' '}
-                    <span> </span>
-                  </span>
-                </a>
-              </div>
-            </div>
-            <div className="card-panel">
-              <div className="panel-icon">
-                {' '}
-                <i className="flaticon-042-clinic"></i>
-              </div>
-              <div className="panel-body">
-                <h4>Locations & Directions</h4>
-                <p>
-                  Feel welcome to contact our friendly reception staff, our
-                  doctors will receive your urgent calls.
-                </p>
-                <a className="btn btn-line btn-line-before" href="#">
-                  <span className="line">
-                    {' '}
-                    <span> </span>
-                  </span>
-                  <span>get directions</span>
-                </a>
-              </div>
-            </div>
+                      <div className="entry-content">
+                        <div className="entry-title">
+                          <h4>
+                            <a href="">{dept.title}</a>
+                          </h4>
+                        </div>
+                        <div className="entry-bio">
+                          <p>
+                            {stripHtmlTags(dept.description).substring(0, 150)}
+                            ...
+                          </p>
+                        </div>
+                        <div className="entry-more">
+                          {' '}
+                          <Link
+                            className="btn btn--white btn-line btn-line-before btn-line-inversed"
+                            href={`/departments/${dept.id}`}
+                          >
+                            <div className="line">
+                              {' '}
+                              <span> </span>
+                            </div>
+                            <span>read more</span>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))
+            ) : (
+              <p>No Departments found</p>
+            )}
           </div>
         </div>
       </section>
-
-      <section
-        className="testimonial testimonial-1 testimonial-2"
-        id="testimonial-2"
-      >
-        <div className="container">
-          <div className="row">
-            <div className="col-12 col-lg-5">
-              <div className="clients-img">
-                {' '}
-                <Image
-                  src="/assets/images/departments/23.jpg"
-                  width={700}
-                  height={300}
-                  alt="image"
-                />
-              </div>
-            </div>
-            <div className="col-12 col-lg-6 offset-lg-1">
-              <h6 className="section-head">
-                hear the inspiring stories of our patients
-              </h6>
-              <div
-                className="carousel owl-carousel carousel-dots"
-                data-slide="1"
-                data-slide-rs="1"
-                data-autoplay="true"
-                data-nav="false"
-                data-dots="true"
-                data-space="0"
-                data-loop="true"
-                data-speed="800"
-              >
-                <div className="testimonial-panel testimonial-panel-2">
-                  <div className="testimonial-body">
-                    <div className="testimonial-content">
-                      <div className="testimonial-icon"></div>
-                      <p>
-                        Their doctors include highly qualified practitioners who
-                        come from a range of backgrounds &amp; bring with them a
-                        diversity of skills and special interests. They also
-                        registered nurses available to triage any urgent
-                        matters, and the administration and staff all have
-                        exceptional skills!!
-                      </p>
-                      <div className="testimonial-thumb">
-                        <div className="thumb-img">
-                          {' '}
-                          <Image
-                            src="/assets/images/departments/24.jpg"
-                            width={80}
-                            height={80}
-                            alt="Testimonial Author"
-                          />
-                          <i className="icon-Quote-Icon"></i>
-                        </div>
-                        <div className="thumb-body">
-                          <h6>sami wade</h6>
-                          <p>promina</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="testimonial-panel testimonial-panel-2">
-                  <div className="testimonial-body">
-                    <div className="testimonial-content">
-                      <div className="testimonial-icon"></div>
-                      <p>
-                        Their doctors include highly qualified practitioners who
-                        come from a range of backgrounds &amp; bring with them a
-                        diversity of skills and special interests. They also
-                        registered nurses available to triage any urgent
-                        matters, and the administration and staff all have
-                        exceptional skills!!
-                      </p>
-                      <div className="testimonial-thumb">
-                        <div className="thumb-img">
-                          {' '}
-                          <Image
-                            src="/assets/images/departments/32.jpg"
-                            width={80}
-                            height={80}
-                            alt="Testimonial Author"
-                          />
-                          <i className="icon-Quote-Icon"></i>
-                        </div>
-                        <div className="thumb-body">
-                          <h6>john peter</h6>
-                          <p>optima inc</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="testimonial-panel testimonial-panel-2">
-                  <div className="testimonial-body">
-                    <div className="testimonial-content">
-                      <div className="testimonial-icon"></div>
-                      <p>
-                        Their doctors include highly qualified practitioners who
-                        come from a range of backgrounds &amp; bring with them a
-                        diversity of skills and special interests. They also
-                        registered nurses available to triage any urgent
-                        matters, and the administration and staff all have
-                        exceptional skills!!
-                      </p>
-                      <div className="testimonial-thumb">
-                        <div className="thumb-img">
-                          {' '}
-                          <Image
-                            src="/assets/images/departments/30.jpg"
-                            width={80}
-                            height={80}
-                            alt="Testimonial Author"
-                          />
-                          <i className="icon-Quote-Icon"></i>
-                        </div>
-                        <div className="thumb-body">
-                          <h6>sony blake</h6>
-                          <p>koira ind</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* featured Department */}
 
       <section className="cta cta-3" id="cta-3">
         <div className="container">
@@ -1072,7 +618,7 @@ const page = () => {
                 </div>
               </div>
             </div>
-            <MakeAppointment />
+            {/* <MakeAppointment /> */}
           </div>
         </div>
       </section>

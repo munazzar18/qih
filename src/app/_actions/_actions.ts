@@ -321,6 +321,24 @@ export const PageDeleteAction = async (id: number) => {
     }
 }
 
+export const SlideDeleteAction = async (id: number) => {
+    const token = (await cookies()).get('token')?.value
+    try {
+        const response = await fetch(`${url}slides/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+        })
+        const data = await response.json();
+        return data
+    } catch (error) {
+        return error
+    }
+}
+
 
 
 export const UploadFileAction = async (formData: FormData) => {
@@ -450,5 +468,32 @@ export const TickersCreationAction = async (formData: FormData) => {
     } catch (error) {
         console.error(error);
         return { error: error || 'An unknown error occurred' };
+    }
+}
+
+
+export const SlideCreateAction = async (formData: FormData) => {
+    const token = (await cookies()).get('token')?.value
+    const title = formData.get('title')
+    const description = formData.get('description')
+    const image = formData.get('image')
+    const slideUrl = formData.get('slideUrl')
+
+    try {
+        const response = await fetch(`${url}slides`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ title, description, image, url: slideUrl })
+        })
+        const data = await response.json();
+        return data
+
+    } catch (error) {
+        console.log("Error:", error)
+        return error
     }
 }

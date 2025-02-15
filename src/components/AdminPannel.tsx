@@ -17,6 +17,7 @@ import {
   FaUserDoctor,
   FaUserLarge,
 } from 'react-icons/fa6'
+import { FiSliders } from 'react-icons/fi'
 
 interface User {
   id: string
@@ -82,18 +83,24 @@ const AdminSideBar = async () => {
     },
     {
       id: 6,
+      name: 'Slides',
+      link: `/admin/slides`,
+      icon: <FiSliders />,
+    },
+    {
+      id: 7,
       name: 'Tickers',
       link: `/admin/tickers`,
       icon: <FaTicket />,
     },
     {
-      id: 7,
+      id: 8,
       name: 'Settings',
       link: `/admin/settings`,
       icon: <FaGear />,
     },
     {
-      id: 8,
+      id: 9,
       name: 'Users',
       link: `/admin/users`,
       icon: <FaUser />,
