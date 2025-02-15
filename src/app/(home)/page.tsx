@@ -231,7 +231,7 @@ const page = async () => {
                 />
                 <a
                   className="popup-video btn-video"
-                  href="https://youtu.be/Gg70v5uvh-Q"
+                  href="/assets/videos/videoplayback_4.mp4"
                 >
                   {' '}
                   <i className="fas fa-play"></i>
