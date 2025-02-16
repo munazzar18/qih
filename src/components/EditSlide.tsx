@@ -53,6 +53,15 @@ const EditSlide = ({ id }: { id: number }) => {
     [key in keyof AddNewSlideSchema]?: string
   }>({})
 
+  useEffect(() => {
+    setMyForm({
+      title: slide.title,
+      description: slide.description,
+      image: slide.image,
+      slideUrl: slide.slideUrl,
+    })
+  }, [slide])
+
   // Handler for file upload (photo)
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files

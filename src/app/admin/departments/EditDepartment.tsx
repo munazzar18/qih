@@ -2,6 +2,7 @@
 import {
   DepartmentCreateAction,
   EditDepartmentAction,
+  UploadFileAction,
 } from '@/app/_actions/_actions'
 import {
   DepartmentSchema,
@@ -19,6 +20,7 @@ interface DepartmentData {
   description: string
   image: string
   user_id: number
+  is_featured: number
   created_at: Date
 }
 
@@ -78,9 +80,26 @@ const EditDepartment = ({ department }: { department: Department }) => {
     setDeparmentId(department.data.id)
   }, [department])
 
+  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files
+    if (!files) return
+    const filePath = files[0]
+    const formData = new FormData()
+    formData.append('file', filePath)
+    const res = await UploadFileAction(formData)
+    if (res.status === 'success') {
+      toast.success(res.message)
+      setMyForm({ ...myForm, image: res.data.file_path })
+    } else {
+      toast.error(res.message)
+    }
+  }
+
   const [myForm, setMyForm] = useState<DepartmentSchema>({
     title: department.data.title,
     description: department.data.description,
+    image: department.data.image,
+    is_featured: department.data.is_featured,
   })
 
   const [errors, setErrors] = useState<{
@@ -105,6 +124,8 @@ const EditDepartment = ({ department }: { department: Department }) => {
       const formData = new FormData()
       formData.append('title', result.data.title)
       formData.append('description', result.data.description)
+      formData.append('image', result.data.image)
+      formData.append('is_featured', result.data.is_featured.toString())
       const res = await EditDepartmentAction(formData, departmentId)
       if (res.status === 'success') {
         toast.success(res.message)
@@ -125,15 +146,15 @@ const EditDepartment = ({ department }: { department: Department }) => {
     <div className="container">
       <div className="m-5">
         <div className="row">
-          <div className="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+          <div className="col-12">
             <div className="login-card">
               <div className="heading heading-1 text--center">
                 <h2 className="heading-title">Update Department</h2>
               </div>
               <div className="login-body">
                 <form className="" onSubmit={handleSubmit}>
-                  <div className="row">
-                    <div className="col-12">
+                  <div className="row align-items-center">
+                    <div className="col-6">
                       <label>Department Name</label>
                       <input
                         className="form-control"
@@ -146,6 +167,50 @@ const EditDepartment = ({ department }: { department: Department }) => {
                       {errors.title && (
                         <p className="text-danger">{errors.title}</p>
                       )}
+                    </div>
+                    <div className="col-6 mb-3">
+                      <div className="d-flex justify-content-start align-items-center gap-2">
+                        <input
+                          className="form-check-input p-2"
+                          type="checkbox"
+                          checked={myForm.is_featured === 1}
+                          id="is_featured"
+                          name="is_featured"
+                          onChange={(e) => {
+                            const newValue = e.target.checked ? 1 : 0
+                            setMyForm({ ...myForm, is_featured: newValue })
+                          }}
+                        />
+                        <label
+                          className="fw-bold text-black fs-5"
+                          htmlFor="is_featured"
+                        >
+                          Feature Department
+                        </label>
+                      </div>
+                    </div>
+                    <div className="col-6">
+                      <label className="fw-bold text-black">Image</label>
+                      <input
+                        name="image"
+                        type="file"
+                        className="form-control text-center"
+                        onChange={handleUpload}
+                      />
+                      {errors.image && (
+                        <p className="text-danger">{errors.image}</p>
+                      )}
+                    </div>
+                    <div className="col-6">
+                      <label className="fw-bold text-black">
+                        Uploaded Image
+                      </label>
+                      <img
+                        src={`https://qih.driveo.pk/${myForm.image}`}
+                        alt="department image"
+                        width={100}
+                        height={100}
+                      />
                     </div>
                     <div className="col-12 mb-5">
                       <label>Department Description</label>

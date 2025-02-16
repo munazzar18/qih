@@ -1,6 +1,7 @@
 'use client'
 import { RegisterAction } from '@/app/_actions/_actions'
 import { RegisterSchema, registerSchema } from '@/app/utils/ValidationSchema'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { toast } from 'react-hot-toast'
@@ -141,6 +142,14 @@ const RegisterForm = () => {
                               >
                                 <span>Sign up</span>
                               </button>
+                            </div>
+                            <div className="col-12">
+                              <p>
+                                Already have an account?{' '}
+                                <span>
+                                  <Link href="/auth/login">Login</Link>
+                                </span>{' '}
+                              </p>
                             </div>
                             <div className="col-12">
                               <div className="contact-result"></div>

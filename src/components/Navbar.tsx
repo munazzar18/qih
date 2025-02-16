@@ -201,7 +201,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link href="/services/online-appointment">
+                  <Link href={token ? '/make-appointment' : '/auth/login'}>
                     <span>Online Appointment</span>
                   </Link>
                 </li>
@@ -464,39 +464,23 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
               </li>
             ) : (
               <li
-                className={`nav-item has-dropdown ${
+                className={`nav-item  ${
                   currentPath.includes('auth') ? 'active' : ''
                 }`}
                 data-hover=""
               >
-                <Link
-                  className="dropdown-toggle"
-                  href="/contact"
-                  data-toggle="dropdown"
-                >
-                  <span>Sign In / Sign up</span>
+                <Link href="/auth/login" data-toggle="dropdown">
+                  <span>Login</span>
                 </Link>
-                <ul className="dropdown-menu">
-                  <li className="nav-item">
-                    <Link href="/auth/login">
-                      <span>Sign in</span>
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link href="/auth/register">
-                      <span>Sign up</span>
-                    </Link>
-                  </li>
-                </ul>
               </li>
             )}
           </ul>
           <div className="module-holder">
-            <div className="module module-search float-left">
+            {/* <div className="module module-search float-left">
               <div className="module-icon search-icon">
                 <FaMagnifyingGlass />
               </div>
-            </div>
+            </div> */}
             <div className="module-contact">
               <a className="btn btn--secondary" href="">
                 doctors' timetable

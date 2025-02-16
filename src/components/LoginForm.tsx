@@ -1,6 +1,7 @@
 'use client'
 import { LoginAction } from '@/app/_actions/_actions'
 import { LoginScehma, loginSchema } from '@/app/utils/ValidationSchema'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { toast } from 'react-hot-toast'
@@ -106,6 +107,14 @@ const LoginForm = () => {
                               >
                                 <span>Login</span>
                               </button>
+                            </div>
+                            <div className="col-12">
+                              <p>
+                                Do not have an account?{' '}
+                                <span>
+                                  <Link href="/auth/register">Register</Link>
+                                </span>{' '}
+                              </p>
                             </div>
                             <div className="col-12">
                               <div className="contact-result"></div>

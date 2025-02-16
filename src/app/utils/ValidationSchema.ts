@@ -43,7 +43,12 @@ export const departmentSchema = z.object({
         .min(1, "Department name is required"),
     description: z
         .string()
-        .min(1, "Department name is required")
+        .min(1, "Department name is required"),
+    image: z
+        .string()
+        .min(1, "Image is required"),
+    is_featured: z
+        .number()
 })
 
 export type DepartmentSchema = z.infer<typeof departmentSchema>

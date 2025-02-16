@@ -83,6 +83,9 @@ export const LogoutAction = async () => {
 export const DepartmentCreateAction = async (formData: FormData) => {
     const token = (await cookies()).get('token')?.value
     const title = formData.get('title')
+    const description = formData.get('description')
+    const image = formData.get('image')
+    const is_featured = formData.get('is_featured')
     try {
         const response = await fetch(`${url}departments`, {
             method: 'POST',
@@ -91,7 +94,7 @@ export const DepartmentCreateAction = async (formData: FormData) => {
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({ title })
+            body: JSON.stringify({ title, description, image, is_featured })
         })
         const data = await response.json();
         return data
@@ -104,6 +107,8 @@ export const EditDepartmentAction = async (formData: FormData, id: number) => {
     const token = (await cookies()).get('token')?.value
     const title = formData.get('title')
     const description = formData.get('description')
+    const image = formData.get('image')
+    const is_featured = formData.get('is_featured')
     try {
         const response = await fetch(`${url}departments/${id}`, {
             method: 'PUT',
@@ -112,7 +117,7 @@ export const EditDepartmentAction = async (formData: FormData, id: number) => {
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({ title, description })
+            body: JSON.stringify({ title, description, image, is_featured })
         })
         const data = await response.json();
         return data

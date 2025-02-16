@@ -3,6 +3,7 @@ import MakeAppointment from '@/components/MakeAppointment'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getDepartments } from '../lib/getDepartments'
+import { cookies } from 'next/headers'
 
 interface Department {
   status: string
@@ -20,6 +21,8 @@ interface Department {
 
 const page = async () => {
   const departments: Department = await getDepartments()
+
+  const token = (await cookies()).get('token')?.value
 
   function stripHtmlTags(str: string) {
     return str.replace(/<[^>]*>?/gm, '')
@@ -197,9 +200,9 @@ const page = async () => {
                   and in the strictest
                 </p>
                 <div className="actions-holder">
-                  <a
+                  <Link
                     className="btn btn--primary btn-line btn-line-after"
-                    href=""
+                    href="/departments"
                   >
                     {' '}
                     <span>find a doctor</span>
@@ -207,10 +210,10 @@ const page = async () => {
                       {' '}
                       <span></span>
                     </span>
-                  </a>
-                  <a className="btn btn--white" href="">
+                  </Link>
+                  <Link className="btn btn--white" href="/about-us">
                     more about us
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -393,116 +396,124 @@ const page = async () => {
         <div className="processes">
           <div className="row g-0">
             <div className="col-12 col-md-6 col-xl-3">
-              <div className="process-panel" data-hover="">
-                <p className="process-number">01.</p>
-                <div className="process-body">
-                  <div className="process-icon">
-                    {' '}
-                    <i className="flaticon-023-medical-history"></i>
-                  </div>
-                  <div className="process-content">
-                    <h5>fill our medical application</h5>
-                    <p>
-                      Medisch offers free or low-cost health coverage for
-                      adults.
-                    </p>
-                    <a
-                      className="btn-line btn-line-before btn-line-inversed"
-                      href=""
-                    >
-                      <span className="line">
-                        {' '}
-                        <span> </span>
-                      </span>
-                      <span>doctors timetable</span>
-                    </a>
+              <Link href={token ? '/make-appointment' : '/auth/login'}>
+                <div className="process-panel" data-hover="">
+                  <p className="process-number">01.</p>
+                  <div className="process-body">
+                    <div className="process-icon">
+                      {' '}
+                      <i className="flaticon-023-medical-history"></i>
+                    </div>
+                    <div className="process-content">
+                      <h5>fill our medical application</h5>
+                      <p>
+                        Medisch offers free or low-cost health coverage for
+                        adults.
+                      </p>
+                      <a
+                        className="btn-line btn-line-before btn-line-inversed"
+                        href=""
+                      >
+                        <span className="line">
+                          {' '}
+                          <span> </span>
+                        </span>
+                        <span>doctors timetable</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
             <div className="col-12 col-md-6 col-xl-3">
-              <div className="process-panel" data-hover="">
-                <p className="process-number">02.</p>
-                <div className="process-body">
-                  <div className="process-icon">
-                    {' '}
-                    <i className="flaticon-043-cardiogram"></i>
-                  </div>
-                  <div className="process-content">
-                    <h5>Review Your Family History</h5>
-                    <p>
-                      Health exams help find problems with early chances which
-                      helps.
-                    </p>
-                    <a
-                      className="btn-line btn-line-before btn-line-inversed"
-                      href="javascript:void(0)"
-                    >
-                      <span className="line">
-                        {' '}
-                        <span> </span>
-                      </span>
-                      <span>Start A Check Up</span>
-                    </a>
+              <Link href={token ? '/make-appointment' : '/auth/login'}>
+                <div className="process-panel" data-hover="">
+                  <p className="process-number">02.</p>
+                  <div className="process-body">
+                    <div className="process-icon">
+                      {' '}
+                      <i className="flaticon-043-cardiogram"></i>
+                    </div>
+                    <div className="process-content">
+                      <h5>Review Your Family History</h5>
+                      <p>
+                        Health exams help find problems with early chances which
+                        helps.
+                      </p>
+                      <a
+                        className="btn-line btn-line-before btn-line-inversed"
+                        href="javascript:void(0)"
+                      >
+                        <span className="line">
+                          {' '}
+                          <span> </span>
+                        </span>
+                        <span>Start A Check Up</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
             <div className="col-12 col-md-6 col-xl-3">
-              <div className="process-panel" data-hover="">
-                <p className="process-number">03.</p>
-                <div className="process-body">
-                  <div className="process-icon">
-                    {' '}
-                    <i className="flaticon-027-medical-report"></i>
-                  </div>
-                  <div className="process-content">
-                    <h5>Choose Between Our Programs </h5>
-                    <p>
-                      We have protocols to protect our patients to provide
-                      necessary care.
-                    </p>
-                    <a
-                      className="btn-line btn-line-before btn-line-inversed"
-                      href="javascript:void(0)"
-                    >
-                      <span className="line">
-                        {' '}
-                        <span> </span>
-                      </span>
-                      <span>explore programs</span>
-                    </a>
+              <Link href={'/departments'}>
+                <div className="process-panel" data-hover="">
+                  <p className="process-number">03.</p>
+                  <div className="process-body">
+                    <div className="process-icon">
+                      {' '}
+                      <i className="flaticon-027-medical-report"></i>
+                    </div>
+                    <div className="process-content">
+                      <h5>Choose Between Our Programs </h5>
+                      <p>
+                        We have protocols to protect our patients to provide
+                        necessary care.
+                      </p>
+                      <a
+                        className="btn-line btn-line-before btn-line-inversed"
+                        href="javascript:void(0)"
+                      >
+                        <span className="line">
+                          {' '}
+                          <span> </span>
+                        </span>
+                        <span>explore programs</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
             <div className="col-12 col-md-6 col-xl-3">
-              <div className="process-panel" data-hover="">
-                <p className="process-number">04.</p>
-                <div className="process-body">
-                  <div className="process-icon">
-                    {' '}
-                    <i className=".flaticon-021-medical-1"></i>
-                  </div>
-                  <div className="process-content">
-                    <h5>Introduce To Qualified Doctors </h5>
-                    <p>
-                      Our administration and support staff all have exceptional
-                      people skills
-                    </p>
-                    <a
-                      className="btn-line btn-line-before btn-line-inversed"
-                      href=""
-                    >
-                      <span className="line">
-                        {' '}
-                        <span> </span>
-                      </span>
-                      <span>meet our doctors</span>
-                    </a>
+              <Link href={'/departments'}>
+                <div className="process-panel" data-hover="">
+                  <p className="process-number">04.</p>
+                  <div className="process-body">
+                    <div className="process-icon">
+                      {' '}
+                      <i className=".flaticon-021-medical-1"></i>
+                    </div>
+                    <div className="process-content">
+                      <h5>Introduce To Qualified Doctors </h5>
+                      <p>
+                        Our administration and support staff all have
+                        exceptional people skills
+                      </p>
+                      <a
+                        className="btn-line btn-line-before btn-line-inversed"
+                        href=""
+                      >
+                        <span className="line">
+                          {' '}
+                          <span> </span>
+                        </span>
+                        <span>meet our doctors</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
         </div>
@@ -531,18 +542,10 @@ const page = async () => {
                 concise, and inviting. Support the important work of Medicsh
                 Hospital by making a much-needed donation today
               </p>
-              <div className="donations-action">
-                <a className="btn btn--white" href="">
-                  make a gift <i className="fas fa-heart"></i>
-                </a>
-                <a className="btn btn--transparent btn--inversed" href="">
-                  help &amp; faqs
-                </a>
-              </div>
+
               <div className="img-hotspot">
                 <div className="img-hotspot-wrap">
                   <div className="img-hotspot-bg">
-                    {' '}
                     <Image
                       src="/assets/images/background/world-map.png"
                       width={500}
@@ -553,29 +556,8 @@ const page = async () => {
                   <div className="img-hotspot-pointers">
                     <div
                       className="img-hotspot-pointer"
-                      data-spot-x="15%"
-                      data-spot-y="29%"
-                    >
-                      <Image
-                        src="/assets/images/background/map-pointer.png"
-                        width={30}
-                        height={30}
-                        alt="pointer"
-                      />
-                      <div
-                        className="info right"
-                        data-info-x="18px"
-                        data-info-y="-97px"
-                      >
-                        <span>
-                          2307 Beverley Rd Brooklyn, New York 11226 U.S.
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      className="img-hotspot-pointer"
-                      data-spot-x="48%"
-                      data-spot-y="48%"
+                      data-spot-x="75%"
+                      data-spot-y="30%"
                     >
                       <Image
                         src="/assets/images/background/map-pointer.png"
@@ -585,32 +567,12 @@ const page = async () => {
                       />
                       <div
                         className="info left"
-                        data-info-x="-160px"
-                        data-info-y="-97px"
+                        data-info-x="-100px"
+                        data-info-y="-80px"
                       >
                         <span>
-                          2307 Beverley Rd Brooklyn, New York 11226 U.S.
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      className="img-hotspot-pointer"
-                      data-spot-x="68%"
-                      data-spot-y="23%"
-                    >
-                      <Image
-                        src="/assets/images/background/map-pointer.png"
-                        width={30}
-                        height={30}
-                        alt="pointer"
-                      />
-                      <div
-                        className="info left"
-                        data-info-x="-160px"
-                        data-info-y="-97px"
-                      >
-                        <span>
-                          2307 Beverley Rd Brooklyn, New York 11226 U.S.
+                          Quaid-e-Azam International Hospital, Near Golra Morr,
+                          Peshawar Road, Islamabad, Pakistan
                         </span>
                       </div>
                     </div>
@@ -618,6 +580,42 @@ const page = async () => {
                 </div>
               </div>
             </div>
+
+            <div className="contact-card">
+              <div className="card p-3" style={{ maxHeight: '400px' }}>
+                <h2 className="heading-title">News</h2>
+                <div className="card-header">Latest news</div>
+                <div className="card-body overflow-auto">
+                  <ul className="list-group list-group-flush">
+                    <li className="list-group-item">
+                      News item 1: Lorem ipsum dolor sit amet.
+                    </li>
+                    <li className="list-group-item">
+                      News item 2: Consectetur adipiscing elit.
+                    </li>
+                    <li className="list-group-item">
+                      News item 3: Integer molestie lorem at massa.
+                    </li>
+                    <li className="list-group-item">
+                      News item 4: Facilisis in pretium nisl aliquet.
+                    </li>
+                    <li className="list-group-item">
+                      News item 5: Nulla volutpat aliquam velit.
+                    </li>
+                    <li className="list-group-item">
+                      News item 6: Faucibus porta lacus fringilla vel.
+                    </li>
+                    <li className="list-group-item">
+                      News item 7: Aenean sit amet erat nunc.
+                    </li>
+                    <li className="list-group-item">
+                      News item 8: Eget porttitor lorem.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
             {/* <MakeAppointment /> */}
           </div>
         </div>
