@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { getDepartments } from '../lib/getDepartments'
 import { cookies } from 'next/headers'
+import { getEvents, getNews } from '../lib/getNews'
 
 interface Department {
   status: string
@@ -22,6 +23,37 @@ interface Department {
 const page = async () => {
   const departments: Department = await getDepartments()
 
+  const getMonthsFromNum = (number: string) => {
+    switch (number) {
+      case '01':
+        return 'January'
+      case '02':
+        return 'February'
+      case '03':
+        return 'March'
+      case '04':
+        return 'April'
+      case '05':
+        return 'May'
+      case '06':
+        return 'June'
+      case '07':
+        return 'July'
+      case '08':
+        return 'August'
+      case '09':
+        return 'September'
+      case '10':
+        return 'October'
+      case '11':
+        return 'November'
+      case '12':
+        return 'December'
+    }
+  }
+
+  const newsData = await getNews()
+  const eventData = await getEvents()
   const token = (await cookies()).get('token')?.value
 
   function stripHtmlTags(str: string) {
@@ -582,36 +614,48 @@ const page = async () => {
             </div>
 
             <div className="contact-card">
-              <div className="card p-3" style={{ maxHeight: '400px' }}>
-                <h2 className="heading-title">News</h2>
-                <div className="card-header">Latest news</div>
-                <div className="card-body overflow-auto">
-                  <ul className="list-group list-group-flush">
-                    <li className="list-group-item">
-                      News item 1: Lorem ipsum dolor sit amet.
-                    </li>
-                    <li className="list-group-item">
-                      News item 2: Consectetur adipiscing elit.
-                    </li>
-                    <li className="list-group-item">
-                      News item 3: Integer molestie lorem at massa.
-                    </li>
-                    <li className="list-group-item">
-                      News item 4: Facilisis in pretium nisl aliquet.
-                    </li>
-                    <li className="list-group-item">
-                      News item 5: Nulla volutpat aliquam velit.
-                    </li>
-                    <li className="list-group-item">
-                      News item 6: Faucibus porta lacus fringilla vel.
-                    </li>
-                    <li className="list-group-item">
-                      News item 7: Aenean sit amet erat nunc.
-                    </li>
-                    <li className="list-group-item">
-                      News item 8: Eget porttitor lorem.
-                    </li>
-                  </ul>
+              <div className="container mt-4">
+                <div
+                  className="row"
+                  style={{ maxHeight: '380px', overflowY: 'scroll' }}
+                >
+                  {newsData && newsData.length ? (
+                    newsData.map((news: any) => (
+                      <div className="col-12 align-items-center" key={news.id}>
+                        <div className="card mb-3" style={{ border: 'none' }}>
+                          <div className="row g-0 ">
+                            <div className="col-md-3">
+                              <img
+                                src={news.featured_media_src_url}
+                                className="img-fluid rounded"
+                                alt="News thumbnail"
+                              />
+                            </div>
+                            <div className="col-md-9">
+                              <div className="card-body">
+                                <h5 className="card-title">
+                                  {news.title.rendered}
+                                </h5>
+                                <p className="card-text small text-muted">
+                                  {stripHtmlTags(
+                                    news.excerpt.rendered
+                                  ).substring(0, 180)}
+                                  ...
+                                </p>
+                                {/* <p className="card-text">
+                                  <small className="text-muted">
+                                    Last updated 3 mins ago
+                                  </small>
+                                </p> */}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <p>No News</p>
+                  )}
                 </div>
               </div>
             </div>
@@ -626,8 +670,7 @@ const page = async () => {
           <div className="row">
             <div className="col-12 col-lg-6 offset-lg-3">
               <div className="heading heading-7 text-center">
-                <p className="heading-subtitle">health essentials</p>
-                <h2 className="heading-title">recent articles</h2>
+                <h2 className="heading-title">Events</h2>
               </div>
             </div>
           </div>
@@ -639,373 +682,68 @@ const page = async () => {
             data-nav="false"
             data-dots="true"
             data-space="30"
-            data-loop="true"
+            data-loop="false"
             data-speed="200"
           >
-            <div>
-              <div className="blog-entry" data-hover="">
-                <div className="entry-img">
-                  <div className="entry-date">
-                    <div className="entry-content">
-                      <span className="day">20</span>
-                      <span className="month">jan</span>
-                      <span className="year">2021</span>
-                    </div>
-                  </div>
-                  <a href="">
-                    <Image
-                      src="/assets/images/departments/10.jpg"
-                      width={500}
-                      height={500}
-                      alt="6 tips to protect your mental health when sick"
-                    />
-                  </a>
-                </div>
-
-                <div className="entry-content">
-                  <div className="entry-meta">
-                    <div className="entry-category">
-                      <a href="javascript:void(0)">mental health</a>
-                      <a href="javascript:void(0)">wellness</a>
-                    </div>
-                    <div className="divider"></div>
-                    <div className="entry-author">
-                      <p>martin king</p>
-                    </div>
-                  </div>
-                  <div className="entry-title">
-                    <h4>
-                      <a href="">
-                        6 tips to protect your mental health when sick
-                      </a>
-                    </h4>
-                  </div>
-                  <div className="entry-bio">
-                    <p>
-                      It’s normal to feel anxiety, worry and grief any time
-                      you’re diagnosed with a condition that’s certainly true if
-                      you test positive for COVID-19, or...
-                    </p>
-                  </div>
-                  <div className="entry-more">
-                    {' '}
-                    <a
-                      className="btn btn--white btn-line btn-line-before btn-line-inversed"
-                      href=""
-                    >
-                      <div className="line">
-                        {' '}
-                        <span> </span>
+            {eventData && eventData.events.length ? (
+              eventData.events.map((item: any) => (
+                <div key={item.id}>
+                  <div className="blog-entry" data-hover="">
+                    <div className="entry-img">
+                      <div className="entry-date">
+                        <div className="entry-content">
+                          <span className="day">
+                            {item.start_date_details.day}
+                          </span>
+                          <span className="month">
+                            {getMonthsFromNum(item.start_date_details.month)}
+                          </span>
+                          <span className="year">
+                            {item.start_date_details.year}
+                          </span>
+                        </div>
                       </div>
-                      <span>read more</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className="blog-entry" data-hover="">
-                <div className="entry-img">
-                  <div className="entry-date">
-                    <div className="entry-content">
-                      <span className="day">20</span>
-                      <span className="month">jan</span>
-                      <span className="year">2021</span>
-                    </div>
-                  </div>
-                  <a href="">
-                    <Image
-                      src="/assets/images/departments/12.jpg"
-                      width={500}
-                      height={500}
-                      alt="Unsure About Wearing a Face Mask? How and Why"
-                    />
-                  </a>
-                </div>
-
-                <div className="entry-content">
-                  <div className="entry-meta">
-                    <div className="entry-category">
-                      <a href="javascript:void(0)">infectious</a>
-                      <a href="javascript:void(0)">tips</a>
-                    </div>
-                    <div className="divider"></div>
-                    <div className="entry-author">
-                      <p>John Ezak</p>
-                    </div>
-                  </div>
-                  <div className="entry-title">
-                    <h4>
                       <a href="">
-                        Unsure About Wearing a Face Mask? How and Why
+                        <img
+                          src={item.image.url}
+                          width={500}
+                          height={500}
+                          alt="6 tips to protect your mental health when sick"
+                        />
                       </a>
-                    </h4>
-                  </div>
-                  <div className="entry-bio">
-                    <p>
-                      That means that you should still be following any
-                      shelter-in-place orders in your community. But when you’re
-                      venturing out to the grocery store, pharmacy or...
-                    </p>
-                  </div>
-                  <div className="entry-more">
-                    {' '}
-                    <a
-                      className="btn btn--white btn-line btn-line-before btn-line-inversed"
-                      href=""
-                    >
-                      <div className="line">
-                        {' '}
-                        <span> </span>
-                      </div>
-                      <span>read more</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className="blog-entry" data-hover="">
-                <div className="entry-img">
-                  <div className="entry-date">
-                    <div className="entry-content">
-                      <span className="day">20</span>
-                      <span className="month">jan</span>
-                      <span className="year">2021</span>
                     </div>
-                  </div>
-                  <a href="">
-                    <Image
-                      src="/assets/images/departments/17.jpg"
-                      width={500}
-                      height={500}
-                      alt="Tips for Eating Healthy When Working From Home"
-                    />
-                  </a>
-                </div>
 
-                <div className="entry-content">
-                  <div className="entry-meta">
-                    <div className="entry-category">
-                      <a href="javascript:void(0)">lifestyle</a>
-                      <a href="javascript:void(0)">nutrition</a>
-                    </div>
-                    <div className="divider"></div>
-                    <div className="entry-author">
-                      <p>Saul Wade</p>
-                    </div>
-                  </div>
-                  <div className="entry-title">
-                    <h4>
-                      <a href="">
-                        Tips for Eating Healthy When Working From Home
-                      </a>
-                    </h4>
-                  </div>
-                  <div className="entry-bio">
-                    <p>
-                      You’re on a conference call and somehow wandered into the
-                      kitchen. Next thing know you’re eating crackers and dry
-                      cereal out of the box. Or...
-                    </p>
-                  </div>
-                  <div className="entry-more">
-                    {' '}
-                    <a
-                      className="btn btn--white btn-line btn-line-before btn-line-inversed"
-                      href="l"
-                    >
-                      <div className="line">
-                        {' '}
-                        <span> </span>
-                      </div>
-                      <span>read more</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className="blog-entry" data-hover="">
-                <div className="entry-img">
-                  <div className="entry-date">
                     <div className="entry-content">
-                      <span className="day">20</span>
-                      <span className="month">jan</span>
-                      <span className="year">2021</span>
-                    </div>
-                  </div>
-                  <a href="">
-                    <Image
-                      src="/assets/images/departments/15.jpg"
-                      width={500}
-                      height={500}
-                      alt="Why Coronavirus Cases Among Adults Is Bad News"
-                    />
-                  </a>
-                </div>
-
-                <div className="entry-content">
-                  <div className="entry-meta">
-                    <div className="entry-category">
-                      <a href="javascript:void(0)">mental health</a>
-                      <a href="javascript:void(0)">wellness</a>
-                    </div>
-                    <div className="divider"></div>
-                    <div className="entry-author">
-                      <p>Mark Ezak</p>
-                    </div>
-                  </div>
-                  <div className="entry-title">
-                    <h4>
-                      <a href="">
-                        Why Coronavirus Cases Among Adults Is Bad News
-                      </a>
-                    </h4>
-                  </div>
-                  <div className="entry-bio">
-                    <p>
-                      A new surge of coronavirus cases has spread across the
-                      country and while there’s still so much to learn about the
-                      virus, how it’s transmitted...
-                    </p>
-                  </div>
-                  <div className="entry-more">
-                    {' '}
-                    <a
-                      className="btn btn--white btn-line btn-line-before btn-line-inversed"
-                      href=""
-                    >
-                      <div className="line">
-                        {' '}
-                        <span> </span>
+                      <div className="entry-title">
+                        <h4>
+                          <a href="">{item.title}</a>
+                        </h4>
                       </div>
-                      <span>read more</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className="blog-entry" data-hover="">
-                <div className="entry-img">
-                  <div className="entry-date">
-                    <div className="entry-content">
-                      <span className="day">20</span>
-                      <span className="month">jan</span>
-                      <span className="year">2021</span>
-                    </div>
-                  </div>
-                  <a href="">
-                    <Image
-                      src="/assets/images/departments/40.jpg"
-                      width={500}
-                      height={500}
-                      alt="Why Do People Get Kidney Stones in the Summer?"
-                    />
-                  </a>
-                </div>
-
-                <div className="entry-content">
-                  <div className="entry-meta">
-                    <div className="entry-category">
-                      <a href="javascript:void(0)">infectious</a>
-                      <a href="javascript:void(0)">tips</a>
-                    </div>
-                    <div className="divider"></div>
-                    <div className="entry-author">
-                      <p>Janette Baker</p>
-                    </div>
-                  </div>
-                  <div className="entry-title">
-                    <h4>
-                      <a href="">
-                        Why Do People Get Kidney Stones in the Summer?
-                      </a>
-                    </h4>
-                  </div>
-                  <div className="entry-bio">
-                    <p>
-                      Summer may have just officially started, but kidney stone
-                      season began a couple of weeks ago. Doctors see an
-                      increase in kidney stone cases when...
-                    </p>
-                  </div>
-                  <div className="entry-more">
-                    {' '}
-                    <a
-                      className="btn btn--white btn-line btn-line-before btn-line-inversed"
-                      href=""
-                    >
-                      <div className="line">
-                        {' '}
-                        <span> </span>
+                      <div className="entry-bio">
+                        <p>
+                          {stripHtmlTags(item.description).substring(0, 150)}...
+                        </p>
                       </div>
-                      <span>read more</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className="blog-entry" data-hover="">
-                <div className="entry-img">
-                  <div className="entry-date">
-                    <div className="entry-content">
-                      <span className="day">20</span>
-                      <span className="month">jan</span>
-                      <span className="year">2021</span>
-                    </div>
-                  </div>
-                  <Image
-                    src="/assets/images/departments/8.jpg"
-                    width={500}
-                    height={500}
-                    alt="Do Any Drugs Really Work to Treat Coronavirus?"
-                  />
-                </div>
-
-                <div className="entry-content">
-                  <div className="entry-meta">
-                    <div className="entry-category">
-                      <a href="javascript:void(0)">lifestyle</a>
-                      <a href="javascript:void(0)">nutrition</a>
-                    </div>
-                    <div className="divider"></div>
-                    <div className="entry-author">
-                      <p>Marie Black</p>
-                    </div>
-                  </div>
-                  <div className="entry-title">
-                    <h4>
-                      <a href="">
-                        Do Any Drugs Really Work to Treat Coronavirus?
-                      </a>
-                    </h4>
-                  </div>
-                  <div className="entry-bio">
-                    <p>
-                      While most people who get COVID-19 are able to recover at
-                      home, the rush is on to find a treatment that’s safe and
-                      effective against...
-                    </p>
-                  </div>
-                  <div className="entry-more">
-                    {' '}
-                    <a
-                      className="btn btn--white btn-line btn-line-before btn-line-inversed"
-                      href=""
-                    >
-                      <div className="line">
+                      <div className="entry-more">
                         {' '}
-                        <span> </span>
+                        <a
+                          className="btn btn--white btn-line btn-line-before btn-line-inversed"
+                          href=""
+                        >
+                          <div className="line">
+                            {' '}
+                            <span> </span>
+                          </div>
+                          <span>read more</span>
+                        </a>
                       </div>
-                      <span>read more</span>
-                    </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              ))
+            ) : (
+              <p>No Events</p>
+            )}
           </div>
         </div>
       </section>

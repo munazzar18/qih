@@ -242,7 +242,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
               </Link>
               <ul className="dropdown-menu">
                 <li className="nav-item">
-                  <Link href="/gallery/photo-gallery">
+                  <Link href="/gallery">
                     <span>Photo Gallery</span>
                   </Link>
                 </li>

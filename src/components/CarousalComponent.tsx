@@ -31,7 +31,7 @@ const CarousalComponent = async () => {
         data-speed="800"
         data-slider-id="#custom-carousel"
       >
-        {allSlides && allSlides.data.length ? (
+        {allSlides && allSlides?.data?.length ? (
           allSlides.data.map((slide) => (
             <div className="slide" key={slide.id}>
               <div className="bg-section">
