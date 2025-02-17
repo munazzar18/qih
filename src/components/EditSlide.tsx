@@ -1,5 +1,5 @@
 'use client'
-import { SlideCreateAction, UploadFileAction } from '@/app/_actions/_actions'
+import { SlideEditAction, UploadFileAction } from '@/app/_actions/_actions'
 import { getSlideById } from '@/app/lib/getSlides'
 import {
   AddNewSlideSchema,
@@ -99,7 +99,7 @@ const EditSlide = ({ id }: { id: number }) => {
       formData.append('image', result.data.image)
       formData.append('slideUrl', result.data.slideUrl)
 
-      const res = await SlideCreateAction(formData)
+      const res = await SlideEditAction(id, formData)
       if (res.status === 'success') {
         toast.success(res.message)
       } else {

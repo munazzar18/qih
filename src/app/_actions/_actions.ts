@@ -502,3 +502,30 @@ export const SlideCreateAction = async (formData: FormData) => {
         return error
     }
 }
+
+
+export const SlideEditAction = async (id: number, formData: FormData) => {
+    const token = (await cookies()).get('token')?.value
+    const title = formData.get('title')
+    const description = formData.get('description')
+    const image = formData.get('image')
+    const slideUrl = formData.get('slideUrl')
+
+    try {
+        const response = await fetch(`${url}slides/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ title, description, image, slideUrl })
+        })
+        const data = await response.json();
+        return data
+
+    } catch (error) {
+        console.log("Error:", error)
+        return error
+    }
+}
