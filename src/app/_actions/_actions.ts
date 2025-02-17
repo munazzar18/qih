@@ -492,7 +492,7 @@ export const SlideCreateAction = async (formData: FormData) => {
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({ title, description, image, url: slideUrl })
+            body: JSON.stringify({ title, description, image, slideUrl })
         })
         const data = await response.json();
         return data
