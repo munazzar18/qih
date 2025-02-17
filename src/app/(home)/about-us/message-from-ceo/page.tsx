@@ -34,6 +34,7 @@ const page = async () => {
                           src="/assets/photos/DrShb.jpeg"
                           width={500}
                           height={500}
+                          objectFit="cover"
                           alt="team member"
                         />
                       </div>

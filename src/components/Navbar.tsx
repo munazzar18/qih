@@ -270,7 +270,9 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                 <span>Career</span>
               </Link>
             </li>
-            <li
+
+            {/* This is mega menu for departments */}
+            {/* <li
               onMouseEnter={() => setIsOpen(true)}
               onMouseLeave={() => setIsOpen(false)}
               style={{ position: 'relative' }}
@@ -289,12 +291,15 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                     top: '100%',
                     left: 0,
                     backgroundColor: '#f9f9f9',
-                    minWidth: '600px',
+                    minWidth: '1150px',
+                    maxWidth: '1150px',
+                    width: '100%',
                     boxShadow: '0px 4px 8px rgba(0,0,0,0.2)',
                     zIndex: 1,
-                    padding: '20px',
+                    padding: '10px',
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(3, 1fr)',
+                    gridTemplateColumns: 'repeat(3, 1fr)', // 3 columns
+                    gridTemplateRows: 'repeat(7, auto)', // 7 rows
                     gridGap: '15px',
                   }}
                 >
@@ -303,8 +308,9 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                       <li
                         key={item.id}
                         style={{
-                          padding: '10px',
+                          padding: '15px',
                           listStyle: 'none',
+                          width: '100%',
                         }}
                       >
                         <Link
@@ -331,7 +337,103 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                   )}
                 </ul>
               )}
+            </li> */}
+            {/* This is end of mega menu for departments */}
+
+            <li
+              onMouseEnter={() => setIsOpen(true)}
+              onMouseLeave={() => setIsOpen(false)}
+              style={{ position: 'relative' }}
+              className="nav-item has-dropdown"
+              id="departments"
+            >
+              <Link className="dropdown-toggle nav-link" href="/departments">
+                <span>Departments</span>
+              </Link>
+
+              {isOpen && (
+                <ul
+                  className="dropdown-menu"
+                  style={{
+                    position: 'absolute',
+                    top: '100%',
+                    left: 0,
+                    backgroundColor: '#f9f9f9',
+                    minWidth: '1150px',
+                    maxWidth: '1150px',
+                    width: '100%',
+                    boxShadow: '0px 4px 8px rgba(0,0,0,0.2)',
+                    zIndex: 1,
+                    padding: '10px',
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(3, 1fr)', // 3 columns
+                    gridTemplateRows: 'repeat(5, auto)', // 7 rows
+                    gridGap: '15px',
+                  }}
+                >
+                  {departments.length ? (
+                    <>
+                      {/* Display first 20 items */}
+                      {departments.slice(0, 20).map((item) => (
+                        <li
+                          key={item.id}
+                          style={{
+                            padding: '15px',
+                            listStyle: 'none',
+                            width: '100%',
+                          }}
+                        >
+                          <Link
+                            href={`/departments/${item.id}`}
+                            className="dropdown-item"
+                          >
+                            <span
+                              style={{
+                                textDecoration: 'none',
+                                color: '#333',
+                                fontWeight: 'bold',
+                                cursor: 'pointer',
+                              }}
+                            >
+                              {item.title}
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+
+                      {/* Display the 21st item as "More" link */}
+                      {departments.length > 19 && (
+                        <li
+                          style={{
+                            padding: '15px',
+                            listStyle: 'none',
+                            width: '100%',
+                          }}
+                        >
+                          <Link href="/departments" className="dropdown-item">
+                            <span
+                              style={{
+                                textDecoration: 'none',
+                                color: '#333',
+                                fontWeight: 'bold',
+                                cursor: 'pointer',
+                              }}
+                            >
+                              All Departments
+                            </span>
+                          </Link>
+                        </li>
+                      )}
+                    </>
+                  ) : (
+                    <li style={{ color: 'gray', padding: '10px' }}>
+                      Please wait...
+                    </li>
+                  )}
+                </ul>
+              )}
             </li>
+
             <li
               className={`nav-item has-dropdown ${
                 currentPath.includes('contact') ? 'active' : ''

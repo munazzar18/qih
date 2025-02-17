@@ -331,15 +331,15 @@ const page = async () => {
                     <div className="blog-entry" data-hover="">
                       <div className="entry-img">
                         <a href="">
-                          <Image
+                          <img
                             src={
                               dept.image
-                                ? `https://driveo.pk/${dept.image}`
+                                ? `https://qih.driveo.pk/${dept.image}`
                                 : `/assets/images/departments/${index + 1}.jpg`
                             }
                             width={500}
                             height={500}
-                            alt="6 tips to protect your mental health when sick"
+                            alt={dept.title}
                           />
                         </a>
                       </div>

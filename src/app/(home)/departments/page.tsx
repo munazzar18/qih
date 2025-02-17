@@ -102,7 +102,7 @@ const DepartmentsPage = async () => {
                       <div className="department-panel-holder">
                         <div className="department-img">
                           <Image
-                            src={`/assets/images/departments/${dept.id}.jpg`}
+                            src={`https://qih.driveo.pk/${dept.image}`}
                             width={500}
                             height={500}
                             alt={`${dept.title} img`}
