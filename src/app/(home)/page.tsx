@@ -687,60 +687,57 @@ const page = async () => {
             data-loop="false"
             data-speed="200"
           >
-            {eventData && eventData.events.length ? (
+            {eventData?.events?.length ? (
               eventData.events.map((item: any) => (
                 <div key={item.id}>
-                  <div className="blog-entry" data-hover="">
-                    <div className="entry-img">
-                      <div className="entry-date">
-                        <div className="entry-content">
-                          <span className="day">
-                            {item.start_date_details.day}
-                          </span>
-                          <span className="month">
-                            {getMonthsFromNum(item.start_date_details.month)}
-                          </span>
-                          <span className="year">
-                            {item.start_date_details.year}
-                          </span>
+                  <Link href={`/about-us/events/${item.id}`} passHref>
+                    <div className="blog-entry" data-hover="">
+                      <div className="entry-img">
+                        <div className="entry-date">
+                          <div className="entry-content">
+                            <span className="day">
+                              {item.start_date_details?.day}
+                            </span>
+                            <span className="month">
+                              {getMonthsFromNum(item.start_date_details?.month)}
+                            </span>
+                            <span className="year">
+                              {item.start_date_details?.year}
+                            </span>
+                          </div>
                         </div>
-                      </div>
-                      <a href="">
                         <img
-                          src={item.image.url}
+                          src={item.image?.url}
                           width={500}
                           height={500}
-                          alt="6 tips to protect your mental health when sick"
+                          alt={item.title || 'Event image'}
                         />
-                      </a>
-                    </div>
+                      </div>
 
-                    <div className="entry-content">
-                      <div className="entry-title">
-                        <h4>
-                          <a href="">{item.title}</a>
-                        </h4>
-                      </div>
-                      <div className="entry-bio">
-                        <p>
-                          {stripHtmlTags(item.description).substring(0, 150)}...
-                        </p>
-                      </div>
-                      <div className="entry-more">
-                        {' '}
-                        <a
-                          className="btn btn--white btn-line btn-line-before btn-line-inversed"
-                          href=""
-                        >
-                          <div className="line">
-                            {' '}
-                            <span> </span>
-                          </div>
-                          <span>read more</span>
-                        </a>
+                      <div className="entry-content">
+                        <div className="entry-title">
+                          <h4>{item.title}</h4>
+                        </div>
+                        <div className="entry-bio">
+                          <p>
+                            {stripHtmlTags(item.description).substring(0, 150)}
+                            ...
+                          </p>
+                        </div>
+                        <div className="entry-more">
+                          <Link
+                            href={`/about-us/events/${item.id}`}
+                            className="btn btn--white btn-line btn-line-before btn-line-inversed"
+                          >
+                            <div className="line">
+                              <span></span>
+                            </div>
+                            <span>read more</span>
+                          </Link>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 </div>
               ))
             ) : (

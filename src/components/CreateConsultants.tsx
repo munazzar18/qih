@@ -160,6 +160,7 @@ const CreateConsultant = () => {
   ]
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    console.log('FormData:', myForm)
     e.preventDefault()
     const result = consultantSchema.safeParse(myForm)
     if (result.success) {

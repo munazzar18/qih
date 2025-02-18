@@ -167,6 +167,7 @@ export const DepartmentDeleteAction = async (id: number) => {
 }
 
 export const ConsultantCreateAction = async (formData: FormData) => {
+    console.log("this is formData", formData)
     const token = (await cookies()).get('token')?.value
     const name = formData.get('name')
     const email = formData.get('email')

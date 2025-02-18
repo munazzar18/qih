@@ -1,5 +1,6 @@
 import { getPublicConsultantById } from '@/app/lib/getConsultants'
 import React from 'react'
+import { GoDotFill } from 'react-icons/go'
 
 interface Consultant {
   status: string
@@ -9,7 +10,12 @@ interface Consultant {
     name: string
     email: string
     work_experience: string
+    residency: string
+    extra_info: string
     membership: string
+    certification: string
+    award: string
+    diploma: string
     education: [
       {
         degree: string
@@ -35,6 +41,8 @@ const SingleConsultantPage = async (props: {
   const params = await props.params
 
   const consultant: Consultant = await getPublicConsultantById(params.id)
+
+  console.log('consultant buy id', consultant)
 
   return (
     <div className="wrapper clearfix" id="wrapperParallax">
@@ -190,58 +198,166 @@ const SingleConsultantPage = async (props: {
               </div>
             </div>
             <div className="col-12 col-lg-8">
-              <h5 className="entry-heading">Education</h5>
-              <div className="entry-table">
-                <table className="table table-striped">
-                  <tbody>
-                    {consultant.data?.education?.map((edu, index) => (
-                      <tr key={index}>
-                        <td>
-                          <div className="content head">{edu.degree}</div>
-                        </td>
-                        <td>
-                          <div className="content">{edu.institute}</div>
-                        </td>
-                        <td>
-                          <div className="content">{edu.year}</div>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+              {consultant.data?.education?.length > 0 && (
+                <>
+                  <h5 className="entry-heading">Education</h5>
+                  <div className="entry-table">
+                    <table className="table table-striped">
+                      <tbody>
+                        {consultant.data?.education?.map((edu, index) => (
+                          <tr key={index}>
+                            <td>
+                              <div className="content head">{edu.degree}</div>
+                            </td>
+                            <td>
+                              <div className="content">{edu.institute}</div>
+                            </td>
+                            <td>
+                              <div className="content">{edu.year}</div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </>
+              )}
 
-              <div className="entry-bio entry-education">
-                <h5 className="entry-heading">Membership</h5>
+              {consultant?.data?.membership ? (
+                <div className="entry-bio entry-education">
+                  <h5 className="entry-heading">Membership</h5>
 
-                <div className="education-panels">
-                  {consultant?.data?.membership ? (
+                  <div className="education-panels">
                     <div
                       dangerouslySetInnerHTML={{
                         __html: consultant?.data?.membership,
                       }}
                     ></div>
-                  ) : (
-                    <p>No membership</p>
-                  )}
+                  </div>
                 </div>
-              </div>
+              ) : (
+                ''
+              )}
 
-              <div className="entry-bio entry-education">
-                <h5 className="entry-heading">Work experience</h5>
+              {consultant?.data?.work_experience ? (
+                <div className="entry-bio entry-education">
+                  <h5 className="entry-heading">Work experience</h5>
 
-                <div className="education-panels">
-                  {consultant?.data?.work_experience ? (
+                  <div className="education-panels">
                     <div
                       dangerouslySetInnerHTML={{
                         __html: consultant?.data?.work_experience,
                       }}
                     ></div>
-                  ) : (
-                    <p>No work experience</p>
-                  )}
+                  </div>
                 </div>
-              </div>
+              ) : (
+                ''
+              )}
+
+              {consultant?.data?.residency ? (
+                <div className="entry-bio entry-education">
+                  <h5 className="entry-heading">Residency</h5>
+                  <div className="education-panels">
+                    <ul>
+                      {consultant?.data?.residency
+                        .replace(/<\/?ul>/g, '') // Remove <ul> tags
+                        .split('</li><li>') // Split on list items
+                        .map((item, index) => (
+                          <li key={index}>
+                            <GoDotFill
+                              size={10}
+                              style={{ marginRight: '5px' }}
+                            />
+                            {item.replace(/<\/?li>/g, '')}
+                          </li> // Remove <li> tags
+                        ))}
+                    </ul>
+                  </div>
+                </div>
+              ) : null}
+
+              {consultant?.data?.extra_info ? (
+                <div className="entry-bio entry-education">
+                  <h5 className="entry-heading">Extra Information</h5>
+
+                  <div className="education-panels">
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: consultant?.data?.extra_info,
+                      }}
+                    ></div>
+                  </div>
+                </div>
+              ) : (
+                ''
+              )}
+
+              {consultant?.data?.diploma ? (
+                <div className="entry-bio entry-education">
+                  <h5 className="entry-heading">Diploma</h5>
+                  <div className="education-panels">
+                    <ul>
+                      {consultant?.data?.diploma
+                        .replace(/<\/?ul>/g, '') // Remove <ul> tags
+                        .split('</li><li>') // Split on list items
+                        .map((item, index) => (
+                          <li key={index}>
+                            <GoDotFill
+                              size={10}
+                              style={{ marginRight: '5px' }}
+                            />
+                            {item.replace(/<\/?li>/g, '')}
+                          </li> // Remove <li> tags
+                        ))}
+                    </ul>
+                  </div>
+                </div>
+              ) : null}
+
+              {consultant?.data?.certification ? (
+                <div className="entry-bio entry-education">
+                  <h5 className="entry-heading">Certification</h5>
+                  <div className="education-panels">
+                    <ul>
+                      {consultant?.data?.certification
+                        .replace(/<\/?ul>/g, '') // Remove <ul> tags
+                        .split('</li><li>') // Split on list items
+                        .map((item, index) => (
+                          <li key={index}>
+                            <GoDotFill
+                              size={10}
+                              style={{ marginRight: '5px' }}
+                            />
+                            {item.replace(/<\/?li>/g, '')}
+                          </li> // Remove <li> tags
+                        ))}
+                    </ul>
+                  </div>
+                </div>
+              ) : null}
+
+              {consultant?.data?.award ? (
+                <div className="entry-bio entry-education">
+                  <h5 className="entry-heading">Awards</h5>
+                  <div className="education-panels">
+                    <ul>
+                      {consultant?.data?.award
+                        .replace(/<\/?ul>/g, '') // Remove <ul> tags
+                        .split('</li><li>') // Split on list items
+                        .map((item, index) => (
+                          <li key={index}>
+                            <GoDotFill
+                              size={10}
+                              style={{ marginRight: '5px' }}
+                            />
+                            {item.replace(/<\/?li>/g, '')}
+                          </li> // Remove <li> tags
+                        ))}
+                    </ul>
+                  </div>
+                </div>
+              ) : null}
             </div>
           </div>
         </div>

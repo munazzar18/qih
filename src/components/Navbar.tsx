@@ -165,6 +165,11 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                   </Link>
                 </li>
                 <li className="nav-item">
+                  <Link href="/about-us/events">
+                    <span>Events</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
                   <Link href="/about-us/highlights">
                     <span>Highlights</span>
                   </Link>
@@ -271,6 +276,104 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
               </Link>
             </li>
 
+            {/* <li
+              onMouseEnter={() => setIsOpen(true)}
+              onMouseLeave={() => setIsOpen(false)}
+              style={{ position: 'relative' }}
+              className="nav-item has-dropdown"
+              id="departments"
+            >
+              <Link className="dropdown-toggle nav-link" href="/departments">
+                <span>Departments</span>
+              </Link>
+
+              {isOpen && (
+                <ul
+                  className="dropdown-menu"
+                  style={{
+                    position: 'absolute',
+                    top: '100%',
+                    left: 0,
+                    minWidth: '1150px',
+                    maxWidth: '1150px',
+                    width: '100%',
+                    boxShadow: '0px 4px 8px rgba(0,0,0,0.2)',
+                    zIndex: 1000,
+                    padding: '20px',
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(3, 1fr)',
+                    gridTemplateRows: 'repeat(5, auto)',
+                    backgroundColor: '#fff',
+                    gridGap: '23px',
+                  }}
+                >
+                  {departments.length ? (
+                    <>
+                      {departments.slice(0, 20).map((item) => (
+                        <li
+                          key={item.id}
+                          style={{
+                            listStyle: 'none',
+                            borderRadius: '8px 8px 0 8px',
+                            border: '1px solid #ccc',
+                            backgroundColor: '#f9f9f9',
+                            height: '40px',
+                            width: '100%',
+                          }}
+                        >
+                          <Link
+                            href={`/departments/${item.id}`}
+                            className="dropdown-item"
+                          >
+                            <span
+                              style={{
+                                textDecoration: 'none',
+                                color: '#616161',
+                                fontWeight: 'bold',
+                                cursor: 'pointer',
+                              }}
+                            >
+                              {item.title}
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+
+                      {departments.length > 19 && (
+                        <li
+                          style={{
+                            listStyle: 'none',
+                            borderRadius: '8px 8px 0 8px',
+                            border: '1px solid #ccc',
+                            backgroundColor: '#B8DDD7',
+                            height: '40px',
+                            width: '100%',
+                          }}
+                        >
+                          <Link href="/departments" className="dropdown-item">
+                            <span
+                              style={{
+                                textDecoration: 'none',
+                                color: '#616161',
+                                fontWeight: 'bold',
+                                cursor: 'pointer',
+                              }}
+                            >
+                              All Departments
+                            </span>
+                          </Link>
+                        </li>
+                      )}
+                    </>
+                  ) : (
+                    <li style={{ color: 'gray', padding: '10px' }}>
+                      Please wait...
+                    </li>
+                  )}
+                </ul>
+              )}
+            </li> */}
+
             <li
               onMouseEnter={() => setIsOpen(true)}
               onMouseLeave={() => setIsOpen(false)}
@@ -289,17 +392,19 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                     position: 'absolute',
                     top: '100%',
                     left: 0,
-                    backgroundColor: '#f9f9f9',
+                    width: '100%',
                     minWidth: '1150px',
                     maxWidth: '1150px',
-                    width: '100%',
                     boxShadow: '0px 4px 8px rgba(0,0,0,0.2)',
-                    zIndex: 1,
-                    padding: '10px',
+                    zIndex: 1000,
+                    padding: '20px',
+                    backgroundColor: '#fff',
+                    overflowWrap: 'break-word',
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(3, 1fr)', // 3 columns
-                    gridTemplateRows: 'repeat(5, auto)', // 7 rows
+                    gridTemplateColumns: 'repeat(3, 1fr)',
+                    gridTemplateRows: 'repeat(5, auto)',
                     gridGap: '15px',
+                    transition: 'all 0.3s ease',
                   }}
                 >
                   {departments.length ? (
@@ -309,9 +414,13 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                         <li
                           key={item.id}
                           style={{
-                            padding: '15px',
                             listStyle: 'none',
+                            borderRadius: '8px 8px 0 8px',
+                            border: '1px solid #ccc',
+                            backgroundColor: '#f9f9f9',
+                            height: '40px',
                             width: '100%',
+                            marginBottom: '10px', // Adds spacing between items
                           }}
                         >
                           <Link
@@ -321,7 +430,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                             <span
                               style={{
                                 textDecoration: 'none',
-                                color: '#333',
+                                color: '#616161',
                                 fontWeight: 'bold',
                                 cursor: 'pointer',
                               }}
@@ -336,8 +445,11 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                       {departments.length > 19 && (
                         <li
                           style={{
-                            padding: '15px',
                             listStyle: 'none',
+                            borderRadius: '8px 8px 0 8px',
+                            border: '1px solid #ccc',
+                            backgroundColor: '#B8DDD7',
+                            height: '40px',
                             width: '100%',
                           }}
                         >
@@ -345,7 +457,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                             <span
                               style={{
                                 textDecoration: 'none',
-                                color: '#333',
+                                color: '#616161',
                                 fontWeight: 'bold',
                                 cursor: 'pointer',
                               }}

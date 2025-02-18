@@ -377,7 +377,7 @@ const EditConsultant = ({ id }: { id: number }) => {
                     {/* Dynamic Education Fields */}
                     <div className="col-12 mb-5">
                       <label className="fw-bold text-black">Education</label>
-                      {myForm.education.map((edu, index) => (
+                      {myForm.education?.map((edu, index) => (
                         <div
                           key={index}
                           className="education-row d-flex align-items-center mb-2"
