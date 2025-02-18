@@ -43,12 +43,11 @@ const CarousalComponent = async () => {
               <div className="container">
                 <div className="slide-content">
                   <div className="row">
-                    <div className="col-12 col-lg-7 ">
+                    <div className="col-12 col-lg-7">
                       <h1
                         className="slide-headline"
                         style={{
-                          opacity: '40%',
-                          backgroundColor: '#0b2d29',
+                          backgroundColor: 'rgba(11, 45, 41, 0.7)',
                           padding: '10px',
                           borderRadius: '10px',
                         }}
@@ -60,8 +59,7 @@ const CarousalComponent = async () => {
                       <p
                         className="slide-desc"
                         style={{
-                          opacity: '40%',
-                          backgroundColor: '#0b2d29',
+                          backgroundColor: 'rgba(11, 45, 41, 0.7)',
                           padding: '10px',
                           borderRadius: '10px',
                         }}
@@ -70,23 +68,19 @@ const CarousalComponent = async () => {
                       </p>
                       <div className="slide-list">
                         <div className="icon">
-                          {' '}
-                          <i className=" flaticon-025-examination"></i>
-                          <p>exmination</p>
+                          <i className="flaticon-025-examination"></i>
+                          <p>examination</p>
                         </div>
                         <div className="icon">
-                          {' '}
-                          <i className=" flaticon-019-prescription"></i>
+                          <i className="flaticon-019-prescription"></i>
                           <p>prescription</p>
                         </div>
                         <div className="icon">
-                          {' '}
-                          <i className=" flaticon-043-cardiogram"></i>
+                          <i className="flaticon-043-cardiogram"></i>
                           <p>cardiogram</p>
                         </div>
                         <div className="icon">
-                          {' '}
-                          <i className=" flaticon-046-blood-pressure"></i>
+                          <i className="flaticon-046-blood-pressure"></i>
                           <p>blood pressure</p>
                         </div>
                       </div>
