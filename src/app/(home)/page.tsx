@@ -325,7 +325,7 @@ const page = async () => {
           >
             {departments && departments.data.length ? (
               departments.data
-                .filter((dept) => dept.is_featured === 1)
+                .filter((dept) => dept?.is_featured === 1)
                 .map((dept, index) => (
                   <div key={dept.id}>
                     <div className="blog-entry" data-hover="">
@@ -334,12 +334,12 @@ const page = async () => {
                           <img
                             src={
                               dept.image
-                                ? `https://qih.driveo.pk/${dept.image}`
+                                ? `https://qih.driveo.pk/${dept?.image}`
                                 : `/assets/images/departments/${index + 1}.jpg`
                             }
                             width={500}
                             height={500}
-                            alt={dept.title}
+                            alt={dept?.title}
                           />
                         </a>
                       </div>
@@ -347,12 +347,14 @@ const page = async () => {
                       <div className="entry-content">
                         <div className="entry-title">
                           <h4>
-                            <a href="">{dept.title}</a>
+                            <a href="">{dept?.title}</a>
                           </h4>
                         </div>
                         <div className="entry-bio">
                           <p>
-                            {stripHtmlTags(dept.description).substring(0, 150)}
+                            {stripHtmlTags(
+                              dept?.description ? dept?.description : ''
+                            ).substring(0, 150)}
                             ...
                           </p>
                         </div>
@@ -360,7 +362,7 @@ const page = async () => {
                           {' '}
                           <Link
                             className="btn btn--white btn-line btn-line-before btn-line-inversed"
-                            href={`/departments/${dept.id}`}
+                            href={`/departments/${dept?.id}`}
                           >
                             <div className="line">
                               {' '}
