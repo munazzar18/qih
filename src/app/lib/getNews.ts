@@ -39,7 +39,7 @@ export const getNewsById = async (id: number) => {
 
 export const getEvents = async () => {
     try {
-        const res = await fetch('https://wp.driveo.pk/wp-json/tribe/events/v1/events?per_page=5',
+        const res = await fetch('https://wp.driveo.pk/wp-json/tribe/events/v1/events/?page=1&per_page=10&start_date=2025-01-01',
             {
                 cache: 'no-cache',
                 method: 'GET',
