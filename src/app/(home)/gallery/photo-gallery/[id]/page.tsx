@@ -1,4 +1,5 @@
 import { getGallery } from '@/app/lib/getGallery'
+import Image from 'next/image'
 import React from 'react'
 
 const page = async (props: {
@@ -29,8 +30,10 @@ const page = async (props: {
               >
                 <div className="team-member-holder" data-hover="">
                   <div className="team-img">
-                    <img
-                      src={item.url?.replace('-150x150', '')}
+                    <Image
+                      width={350}
+                      height={350}
+                      src={item.url?.replace('-150x150', '-350x350')}
                       alt={item.alt}
                     />
                     <div className="team-hover">
