@@ -79,7 +79,7 @@ const page = async () => {
           <div className="row g-0 features-holder">
             <div className="col-12 col-lg-3">
               <div className="feature-panel feature-reservation">
-                <Link href="/about/message-from-ceo">
+                <Link href="/about-us/message-from-ceo">
                   <div
                     className="feature-content"
                     style={{
