@@ -259,7 +259,7 @@ const page = async () => {
               <div className="about-img">
                 <Image
                   className="img-fluid"
-                  src="/assets/images/departments/21.jpg"
+                  src="/assets/photos/youtube.jpeg"
                   width={500}
                   height={500}
                   alt="about Image"
