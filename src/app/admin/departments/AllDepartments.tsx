@@ -23,7 +23,6 @@ interface Department {
 const Departments = ({ departments }: { departments: Department }) => {
   const [departmentsArr, setDepartmentsArr] = useState(departments.data)
 
-
   const handleDelete = async (id: number) => {
     let res = await DepartmentDeleteAction(id)
     if (res.status === 'success') {
@@ -44,7 +43,11 @@ const Departments = ({ departments }: { departments: Department }) => {
             <h4>Departments</h4>
           </div>
           <div>
-            <Link href="/admin/departments/create" className="btn btn-primary">
+            <Link
+              href="/admin/departments/create"
+              style={{ width: '200px' }}
+              className="btn btn--secondary btn-line btn-line-before btn--block"
+            >
               Add Department
             </Link>
           </div>

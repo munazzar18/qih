@@ -27,15 +27,15 @@ const Sidebar = ({
 
   return (
     <div
-      className="d-flex flex-column vh-100 bg-primary text-white p-2"
-      style={{ width: '16rem' }}
+      style={{ backgroundColor: '#0B2D29' }}
+      className="d-flex flex-column vh-100   p-2"
     >
-      <div className="flex-grow-1 overflow-auto">
+      <div style={{ color: '#8AC6BD' }} className="flex-grow-1 overflow-auto">
         <ul className="list-unstyled">
           <li className="text-center py-3">
             <Link
               href="/"
-              className="text-decoration-none text-white d-flex flex-column align-items-center"
+              className="text-decoration-none  d-flex flex-column align-items-center"
             >
               <img
                 src="/assets/photos/logo.png"
@@ -54,7 +54,8 @@ const Sidebar = ({
                 <>
                   <a
                     onClick={() => toggleDropdown(item.id)}
-                    className={`d-flex align-items-center py-2 px-3 text-decoration-none text-white ${
+                    style={{ color: 'inherit', textDecoration: 'none' }} // Prevents blue hover
+                    className={`d-flex align-items-center py-2 px-3 ${
                       pathname === item.link ? 'fw-bold bg-secondary' : ''
                     }`}
                     role="button"
@@ -69,13 +70,15 @@ const Sidebar = ({
                       )}
                     </span>
                   </a>
+
                   {expandedItems.includes(item.id) && (
                     <ul className="list-unstyled ps-4">
                       {item.children.map((child) => (
                         <li key={child.id}>
                           <Link
+                            style={{ color: 'inherit', textDecoration: 'none' }}
                             href={child.link}
-                            className={`d-block py-1 text-decoration-none text-white ${
+                            className={`d-block py-1 text-decoration-none  ${
                               pathname === child.link
                                 ? 'fw-bold bg-secondary'
                                 : ''
@@ -90,8 +93,9 @@ const Sidebar = ({
                 </>
               ) : (
                 <Link
+                  style={{ color: 'inherit', textDecoration: 'none' }}
                   href={item.link}
-                  className={`d-flex align-items-center py-2 px-3 text-decoration-none text-white ${
+                  className={`d-flex align-items-center py-2 px-3 text-decoration-none ${
                     pathname === item.link ? 'fw-bold bg-secondary' : ''
                   }`}
                 >
@@ -106,14 +110,15 @@ const Sidebar = ({
 
       <div className="mt-auto">
         <a
-          className="d-flex align-items-center py-2 px-3 text-decoration-none text-white"
+          className="d-flex align-items-center py-2 px-3 text-decoration-none"
           role="button"
         >
           <form action={LogoutAction}>
             <span className="d-flex align-items-center">
               <button
+                style={{ color: '#8AC6BD' }}
                 type="submit"
-                className="btn btn-link text-white text-decoration-none p-0"
+                className="btn  text-decoration-none p-0"
               >
                 Logout
               </button>

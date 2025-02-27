@@ -41,13 +41,15 @@ const ConsultantsPage = async () => {
               <h4>Consultants</h4>
             </div>
             <div>
-              <Link
-                href="/admin/consultants/create"
-                type="button"
-                className="btn btn-primary"
-              >
-                Add consultant
-              </Link>
+              <button style={{ width: '200px' }}>
+                <Link
+                  href="/admin/consultants/create"
+                  type="button"
+                  className="btn btn--secondary btn-line btn-line-before btn--block"
+                >
+                  Add consultant
+                </Link>
+              </button>
             </div>
           </div>
           <table className="table">

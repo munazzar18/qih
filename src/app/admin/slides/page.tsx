@@ -32,7 +32,8 @@ const SlidersPage = async () => {
             <Link
               href="/admin/slides/create"
               type="button"
-              className="btn btn-primary"
+              className="btn btn--secondary btn-line btn-line-before btn--block"
+              style={{ width: '200px' }}
             >
               Add Slide
             </Link>

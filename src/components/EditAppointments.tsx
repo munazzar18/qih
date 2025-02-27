@@ -71,7 +71,7 @@ const EditAppointments = ({ appointment }: { appointment: Appointment }) => {
   //   if (!myForm.department_id) return
   //   setLoading(true)
   //   const res = await getConsultantsByDepartmentId(+myForm.department_id);
-  
+
   //   setConsultants(res.data)
   //   setLoading(false)
   // }
@@ -265,7 +265,8 @@ const EditAppointments = ({ appointment }: { appointment: Appointment }) => {
     //         <div className="col-12">
     //           <button
     //             type="submit"
-    //             className="btn btn--secondary btn-line btn-line-before btn--block"
+    //              className="btn btn--secondary btn-line btn-line-before btn--block"
+    //             style={{ width: '200px' }}
     //           >
     //             <span className="line">
     //               {' '}

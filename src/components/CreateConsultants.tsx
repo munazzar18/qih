@@ -416,7 +416,11 @@ const CreateConsultant = () => {
                     </div>
                     {/* Submit Button */}
                     <div className="col-12">
-                      <button className="btn btn--primary" type="submit">
+                      <button
+                        className="btn btn--secondary btn-line btn-line-before btn--block"
+                        style={{ width: '200px' }}
+                        type="submit"
+                      >
                         Save
                       </button>
                     </div>

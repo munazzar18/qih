@@ -47,7 +47,8 @@ const AdminAppointments = async () => {
             <Link
               href="/admin/appointments/create"
               type="button"
-              className="btn btn-primary"
+              className="btn btn--secondary btn-line btn-line-before btn--block"
+              style={{ width: '200px' }}
             >
               Add Appointment
             </Link>
@@ -76,10 +77,13 @@ const AdminAppointments = async () => {
                     <td>{appointment.consultant.name}</td>
                     <td>{appointment.user.name}</td>
                     <td>
-                      <Link href={`/admin/appointments/edit/${appointment.id}`} className="text-primary mx-2">
+                      <Link
+                        href={`/admin/appointments/edit/${appointment.id}`}
+                        className="text-primary mx-2"
+                      >
                         <FaEdit />
                       </Link>
-                      <DeleteAppointments id={appointment.id}/> 
+                      <DeleteAppointments id={appointment.id} />
                     </td>
                   </tr>
                 ))
@@ -90,7 +94,5 @@ const AdminAppointments = async () => {
     </div>
   )
 }
-
-
 
 export default AdminAppointments

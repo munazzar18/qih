@@ -33,7 +33,8 @@ const DynamicPages = async () => {
               <Link
                 href="/admin/pages/create"
                 type="button"
-                className="btn btn-primary"
+                className="btn btn--secondary btn-line btn-line-before btn--block"
+                style={{ width: '200px' }}
               >
                 Add Page
               </Link>

@@ -255,6 +255,7 @@ const MakeAppointment = () => {
               <button
                 type="submit"
                 className="btn btn--secondary btn-line btn-line-before btn--block"
+                style={{ width: '200px' }}
               >
                 <span className="line">
                   {' '}
