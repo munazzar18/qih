@@ -44,24 +44,24 @@ export const LoginAction = async (formData: FormData) => {
     try {
         const response = await fetch(`${url}login`, {
             method: 'POST',
-            // headers: {
-            //     'Content-Type': 'application/json',
-            //     'Accept': 'application/json'
-            // },
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
             body: JSON.stringify({ email, password })
         })
         const data = await response.json();
 
 
-        // (await cookies()).set('token', data.token, {
-        //     httpOnly: true,
-        //     secure: true,
-        // });
+        (await cookies()).set('token', data.token, {
+            httpOnly: true,
+            secure: true,
+        });
 
-        // (await cookies()).set('user', JSON.stringify(data.user), {
-        //     httpOnly: true,
-        //     secure: true,
-        // })
+        (await cookies()).set('user', JSON.stringify(data.user), {
+            httpOnly: true,
+            secure: true,
+        })
 
         return data
     } catch (error) {
@@ -386,6 +386,38 @@ export const MakeAppointmentAction = async (formData: FormData) => {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                mr_no,
+                patient_name,
+                mobile_no,
+                appointment_datetime,
+                department_id,
+                consultant_id,
+                message
+            })
+        })
+        const data = await response.json();
+        return data
+    } catch (error) {
+        return error
+    }
+}
+
+export const MakePublicAppointmentAction = async (formData: FormData) => {
+    const mr_no = formData.get('mr_no')
+    const patient_name = formData.get('patient_name')
+    const mobile_no = formData.get('mobile_no')
+    const appointment_datetime = formData.get('appointment_dateTime')
+    const department_id = Number(formData.get('department_id'))
+    const consultant_id = Number(formData.get('consultant_id'))
+    const message = formData.get('message')
+    try {
+        const response = await fetch(`${url}public/appointments`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
             body: JSON.stringify({
                 mr_no,

@@ -79,11 +79,13 @@ custom.css and it will override the style in this file. You have been warned! :)
   --global--color-primary-light: #b8ddd7;
 
   /* Secondary – Client dark green */
-  --global--color-secondary: #0b2d29;
-  /* Approximately 30% darker than #0b2d29 */
+  /* --global--color-secondary: #0b2d29;
   --global--color-secondary-darken: #081f1c;
-  /* Approximately 40% lighter than #0b2d29 */
-  --global--color-secondary-light: #6d817f;
+  --global--color-secondary-light: #6d817f; */
+
+  --global--color-secondary: #0e8219;
+  --global--color-secondary-darken: #0b6614;
+  --global--color-secondary-light: #28a133;
 
   /* Heading colors – using the dark green as the base */
   --global--color-heading: var(--global--color-secondary); /* #0b2d29 */

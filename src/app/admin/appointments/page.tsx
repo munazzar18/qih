@@ -67,15 +67,15 @@ const AdminAppointments = async () => {
             </tr>
           </thead>
           <tbody>
-            {allAppointments?.data.length
-              ? allAppointments.data.map((appointment, index) => (
+            {allAppointments && allAppointments?.data?.length
+              ? allAppointments?.data?.map((appointment, index) => (
                   <tr key={appointment.id}>
                     <th scope="row">{index + 1}</th>
-                    <td>{appointment.patient_name}</td>
-                    <td>{appointment.mobile_no}</td>
-                    <td>{appointment.appointment_datetime}</td>
-                    <td>{appointment.consultant.name}</td>
-                    <td>{appointment.user.name}</td>
+                    <td>{appointment?.patient_name}</td>
+                    <td>{appointment?.mobile_no}</td>
+                    <td>{appointment?.appointment_datetime}</td>
+                    <td>{appointment?.consultant?.name}</td>
+                    <td>{appointment?.user?.name}</td>
                     <td>
                       <Link
                         href={`/admin/appointments/edit/${appointment.id}`}

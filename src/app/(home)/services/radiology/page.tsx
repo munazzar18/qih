@@ -14,37 +14,35 @@ interface PagesData {
   ]
 }
 
-const page = async() => {
-
+const page = async () => {
   const pageData: PagesData = await getPublicPageBySlug('radiology')
-
-
 
   return (
     <div className="wrapper clearfix" id="wrapperParallax">
-        <section className="features-bar" id="featuresBar-1">
-          <div className="container">
-            <div className="row">
+      <section className="features-bar" id="featuresBar-1">
+        <div className="container">
+          <div className="row">
             <div className="col-12">
-                <div className="entry-bio">
-                  <h5 className="entry-heading">{pageData?.data[0]?.title}</h5>
-                  <p className="entry-desc strong">
-                    {pageData?.data[0]?.short_description}
-                  </p>
-                  <br />
-                  <br />
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: pageData?.data[0]?.description,
-                    }}
-                  ></div>
-                </div>
-              </div>
+              <div className="entry-bio">
+                <h5 className="entry-heading">{pageData?.data[0]?.title}</h5>
+                <p className="entry-desc strong">
+                  {pageData?.data[0]?.short_description}
+                </p>
+                <br />
+                <br />
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: pageData?.data[0]?.description
+                      ? pageData?.data[0]?.description
+                      : '',
+                  }}
+                ></div>
               </div>
             </div>
-          </section>
           </div>
-            
+        </div>
+      </section>
+    </div>
   )
 }
 

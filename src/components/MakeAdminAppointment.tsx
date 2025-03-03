@@ -1,5 +1,5 @@
 'use client'
-import { MakePublicAppointmentAction } from '@/app/_actions/_actions'
+import { MakeAppointmentAction } from '@/app/_actions/_actions'
 import {
   getConsultantsByDepartmentId,
   getPublicConsultants,
@@ -27,7 +27,7 @@ interface Department {
   description: string
 }
 
-const MakeAppointment = () => {
+const MakeAdminAppointment = () => {
   const [myForm, setMyForm] = useState<MakeAppointmentSchema>({
     mr_no: '',
     patient_name: '',
@@ -94,7 +94,7 @@ const MakeAppointment = () => {
       formData.append('department_id', result.data.department_id)
       formData.append('consultant_id', result.data.consultant_id)
       formData.append('message', result.data.message)
-      const res = await MakePublicAppointmentAction(formData)
+      const res = await MakeAppointmentAction(formData)
       if (res.status === 'success') {
         setLoading(false)
         toast.success(res.message)
@@ -271,4 +271,4 @@ const MakeAppointment = () => {
   )
 }
 
-export default MakeAppointment
+export default MakeAdminAppointment

@@ -1,8 +1,8 @@
-import MakeAppointment from '@/components/MakeAppointment'
+import MakeAdminAppointment from '@/components/MakeAdminAppointment'
 import React from 'react'
 
 const AdminAppointmentCreatePage = () => {
-  return <MakeAppointment />
+  return <MakeAdminAppointment />
 }
 
 export default AdminAppointmentCreatePage
