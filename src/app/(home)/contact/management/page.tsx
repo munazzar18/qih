@@ -61,7 +61,7 @@ const Page = () => {
               id={`collapse-${index}`}
             >
               <div className="card-body">
-                {department.people.length > 0 ? (
+                {department?.people?.length > 0 ? (
                   department.people.map((person, personIndex) => (
                     <div key={personIndex} className="person-info">
                       <p><GoDotFill /> {person.name}</p>

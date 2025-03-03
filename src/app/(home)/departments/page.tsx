@@ -94,7 +94,7 @@ const DepartmentsPage = async () => {
             </div>
           </div>
           <div className="row">
-            {departments.data.map((dept) => {
+            {departments?.data?.map((dept) => {
               return (
                 <div key={dept.id} className=" col-12 col-md-6 col-lg-4">
                   <div className="department-panel" data-hover="">

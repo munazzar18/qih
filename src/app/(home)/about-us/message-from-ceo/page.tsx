@@ -75,7 +75,7 @@ const page = async () => {
                   <br />
                   <div
                     dangerouslySetInnerHTML={{
-                      __html: pageData?.data[0].description,
+                      __html: pageData?.data[0]?.description,
                     }}
                   ></div>
                 </div>

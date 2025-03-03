@@ -346,7 +346,7 @@ const page = async () => {
             data-loop="true"
             data-speed="200"
           >
-            {departments && departments.data.length ? (
+            {/* {departments && departments.data.length ? (
               departments.data
                 .filter((dept) => dept?.is_featured === 1)
                 .map((dept, index) => (
@@ -400,7 +400,7 @@ const page = async () => {
                 ))
             ) : (
               <p>No Departments found</p>
-            )}
+            )} */}
           </div>
         </div>
         <div className="container">
@@ -411,7 +411,7 @@ const page = async () => {
         <div className="processes">
           <div className="row g-0">
             <div className="col-12 col-md-6 col-xl-3">
-              <Link href={token ? '/make-appointment' : '/auth/login'}>
+              <Link href='/make-appointment'>
                 <div className="process-panel" data-hover="">
                   <p className="process-number">01.</p>
                   <div className="process-body">
@@ -441,7 +441,7 @@ const page = async () => {
               </Link>
             </div>
             <div className="col-12 col-md-6 col-xl-3">
-              <Link href={token ? '/make-appointment' : '/auth/login'}>
+              <Link href='/make-appointment'>
                 <div className="process-panel" data-hover="">
                   <p className="process-number">02.</p>
                   <div className="process-body">

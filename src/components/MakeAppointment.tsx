@@ -142,7 +142,7 @@ const MakeAppointment = () => {
                   onChange={handleChange}
                 >
                   <option value="">Select Department</option>
-                  {departments.length > 0 ? (
+                  {departments?.length > 0 ? (
                     departments.map((department) => (
                       <option key={department.id} value={department.id}>
                         {department.title}

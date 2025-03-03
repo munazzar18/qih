@@ -44,24 +44,24 @@ export const LoginAction = async (formData: FormData) => {
     try {
         const response = await fetch(`${url}login`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
+            // headers: {
+            //     'Content-Type': 'application/json',
+            //     'Accept': 'application/json'
+            // },
             body: JSON.stringify({ email, password })
         })
         const data = await response.json();
 
 
-        (await cookies()).set('token', data.token, {
-            httpOnly: true,
-            secure: true,
-        });
+        // (await cookies()).set('token', data.token, {
+        //     httpOnly: true,
+        //     secure: true,
+        // });
 
-        (await cookies()).set('user', JSON.stringify(data.user), {
-            httpOnly: true,
-            secure: true,
-        })
+        // (await cookies()).set('user', JSON.stringify(data.user), {
+        //     httpOnly: true,
+        //     secure: true,
+        // })
 
         return data
     } catch (error) {

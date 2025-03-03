@@ -125,7 +125,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
           className={`collapse navbar-collapse ${drop ? 'show' : ''}`}
           id="navbarContent"
         >
-          <ul className="navbar-nav ">
+          <ul style={{marginLeft: "50px"}} className="navbar-nav ">
             <li
               className={`nav-item ${currentPath === '/' ? 'active' : ''}`}
               id="contact"
@@ -135,52 +135,111 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                 Home
               </Link>
             </li>
+
+
             <li
-              className={`nav-item has-dropdown ${
-                currentPath.includes('about-us') ? 'active' : ''
-              } `}
-              data-hover=""
+              onMouseEnter={() => setIsOpen(true)}
+              onMouseLeave={() => setIsOpen(false)}
+              style={{ position: 'relative' }}
+              className="nav-item has-dropdown"
+              id=""
             >
-              <Link
-                className="dropdown-toggle"
-                href="/about-us"
-                data-toggle="dropdown"
-              >
-                <span>about us</span>
+              <Link className="dropdown-toggle nav-link" href="/departments">
+                <span>Departments</span>
               </Link>
-              <ul className="dropdown-menu">
-                <li className="nav-item">
-                  <Link href="/about-us/message-from-ceo">
-                    <span>Message from ceo</span>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link href="/about-us/company-profile">
-                    <span>Company Profile</span>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link href="/about-us/news">
-                    <span>News</span>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link href="/about-us/events">
-                    <span>Events</span>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link href="/about-us/highlights">
-                    <span>Highlights</span>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <a href="/about-us/sitemap">
-                    <span>Sitemaps</span>
-                  </a>
-                </li>
-              </ul>
+
+              {isOpen && (
+                <ul
+                  className="dropdown-menu"
+                  style={{
+                    position: 'absolute',
+                    top: '100%',
+                    left: 0,
+                    width: '100%',
+                    minWidth: '1150px',
+                    maxWidth: '1150px',
+                    boxShadow: '0px 4px 8px rgba(0,0,0,0.2)',
+                    zIndex: 1000,
+                    padding: '20px',
+                    backgroundColor: '#fff',
+                    overflowWrap: 'break-word',
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(3, 1fr)',
+                    gridTemplateRows: 'repeat(5, auto)',
+                    gridGap: '15px',
+                    transition: 'all 0.3s ease',
+                  }}
+                >
+                  {departments?.length ? (
+                    <>
+                      {/* Display first 20 items */}
+                      {departments?.slice(0, 20).map((item) => (
+                        <li
+                          key={item.id}
+                          style={{
+                            listStyle: 'none',
+                            borderRadius: '8px 8px 0 8px',
+                            border: '1px solid #ccc',
+                            backgroundColor: '#f9f9f9',
+                            height: '40px',
+                            width: '100%',
+                            marginBottom: '10px', // Adds spacing between items
+                          }}
+                        >
+                          <Link
+                            href={`/departments/${item.id}`}
+                            className="dropdown-item"
+                          >
+                            <span
+                              style={{
+                                textDecoration: 'none',
+                                color: '#616161',
+                                fontWeight: 'bold',
+                                cursor: 'pointer',
+                              }}
+                            >
+                              {item.title}
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+
+                      {/* Display the 21st item as "More" link */}
+                      {departments?.length > 19 && (
+                        <li
+                          style={{
+                            listStyle: 'none',
+                            borderRadius: '8px 8px 0 8px',
+                            border: '1px solid #ccc',
+                            backgroundColor: '#B8DDD7',
+                            height: '40px',
+                            width: '100%',
+                          }}
+                        >
+                          <Link href="/departments" className="dropdown-item">
+                            <span
+                              style={{
+                                textDecoration: 'none',
+                                color: '#616161',
+                                fontWeight: 'bold',
+                                cursor: 'pointer',
+                              }}
+                            >
+                              All Departments
+                            </span>
+                          </Link>
+                        </li>
+                      )}
+                    </>
+                  ) : (
+                    <li style={{ color: 'gray', padding: '10px' }}>
+                      Please wait...
+                    </li>
+                  )}
+                </ul>
+              )}
             </li>
+
             <li
               className={`nav-item has-dropdown ${
                 currentPath.includes('services') ? 'active' : ''
@@ -195,6 +254,23 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                 <span>Services</span>
               </Link>
               <ul className="dropdown-menu">
+              <li className="nav-item">
+                  <Link href="/services/dialysis">
+                    <span>Dialysis</span>
+                  </Link>
+                </li><li className="nav-item">
+                  <Link href="/services/radiology">
+                    <span>Radiology</span>
+                  </Link>
+                </li><li className="nav-item">
+                  <Link href="/services/speech-therapy">
+                    <span>Speech Therapy</span>
+                  </Link>
+                </li><li className="nav-item">
+                  <Link href="/services/bone-marrow-transplant">
+                    <span>Bone marrow transplant</span>
+                  </Link>
+                </li>
                 <li className="nav-item">
                   <Link href="/services/teleconsultation-services">
                     <span>Teleconsultation Services</span>
@@ -206,7 +282,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link href={token ? '/make-appointment' : '/auth/login'}>
+                  <Link href='/make-appointment'>
                     <span>Online Appointment</span>
                   </Link>
                 </li>
@@ -232,6 +308,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                 </li>
               </ul>
             </li>
+
             <li
               className={`nav-item has-dropdown ${
                 currentPath.includes('gallery') ? 'active' : ''
@@ -277,107 +354,51 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
             </li>
 
             <li
-              onMouseEnter={() => setIsOpen(true)}
-              onMouseLeave={() => setIsOpen(false)}
-              style={{ position: 'relative' }}
-              className="nav-item has-dropdown"
-              id="departments"
+              className={`nav-item has-dropdown ${
+                currentPath.includes('about-us') ? 'active' : ''
+              } `}
+              data-hover=""
             >
-              <Link className="dropdown-toggle nav-link" href="/departments">
-                <span>Departments</span>
+              <Link
+                className="dropdown-toggle"
+                href="/about-us"
+                data-toggle="dropdown"
+              >
+                <span>about us</span>
               </Link>
-
-              {isOpen && (
-                <ul
-                  className="dropdown-menu"
-                  style={{
-                    position: 'absolute',
-                    top: '100%',
-                    left: 0,
-                    width: '100%',
-                    minWidth: '1150px',
-                    maxWidth: '1150px',
-                    boxShadow: '0px 4px 8px rgba(0,0,0,0.2)',
-                    zIndex: 1000,
-                    padding: '20px',
-                    backgroundColor: '#fff',
-                    overflowWrap: 'break-word',
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(3, 1fr)',
-                    gridTemplateRows: 'repeat(5, auto)',
-                    gridGap: '15px',
-                    transition: 'all 0.3s ease',
-                  }}
-                >
-                  {departments.length ? (
-                    <>
-                      {/* Display first 20 items */}
-                      {departments.slice(0, 20).map((item) => (
-                        <li
-                          key={item.id}
-                          style={{
-                            listStyle: 'none',
-                            borderRadius: '8px 8px 0 8px',
-                            border: '1px solid #ccc',
-                            backgroundColor: '#f9f9f9',
-                            height: '40px',
-                            width: '100%',
-                            marginBottom: '10px', // Adds spacing between items
-                          }}
-                        >
-                          <Link
-                            href={`/departments/${item.id}`}
-                            className="dropdown-item"
-                          >
-                            <span
-                              style={{
-                                textDecoration: 'none',
-                                color: '#616161',
-                                fontWeight: 'bold',
-                                cursor: 'pointer',
-                              }}
-                            >
-                              {item.title}
-                            </span>
-                          </Link>
-                        </li>
-                      ))}
-
-                      {/* Display the 21st item as "More" link */}
-                      {departments.length > 19 && (
-                        <li
-                          style={{
-                            listStyle: 'none',
-                            borderRadius: '8px 8px 0 8px',
-                            border: '1px solid #ccc',
-                            backgroundColor: '#B8DDD7',
-                            height: '40px',
-                            width: '100%',
-                          }}
-                        >
-                          <Link href="/departments" className="dropdown-item">
-                            <span
-                              style={{
-                                textDecoration: 'none',
-                                color: '#616161',
-                                fontWeight: 'bold',
-                                cursor: 'pointer',
-                              }}
-                            >
-                              All Departments
-                            </span>
-                          </Link>
-                        </li>
-                      )}
-                    </>
-                  ) : (
-                    <li style={{ color: 'gray', padding: '10px' }}>
-                      Please wait...
-                    </li>
-                  )}
-                </ul>
-              )}
-            </li>
+              <ul className="dropdown-menu">
+                <li className="nav-item">
+                  <Link href="/about-us/message-from-ceo">
+                    <span>Message from ceo</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link href="/about-us/company-profile">
+                    <span>Company Profile</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link href="/about-us/news">
+                    <span>News</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link href="/about-us/events">
+                    <span>Events</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link href="/about-us/highlights">
+                    <span>Highlights</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <a href="/about-us/sitemap">
+                    <span>Sitemaps</span>
+                  </a>
+                </li>
+              </ul>
+            </li>       
 
             <li
               className={`nav-item has-dropdown ${
@@ -522,6 +543,8 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
               </li>
             )}
           </ul>
+
+
           <div className="module-holder">
             {/* <div className="module module-search float-left">
               <div className="module-icon search-icon">
@@ -530,9 +553,8 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
             </div> */}
             <div className="module-contact">
               <a className="btn btn--secondary" href="">
-                doctors' timetable
+                
               </a>
-              {token ? (
                 <Link
                   className="btn btn--primary btn-line btn-line-after"
                   href="/make-appointment"
@@ -542,14 +564,6 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                     <span></span>
                   </span>
                 </Link>
-              ) : (
-                <Link
-                  className="btn btn--primary btn-line btn-line-after"
-                  href="/auth/login"
-                >
-                  <span>make appointment</span>
-                </Link>
-              )}
             </div>
           </div>
         </div>
