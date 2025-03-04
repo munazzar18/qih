@@ -93,18 +93,16 @@ export const consultantSchema = z.object({
     membership: z
         .string()
         .min(1, "Membership is required"),
-        diploma: z
+    residency: z
+        .string(),
+    diploma: z
+        .string(),
+    certification: z
+        .string(),
+    award: z
+        .string(),
+    extra_info: z
         .string()
-        .optional(),
-        certification: z
-        .string()
-        .optional(),
-        award: z
-        .string()
-        .optional(),
-        extra_info: z
-        .string()
-        .optional(),
 })
 
 export type ConstultantSchema = z.infer<typeof consultantSchema>

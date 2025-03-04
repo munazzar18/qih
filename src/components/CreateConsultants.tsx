@@ -48,11 +48,12 @@ const CreateConsultant = () => {
     membership: '',
     education: initialEducation,
     photo: '',
+    residency: '',
     diploma: '',
     departments: [],
     certification: '',
-    award: "",
-    extra_info: ""
+    award: '',
+    extra_info: '',
   })
 
   const [errors, setErrors] = useState<{
@@ -164,7 +165,6 @@ const CreateConsultant = () => {
   ]
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    console.log('FormData:', myForm)
     e.preventDefault()
     const result = consultantSchema.safeParse(myForm)
     if (result.success) {
@@ -177,6 +177,7 @@ const CreateConsultant = () => {
       formData.append('membership', result.data.membership)
       formData.append('education', JSON.stringify(result.data.education))
       formData.append('work_experience', result.data.work_experience)
+      formData.append('residency', result.data.residency)
       formData.append('certification', result.data.certification)
       formData.append('diploma', result.data.diploma)
       formData.append('award', result.data.award)
@@ -406,8 +407,21 @@ const CreateConsultant = () => {
                         }
                       />
                     </div>
-                   {/* Diploma using ReactQuill */}
-                   <div className="col-12 mb-5">
+                    <div className="col-12 mb-5">
+                      <label className="fw-bold text-black">Residency</label>
+                      <ReactQuill
+                        theme="snow"
+                        modules={modules}
+                        formats={formats}
+                        value={myForm.residency}
+                        style={{ height: '200px' }}
+                        onChange={(value) =>
+                          setMyForm({ ...myForm, residency: value })
+                        }
+                      />
+                    </div>
+                    {/* Diploma using ReactQuill */}
+                    <div className="col-12 mb-5">
                       <label className="fw-bold text-black">Diploma</label>
                       <ReactQuill
                         theme="snow"
@@ -422,7 +436,9 @@ const CreateConsultant = () => {
                     </div>
                     {/* Certifications using ReactQuill */}
                     <div className="col-12 mb-5">
-                      <label className="fw-bold text-black">Certifications</label>
+                      <label className="fw-bold text-black">
+                        Certifications
+                      </label>
                       <ReactQuill
                         theme="snow"
                         modules={modules}
@@ -433,69 +449,69 @@ const CreateConsultant = () => {
                           setMyForm({ ...myForm, certification: value })
                         }
                       />
-                    {/* Awards using ReactQuill */}
-                    <div className="col-12 mb-5 mt-5">
-                      <label className="fw-bold text-black">Awards</label>
-                      <ReactQuill
-                        theme="snow"
-                        modules={modules}
-                        formats={formats}
-                        value={myForm.award}
-                        style={{ height: '200px' }}
-                        onChange={(value) =>
-                          setMyForm({ ...myForm, award: value })
-                        }
-                      />
-                    {/* Extra-info usin ReactQuill */}
-                    <div className="col-12 mb-5 mt-5">
-                      <label className="fw-bold text-black">Extra_info</label>
-                      <ReactQuill
-                        theme="snow"
-                        modules={modules}
-                        formats={formats}
-                        value={myForm.extra_info}
-                        style={{ height: '200px' }}
-                        onChange={(value) =>
-                          setMyForm({ ...myForm, extra_info: value })
-                        }
-                      />
-                    {/* Work Experience using ReactQuill */}
-                    <div className="col-12 mb-5 mt-5">
-                      <label className="fw-bold text-black">
-                        Work Experience
-                      </label>
-                      <ReactQuill
-                        theme="snow"
-                        modules={modules}
-                        formats={formats}
-                        value={myForm.work_experience}
-                        style={{ height: '200px' }}
-                        onChange={(value) =>
-                          setMyForm({ ...myForm, work_experience: value })
-                        }
-                      />
-                    </div>
-                    {/* Submit Button */}
-                    <div className="col-12">
-                      <button
-                        className="btn btn--secondary btn-line btn-line-before btn--block"
-                        style={{ width: '200px' }}
-                        type="submit"
-                      >
-                        Save
-                      </button>
-                      
+                      {/* Awards using ReactQuill */}
+                      <div className="col-12 mb-5 mt-5">
+                        <label className="fw-bold text-black">Awards</label>
+                        <ReactQuill
+                          theme="snow"
+                          modules={modules}
+                          formats={formats}
+                          value={myForm.award}
+                          style={{ height: '200px' }}
+                          onChange={(value) =>
+                            setMyForm({ ...myForm, award: value })
+                          }
+                        />
+                        {/* Extra-info usin ReactQuill */}
+                        <div className="col-12 mb-5 mt-5">
+                          <label className="fw-bold text-black">
+                            Extra_info
+                          </label>
+                          <ReactQuill
+                            theme="snow"
+                            modules={modules}
+                            formats={formats}
+                            value={myForm.extra_info}
+                            style={{ height: '200px' }}
+                            onChange={(value) =>
+                              setMyForm({ ...myForm, extra_info: value })
+                            }
+                          />
+                          {/* Work Experience using ReactQuill */}
+                          <div className="col-12 mb-5 mt-5">
+                            <label className="fw-bold text-black">
+                              Work Experience
+                            </label>
+                            <ReactQuill
+                              theme="snow"
+                              modules={modules}
+                              formats={formats}
+                              value={myForm.work_experience}
+                              style={{ height: '200px' }}
+                              onChange={(value) =>
+                                setMyForm({ ...myForm, work_experience: value })
+                              }
+                            />
+                          </div>
+                          {/* Submit Button */}
+                          <div className="col-12">
+                            <button
+                              className="btn btn--secondary btn-line btn-line-before btn--block"
+                              style={{ width: '200px' }}
+                              type="submit"
+                            >
+                              Save
+                            </button>
+                          </div>
+                        </div>
+                        <div className="login-result"></div>
+                      </div>
                     </div>
                   </div>
-                <div className="login-result"></div>
+                </form>
               </div>
-              
             </div>
-                   </div>
-                   </form>
-             </div>
-             </div>
-             </div>
+          </div>
         </div>
       </div>
     </div>

@@ -6,6 +6,7 @@ import Multiselect from 'multiselect-react-dropdown'
 import { FaPlus, FaMinus } from 'react-icons/fa'
 import {
   ConsultantCreateAction,
+  ConsultantEditAction,
   UploadFileAction,
 } from '@/app/_actions/_actions'
 import { getDepartments } from '@/app/lib/getDepartments'
@@ -48,6 +49,11 @@ interface ConsultantData {
     education: Education[]
     photo: string
     departments: DepartmentData[]
+    residency: string
+    diploma: string
+    certification: string
+    award: string
+    extra_info: string
   }
 }
 
@@ -72,7 +78,12 @@ const EditConsultant = ({ id }: { id: number }) => {
     membership: '',
     education: initialEducation,
     photo: '',
+    residency: '',
+    diploma: '',
     departments: [],
+    certification: '',
+    award: '',
+    extra_info: '',
   })
 
   const [errors, setErrors] = useState<{
@@ -116,6 +127,12 @@ const EditConsultant = ({ id }: { id: number }) => {
         membership: loadedData.membership,
         education: loadedData.education,
         photo: loadedData.photo,
+        residency: loadedData.residency,
+        diploma: loadedData.diploma,
+        departments: loadedData.departments.map((dept) => dept.id.toString()),
+        certification: loadedData.certification,
+        award: loadedData.award,
+        extra_info: loadedData.extra_info,
       })
       setSelectedDepartments(loadedData.departments)
     }
@@ -223,11 +240,17 @@ const EditConsultant = ({ id }: { id: number }) => {
       formData.append('membership', result.data.membership)
       formData.append('education', JSON.stringify(result.data.education))
       formData.append('work_experience', result.data.work_experience)
+      formData.append('work_experience', result.data.work_experience)
+      formData.append('residency', result.data.residency)
+      formData.append('certification', result.data.certification)
+      formData.append('diploma', result.data.diploma)
+      formData.append('award', result.data.award)
+      formData.append('extra_info', result.data.extra_info)
       formData.append(
         'departments',
         JSON.stringify(result.data.departments.map(Number))
       )
-      const res = await ConsultantCreateAction(formData)
+      const res = await ConsultantEditAction(formData, id)
       if (res.status === 'success') {
         toast.success(res.message)
       } else {
@@ -455,31 +478,105 @@ const EditConsultant = ({ id }: { id: number }) => {
                         }
                       />
                     </div>
-                    {/* Work Experience using ReactQuill */}
+
+                    <div className="col-12 mb-5">
+                      <label className="fw-bold text-black">Residency</label>
+                      <ReactQuill
+                        theme="snow"
+                        modules={modules}
+                        formats={formats}
+                        value={myForm.residency}
+                        style={{ height: '200px' }}
+                        onChange={(value) =>
+                          setMyForm({ ...myForm, residency: value })
+                        }
+                      />
+                    </div>
+                    {/* Diploma using ReactQuill */}
+                    <div className="col-12 mb-5">
+                      <label className="fw-bold text-black">Diploma</label>
+                      <ReactQuill
+                        theme="snow"
+                        modules={modules}
+                        formats={formats}
+                        value={myForm.diploma}
+                        style={{ height: '200px' }}
+                        onChange={(value) =>
+                          setMyForm({ ...myForm, diploma: value })
+                        }
+                      />
+                    </div>
+                    {/* Certifications using ReactQuill */}
                     <div className="col-12 mb-5">
                       <label className="fw-bold text-black">
-                        Work Experience
+                        Certifications
                       </label>
                       <ReactQuill
                         theme="snow"
                         modules={modules}
                         formats={formats}
-                        value={myForm.work_experience}
+                        value={myForm.certification}
                         style={{ height: '200px' }}
                         onChange={(value) =>
-                          setMyForm({ ...myForm, work_experience: value })
+                          setMyForm({ ...myForm, certification: value })
                         }
                       />
-                    </div>
-                    {/* Submit Button */}
-                    <div className="col-12">
-                      <button
-                        className="btn btn--secondary btn-line btn-line-before btn--block"
-                        style={{ width: '200px' }}
-                        type="submit"
-                      >
-                        Save
-                      </button>
+                      {/* Awards using ReactQuill */}
+                      <div className="col-12 mb-5 mt-5">
+                        <label className="fw-bold text-black">Awards</label>
+                        <ReactQuill
+                          theme="snow"
+                          modules={modules}
+                          formats={formats}
+                          value={myForm.award}
+                          style={{ height: '200px' }}
+                          onChange={(value) =>
+                            setMyForm({ ...myForm, award: value })
+                          }
+                        />
+                        {/* Extra-info usin ReactQuill */}
+                        <div className="col-12 mb-5 mt-5">
+                          <label className="fw-bold text-black">
+                            Extra_info
+                          </label>
+                          <ReactQuill
+                            theme="snow"
+                            modules={modules}
+                            formats={formats}
+                            value={myForm.extra_info}
+                            style={{ height: '200px' }}
+                            onChange={(value) =>
+                              setMyForm({ ...myForm, extra_info: value })
+                            }
+                          />
+                          {/* Work Experience using ReactQuill */}
+                          <div className="col-12 mb-5 mt-5">
+                            <label className="fw-bold text-black">
+                              Work Experience
+                            </label>
+                            <ReactQuill
+                              theme="snow"
+                              modules={modules}
+                              formats={formats}
+                              value={myForm.work_experience}
+                              style={{ height: '200px' }}
+                              onChange={(value) =>
+                                setMyForm({ ...myForm, work_experience: value })
+                              }
+                            />
+                          </div>
+                          {/* Submit Button */}
+                          <div className="col-12">
+                            <button
+                              className="btn btn--secondary btn-line btn-line-before btn--block"
+                              style={{ width: '200px' }}
+                              type="submit"
+                            >
+                              Save
+                            </button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </form>

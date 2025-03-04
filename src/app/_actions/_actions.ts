@@ -167,7 +167,7 @@ export const DepartmentDeleteAction = async (id: number) => {
 }
 
 export const ConsultantCreateAction = async (formData: FormData) => {
-    console.log("this is formData", formData)
+
     const token = (await cookies()).get('token')?.value
     const name = formData.get('name')
     const email = formData.get('email')
@@ -178,6 +178,7 @@ export const ConsultantCreateAction = async (formData: FormData) => {
     const education = formData.get('education')
     const work_experience = formData.get('work_experience')
     const membership = formData.get('membership')
+    const residency = formData.get('residency')
     const certification = formData.get('certification')
     const diploma = formData.get('diploma')
     const award = formData.get('award')
@@ -200,6 +201,7 @@ export const ConsultantCreateAction = async (formData: FormData) => {
                 education,
                 work_experience,
                 membership,
+                residency,
                 certification,
                 diploma,
                 award,
@@ -219,7 +221,16 @@ export const ConsultantEditAction = async (formData: FormData, id: number) => {
     const email = formData.get('email')
     const office_extension = formData.get('office_extension')
     const photo = formData.get('photo')
-    const department_id = Number(formData.get('department_id'))
+    const departments = formData.get('departments')
+    const password = formData.get('password')
+    const education = formData.get('education')
+    const work_experience = formData.get('work_experience')
+    const membership = formData.get('membership')
+    const residency = formData.get('residency')
+    const certification = formData.get('certification')
+    const diploma = formData.get('diploma')
+    const award = formData.get('award')
+    const extra_info = formData.get('extra_info')
     try {
         const response = await fetch(`${url}consultants/${id}`, {
             method: 'PUT',
@@ -233,7 +244,16 @@ export const ConsultantEditAction = async (formData: FormData, id: number) => {
                 email,
                 office_extension,
                 photo,
-                department_id
+                departments,
+                password,
+                education,
+                work_experience,
+                membership,
+                residency,
+                certification,
+                diploma,
+                award,
+                extra_info
             })
         })
         const data = await response.json();
