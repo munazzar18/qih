@@ -12,7 +12,7 @@ interface Consultants {
       id: number
       name: string
       email: string
-      office_extention: string
+      office_extension: string
       photo: string
       department_id: number
       created_at: string
@@ -71,7 +71,7 @@ const ConsultantsPage = async () => {
                       <td>{consultant.name}</td>
                       <td>{consultant.email}</td>
                       <td>{consultant.departments?.map((d) => d.title)}</td>
-                      <td>{consultant.office_extention}</td>
+                      <td>{consultant.office_extension}</td>
 
                       <td>
                         <Link

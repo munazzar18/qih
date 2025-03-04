@@ -43,12 +43,16 @@ const CreateConsultant = () => {
     name: '',
     email: '',
     password: '',
-    office_extention: '',
+    office_extension: '',
     work_experience: '',
     membership: '',
     education: initialEducation,
     photo: '',
+    diploma: '',
     departments: [],
+    certification: '',
+    award: "",
+    extra_info: ""
   })
 
   const [errors, setErrors] = useState<{
@@ -167,12 +171,16 @@ const CreateConsultant = () => {
       const formData = new FormData()
       formData.append('name', result.data.name)
       formData.append('email', result.data.email)
-      formData.append('office_extention', result.data.office_extention)
+      formData.append('office_extension', result.data.office_extension)
       formData.append('photo', result.data.photo)
       formData.append('password', result.data.password)
       formData.append('membership', result.data.membership)
       formData.append('education', JSON.stringify(result.data.education))
       formData.append('work_experience', result.data.work_experience)
+      formData.append('certification', result.data.certification)
+      formData.append('diploma', result.data.diploma)
+      formData.append('award', result.data.award)
+      formData.append('extra_info', result.data.extra_info)
       formData.append(
         'departments',
         JSON.stringify(result.data.departments.map(Number))
@@ -258,13 +266,13 @@ const CreateConsultant = () => {
                       <input
                         className="form-control"
                         type="text"
-                        name="office_extention"
+                        name="office_extension"
                         placeholder="Enter office extension"
-                        value={myForm.office_extention}
+                        value={myForm.office_extension}
                         onChange={handleChange}
                       />
-                      {errors.office_extention && (
-                        <p className="text-danger">{errors.office_extention}</p>
+                      {errors.office_extension && (
+                        <p className="text-danger">{errors.office_extension}</p>
                       )}
                     </div>
                     {/* Photo */}
@@ -398,8 +406,61 @@ const CreateConsultant = () => {
                         }
                       />
                     </div>
-                    {/* Work Experience using ReactQuill */}
+                   {/* Diploma using ReactQuill */}
+                   <div className="col-12 mb-5">
+                      <label className="fw-bold text-black">Diploma</label>
+                      <ReactQuill
+                        theme="snow"
+                        modules={modules}
+                        formats={formats}
+                        value={myForm.diploma}
+                        style={{ height: '200px' }}
+                        onChange={(value) =>
+                          setMyForm({ ...myForm, diploma: value })
+                        }
+                      />
+                    </div>
+                    {/* Certifications using ReactQuill */}
                     <div className="col-12 mb-5">
+                      <label className="fw-bold text-black">Certifications</label>
+                      <ReactQuill
+                        theme="snow"
+                        modules={modules}
+                        formats={formats}
+                        value={myForm.certification}
+                        style={{ height: '200px' }}
+                        onChange={(value) =>
+                          setMyForm({ ...myForm, certification: value })
+                        }
+                      />
+                    {/* Awards using ReactQuill */}
+                    <div className="col-12 mb-5 mt-5">
+                      <label className="fw-bold text-black">Awards</label>
+                      <ReactQuill
+                        theme="snow"
+                        modules={modules}
+                        formats={formats}
+                        value={myForm.award}
+                        style={{ height: '200px' }}
+                        onChange={(value) =>
+                          setMyForm({ ...myForm, award: value })
+                        }
+                      />
+                    {/* Extra-info usin ReactQuill */}
+                    <div className="col-12 mb-5 mt-5">
+                      <label className="fw-bold text-black">Extra_info</label>
+                      <ReactQuill
+                        theme="snow"
+                        modules={modules}
+                        formats={formats}
+                        value={myForm.extra_info}
+                        style={{ height: '200px' }}
+                        onChange={(value) =>
+                          setMyForm({ ...myForm, extra_info: value })
+                        }
+                      />
+                    {/* Work Experience using ReactQuill */}
+                    <div className="col-12 mb-5 mt-5">
                       <label className="fw-bold text-black">
                         Work Experience
                       </label>
@@ -423,13 +484,18 @@ const CreateConsultant = () => {
                       >
                         Save
                       </button>
+                      
                     </div>
                   </div>
-                </form>
                 <div className="login-result"></div>
               </div>
+              
             </div>
-          </div>
+                   </div>
+                   </form>
+             </div>
+             </div>
+             </div>
         </div>
       </div>
     </div>

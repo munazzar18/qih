@@ -154,7 +154,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                   style={{
                     position: 'absolute',
                     top: '100%',
-                    left: 0,
+                    left: '-200%',
                     width: '100%',
                     minWidth: '1150px',
                     maxWidth: '1150px',

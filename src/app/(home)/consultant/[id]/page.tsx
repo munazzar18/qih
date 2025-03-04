@@ -23,7 +23,7 @@ interface Consultant {
         year: string
       }
     ]
-    office_extention: string
+    office_extension: string
     photo: string
     departments: [
       {

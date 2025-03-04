@@ -42,7 +42,7 @@ interface ConsultantData {
     name: string
     email: string
     password: string
-    office_extention: string
+    office_extension: string
     work_experience: string
     membership: string
     education: Education[]
@@ -67,7 +67,7 @@ const EditConsultant = ({ id }: { id: number }) => {
     name: '',
     email: '',
     password: '',
-    office_extention: '',
+    office_extension: '',
     work_experience: '',
     membership: '',
     education: initialEducation,
@@ -111,7 +111,7 @@ const EditConsultant = ({ id }: { id: number }) => {
         name: loadedData.name,
         email: loadedData.email,
         password: loadedData.password,
-        office_extention: loadedData.office_extention,
+        office_extension: loadedData.office_extension,
         work_experience: loadedData.work_experience,
         membership: loadedData.membership,
         education: loadedData.education,
@@ -217,7 +217,7 @@ const EditConsultant = ({ id }: { id: number }) => {
       const formData = new FormData()
       formData.append('name', result.data.name)
       formData.append('email', result.data.email)
-      formData.append('office_extention', result.data.office_extention)
+      formData.append('office_extension', result.data.office_extension)
       formData.append('photo', result.data.photo)
       formData.append('password', result.data.password)
       formData.append('membership', result.data.membership)
@@ -317,13 +317,13 @@ const EditConsultant = ({ id }: { id: number }) => {
                       <input
                         className="form-control"
                         type="text"
-                        name="office_extention"
+                        name="office_extension"
                         placeholder="Enter office extension"
-                        value={myForm.office_extention}
+                        value={myForm.office_extension}
                         onChange={handleChange}
                       />
-                      {errors.office_extention && (
-                        <p className="text-danger">{errors.office_extention}</p>
+                      {errors.office_extension && (
+                        <p className="text-danger">{errors.office_extension}</p>
                       )}
                     </div>
                     {/* Photo */}

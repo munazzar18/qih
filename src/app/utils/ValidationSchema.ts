@@ -66,7 +66,7 @@ export const consultantSchema = z.object({
         .min(1, "Password is required")
         .min(6, "Password must be more than 6 characters")
         .max(32, "Password must be less than 32 characters"),
-    office_extention: z
+    office_extension: z
         .string()
         .min(1, "Office extention is required"),
     photo: z
@@ -93,6 +93,18 @@ export const consultantSchema = z.object({
     membership: z
         .string()
         .min(1, "Membership is required"),
+        diploma: z
+        .string()
+        .optional(),
+        certification: z
+        .string()
+        .optional(),
+        award: z
+        .string()
+        .optional(),
+        extra_info: z
+        .string()
+        .optional(),
 })
 
 export type ConstultantSchema = z.infer<typeof consultantSchema>

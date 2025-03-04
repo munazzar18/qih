@@ -21,7 +21,9 @@ interface Department {
 }
 
 const page = async () => {
-  const departments: Department = await getDepartments()
+  const departments: Department = await getDepartments();
+
+  console.log('departments',departments)
 
   const getMonthsFromNum = (number: string) => {
     switch (number) {
@@ -301,7 +303,7 @@ const page = async () => {
         <div className="container">
           <div className="row">
             <div className="col-12 col-lg-8">
-              <div className="about-img">
+              <div style={{display: "flex", gap: "20px"}} className="about-img">
                 <Image
                   className="img-fluid"
                   src="/assets/photos/youtube.jpeg"
@@ -309,14 +311,18 @@ const page = async () => {
                   height={500}
                   alt="about Image"
                 />
-                <a
-                  className="popup-video btn-video"
-                  href="/assets/videos/videoplayback_4.mp4"
-                >
-                  {' '}
-                  <i className="fas fa-play"></i>
-                  <span>watch our presentation!</span>
-                </a>
+                <div>
+                <iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/Gg70v5uvh-Q?autoplay=1&mute=1"
+  title="YouTube video player"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  referrerPolicy="strict-origin-when-cross-origin"
+  allowFullScreen
+></iframe>
+                </div>
               </div>
             </div>
             <div className="col-12 col-lg-3 offset-lg-1"></div>
@@ -346,7 +352,7 @@ const page = async () => {
             data-loop="true"
             data-speed="200"
           >
-            {/* {departments && departments.data.length ? (
+            {departments && departments.data.length ? (
               departments.data
                 .filter((dept) => dept?.is_featured === 1)
                 .map((dept, index) => (
@@ -400,7 +406,7 @@ const page = async () => {
                 ))
             ) : (
               <p>No Departments found</p>
-            )} */}
+            )}
           </div>
         </div>
         <div className="container">
