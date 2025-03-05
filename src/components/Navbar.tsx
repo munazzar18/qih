@@ -125,7 +125,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
           className={`collapse navbar-collapse ${drop ? 'show' : ''}`}
           id="navbarContent"
         >
-          <ul style={{marginLeft: "50px"}} className="navbar-nav ">
+          <ul style={{ marginLeft: '50px' }} className="navbar-nav ">
             <li
               className={`nav-item ${currentPath === '/' ? 'active' : ''}`}
               id="contact"
@@ -135,7 +135,6 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                 Home
               </Link>
             </li>
-
 
             <li
               onMouseEnter={() => setIsOpen(true)}
@@ -254,19 +253,22 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                 <span>Services</span>
               </Link>
               <ul className="dropdown-menu">
-              <li className="nav-item">
+                <li className="nav-item">
                   <Link href="/services/dialysis">
                     <span>Dialysis</span>
                   </Link>
-                </li><li className="nav-item">
+                </li>
+                <li className="nav-item">
                   <Link href="/services/radiology">
                     <span>Radiology</span>
                   </Link>
-                </li><li className="nav-item">
+                </li>
+                <li className="nav-item">
                   <Link href="/services/speech-therapy">
                     <span>Speech Therapy</span>
                   </Link>
-                </li><li className="nav-item">
+                </li>
+                <li className="nav-item">
                   <Link href="/services/bone-marrow-transplant">
                     <span>Bone marrow transplant</span>
                   </Link>
@@ -282,7 +284,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link href='/make-appointment'>
+                  <Link href="/make-appointment">
                     <span>Online Appointment</span>
                   </Link>
                 </li>
@@ -398,7 +400,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                   </a>
                 </li>
               </ul>
-            </li>       
+            </li>
 
             <li
               className={`nav-item has-dropdown ${
@@ -544,7 +546,6 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
             )}
           </ul>
 
-
           <div className="module-holder">
             {/* <div className="module module-search float-left">
               <div className="module-icon search-icon">
@@ -552,18 +553,14 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
               </div>
             </div> */}
             <div className="module-contact">
-              <a className="btn btn--secondary" href="">
-                
-              </a>
-                <Link
-                  className="btn btn--primary btn-line btn-line-after"
-                  href="/make-appointment"
-                >
-                  <span>make appointment</span>
-                  <span className="line">
-                    <span></span>
-                  </span>
-                </Link>
+              <span className="btn btn--secondary btn-line btn-line-after"></span>
+              <Link
+                className="btn btn--primary btn-line btn-line-after"
+                href="/make-appointment"
+              >
+                make appointment
+                <span className="line"></span>
+              </Link>
             </div>
           </div>
         </div>
