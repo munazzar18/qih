@@ -58,15 +58,17 @@ interface ConsultantData {
 }
 
 const EditConsultant = ({ id }: { id: number }) => {
-  // Set initial education as an array with one empty entry
+  const [consultantId, setConsultantId] = useState<number>(id)
+  const [selectedDepartments, setSelectedDepartments] = useState<
+    DepartmentData[]
+  >([])
+  const [departments, setDepartments] = useState<DepartmentData[]>([])
+
   const initialEducation: Education[] = [
     { degree: '', institute: '', year: '' },
   ]
 
-  // Separate state for the loaded data; initially null
-  const [loadedData, setLoadedData] = useState<ConsultantData['data'] | null>(
-    null
-  )
+  const [isLoading, setIsLoading] = useState(true)
 
   // Form state
   const [myForm, setMyForm] = useState<ConstultantSchema>({
@@ -89,54 +91,60 @@ const EditConsultant = ({ id }: { id: number }) => {
   const [errors, setErrors] = useState<{
     [key in keyof ConstultantSchema]?: string
   }>({})
-  const [selectedDepartments, setSelectedDepartments] = useState<
-    DepartmentData[]
-  >([])
-  const [departments, setDepartments] = useState<DepartmentData[]>([])
 
-  // Fetch all departments
   useEffect(() => {
-    const getAllDepartments = async () => {
-      const res = await getDepartments()
-      setDepartments(res.data)
-    }
-    getAllDepartments()
-  }, [])
+    const fetchInitialData = async () => {
+      try {
+        // Fetch departments
+        const departmentsRes = await getDepartments()
+        setDepartments(departmentsRes.data)
 
-  // Fetch consultant data
-  useEffect(() => {
-    const fetchData = async () => {
-      const res: ConsultantData = await getConsultantById(id)
-      if (res.status === 'success') {
-        setLoadedData(res.data)
-        setSelectedDepartments(res.data.departments)
+        // Fetch consultant data
+        const consultantRes: ConsultantData = await getConsultantById(
+          consultantId
+        )
+        if (consultantRes.status === 'success') {
+          const consultantData = consultantRes.data
+
+          // Ensure education is not empty
+          const education =
+            consultantData.education.length > 0
+              ? consultantData.education
+              : [{ degree: '', institute: '', year: '' }]
+
+          // Update form state with loaded data
+          setMyForm({
+            name: consultantData.name || '',
+            email: consultantData.email || '',
+            password: consultantData.password || '',
+            office_extension: consultantData.office_extension || '',
+            work_experience: consultantData.work_experience || '',
+            membership: consultantData.membership || '',
+            education: education,
+            photo: consultantData.photo || '',
+            residency: consultantData.residency || '',
+            diploma: consultantData.diploma || '',
+            departments: consultantData.departments.map((item) =>
+              item.id.toString()
+            ),
+            certification: consultantData.certification || '',
+            award: consultantData.award || '',
+            extra_info: consultantData.extra_info || '',
+          })
+
+          // Set selected departments
+          setSelectedDepartments(consultantData.departments)
+        }
+      } catch (error) {
+        toast.error('Failed to load consultant data')
+        console.error(error)
+      } finally {
+        setIsLoading(false)
       }
     }
-    fetchData()
-  }, [])
 
-  useEffect(() => {
-    if (loadedData) {
-      setMyForm({
-        ...myForm,
-        name: loadedData.name,
-        email: loadedData.email,
-        password: loadedData.password,
-        office_extension: loadedData.office_extension,
-        work_experience: loadedData.work_experience,
-        membership: loadedData.membership,
-        education: loadedData.education,
-        photo: loadedData.photo,
-        residency: loadedData.residency,
-        diploma: loadedData.diploma,
-        departments: loadedData.departments.map((dept) => dept.id.toString()),
-        certification: loadedData.certification,
-        award: loadedData.award,
-        extra_info: loadedData.extra_info,
-      })
-      setSelectedDepartments(loadedData.departments)
-    }
-  }, [loadedData])
+    fetchInitialData()
+  }, [])
 
   // Handler for file upload (photo)
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -250,7 +258,7 @@ const EditConsultant = ({ id }: { id: number }) => {
         'departments',
         JSON.stringify(result.data.departments.map(Number))
       )
-      const res = await ConsultantEditAction(formData, id)
+      const res = await ConsultantEditAction(formData, consultantId)
       if (res.status === 'success') {
         toast.success(res.message)
       } else {
@@ -266,13 +274,8 @@ const EditConsultant = ({ id }: { id: number }) => {
     }
   }
 
-  // Optionally, wait until the data is loaded before rendering the form
-  if (!loadedData) {
-    return (
-      <div>
-        <Loader />
-      </div>
-    )
+  if (isLoading) {
+    return <Loader />
   }
 
   return (
@@ -478,6 +481,22 @@ const EditConsultant = ({ id }: { id: number }) => {
                         }
                       />
                     </div>
+                    {/* Work Experience using ReactQuill */}
+                    <div className="col-12 mb-5">
+                      <label className="fw-bold text-black">
+                        Work Experience
+                      </label>
+                      <ReactQuill
+                        theme="snow"
+                        modules={modules}
+                        formats={formats}
+                        value={myForm.work_experience}
+                        style={{ height: '200px' }}
+                        onChange={(value) =>
+                          setMyForm({ ...myForm, work_experience: value })
+                        }
+                      />
+                    </div>
 
                     <div className="col-12 mb-5">
                       <label className="fw-bold text-black">Residency</label>
@@ -549,22 +568,7 @@ const EditConsultant = ({ id }: { id: number }) => {
                               setMyForm({ ...myForm, extra_info: value })
                             }
                           />
-                          {/* Work Experience using ReactQuill */}
-                          <div className="col-12 mb-5 mt-5">
-                            <label className="fw-bold text-black">
-                              Work Experience
-                            </label>
-                            <ReactQuill
-                              theme="snow"
-                              modules={modules}
-                              formats={formats}
-                              value={myForm.work_experience}
-                              style={{ height: '200px' }}
-                              onChange={(value) =>
-                                setMyForm({ ...myForm, work_experience: value })
-                              }
-                            />
-                          </div>
+
                           {/* Submit Button */}
                           <div className="col-12">
                             <button

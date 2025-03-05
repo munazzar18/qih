@@ -23,8 +23,6 @@ interface Department {
 const page = async () => {
   const departments: Department = await getDepartments();
 
-  console.log('departments',departments)
-
   const getMonthsFromNum = (number: string) => {
     switch (number) {
       case '01':
