@@ -152,17 +152,54 @@ const page: React.FC = () => {
           id="saveEvents"
           className="btn btn--primary"
           onClick={() => {
-            const calendarApi = calendarRef.current?.getApi()
+            const calendarApi = calendarRef.current?.getApi();
             if (calendarApi) {
-              const events = calendarApi.getEvents().map((event) => ({
-                id: event.id || null,
-                title: event.title,
-                start: event.start?.toISOString(),
-                end: event.end?.toISOString() || null,
-              }))
-              console.log(JSON.stringify(events, null, 2))
+              const events = calendarApi.getEvents().map((event) => {
+                const startDate = event.start ? new Date(event.start) : null;
+                const endDate = event.end ? new Date(event.end) : null;
+          
+                return {
+                  id: event.id || null,
+                  title: event.title,
+                  startDate: startDate
+                    ? startDate.toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      })
+                    : null, // Start Date in readable format
+                  endDate: endDate
+                    ? endDate.toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      })
+                    : null, // End Date in readable format
+                  day: startDate
+                    ? startDate.toLocaleDateString('en-US', { weekday: 'long' })
+                    : null, // Day name
+                  startTime: startDate
+                    ? startDate.toLocaleTimeString('en-US', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: false,
+                      })
+                    : null, // Start time
+                  endTime: endDate
+                    ? endDate.toLocaleTimeString('en-US', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: false,
+                      })
+                    : null, // End time
+                };
+              });
+          
+              console.log(JSON.stringify(events, null, 2)); // Logs data in console
             }
           }}
+          
+          
         >
           Save Events
         </button>

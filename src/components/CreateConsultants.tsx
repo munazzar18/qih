@@ -324,6 +324,22 @@ const CreateConsultant = () => {
                         <p className="text-danger">{errors.departments}</p>
                       )}
                     </div>
+                      {/* Work Experience using ReactQuill */}
+                      <div className="col-12 mb-5 mt-5">
+                            <label className="fw-bold text-black">
+                              Work Experience
+                            </label>
+                            <ReactQuill
+                              theme="snow"
+                              modules={modules}
+                              formats={formats}
+                              value={myForm.work_experience}
+                              style={{ height: '200px' }}
+                              onChange={(value) =>
+                                setMyForm({ ...myForm, work_experience: value })
+                              }
+                            />
+                          </div>
                     {/* Dynamic Education Fields */}
                     <div className="col-12 mb-5">
                       <label className="fw-bold text-black">Education</label>
@@ -477,22 +493,7 @@ const CreateConsultant = () => {
                               setMyForm({ ...myForm, extra_info: value })
                             }
                           />
-                          {/* Work Experience using ReactQuill */}
-                          <div className="col-12 mb-5 mt-5">
-                            <label className="fw-bold text-black">
-                              Work Experience
-                            </label>
-                            <ReactQuill
-                              theme="snow"
-                              modules={modules}
-                              formats={formats}
-                              value={myForm.work_experience}
-                              style={{ height: '200px' }}
-                              onChange={(value) =>
-                                setMyForm({ ...myForm, work_experience: value })
-                              }
-                            />
-                          </div>
+                        
                           {/* Submit Button */}
                           <div className="col-12">
                             <button
