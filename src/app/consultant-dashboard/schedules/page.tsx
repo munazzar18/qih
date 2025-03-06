@@ -146,18 +146,17 @@ const page: React.FC = () => {
         >
           <button id="delete-event">Delete Event</button>
         </div>
-
         {/* Save Events Button */}
         <button
           id="saveEvents"
           className="btn btn--primary"
           onClick={() => {
-            const calendarApi = calendarRef.current?.getApi();
+            const calendarApi = calendarRef.current?.getApi()
             if (calendarApi) {
               const events = calendarApi.getEvents().map((event) => {
-                const startDate = event.start ? new Date(event.start) : null;
-                const endDate = event.end ? new Date(event.end) : null;
-          
+                const startDate = event.start ? new Date(event.start) : null
+                const endDate = event.end ? new Date(event.end) : null
+
                 return {
                   id: event.id || null,
                   title: event.title,
@@ -192,14 +191,12 @@ const page: React.FC = () => {
                         hour12: false,
                       })
                     : null, // End time
-                };
-              });
-          
-              console.log(JSON.stringify(events, null, 2)); // Logs data in console
+                }
+              })
+
+              console.log(JSON.stringify(events, null, 2)) // Logs data in console
             }
           }}
-          
-          
         >
           Save Events
         </button>
