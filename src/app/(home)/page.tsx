@@ -21,7 +21,7 @@ interface Department {
 }
 
 const page = async () => {
-  const departments: Department = await getDepartments();
+  const departments: Department = await getDepartments()
 
   const getMonthsFromNum = (number: string) => {
     switch (number) {
@@ -301,7 +301,10 @@ const page = async () => {
         <div className="container">
           <div className="row">
             <div className="col-12 col-lg-8">
-              <div style={{display: "flex", gap: "20px"}} className="about-img">
+              <div
+                style={{ display: 'flex', gap: '20px' }}
+                className="about-img"
+              >
                 <Image
                   className="img-fluid"
                   src="/assets/photos/youtube.jpeg"
@@ -310,16 +313,16 @@ const page = async () => {
                   alt="about Image"
                 />
                 <div>
-                <iframe
-  width="560"
-  height="315"
-  src="https://www.youtube.com/embed/Gg70v5uvh-Q?autoplay=1&mute=1"
-  title="YouTube video player"
-  frameBorder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  referrerPolicy="strict-origin-when-cross-origin"
-  allowFullScreen
-></iframe>
+                  <iframe
+                    width="560"
+                    height="315"
+                    src="https://www.youtube.com/embed/Gg70v5uvh-Q?autoplay=1&mute=1"
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; loop"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  ></iframe>
                 </div>
               </div>
             </div>
@@ -415,7 +418,7 @@ const page = async () => {
         <div className="processes">
           <div className="row g-0">
             <div className="col-12 col-md-6 col-xl-3">
-              <Link href='/make-appointment'>
+              <Link href="/make-appointment">
                 <div className="process-panel" data-hover="">
                   <p className="process-number">01.</p>
                   <div className="process-body">
@@ -445,7 +448,7 @@ const page = async () => {
               </Link>
             </div>
             <div className="col-12 col-md-6 col-xl-3">
-              <Link href='/make-appointment'>
+              <Link href="/make-appointment">
                 <div className="process-panel" data-hover="">
                   <p className="process-number">02.</p>
                   <div className="process-body">
