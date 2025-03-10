@@ -285,6 +285,28 @@ export const CreatePageAction = async (formData: FormData) => {
     }
 }
 
+export const EditPageAction = async (id: number, formData: FormData) => {
+    const token = (await cookies()).get('token')?.value
+    const title = formData.get('title')
+    const short_description = formData.get('short_description')
+    const description = formData.get('description')
+    try {
+        const response = await fetch(`${url}pages/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ title, short_description, description })
+        })
+        const data = await response.json();
+        return data
+    } catch (error) {
+        return error
+    }
+}
+
 export const ConsultantDeleteAction = async (id: number) => {
     const token = (await cookies()).get('token')?.value
     try {
