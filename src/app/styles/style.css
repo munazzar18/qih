@@ -71,32 +71,21 @@ custom.css and it will override the style in this file. You have been warned! :)
     #CSS VARIBALES
 \*------------------------------------*/
 :root {
-  /* Primary – Client cyan */
-  --global--color-primary: #89c7bc;
-  /* Approximately 30% darker than #89c7bc */
-  --global--color-primary-darken: #608b83;
-  /* Approximately 40% lighter than #89c7bc */
-  --global--color-primary-light: #b8ddd7;
-
-  /* Secondary – Client dark green */
-  /* --global--color-secondary: #0b2d29;
-  --global--color-secondary-darken: #081f1c;
-  --global--color-secondary-light: #6d817f; */
-
-  --global--color-secondary: #0e8219;
-  --global--color-secondary-darken: #0b6614;
-  --global--color-secondary-light: #28a133;
+  --global--color-primary: #0e8219;
+  --global--color-primary-darken: #0e8219;
+  --global--color-primary-light: #0e82195c;
+  --global--color-secondary: #6c757d;
+  --global--color-secondary-darken: #6c757d;
+  --global--color-secondary-light: #6c757d;
 
   /* Heading colors – using the dark green as the base */
-  --global--color-heading: var(--global--color-secondary); /* #0b2d29 */
-  --global--color-heading-darken: var(
-    --global--color-secondary-darken
-  ); /* #081f1c */
+  --global--color-heading: black;
+  --global--color-heading-darken: black;
   /* A mid-tone variant for lighter headings (adjust as needed) */
-  --global--color-heading-light: #3c5753;
+  --global--color-heading-light: black;
 
   /* Body text could use the lighter secondary shade */
-  --global--color-body: var(--global--color-secondary-light);
+  --global--color-body: black;
 
   /* Whites and Grays – preserved from your original theme */
   --global--color-white: #ffffff;
