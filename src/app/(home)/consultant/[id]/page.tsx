@@ -37,8 +37,11 @@ interface Consultant {
 
 const SingleConsultantPage = async (props: {
   params: Promise<{ id: number }>
+  searchParams: Promise<{ departmentId: number }>
 }) => {
   const params = await props.params
+
+  const departmentId = (await props.searchParams).departmentId
 
   const consultant: Consultant = await getPublicConsultantById(params.id)
 
@@ -75,21 +78,6 @@ const SingleConsultantPage = async (props: {
                               </div>
                             )
                           )}
-                          <div className="team-social">
-                            {' '}
-                            <a href="">
-                              <i className="fab fa-facebook-f"> </i>
-                            </a>
-                            <a href="">
-                              <i className="fab fa-twitter"></i>
-                            </a>
-                            <a href="">
-                              <i className="fas fa-envelope"></i>
-                            </a>
-                            <a href="">
-                              <i className="fas fa-phone-alt"></i>
-                            </a>
-                          </div>
                         </div>
                       </div>
                     </div>

@@ -198,11 +198,15 @@
 
 // export default Footer
 
-
-
-import Link from 'next/link';
-import React from 'react';
-import { FaLink, FaPhoneAlt, FaFax, FaMapMarkerAlt, FaMapMarkedAlt } from 'react-icons/fa';
+import Link from 'next/link'
+import React from 'react'
+import {
+  FaLink,
+  FaPhoneAlt,
+  FaFax,
+  FaMapMarkerAlt,
+  FaMapMarkedAlt,
+} from 'react-icons/fa'
 
 const Footer = () => {
   return (
@@ -211,18 +215,50 @@ const Footer = () => {
         <div className="row">
           {/* Important Links */}
           <div className="col-md-4 mb-4">
-            <h5 className="mb-4 d-flex text-light align-items-center">
+            <h5 className="mb-4 d-flex text-white align-items-center">
               <FaLink className="me-2" /> IMPORTANT LINKS
             </h5>
             <ul className="list-unstyled">
-              <li><Link href="/">Consultants</Link></li>
-              <li><Link href="/">Search</Link></li>
-              <li><Link href="/">Career</Link></li>
-              <li><Link href="/">Gallery</Link></li>
-              <li><Link href="/">Appointments</Link></li>
-              <li><Link href="/">Labs</Link></li>
-              <li><Link href="/">News</Link></li>
-              <li><Link href="/">Highlights</Link></li>
+              <li>
+                <Link className="text-white" href="/">
+                  Consultants
+                </Link>
+              </li>
+              <li>
+                <Link className="text-white" href="/">
+                  Search
+                </Link>
+              </li>
+              <li>
+                <Link className="text-white" href="/">
+                  Career
+                </Link>
+              </li>
+              <li>
+                <Link className="text-white" href="/">
+                  Gallery
+                </Link>
+              </li>
+              <li>
+                <Link className="text-white" href="/">
+                  Appointments
+                </Link>
+              </li>
+              <li>
+                <Link className="text-white" href="/">
+                  Labs
+                </Link>
+              </li>
+              <li>
+                <Link className="text-white" href="/">
+                  News
+                </Link>
+              </li>
+              <li>
+                <Link className="text-white" href="/">
+                  Highlights
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -232,8 +268,16 @@ const Footer = () => {
               <FaPhoneAlt className="me-2" /> CONTACT INFORMATION
             </h5>
             <ul className="list-unstyled">
-              <li><Link href="/">Telephone: +92 (051) 8449100</Link></li>
-              <li><Link href="/">Fax: <FaFax className="me-1" /> +92 (051) 2315159</Link></li>
+              <li>
+                <Link className="text-white" href="/">
+                  Telephone: +92 (051) 8449100
+                </Link>
+              </li>
+              <li>
+                <Link className="text-white" href="/">
+                  Fax: <FaFax className="me-1" /> +92 (051) 2315159
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -246,7 +290,10 @@ const Footer = () => {
               Quaid-e-Azam International Hospital, Near Golra Morr, Peshawar
               Road, Islamabad, Pakistan
             </p>
-            <Link href="/" className="btn btn-outline-light mt-3 d-flex align-items-center">
+            <Link
+              href="/"
+              className="btn btn-outline-light mt-3 d-flex align-items-center"
+            >
               <FaMapMarkedAlt className="me-2" /> Find us on map
             </Link>
           </div>
@@ -256,12 +303,12 @@ const Footer = () => {
       {/* Copyright Section */}
       <div className="bg-dark text-center py-3">
         <p className="mb-0 text-light">
-          Quaid-e-Azam International Hospital &copy; {new Date().getFullYear()}. All Rights Reserved.
+          Quaid-e-Azam International Hospital &copy; {new Date().getFullYear()}.
+          All Rights Reserved.
         </p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Footer;
-
+export default Footer

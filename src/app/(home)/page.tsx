@@ -216,7 +216,7 @@ const page = async () => {
       {/* EVENTS */}
       <section
         className="blog blog-grid blog-grid-3"
-        id="blog-2"
+        id="events"
         style={{ paddingBottom: '0px' }}
       >
         <div className="container">
@@ -300,11 +300,18 @@ const page = async () => {
               <p>No Events</p>
             )}
           </div>
+          {eventData && eventData?.events?.length > 0 && (
+            <div className="d-flex justify-content-center align-content-center">
+              <Link className="btn " href="/about-us/news">
+                View all events
+              </Link>
+            </div>
+          )}
         </div>
       </section>
       {/* EVENTS */}
 
-      <section className="blog blog-grid blog-grid-3" id="blog-2">
+      <section className="blog blog-grid blog-grid-3" id="latestNews">
         <div className="container">
           <div className="row">
             <div className="col-12 col-lg-6 offset-lg-3">
@@ -314,7 +321,7 @@ const page = async () => {
             </div>
           </div>
           <div
-            className="carousel owl-carousel carousel-dots"
+            className="carousel owl-carousel carousel-dots mb-4"
             data-slide="3"
             data-slide-rs="2"
             data-autoplay="true"
@@ -367,6 +374,13 @@ const page = async () => {
               <p>No News</p>
             )}
           </div>
+          {newsData && newsData.length > 0 && (
+            <div className="d-flex justify-content-center align-content-center">
+              <Link className="btn " href="/about-us/news">
+                View all news
+              </Link>
+            </div>
+          )}
         </div>
       </section>
 

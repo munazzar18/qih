@@ -345,6 +345,30 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
 
             <li
               className={`nav-item  ${
+                currentPath.includes('events') ? 'active' : ''
+              } `}
+              id="contact"
+              data-hover=""
+            >
+              <Link className="" href="/#events">
+                <span>Events</span>
+              </Link>
+            </li>
+
+            <li
+              className={`nav-item  ${
+                currentPath.includes('news') ? 'active' : ''
+              } `}
+              id="contact"
+              data-hover=""
+            >
+              <Link className="" href="/#latestNews">
+                <span>News</span>
+              </Link>
+            </li>
+
+            <li
+              className={`nav-item  ${
                 currentPath.includes('career') ? 'active' : ''
               } `}
               id="contact"
@@ -379,16 +403,16 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                     <span>Company Profile</span>
                   </Link>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <Link href="/about-us/news">
                     <span>News</span>
                   </Link>
-                </li>
-                <li className="nav-item">
+                </li> */}
+                {/* <li className="nav-item">
                   <Link href="/about-us/events">
                     <span>Events</span>
                   </Link>
-                </li>
+                </li> */}
                 <li className="nav-item">
                   <Link href="/about-us/highlights">
                     <span>Highlights</span>

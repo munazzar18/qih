@@ -79,7 +79,9 @@ const Page = async (props: { params: Promise<{ depart: number }> }) => {
                         return (
                           <div key={index} className="col-12 col-md-6 col-lg-4">
                             <div className="team-member" data-hover="">
-                              <Link href={`/consultant/${consultant.id}`}>
+                              <Link
+                                href={`/consultant/${consultant.id}?departmentId=${department.data.id}`}
+                              >
                                 <div className="team-member-holder">
                                   <div className="team-img">
                                     <Image
