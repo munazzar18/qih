@@ -555,7 +555,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
             <div className="module-contact">
               <span className="btn btn--secondary btn-line btn-line-after"></span>
               <Link
-                className="btn btn--primary btn-line btn-line-after"
+                className="btn btn--danger btn-line btn-line-after"
                 href="/make-appointment"
               >
                 make appointment

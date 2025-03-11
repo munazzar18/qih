@@ -65,7 +65,11 @@ const page = async () => {
       <section className="slider slider-2" id="slider-2">
         <CarousalComponent />
       </section>
-      <section className="features-bar" id="featuresBar-1">
+      <section
+        className="features-bar"
+        id="featuresBar-1"
+        style={{ paddingBottom: '0px' }}
+      >
         <div className="bg-section">
           {' '}
           {/* <Image src="" width={500} height={500} alt="background" /> */}
@@ -208,7 +212,99 @@ const page = async () => {
           </div>
         </div>
       </section>
-      <section className="blog  blog-grid blog-grid-3" id="blog-2">
+
+      {/* EVENTS */}
+      <section
+        className="blog blog-grid blog-grid-3"
+        id="blog-2"
+        style={{ paddingBottom: '0px' }}
+      >
+        <div className="container">
+          <div className="row">
+            <div className="col-12 col-lg-6 offset-lg-3">
+              <div className="heading heading-7 text-center">
+                <h2 className="heading-title">Events</h2>
+              </div>
+            </div>
+          </div>
+          <div
+            className="carousel owl-carousel carousel-dots"
+            data-slide="3"
+            data-slide-rs="2"
+            data-autoplay="true"
+            data-nav="false"
+            data-dots="true"
+            data-space="30"
+            data-loop="false"
+            data-speed="200"
+          >
+            {eventData?.events?.length ? (
+              eventData.events.map((item: any) => (
+                <div key={item.id}>
+                  <Link href={`/about-us/events/${item.id}`} passHref>
+                    <div className="blog-entry" data-hover="">
+                      <div className="entry-img">
+                        <div className="entry-date">
+                          <div className="entry-content">
+                            <span className="day">
+                              {item.start_date_details?.day}
+                            </span>
+                            <span className="month">
+                              {getMonthsFromNum(item.start_date_details?.month)}
+                            </span>
+                            <span className="year">
+                              {item.start_date_details?.year}
+                            </span>
+                          </div>
+                        </div>
+                        <img
+                          src={item.image?.url}
+                          width={500}
+                          height={500}
+                          alt={item.title || 'Event image'}
+                          style={{
+                            width: '100%',
+                            height: '250px',
+                            objectFit: 'cover',
+                          }}
+                        />
+                      </div>
+
+                      <div className="entry-content ">
+                        <div className="entry-title">
+                          <h4>{item.title.substring(0, 50)}...</h4>
+                        </div>
+                        <div className="entry-bio">
+                          <p>
+                            {stripHtmlTags(item.description).substring(0, 110)}
+                            ...
+                          </p>
+                        </div>
+                        <div className="entry-more">
+                          <Link
+                            href={`/about-us/events/${item.id}`}
+                            className="btn btn--white btn-line btn-line-before btn-line-inversed"
+                          >
+                            <div className="line">
+                              <span></span>
+                            </div>
+                            <span>read more</span>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              ))
+            ) : (
+              <p>No Events</p>
+            )}
+          </div>
+        </div>
+      </section>
+      {/* EVENTS */}
+
+      <section className="blog blog-grid blog-grid-3" id="blog-2">
         <div className="container">
           <div className="row">
             <div className="col-12 col-lg-6 offset-lg-3">
@@ -230,39 +326,16 @@ const page = async () => {
           >
             {newsData && newsData.length ? (
               newsData.map((news: any) => (
-                // <div className="col-12 align-items-center" key={news.id}>
-                //   <div className="card mb-3" style={{ border: 'none' }}>
-                //     <div className="row g-0 ">
-                //       <div className="col-md-3">
-                //         <img
-                //           src={news.featured_media_src_url}
-                //           className="img-fluid rounded"
-                //           alt="News thumbnail"
-                //         />
-                //       </div>
-                //       <div className="col-md-9">
-                //         <div className="card-body">
-                //           <h5 className="card-title">
-                //             {news.title.rendered}
-                //           </h5>
-                //           <p className="card-text small text-muted">
-                //             {stripHtmlTags(news.excerpt.rendered).substring(
-                //               0,
-                //               180
-                //             )}
-                //             ...
-                //           </p>
-
-                //         </div>
-                //       </div>
-                //     </div>
-                //   </div>
-                // </div>
                 <div key={news?.id}>
                   <div className="blog-entry" data-hover="">
                     <div className="entry-img">
                       <a href="">
                         <img
+                          style={{
+                            width: '100%',
+                            height: '250px',
+                            objectFit: 'cover',
+                          }}
                           src={news?.featured_media_src_url}
                           width={500}
                           height={500}
@@ -300,33 +373,20 @@ const page = async () => {
       <section className="about about-2" id="about-2">
         <div className="container">
           <div className="row">
-            <div className="col-12 col-lg-8">
-              <div
-                style={{ display: 'flex', gap: '20px' }}
-                className="about-img"
-              >
-                <Image
-                  className="img-fluid"
-                  src="/assets/photos/youtube.jpeg"
-                  width={500}
-                  height={500}
-                  alt="about Image"
-                />
-                <div>
-                  <iframe
-                    width="560"
-                    height="315"
-                    src="https://www.youtube.com/embed/Gg70v5uvh-Q?autoplay=1&mute=1"
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; loop"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                  ></iframe>
-                </div>
+            <div className="col-12 col-lg-8 ">
+              <div>
+                <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/Gg70v5uvh-Q?autoplay=1&mute=1"
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; loop"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                ></iframe>
               </div>
             </div>
-            <div className="col-12 col-lg-3 offset-lg-1"></div>
           </div>
         </div>
       </section>
@@ -362,6 +422,11 @@ const page = async () => {
                       <div className="entry-img">
                         <a href="">
                           <img
+                            style={{
+                              width: '100%',
+                              height: '250px',
+                              objectFit: 'cover',
+                            }}
                             src={
                               dept.image
                                 ? `https://qih.driveo.pk/${dept?.image}`
@@ -541,86 +606,6 @@ const page = async () => {
         </div>
       </section>
       {/* featured Department */}
-
-      <section className="blog blog-grid blog-grid-3" id="blog-2">
-        <div className="container">
-          <div className="row">
-            <div className="col-12 col-lg-6 offset-lg-3">
-              <div className="heading heading-7 text-center">
-                <h2 className="heading-title">Events</h2>
-              </div>
-            </div>
-          </div>
-          <div
-            className="carousel owl-carousel carousel-dots"
-            data-slide="3"
-            data-slide-rs="2"
-            data-autoplay="true"
-            data-nav="false"
-            data-dots="true"
-            data-space="30"
-            data-loop="false"
-            data-speed="200"
-          >
-            {eventData?.events?.length ? (
-              eventData.events.map((item: any) => (
-                <div key={item.id}>
-                  <Link href={`/about-us/events/${item.id}`} passHref>
-                    <div className="blog-entry" data-hover="">
-                      <div className="entry-img">
-                        <div className="entry-date">
-                          <div className="entry-content">
-                            <span className="day">
-                              {item.start_date_details?.day}
-                            </span>
-                            <span className="month">
-                              {getMonthsFromNum(item.start_date_details?.month)}
-                            </span>
-                            <span className="year">
-                              {item.start_date_details?.year}
-                            </span>
-                          </div>
-                        </div>
-                        <img
-                          src={item.image?.url}
-                          width={500}
-                          height={500}
-                          alt={item.title || 'Event image'}
-                        />
-                      </div>
-
-                      <div className="entry-content">
-                        <div className="entry-title">
-                          <h4>{item.title}</h4>
-                        </div>
-                        <div className="entry-bio">
-                          <p>
-                            {stripHtmlTags(item.description).substring(0, 150)}
-                            ...
-                          </p>
-                        </div>
-                        <div className="entry-more">
-                          <Link
-                            href={`/about-us/events/${item.id}`}
-                            className="btn btn--white btn-line btn-line-before btn-line-inversed"
-                          >
-                            <div className="line">
-                              <span></span>
-                            </div>
-                            <span>read more</span>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </div>
-              ))
-            ) : (
-              <p>No Events</p>
-            )}
-          </div>
-        </div>
-      </section>
     </div>
   )
 }
