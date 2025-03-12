@@ -462,6 +462,7 @@ export const MakePublicAppointmentAction = async (formData: FormData) => {
     const department_id = Number(formData.get('department_id'))
     const consultant_id = Number(formData.get('consultant_id'))
     const message = formData.get('message')
+
     try {
         const response = await fetch(`${url}public/appointments`, {
             method: 'POST',

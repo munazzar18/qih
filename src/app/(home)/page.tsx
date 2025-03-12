@@ -386,12 +386,12 @@ const page = async () => {
 
       <section className="about about-2" id="about-2">
         <div className="container">
-          <div className="row">
-            <div className="col-12 col-lg-8 ">
+          <div className="d-flex justify-content-center">
+            <div className="">
               <div>
                 <iframe
-                  width="560"
-                  height="315"
+                  width="660"
+                  height="415"
                   src="https://www.youtube.com/embed/Gg70v5uvh-Q?autoplay=1&mute=1"
                   title="YouTube video player"
                   frameBorder="0"

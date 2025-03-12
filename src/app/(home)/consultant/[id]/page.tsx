@@ -1,4 +1,5 @@
 import { getPublicConsultantById } from '@/app/lib/getConsultants'
+import BookAppointment from '@/components/BookAppointment'
 import React from 'react'
 import { GoDotFill } from 'react-icons/go'
 
@@ -44,9 +45,6 @@ const SingleConsultantPage = async (props: {
   const departmentId = (await props.searchParams).departmentId
 
   const consultant: Consultant = await getPublicConsultantById(params.id)
-
-  console.log('consultant buy id', consultant)
-
   return (
     <div className="wrapper clearfix" id="wrapperParallax">
       <section className="hero hero-4 bg-overlay bg-overlay-theme">
@@ -105,8 +103,8 @@ const SingleConsultantPage = async (props: {
                       Please feel welcome to contact our friendly reception
                       staff with any general or medical enquiry call us
                     </p>
-                    <a href="tel:0106123214">
-                      <span className="fas fa-phone-alt"></span> 0106123214
+                    <a href="tel:0512315159">
+                      <span className="fas fa-phone-alt"></span>(051) 2315159
                     </a>
                   </div>
                 </div>
@@ -131,6 +129,14 @@ const SingleConsultantPage = async (props: {
                         <span>10:00 - 9:00 pm</span>
                       </li>
                     </ul>
+                  </div>
+                </div>
+                <div className="widget widget-opening-hours">
+                  <div className="widget-content">
+                    <BookAppointment
+                      consultantId={params.id}
+                      departmentId={departmentId}
+                    />
                   </div>
                 </div>
                 <div className="widget widget-download">

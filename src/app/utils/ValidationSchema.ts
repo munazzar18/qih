@@ -109,8 +109,7 @@ export type ConstultantSchema = z.infer<typeof consultantSchema>
 
 export const makeAppointmentSchema = z.object({
     mr_no: z
-        .string()
-        .min(1, "MR No is required"),
+        .string(),
     patient_name: z
         .string()
         .min(1, "Patient name is required"),
