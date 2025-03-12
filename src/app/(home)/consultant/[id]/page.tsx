@@ -46,10 +46,10 @@ const SingleConsultantPage = async (props: {
 
   const consultant: Consultant = await getPublicConsultantById(params.id)
   return (
-    <div className="wrapper clearfix" id="wrapperParallax">
+    <div>
       <section className="hero hero-4 bg-overlay bg-overlay-theme">
         <div className="bg-section">
-          {/* <img src="/assets/images/background/dark-blue.jpg" alt="background" /> */}
+          <img src="/assets/images/background/dark-blue.jpg" alt="background" />
         </div>
         <div className="container">
           <div className="hero-content">

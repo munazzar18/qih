@@ -302,7 +302,7 @@ const page = async () => {
           </div>
           {eventData && eventData?.events?.length > 0 && (
             <div className="d-flex justify-content-center align-content-center">
-              <Link className="btn " href="/about-us/news">
+              <Link className="btn btn--primary" href="/about-us/events">
                 View all events
               </Link>
             </div>
@@ -376,7 +376,7 @@ const page = async () => {
           </div>
           {newsData && newsData.length > 0 && (
             <div className="d-flex justify-content-center align-content-center">
-              <Link className="btn " href="/about-us/news">
+              <Link className="btn btn--primary" href="/about-us/news">
                 View all news
               </Link>
             </div>

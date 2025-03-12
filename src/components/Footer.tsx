@@ -286,7 +286,7 @@ const Footer = () => {
             <h5 className="mb-4 text-light d-flex align-items-center">
               <FaMapMarkerAlt className="me-2" /> OUR LOCATION
             </h5>
-            <p>
+            <p className="text-white">
               Quaid-e-Azam International Hospital, Near Golra Morr, Peshawar
               Road, Islamabad, Pakistan
             </p>

@@ -52,7 +52,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
         <Link className="navbar-brand" href="/">
           <Image
             className="logo logo-dark"
-            src="/assets/photos/logo_dark.png"
+            src="/assets/photos/qih_logo.png"
             width={400}
             height={400}
             alt="QIH logo"

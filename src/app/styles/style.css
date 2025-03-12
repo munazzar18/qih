@@ -73,7 +73,7 @@ custom.css and it will override the style in this file. You have been warned! :)
 :root {
   --global--color-primary: #0e8219;
   --global--color-primary-darken: #0e8219;
-  --global--color-primary-light: #0e82195c;
+  --global--color-primary-light : #e9ecef;
   --global--color-secondary: #6c757d;
   --global--color-secondary-darken: #6c757d;
   --global--color-secondary-light: #6c757d;
@@ -7410,18 +7410,19 @@ ul.dropdown-menu > li.has-dropdown > a:before {
     linear,
     left top,
     left bottom,
-    color-stop(18%, #13c1d9bf),
-    color-stop(70%, var(--global--color-primary))
+    color-stop(18%, #999),
+    color-stop(70%, #e9ecef)
+
   );
   background-image: -o-linear-gradient(
     top,
-    #13c1d9bf 18%,
-    var(--global--color-primary) 70%
+    #999 18%,
+    #e9ecef 70%
   );
   background-image: linear-gradient(
     180deg,
-    #13c1d9bf 18%,
-    var(--global--color-primary) 70%
+    #999 18%,
+    #e9ecef 70%
   );
 }
 .hero.hero-4 .hero-content {

@@ -117,7 +117,7 @@ const Page = async (props: { params: Promise<{ depart: number }> }) => {
             </div>
             <div className="col-12 col-lg-4">
               <div className="sidebar sidebar-service sidebar-department">
-                <div className="widget widget-services">
+                {/* <div className="widget widget-services">
                   <div className="widget-title">
                     <h5>medical services</h5>
                   </div>
@@ -185,7 +185,7 @@ const Page = async (props: { params: Promise<{ depart: number }> }) => {
                       </li>
                     </ul>
                   </div>
-                </div>
+                </div> */}
 
                 <div className="widget widget-reservation">
                   <Image
@@ -201,8 +201,9 @@ const Page = async (props: { params: Promise<{ depart: number }> }) => {
                       Please feel welcome to contact our friendly reception
                       staff with any general or medical enquiry call us
                     </p>
-                    <a href="tel:0106123214">
-                      <span className="fas fa-phone-alt"></span> 0106123214
+                    <a href="tel:+920518449100">
+                      <span className="fas fa-phone-alt"></span>
+                      (051) 8449100
                     </a>
                   </div>
                 </div>
