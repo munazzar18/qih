@@ -107,6 +107,53 @@ export const consultantSchema = z.object({
 
 export type ConstultantSchema = z.infer<typeof consultantSchema>
 
+export const editConsultantSchema = z.object({
+    name: z
+        .string()
+        .min(1, "Name is required"),
+    email: z
+        .string()
+        .min(1, "Email is required")
+        .email("Email is invalid"),
+    office_extension: z
+        .string()
+        .min(1, "Office extention is required"),
+    photo: z
+        .string(),
+    departments: z
+        .array(z.string())
+        .min(1, "Department is required"),
+    education: z
+        .array(z.object({
+            degree: z
+                .string()
+                .min(1, "Degree is required"),
+            institute: z
+                .string()
+                .min(1, "Institution is required"),
+            year: z
+                .number()
+                .min(1, "Year is required"),
+        }))
+        .min(1, "Education is required"),
+    work_experience: z
+        .string(),
+    membership: z
+        .string(),
+    residency: z
+        .string(),
+    diploma: z
+        .string(),
+    certification: z
+        .string(),
+    award: z
+        .string(),
+    extra_info: z
+        .string()
+})
+
+export type EditConstultantSchema = z.infer<typeof editConsultantSchema>
+
 export const makeAppointmentSchema = z.object({
     mr_no: z
         .string(),

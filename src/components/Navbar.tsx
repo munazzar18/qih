@@ -298,11 +298,11 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                     <span>Hospital Facilities</span>
                   </Link>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <a href="https://portal.qih.com.pk/" target="_blank">
                     <span>Lab Reports</span>
                   </a>
-                </li>
+                </li> */}
                 <li className="nav-item">
                   <Link href="/services/live-transplant">
                     <span>Liver Transplant</span>
@@ -343,28 +343,30 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
               </ul>
             </li>
 
-            <li
-              className={`nav-item  ${
-                currentPath.includes('events') ? 'active' : ''
-              } `}
-              id="contact"
-              data-hover=""
-            >
-              <Link className="" href="/#events">
-                <span>Events</span>
-              </Link>
+            <li className="nav-item text-nowrap" id="contact" data-hover="">
+              <a
+                className=""
+                href="https://quaid-e-azam-digital-library.web.app/"
+                target="_blank"
+              >
+                <span>Digital Library</span>
+              </a>
             </li>
 
-            <li
-              className={`nav-item  ${
-                currentPath.includes('news') ? 'active' : ''
-              } `}
-              id="contact"
-              data-hover=""
-            >
-              <Link className="" href="/#latestNews">
-                <span>News</span>
-              </Link>
+            <li className="nav-item text-nowrap" id="contact" data-hover="">
+              <a
+                className=""
+                href="https://qih-portal-cbe58.web.app/"
+                target="_blank"
+              >
+                <span>QIH Portal</span>
+              </a>
+            </li>
+
+            <li className="nav-item text-nowrap" id="contact" data-hover="">
+              <a href="https://portal.qih.com.pk/" target="_blank">
+                <span>Lab Reports</span>
+              </a>
             </li>
 
             <li
@@ -377,6 +379,38 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
               <Link className="" href="/career">
                 <span>Career</span>
               </Link>
+            </li>
+
+            <li
+              className={`nav-item has-dropdown ${
+                currentPath.includes('about-us') ? 'active' : ''
+              } `}
+              data-hover=""
+            >
+              <Link
+                className="dropdown-toggle"
+                href="/about-us"
+                data-toggle="dropdown"
+              >
+                <span>Updates</span>
+              </Link>
+              <ul className="dropdown-menu">
+                <li className="nav-item">
+                  <Link href="/about-us/highlights">
+                    <span>Highlights</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="" href="/#events">
+                    <span>Events</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="" href="/#latestNews">
+                    <span>News</span>
+                  </Link>
+                </li>
+              </ul>
             </li>
 
             <li
@@ -403,21 +437,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                     <span>Company Profile</span>
                   </Link>
                 </li>
-                {/* <li className="nav-item">
-                  <Link href="/about-us/news">
-                    <span>News</span>
-                  </Link>
-                </li> */}
-                {/* <li className="nav-item">
-                  <Link href="/about-us/events">
-                    <span>Events</span>
-                  </Link>
-                </li> */}
-                <li className="nav-item">
-                  <Link href="/about-us/highlights">
-                    <span>Highlights</span>
-                  </Link>
-                </li>
+
                 <li className="nav-item">
                   <a href="/about-us/sitemap">
                     <span>Sitemaps</span>

@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import toast from 'react-hot-toast'
 import Multiselect from 'multiselect-react-dropdown'
@@ -11,8 +11,8 @@ import {
 } from '@/app/_actions/_actions'
 import { getDepartments } from '@/app/lib/getDepartments'
 import {
-  consultantSchema,
-  ConstultantSchema,
+  editConsultantSchema,
+  EditConstultantSchema,
 } from '@/app/utils/ValidationSchema'
 import 'react-quill-new/dist/quill.snow.css'
 import { getConsultantById } from '@/app/lib/getConsultants'
@@ -23,7 +23,7 @@ const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false })
 interface Education {
   degree: string
   institute: string
-  year: string
+  year: number
 }
 
 interface DepartmentData {
@@ -65,16 +65,15 @@ const EditConsultant = ({ id }: { id: number }) => {
   const [departments, setDepartments] = useState<DepartmentData[]>([])
 
   const initialEducation: Education[] = [
-    { degree: '', institute: '', year: '' },
+    { degree: '', institute: '', year: 1900 },
   ]
 
   const [isLoading, setIsLoading] = useState(true)
 
   // Form state
-  const [myForm, setMyForm] = useState<ConstultantSchema>({
+  const [myForm, setMyForm] = useState<EditConstultantSchema>({
     name: '',
     email: '',
-    password: '',
     office_extension: '',
     work_experience: '',
     membership: '',
@@ -89,7 +88,7 @@ const EditConsultant = ({ id }: { id: number }) => {
   })
 
   const [errors, setErrors] = useState<{
-    [key in keyof ConstultantSchema]?: string
+    [key in keyof EditConstultantSchema]?: string
   }>({})
 
   useEffect(() => {
@@ -110,13 +109,12 @@ const EditConsultant = ({ id }: { id: number }) => {
           const education =
             consultantData.education.length > 0
               ? consultantData.education
-              : [{ degree: '', institute: '', year: '' }]
+              : [{ degree: '', institute: '', year: 1900 }]
 
           // Update form state with loaded data
           setMyForm({
             name: consultantData.name || '',
             email: consultantData.email || '',
-            password: consultantData.password || '',
             office_extension: consultantData.office_extension || '',
             work_experience: consultantData.work_experience || '',
             membership: consultantData.membership || '',
@@ -146,6 +144,18 @@ const EditConsultant = ({ id }: { id: number }) => {
     fetchInitialData()
   }, [])
 
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setMyForm((prevForm) => ({
+      ...prevForm,
+      [name]: value,
+    }))
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: undefined,
+    }))
+  }, [])
+
   // Handler for file upload (photo)
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files
@@ -162,38 +172,35 @@ const EditConsultant = ({ id }: { id: number }) => {
     }
   }
 
-  // Generic input change handler for text inputs
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setMyForm({ ...myForm, [name]: value })
-    if (errors[name as keyof ConstultantSchema]) {
-      setErrors({ ...errors, [name]: undefined })
-    }
-  }
-
   // Handlers for dynamic education fields
-  const handleEducationChange = (
-    index: number,
-    field: keyof Education,
-    value: string
-  ) => {
-    const newEducations = [...myForm.education]
-    newEducations[index] = { ...newEducations[index], [field]: value }
-    setMyForm({ ...myForm, education: newEducations })
-  }
+  const handleEducationChange = useCallback(
+    (index: number, field: keyof Education, value: string) => {
+      setMyForm((prevForm) => {
+        const newEducations = [...prevForm.education]
+        newEducations[index] = { ...newEducations[index], [field]: value }
+        return { ...prevForm, education: newEducations }
+      })
+    },
+    []
+  )
 
-  const handleAddEducation = () => {
-    setMyForm({
-      ...myForm,
-      education: [...myForm.education, { degree: '', institute: '', year: '' }],
+  const handleAddEducation = useCallback(() => {
+    setMyForm((prevForm) => ({
+      ...prevForm,
+      education: [
+        ...prevForm.education,
+        { degree: '', institute: '', year: 1900 },
+      ],
+    }))
+  }, [])
+
+  const handleRemoveEducation = useCallback((index: number) => {
+    setMyForm((prevForm) => {
+      const newEducations = [...prevForm.education]
+      newEducations.splice(index, 1)
+      return { ...prevForm, education: newEducations }
     })
-  }
-
-  const handleRemoveEducation = (index: number) => {
-    const newEducations = [...myForm.education]
-    newEducations.splice(index, 1)
-    setMyForm({ ...myForm, education: newEducations })
-  }
+  }, [])
 
   // Quill modules and formats for membership and work_experience editors
   const modules = {
@@ -237,17 +244,15 @@ const EditConsultant = ({ id }: { id: number }) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const result = consultantSchema.safeParse(myForm)
+    const result = editConsultantSchema.safeParse(myForm)
     if (result.success) {
       const formData = new FormData()
       formData.append('name', result.data.name)
       formData.append('email', result.data.email)
       formData.append('office_extension', result.data.office_extension)
       formData.append('photo', result.data.photo)
-      formData.append('password', result.data.password)
       formData.append('membership', result.data.membership)
       formData.append('education', JSON.stringify(result.data.education))
-      formData.append('work_experience', result.data.work_experience)
       formData.append('work_experience', result.data.work_experience)
       formData.append('residency', result.data.residency)
       formData.append('certification', result.data.certification)
@@ -265,9 +270,9 @@ const EditConsultant = ({ id }: { id: number }) => {
         toast.error(res.message)
       }
     } else {
-      const fieldErrors: { [key in keyof ConstultantSchema]?: string } = {}
+      const fieldErrors: { [key in keyof EditConstultantSchema]?: string } = {}
       result.error.errors.forEach((error) => {
-        const fieldName = error.path[0] as keyof ConstultantSchema
+        const fieldName = error.path[0] as keyof EditConstultantSchema
         fieldErrors[fieldName] = error.message
       })
       setErrors(fieldErrors)
@@ -286,6 +291,12 @@ const EditConsultant = ({ id }: { id: number }) => {
             <div className="login-card">
               <div className="heading heading-1 text--center">
                 <h2 className="heading-title">Edit Consultant</h2>
+              </div>
+              <div className="d-flex justify-content-center mb-3">
+                <img
+                  src={`https://qih.driveo.pk/${myForm.photo}`}
+                  alt="consultant photo"
+                />
               </div>
               <div className="login-body">
                 <form onSubmit={handleSubmit}>
@@ -320,21 +331,7 @@ const EditConsultant = ({ id }: { id: number }) => {
                         <p className="text-danger">{errors.email}</p>
                       )}
                     </div>
-                    {/* Password */}
-                    <div className="col-6">
-                      <label className="fw-bold text-black">Password</label>
-                      <input
-                        className="form-control"
-                        type="password"
-                        name="password"
-                        placeholder="Enter password"
-                        value={myForm.password}
-                        onChange={handleChange}
-                      />
-                      {errors.password && (
-                        <p className="text-danger">{errors.password}</p>
-                      )}
-                    </div>
+
                     {/* Office Extension */}
                     <div className="col-6">
                       <label className="fw-bold text-black">
@@ -477,7 +474,10 @@ const EditConsultant = ({ id }: { id: number }) => {
                         value={myForm.membership}
                         style={{ height: '200px' }}
                         onChange={(value) =>
-                          setMyForm({ ...myForm, membership: value })
+                          setMyForm((prevForm) => ({
+                            ...prevForm,
+                            membership: value,
+                          }))
                         }
                       />
                     </div>
@@ -493,7 +493,10 @@ const EditConsultant = ({ id }: { id: number }) => {
                         value={myForm.work_experience}
                         style={{ height: '200px' }}
                         onChange={(value) =>
-                          setMyForm({ ...myForm, work_experience: value })
+                          setMyForm((prevForm) => ({
+                            ...prevForm,
+                            work_experience: value,
+                          }))
                         }
                       />
                     </div>
@@ -507,7 +510,10 @@ const EditConsultant = ({ id }: { id: number }) => {
                         value={myForm.residency}
                         style={{ height: '200px' }}
                         onChange={(value) =>
-                          setMyForm({ ...myForm, residency: value })
+                          setMyForm((prevForm) => ({
+                            ...prevForm,
+                            residency: value,
+                          }))
                         }
                       />
                     </div>
@@ -521,7 +527,10 @@ const EditConsultant = ({ id }: { id: number }) => {
                         value={myForm.diploma}
                         style={{ height: '200px' }}
                         onChange={(value) =>
-                          setMyForm({ ...myForm, diploma: value })
+                          setMyForm((prevForm) => ({
+                            ...prevForm,
+                            diploma: value,
+                          }))
                         }
                       />
                     </div>
@@ -537,7 +546,10 @@ const EditConsultant = ({ id }: { id: number }) => {
                         value={myForm.certification}
                         style={{ height: '200px' }}
                         onChange={(value) =>
-                          setMyForm({ ...myForm, certification: value })
+                          setMyForm((prevForm) => ({
+                            ...prevForm,
+                            certification: value,
+                          }))
                         }
                       />
                       {/* Awards using ReactQuill */}
@@ -550,7 +562,10 @@ const EditConsultant = ({ id }: { id: number }) => {
                           value={myForm.award}
                           style={{ height: '200px' }}
                           onChange={(value) =>
-                            setMyForm({ ...myForm, award: value })
+                            setMyForm((prevForm) => ({
+                              ...prevForm,
+                              award: value,
+                            }))
                           }
                         />
                         {/* Extra-info usin ReactQuill */}
@@ -565,7 +580,10 @@ const EditConsultant = ({ id }: { id: number }) => {
                             value={myForm.extra_info}
                             style={{ height: '200px' }}
                             onChange={(value) =>
-                              setMyForm({ ...myForm, extra_info: value })
+                              setMyForm((prevForm) => ({
+                                ...prevForm,
+                                extra_info: value,
+                              }))
                             }
                           />
                         </div>

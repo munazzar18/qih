@@ -222,7 +222,6 @@ export const ConsultantEditAction = async (formData: FormData, id: number) => {
     const office_extension = formData.get('office_extension')
     const photo = formData.get('photo')
     const departments = formData.get('departments')
-    const password = formData.get('password')
     const education = formData.get('education')
     const work_experience = formData.get('work_experience')
     const membership = formData.get('membership')
@@ -245,7 +244,6 @@ export const ConsultantEditAction = async (formData: FormData, id: number) => {
                 office_extension,
                 photo,
                 departments,
-                password,
                 education,
                 work_experience,
                 membership,
