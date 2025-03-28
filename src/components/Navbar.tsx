@@ -125,8 +125,8 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
           className={`collapse navbar-collapse ${drop ? 'show' : ''}`}
           id="navbarContent"
         >
-          <ul style={{ marginLeft: '50px' }} className="navbar-nav ">
-            <li
+          <ul className="navbar-nav ">
+            {/* <li
               className={`nav-item ${currentPath === '/' ? 'active' : ''}`}
               id="contact"
               data-hover=""
@@ -134,7 +134,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
               <Link className="" href="/">
                 Home
               </Link>
-            </li>
+            </li> */}
 
             <li
               onMouseEnter={() => setIsOpen(true)}
