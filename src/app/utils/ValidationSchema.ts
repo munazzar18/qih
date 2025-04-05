@@ -67,8 +67,7 @@ export const consultantSchema = z.object({
         .min(6, "Password must be more than 6 characters")
         .max(32, "Password must be less than 32 characters"),
     office_extension: z
-        .string()
-        .min(1, "Office extention is required"),
+        .string(),
     photo: z
         .string(),
     departments: z
@@ -91,8 +90,7 @@ export const consultantSchema = z.object({
         .string(z.string())
         .min(1, "Experience is required"),
     membership: z
-        .string()
-        .min(1, "Membership is required"),
+        .string(),
     residency: z
         .string(),
     diploma: z
