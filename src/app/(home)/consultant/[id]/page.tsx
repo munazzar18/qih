@@ -2,6 +2,7 @@ import { getPublicConsultantById } from '@/app/lib/getConsultants'
 import BookAppointment from '@/components/BookAppointment'
 import React from 'react'
 import { GoDotFill } from 'react-icons/go'
+import Link from 'next/link'
 
 interface Consultant {
   status: string
@@ -76,6 +77,14 @@ const SingleConsultantPage = async (props: {
                               </div>
                             )
                           )}
+                          <div>
+                            <Link
+                              href={`/book-appointment?departmentId=${departmentId}&consultantId=${params.id}`}
+                              className="btn btn-primary"
+                            >
+                              Book Appointment
+                            </Link>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -131,14 +140,14 @@ const SingleConsultantPage = async (props: {
                     </ul>
                   </div>
                 </div>
-                <div className="widget widget-opening-hours">
+                {/* <div className="widget widget-opening-hours">
                   <div className="widget-content">
                     <BookAppointment
                       consultantId={params.id}
                       departmentId={departmentId}
                     />
                   </div>
-                </div>
+                </div> */}
                 <div className="widget widget-download">
                   <div className="widget-content">
                     <ul className="list-unstyled">
