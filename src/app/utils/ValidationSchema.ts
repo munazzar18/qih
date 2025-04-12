@@ -130,7 +130,7 @@ export const editConsultantSchema = z.object({
                 .string()
                 .min(1, "Institution is required"),
             year: z
-                .string()
+                .number()
                 .min(1, "Year is required"),
         }))
         .min(1, "Education is required"),
