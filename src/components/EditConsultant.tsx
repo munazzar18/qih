@@ -67,6 +67,7 @@ const EditConsultant = ({ id }: { id: number }) => {
   const initialEducation: Education[] = [{ degree: '', institute: '', year: 0 }]
 
   const [isLoading, setIsLoading] = useState(true)
+  const [isImageUploaded, setIsImageUploaded] = useState(false)
 
   // Form state
   const [myForm, setMyForm] = useState<EditConstultantSchema>({
@@ -156,6 +157,7 @@ const EditConsultant = ({ id }: { id: number }) => {
 
   // Handler for file upload (photo)
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsImageUploaded(true)
     const files = e.target.files
     if (!files) return
     const filePath = files[0]
@@ -165,8 +167,10 @@ const EditConsultant = ({ id }: { id: number }) => {
     if (res.status === 'success') {
       toast.success(res.message)
       setMyForm({ ...myForm, photo: res.data.file_path })
+      setIsImageUploaded(false)
     } else {
       toast.error(res.message)
+      setIsImageUploaded(false)
     }
   }
 
@@ -588,6 +592,7 @@ const EditConsultant = ({ id }: { id: number }) => {
                         {/* Submit Button */}
                         <div className="col-12">
                           <button
+                            disabled={isImageUploaded}
                             className="btn btn--secondary btn-line btn-line-before btn--block"
                             style={{ width: '200px' }}
                             type="submit"
