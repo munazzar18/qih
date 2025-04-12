@@ -64,6 +64,8 @@ const CreateConsultant = () => {
   >([])
   const [departments, setDepartments] = useState<DepartmentData[]>([])
 
+  const [isImageUploaded, setIsImageUploaded] = useState(false)
+
   useEffect(() => {
     const getAllDepartments = async () => {
       const res = await getDepartments()
@@ -74,6 +76,7 @@ const CreateConsultant = () => {
 
   // Handler for file upload (photo)
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsImageUploaded(true)
     const files = e.target.files
     if (!files) return
     const filePath = files[0]
@@ -83,8 +86,10 @@ const CreateConsultant = () => {
     if (res.status === 'success') {
       toast.success(res.message)
       setMyForm({ ...myForm, photo: res.data.file_path })
+      setIsImageUploaded(false)
     } else {
       toast.error(res.message)
+      setIsImageUploaded(false)
     }
   }
 
@@ -324,22 +329,22 @@ const CreateConsultant = () => {
                         <p className="text-danger">{errors.departments}</p>
                       )}
                     </div>
-                      {/* Work Experience using ReactQuill */}
-                      <div className="col-12 mb-5 mt-5">
-                            <label className="fw-bold text-black">
-                              Work Experience
-                            </label>
-                            <ReactQuill
-                              theme="snow"
-                              modules={modules}
-                              formats={formats}
-                              value={myForm.work_experience}
-                              style={{ height: '200px' }}
-                              onChange={(value) =>
-                                setMyForm({ ...myForm, work_experience: value })
-                              }
-                            />
-                          </div>
+                    {/* Work Experience using ReactQuill */}
+                    <div className="col-12 mb-5 mt-5">
+                      <label className="fw-bold text-black">
+                        Work Experience
+                      </label>
+                      <ReactQuill
+                        theme="snow"
+                        modules={modules}
+                        formats={formats}
+                        value={myForm.work_experience}
+                        style={{ height: '200px' }}
+                        onChange={(value) =>
+                          setMyForm({ ...myForm, work_experience: value })
+                        }
+                      />
+                    </div>
                     {/* Dynamic Education Fields */}
                     <div className="col-12 mb-5">
                       <label className="fw-bold text-black">Education</label>
@@ -493,10 +498,11 @@ const CreateConsultant = () => {
                               setMyForm({ ...myForm, extra_info: value })
                             }
                           />
-                        
+
                           {/* Submit Button */}
                           <div className="col-12">
                             <button
+                              disabled={isImageUploaded}
                               className="btn btn--secondary btn-line btn-line-before btn--block"
                               style={{ width: '200px' }}
                               type="submit"
