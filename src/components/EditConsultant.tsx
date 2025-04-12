@@ -23,7 +23,7 @@ const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false })
 interface Education {
   degree: string
   institute: string
-  year: number
+  year: string
 }
 
 interface DepartmentData {
@@ -65,7 +65,7 @@ const EditConsultant = ({ id }: { id: number }) => {
   const [departments, setDepartments] = useState<DepartmentData[]>([])
 
   const initialEducation: Education[] = [
-    { degree: '', institute: '', year: 1900 },
+    { degree: '', institute: '', year: '' },
   ]
 
   const [isLoading, setIsLoading] = useState(true)
@@ -109,13 +109,13 @@ const EditConsultant = ({ id }: { id: number }) => {
           const education =
             consultantData.education.length > 0
               ? consultantData.education
-              : [{ degree: '', institute: '', year: 1900 }]
+              : [{ degree: '', institute: '', year: '' }]
 
           // Update form state with loaded data
           setMyForm({
             name: consultantData.name || '',
             email: consultantData.email || '',
-            office_extension: consultantData.office_extension || '',
+            office_extension: consultantData.office_extension.toString() || '',
             work_experience: consultantData.work_experience || '',
             membership: consultantData.membership || '',
             education: education,
@@ -189,7 +189,7 @@ const EditConsultant = ({ id }: { id: number }) => {
       ...prevForm,
       education: [
         ...prevForm.education,
-        { degree: '', institute: '', year: 1900 },
+        { degree: '', institute: '', year: '' },
       ],
     }))
   }, [])
@@ -245,6 +245,7 @@ const EditConsultant = ({ id }: { id: number }) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const result = editConsultantSchema.safeParse(myForm)
+    console.log('Result:', result)
     if (result.success) {
       const formData = new FormData()
       formData.append('name', result.data.name)
