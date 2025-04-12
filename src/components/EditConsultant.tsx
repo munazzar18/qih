@@ -103,8 +103,6 @@ const EditConsultant = ({ id }: { id: number }) => {
         if (consultantRes.status === 'success') {
           const consultantData = consultantRes.data
 
-          console.log('Consultant Data:', consultantData)
-
           // Ensure education is not empty
           const education =
             consultantData.education.length > 0
@@ -245,7 +243,6 @@ const EditConsultant = ({ id }: { id: number }) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const result = editConsultantSchema.safeParse(myForm)
-    console.log('Result:', result)
     if (result.success) {
       const formData = new FormData()
       formData.append('name', result.data.name)
