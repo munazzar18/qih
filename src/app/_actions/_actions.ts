@@ -611,3 +611,43 @@ export const SlideEditAction = async (id: number, formData: FormData) => {
         return error
     }
 }
+
+export const CreateScheduleAction = async (formData: FormData) => {
+    const token = (await cookies()).get('token')?.value
+    const user = JSON.parse((await cookies()).get('user')?.value as string)
+
+    const examine_duration = formData.get('examine_duration')
+    const scheduleDaysRaw = formData.get('schedule_days')
+
+    const schedule_days = JSON.parse(scheduleDaysRaw as string)
+
+    if (!user || !examine_duration || !schedule_days) {
+        throw new Error('Required fields are missing')
+    }
+
+    const payload = {
+        consultant_id: user.id,
+        examine_duration: Number(examine_duration),
+        schedule_days
+    }
+
+
+    try {
+        const response = await fetch(`${url}schedules`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(payload)
+        })
+
+        const data = await response.json();
+        return data
+    } catch (error) {
+        console.log("Error:", error)
+        return error
+    }
+
+}

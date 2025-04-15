@@ -527,13 +527,18 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                     </Link>
                     <ul className="dropdown-menu">
                       <li className="nav-item">
-                        <Link href="/consultant-dashboard/profile">
-                          <span>Profile</span>
+                        <Link href="/consultant-dashboard">
+                          <span>Dashboard</span>
                         </Link>
                       </li>
                       <li className="nav-item">
-                        <Link href="/consultant-dashboard/settings">
-                          <span>Settings</span>
+                        <Link href="/consultant-dashboard/appointments">
+                          <span>Appointments</span>
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link href="/consultant-dashboard/schedules">
+                          <span>Schedules</span>
                         </Link>
                       </li>
                       <li className="nav-item">

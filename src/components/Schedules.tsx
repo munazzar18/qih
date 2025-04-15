@@ -7,21 +7,22 @@ import { EventResizeDoneArg } from '@fullcalendar/interaction'
 import type { EventApi, DateSelectArg, EventDropArg } from '@fullcalendar/core'
 
 interface AvailabilityEvent {
-  id?: string | number
-  title: string
-  start: string | Date
-  end: string | Date | null
+  id?: string
   user_id?: number
-  created_at?: string
-  updated_at?: string
-  backgroundColor?: string
-  borderColor?: string
-  allDay?: boolean
+  examine_duration?: string
+  schedule_days?: {
+    title: string
+    start: string | Date
+    end: string | Date | null
+  }
 }
 
 interface AvailabilityCalendarProps {
   initialAvailability?: AvailabilityEvent[]
-  onUpdateAvailability?: (events: AvailabilityEvent[]) => void
+  onUpdateAvailability?: (
+    events: AvailabilityEvent[],
+    examineDuration: string
+  ) => void
 }
 
 const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
@@ -36,6 +37,7 @@ const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
     top: 0,
   })
   const [showContextMenu, setShowContextMenu] = useState(false)
+  const [examineDuration, setExamineDuration] = useState('')
 
   useEffect(() => {
     if (calendarRef.current) {
@@ -162,7 +164,7 @@ const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
         calendar.destroy()
       }
     }
-  }, [initialAvailability])
+  }, [])
 
   // Hide context menu when clicking anywhere else
   useEffect(() => {
@@ -187,40 +189,50 @@ const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
   const handleSaveEvents = () => {
     if (calendarInstanceRef.current) {
       const events = calendarInstanceRef.current.getEvents().map((event) => {
-        // Ensure start and end are never null for TypeScript compatibility
         const start = event.start || new Date()
         const end = event.end || new Date(start.getTime() + 30 * 60 * 1000)
-
         return {
-          id: event.id || Math.random().toString(36).substr(2, 9),
           title: event.title,
           start: start,
           end: end,
-          user_id: event.extendedProps.user_id || 5,
-          created_at:
-            event.extendedProps.created_at || new Date().toISOString(),
-          updated_at:
-            event.extendedProps.updated_at || new Date().toISOString(),
         }
       })
 
-      console.log(events)
-
       if (onUpdateAvailability) {
-        onUpdateAvailability(events as AvailabilityEvent[])
+        onUpdateAvailability(events as AvailabilityEvent[], examineDuration)
       }
     }
   }
 
   return (
     <div className="position-relative w-100 h-100">
+      <div className="mb-2 w-100 d-flex justify-content-start align-items-baseline gap-4">
+        <div className="w-25">
+          <input
+            type="text"
+            value={examineDuration}
+            onChange={(e) => setExamineDuration(e.target.value)}
+            className="form-control"
+            placeholder="Examine Duration"
+          />
+        </div>
+        <div className="mt-4">
+          <button
+            id="saveEvents"
+            className="btn btn-primary"
+            onClick={handleSaveEvents}
+          >
+            Save Availability
+          </button>
+        </div>
+      </div>
       <div ref={calendarRef} id="calendar" className="w-100 h-100"></div>
 
       {/* Context Menu */}
       {showContextMenu && (
         <div
           id="context-menu"
-          className="position-absolute bg-white shadow-sm p-2 rounded z-3"
+          className="position-absolute p-2 rounded z-3 bg-transparent"
           style={{
             left: `${contextMenuPosition.left}px`,
             top: `${contextMenuPosition.top}px`,
@@ -237,15 +249,6 @@ const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
       )}
 
       {/* Save Button */}
-      <div className="mt-4">
-        <button
-          id="saveEvents"
-          className="btn btn-primary"
-          onClick={handleSaveEvents}
-        >
-          Save Availability
-        </button>
-      </div>
     </div>
   )
 }
