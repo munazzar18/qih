@@ -283,7 +283,7 @@ const MakeAppointment = () => {
                 <div className="badge">choose doctor</div>
               </div>
             </div>
-            <div className="col-12 col-md-12 col-lg-6 align-items-center d-flex gap-2 flex-column flex-md-row">
+            <div className="col-12 col-md-12 col-lg-6">
               <div className="select-holder">
                 <DatePicker
                   selected={selectedDate}
@@ -293,11 +293,8 @@ const MakeAppointment = () => {
                   filterDate={filterDate}
                   placeholderText="Select an available date"
                   dateFormat="yyyy-MM-dd"
-                  className="form-control w-100"
+                  className="form-control"
                 />
-                <div className="badge">Select Date</div>
-              </div>
-              <div className="select-holder">
                 <DatePicker
                   selected={selectedTimeSlot}
                   onChange={handleTimeChange}
@@ -308,13 +305,14 @@ const MakeAppointment = () => {
                   dateFormat="h:mm aa"
                   filterTime={filterTime}
                   placeholderText="Select an available time"
-                  className="form-control w-100"
+                  className="form-control"
                 />
               </div>
               {errors.appointment_dateTime && (
                 <p className="text-danger">{errors.appointment_dateTime}</p>
               )}
             </div>
+
             <div className="col-12 col-md-12 col-lg-6">
               <input
                 className="form-control"

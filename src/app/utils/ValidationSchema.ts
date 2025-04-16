@@ -164,7 +164,7 @@ export const makeAppointmentSchema = z.object({
         .max(11, "Mobile must be 11 characters"),
     appointment_dateTime: z
         .string()
-        .min(1, "Date is required"),
+        .min(1, "Date & time is required"),
     department_id: z
         .string()
         .min(1, "Department is required"),

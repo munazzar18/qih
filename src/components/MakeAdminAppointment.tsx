@@ -14,6 +14,9 @@ import toast from 'react-hot-toast'
 import { getDepartments } from '@/app/lib/getDepartments'
 import Loader from './Loader'
 import { formatDateTime } from '@/app/utils/helper'
+import { getConsultantSchedules, getSlotsByDate } from '@/app/lib/getSchedules'
+import 'react-datepicker/dist/react-datepicker.css'
+import DatePicker from 'react-datepicker'
 
 interface Consultant {
   id: number
@@ -28,6 +31,27 @@ interface Department {
 }
 
 const MakeAdminAppointment = () => {
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null)
+  const [availableWeekDays, setAvailableWeekDays] = useState([])
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState<Date | null>(null)
+  const [availableTimeSlots, setAvailableTimeSlots] = useState<string[]>([])
+  const [allowedDays, setAllowedDays] = useState<number[]>([])
+  const [allowedTimes, setAllowedTimes] = useState<string[]>([])
+  const [examineDuration, setExamineDuration] = useState<number>()
+  const [formatedDate, setFormatedDate] = useState<string>('')
+  const today = new Date()
+  const maxDate = new Date()
+  maxDate.setMonth(today.getMonth() + 2)
+  const dayNameToNumber = {
+    Sunday: 0,
+    Monday: 1,
+    Tuesday: 2,
+    Wednesday: 3,
+    Thursday: 4,
+    Friday: 5,
+    Saturday: 6,
+  }
+
   const [myForm, setMyForm] = useState<MakeAppointmentSchema>({
     mr_no: '',
     patient_name: '',
@@ -72,6 +96,74 @@ const MakeAdminAppointment = () => {
     }
   }
 
+  const getDaysOfWork = async (consultantId: number) => {
+    if (!consultantId) return
+    setLoading(true)
+    const res = await getConsultantSchedules(consultantId)
+    setAvailableWeekDays(res.days_at_work)
+    setExamineDuration(res.examine_duration)
+
+    setAllowedDays(
+      res.days_at_work.map(
+        (day: keyof typeof dayNameToNumber) => dayNameToNumber[day]
+      )
+    )
+    setLoading(false)
+  }
+
+  const filterDate = (date: Date) => {
+    return allowedDays.includes(date.getDay())
+  }
+
+  const getTimeSlots = async (date: string) => {
+    if (!myForm.consultant_id) return
+    setLoading(true)
+    const res = await getSlotsByDate(+myForm.consultant_id, date)
+
+    setAvailableTimeSlots(res)
+    setLoading(false)
+  }
+
+  const handleDateChange = (date: Date | null) => {
+    const dateStr = date
+    const dateObj = new Date(dateStr!)
+    const year = dateObj.getFullYear()
+    const month = ('0' + (dateObj.getMonth() + 1)).slice(-2)
+    const day = ('0' + dateObj.getDate()).slice(-2)
+    const formattedDate = `${year}-${month}-${day}`
+    setFormatedDate(formattedDate)
+    setSelectedDate(date)
+    getTimeSlots(formattedDate)
+  }
+
+  const formatTime = (date: Date) => {
+    return date.toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    })
+  }
+
+  const filterTime = (time: Date) => {
+    const formattedTime = formatTime(time)
+    return availableTimeSlots.includes(formattedTime)
+  }
+
+  const handleTimeChange = (date: Date | null) => {
+    const selectedStr = date
+    const selectedObj = new Date(selectedStr!)
+    const hours = selectedObj.getHours().toString().padStart(2, '0')
+    const minutes = selectedObj.getMinutes().toString().padStart(2, '0')
+    const seconds = selectedObj.getSeconds().toString().padStart(2, '0')
+    const formatedTime = `${hours}:${minutes}:${seconds}`
+    setSelectedTimeSlot(date)
+    const concatedDateTime = `${formatedDate} ${formatedTime}`
+    setMyForm({
+      ...myForm,
+      appointment_dateTime: concatedDateTime,
+    })
+  }
+
   useEffect(() => {
     getAllDepartments()
   }, [])
@@ -79,6 +171,10 @@ const MakeAdminAppointment = () => {
   useEffect(() => {
     getConsultants()
   }, [myForm.department_id])
+
+  useEffect(() => {
+    getDaysOfWork(+myForm.consultant_id)
+  }, [myForm.consultant_id])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -188,6 +284,35 @@ const MakeAdminAppointment = () => {
               </div>
             </div>
             <div className="col-12 col-md-12 col-lg-6">
+              <div className="select-holder">
+                <DatePicker
+                  selected={selectedDate}
+                  onChange={handleDateChange}
+                  minDate={today}
+                  maxDate={maxDate}
+                  filterDate={filterDate}
+                  placeholderText="Select an available date"
+                  dateFormat="yyyy-MM-dd"
+                  className="form-control"
+                />
+                <DatePicker
+                  selected={selectedTimeSlot}
+                  onChange={handleTimeChange}
+                  showTimeSelect
+                  showTimeSelectOnly
+                  timeIntervals={5}
+                  timeCaption="Time"
+                  dateFormat="h:mm aa"
+                  filterTime={filterTime}
+                  placeholderText="Select an available time"
+                  className="form-control"
+                />
+              </div>
+              {errors.appointment_dateTime && (
+                <p className="text-danger">{errors.appointment_dateTime}</p>
+              )}
+            </div>
+            <div className="col-12 col-md-12 col-lg-6">
               <input
                 className="form-control"
                 type="text"
@@ -224,20 +349,7 @@ const MakeAdminAppointment = () => {
                 <p className="text-danger">{errors.mobile_no}</p>
               )}
             </div>
-            <div className="col-12 col-md-6 col-lg-6">
-              <input
-                aria-label="Date and time"
-                className="form-control"
-                name="appointment_dateTime"
-                value={myForm.appointment_dateTime}
-                onChange={handleChange}
-                type="datetime-local"
-                min={Date.now()}
-              />
-              {errors.appointment_dateTime && (
-                <p className="text-danger">{errors.appointment_dateTime}</p>
-              )}
-            </div>
+
             <div className="col-12 ">
               <textarea
                 className="form-control"
