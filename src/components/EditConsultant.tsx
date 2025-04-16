@@ -157,6 +157,7 @@ const EditConsultant = ({ id }: { id: number }) => {
 
   // Handler for file upload (photo)
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsLoading(true)
     setIsImageUploaded(true)
     const files = e.target.files
     if (!files) return
@@ -168,9 +169,11 @@ const EditConsultant = ({ id }: { id: number }) => {
       toast.success(res.message)
       setMyForm({ ...myForm, photo: res.data.file_path })
       setIsImageUploaded(false)
+      setIsLoading(false)
     } else {
       toast.error(res.message)
       setIsImageUploaded(false)
+      setIsLoading(false)
     }
   }
 
@@ -298,6 +301,7 @@ const EditConsultant = ({ id }: { id: number }) => {
                 <img
                   src={`https://qih.driveo.pk/${myForm.photo}`}
                   alt="consultant photo"
+                  width={300}
                 />
               </div>
               <div className="login-body">
