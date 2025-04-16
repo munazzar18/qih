@@ -5,6 +5,7 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import { EventResizeDoneArg } from '@fullcalendar/interaction'
 import type { EventApi, DateSelectArg, EventDropArg } from '@fullcalendar/core'
+import { getConsultantSchedule } from '@/app/lib/getSchedules'
 
 interface AvailabilityEvent {
   id?: string
@@ -29,6 +30,9 @@ const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
   initialAvailability = [],
   onUpdateAvailability,
 }) => {
+  const [availableSchedule, setAvailableSchedule] = useState<
+    AvailabilityEvent[]
+  >([])
   const calendarRef = useRef<HTMLDivElement>(null)
   const calendarInstanceRef = useRef<Calendar | null>(null)
   const [selectedEvent, setSelectedEvent] = useState<EventApi | null>(null)
@@ -39,13 +43,19 @@ const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
   const [showContextMenu, setShowContextMenu] = useState(false)
   const [examineDuration, setExamineDuration] = useState('')
 
+  const getSchedule = async () => {
+    const res = await getConsultantSchedule()
+    setAvailableSchedule(res.schedule_days)
+    setExamineDuration(res.examine_duration)
+  }
+
   useEffect(() => {
+    getSchedule()
     if (calendarRef.current) {
       const calendarEl = calendarRef.current
-
       const calendar = new Calendar(calendarEl, {
         plugins: [timeGridPlugin, interactionPlugin],
-        events: [],
+        events: availableSchedule,
         dayHeaderFormat: { weekday: 'long' },
         initialView: 'timeGridWeek',
         editable: true,
@@ -54,7 +64,7 @@ const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
         allDaySlot: false,
         selectable: true,
         headerToolbar: false,
-        timeZone: 'local',
+        timeZone: 'Asia/Karachi',
         initialDate: '2023-01-01',
         slotLabelFormat: {
           hour: '2-digit',

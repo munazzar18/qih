@@ -2,10 +2,11 @@
 import { cookies } from "next/headers"
 const url = process.env.NEXT_PUBLIC_API_URL as string
 
-export const getConsultantSchedules = async (id: number) => {
+
+export const getCareers = async () => {
     const token = ((await cookies()).get('token')?.value)
     try {
-        const res = await fetch(`${url}schedules/consultant/${id}`,
+        const res = await fetch(`${url}careers`,
             {
                 cache: 'no-cache',
                 method: 'GET',
@@ -16,39 +17,16 @@ export const getConsultantSchedules = async (id: number) => {
                 },
             })
         const data = await res.json()
-
         return data
     } catch (error) {
         return error
     }
 }
 
-export const getSlotsByDate = async (consultantId: number, date: string,) => {
-
-    try {
-        const res = await fetch(`${url}public/schedules/${consultantId}/${date}`,
-            {
-                cache: 'no-cache',
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-
-                },
-            })
-        const data = await res.json()
-
-        return data
-    } catch (error) {
-        return error
-    }
-}
-
-export const getConsultantSchedule = async () => {
+export const getSingleCareer = async (id: string) => {
     const token = ((await cookies()).get('token')?.value)
-    const user = JSON.parse((await cookies()).get('user')?.value as string)
     try {
-        const res = await fetch(`${url}schedules/consultant/${user.id}`,
+        const res = await fetch(`${url}careers/${id}`,
             {
                 cache: 'no-cache',
                 method: 'GET',
