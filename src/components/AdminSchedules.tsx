@@ -5,7 +5,7 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import { EventResizeDoneArg } from '@fullcalendar/interaction'
 import type { EventApi, DateSelectArg, EventDropArg } from '@fullcalendar/core'
-import { getConsultantSchedule } from '@/app/lib/getSchedules'
+import { getAdminConsultantSchedule } from '@/app/lib/getSchedules'
 import Loader from './Loader'
 
 interface AvailabilityEvent {
@@ -25,11 +25,13 @@ interface AvailabilityCalendarProps {
     events: AvailabilityEvent[],
     examineDuration: string
   ) => void
+  consultantId: number
 }
 
-const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
+const AdminAvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
   initialAvailability = [],
   onUpdateAvailability,
+  consultantId,
 }) => {
   const [availableSchedule, setAvailableSchedule] = useState<
     AvailabilityEvent[]
@@ -47,7 +49,7 @@ const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
 
   const getSchedule = async () => {
     setLoading(true)
-    const res = await getConsultantSchedule()
+    const res = await getAdminConsultantSchedule(consultantId)
     setAvailableSchedule(res.schedule_days)
     setExamineDuration(res.examine_duration)
     setLoading(false)
@@ -55,7 +57,7 @@ const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
 
   useEffect(() => {
     getSchedule()
-  }, [])
+  }, [consultantId])
 
   useEffect(() => {
     if (calendarRef.current) {
@@ -272,4 +274,4 @@ const AvailabilityCalendar: React.FC<AvailabilityCalendarProps> = ({
   )
 }
 
-export default AvailabilityCalendar
+export default AdminAvailabilityCalendar

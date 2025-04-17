@@ -64,3 +64,26 @@ export const getConsultantSchedule = async () => {
         return error
     }
 }
+
+
+export const getAdminConsultantSchedule = async (consultantId: number) => {
+
+    const token = ((await cookies()).get('token')?.value)
+    try {
+        const res = await fetch(`${url}schedules/consultant/${consultantId}`,
+            {
+                cache: 'no-cache',
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+            })
+        const data = await res.json()
+
+        return data
+    } catch (error) {
+        return error
+    }
+}

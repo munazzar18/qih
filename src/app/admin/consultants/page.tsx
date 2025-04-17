@@ -2,6 +2,7 @@ import { getConsultants } from '@/app/lib/getConsultants'
 import DeleteConsultant from '@/components/DeleteConsultant'
 import Link from 'next/link'
 import React from 'react'
+import { FaCalendarDays } from 'react-icons/fa6'
 import { FiEdit, FiTrash } from 'react-icons/fi'
 
 interface Consultants {
@@ -59,6 +60,7 @@ const ConsultantsPage = async () => {
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Department</th>
+                <th scope="col">Schedule</th>
                 <th scope="col">Office Extention</th>
                 <th scope="col">Action</th>
               </tr>
@@ -71,6 +73,13 @@ const ConsultantsPage = async () => {
                       <td>{consultant.name}</td>
                       <td>{consultant.email}</td>
                       <td>{consultant.departments?.map((d) => d.title)}</td>
+                      <td>
+                        <Link
+                          href={`/admin/consultants/schedule/${consultant.id}`}
+                        >
+                          <FaCalendarDays />
+                        </Link>
+                      </td>
                       <td>{consultant.office_extension}</td>
 
                       <td>

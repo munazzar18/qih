@@ -652,6 +652,44 @@ export const CreateScheduleAction = async (formData: FormData) => {
 
 }
 
+export const CreateAdminScheduleAction = async (consultantId: number, formData: FormData) => {
+    const token = (await cookies()).get('token')?.value
+
+    const examine_duration = formData.get('examine_duration')
+    const scheduleDaysRaw = formData.get('schedule_days')
+
+    const schedule_days = JSON.parse(scheduleDaysRaw as string)
+
+    if (!consultantId || !examine_duration || !schedule_days) {
+        throw new Error('Required fields are missing')
+    }
+
+    const payload = {
+        consultant_id: consultantId,
+        examine_duration: Number(examine_duration),
+        schedule_days
+    }
+
+    try {
+        const response = await fetch(`${url}schedules`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(payload)
+        })
+
+        const data = await response.json();
+        return data
+    } catch (error) {
+        console.log("Error:", error)
+        return error
+    }
+
+}
+
 export const CreateCareerAction = async (formData: FormData) => {
     const token = (await cookies()).get('token')?.value
     const position = formData.get('position')
