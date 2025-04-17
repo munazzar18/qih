@@ -242,3 +242,29 @@ export const createCareerSchema = z.object({
 
 export type CreateCareerSchema = z.infer<typeof createCareerSchema>
 
+export const applyToJobSchema = z.object({
+    name: z
+        .string()
+        .min(1, "Name is required"),
+    career_id: z
+        .string()
+        .min(1, "Career Id is required"),
+    email: z
+        .string()
+        .min(1, "email is required"),
+    phone: z
+        .string()
+        .min(1, "phone is required"),
+    address: z
+        .string()
+        .min(1, "address is required"),
+    city: z
+        .string()
+        .min(1, "city is required"),
+    resume: z
+        .string()
+        .min(1, "resume is required")
+})
+
+export type ApplyToJobSchema = z.infer<typeof applyToJobSchema>
+

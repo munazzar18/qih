@@ -23,6 +23,24 @@ export const getCareers = async () => {
     }
 }
 
+export const getPublicCareers = async () => {
+    try {
+        const res = await fetch(`${url}public/careers`,
+            {
+                cache: 'no-cache',
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+            })
+        const data = await res.json()
+        return data
+    } catch (error) {
+        return error
+    }
+}
+
 export const getSingleCareer = async (id: number) => {
     const token = ((await cookies()).get('token')?.value)
     try {

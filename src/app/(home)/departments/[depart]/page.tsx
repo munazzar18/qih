@@ -236,7 +236,7 @@ const Page = async (props: { params: Promise<{ depart: number }> }) => {
                   <div className="widget-content">
                     <ul className="list-unstyled">
                       <li>
-                        <a href="javascript:void(0)">
+                        <Link href="/services/patient-charges">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 18 18"
@@ -255,10 +255,10 @@ const Page = async (props: { params: Promise<{ depart: number }> }) => {
                             </g>
                           </svg>
                           <span>covid-19 latest update</span>
-                        </a>
+                        </Link>
                       </li>
                       <li className="inversed">
-                        <a href="javascript:void(0)">
+                        <a href="https://portal.qih.com.pk" target="_blank">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 18 18"
@@ -277,7 +277,7 @@ const Page = async (props: { params: Promise<{ depart: number }> }) => {
                               </g>
                             </g>
                           </svg>
-                          <span>2020 patient reports</span>
+                          <span>patient reports</span>
                         </a>
                       </li>
                     </ul>

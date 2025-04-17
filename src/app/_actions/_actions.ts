@@ -762,3 +762,33 @@ export const CareerDeleteAction = async (id: number) => {
         return error
     }
 }
+
+
+export const ApplyToJobAction = async (formData: FormData) => {
+    const token = (await cookies()).get('token')?.value
+    const name = formData.get('name')
+    const email = formData.get('email')
+    const phone = formData.get('phone')
+    const resume = formData.get('resume')
+    const address = formData.get('address')
+    const city = formData.get('city')
+    const career_id = Number(formData.get('career_id'))
+
+    try {
+        const response = await fetch(`${url}applications`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ name, email, phone, resume, address, city, career_id })
+        })
+        const data = await response.json();
+        return data
+    } catch (error) {
+        console.log("Error:", error)
+        return error
+
+    }
+}

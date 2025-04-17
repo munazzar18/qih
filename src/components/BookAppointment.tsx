@@ -8,14 +8,19 @@ import {
   MakeAppointmentSchema,
   makeAppointmentSchema,
 } from '@/app/utils/ValidationSchema'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import toast from 'react-hot-toast'
 import { getDepartments } from '@/app/lib/getDepartments'
 import Loader from './Loader'
 import { formatDateTime } from '@/app/utils/helper'
-import { getConsultantSchedules, getSlotsByDate } from '@/app/lib/getSchedules'
+import {
+  getConsultantSchedules,
+  getPublicConsultantSchedules,
+  getSlotsByDate,
+} from '@/app/lib/getSchedules'
 import 'react-datepicker/dist/react-datepicker.css'
 import DatePicker from 'react-datepicker'
+import { format } from 'date-fns/format'
 
 interface Consultant {
   id: number
@@ -105,7 +110,7 @@ const BookAppointment = ({
   const getDaysOfWork = async (consultantId: number) => {
     if (!consultantId) return
     setLoading(true)
-    const res = await getConsultantSchedules(consultantId)
+    const res = await getPublicConsultantSchedules(consultantId)
     setAvailableWeekDays(res.days_at_work)
     setExamineDuration(res.examine_duration)
 
@@ -169,6 +174,28 @@ const BookAppointment = ({
       appointment_dateTime: concatedDateTime,
     })
   }
+
+  useEffect(() => {
+    if (selectedDate && myForm.consultant_id) {
+      const dateStr = format(selectedDate, 'yyyy-MM-dd')
+      getSlotsByDate(+myForm.consultant_id, dateStr)
+        .then((res) => setAvailableTimeSlots(res))
+        .finally(() => setLoading(false))
+    }
+  }, [selectedDate, myForm.consultant_id])
+
+  const timesForPicker = useMemo(() => {
+    if (!selectedDate) return []
+    return availableTimeSlots.map((t) => {
+      const [hhmm, mod] = t.split(' ')
+      let [h, m] = hhmm.split(':').map(Number)
+      if (mod === 'PM' && h < 12) h += 12
+      if (mod === 'AM' && h === 12) h = 0
+      const dt = new Date(selectedDate)
+      dt.setHours(h, m, 0, 0)
+      return dt
+    })
+  }, [availableTimeSlots, selectedDate])
 
   useEffect(() => {
     getAllDepartments()
@@ -283,29 +310,36 @@ const BookAppointment = ({
               </div>
             </div>
             <div className="col-12 col-md-12 col-lg-6">
-              <div className="select-holder">
-                <DatePicker
-                  selected={selectedDate}
-                  onChange={handleDateChange}
-                  minDate={today}
-                  maxDate={maxDate}
-                  filterDate={filterDate}
-                  placeholderText="Select an available date"
-                  dateFormat="yyyy-MM-dd"
-                  className="form-control"
-                />
-                <DatePicker
-                  selected={selectedTimeSlot}
-                  onChange={handleTimeChange}
-                  showTimeSelect
-                  showTimeSelectOnly
-                  timeIntervals={5}
-                  timeCaption="Time"
-                  dateFormat="h:mm aa"
-                  filterTime={filterTime}
-                  placeholderText="Select an available time"
-                  className="form-control"
-                />
+              <div className="row">
+                <div className="col-6 ">
+                  <DatePicker
+                    selected={selectedDate}
+                    onChange={handleDateChange}
+                    minDate={today}
+                    maxDate={maxDate}
+                    filterDate={filterDate}
+                    placeholderText="Select an available date"
+                    dateFormat="yyyy-MM-dd"
+                    wrapperClassName="w-100"
+                    className="form-control "
+                  />
+                </div>
+                <div className="col-6 ">
+                  <DatePicker
+                    wrapperClassName="w-100"
+                    selected={selectedTimeSlot}
+                    onChange={handleTimeChange}
+                    showTimeSelect
+                    showTimeSelectOnly
+                    timeCaption="Time"
+                    dateFormat="h:mm aa"
+                    includeTimes={timesForPicker}
+                    placeholderText="Select an available time"
+                    className="form-control"
+                    timeIntervals={examineDuration}
+                    filterTime={filterTime}
+                  />
+                </div>
               </div>
               {errors.appointment_dateTime && (
                 <p className="text-danger">{errors.appointment_dateTime}</p>
