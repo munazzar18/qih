@@ -23,7 +23,7 @@ export const getCareers = async () => {
     }
 }
 
-export const getSingleCareer = async (id: string) => {
+export const getSingleCareer = async (id: number) => {
     const token = ((await cookies()).get('token')?.value)
     try {
         const res = await fetch(`${url}careers/${id}`,

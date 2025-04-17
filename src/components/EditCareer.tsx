@@ -5,9 +5,10 @@ import {
   createCareerSchema,
 } from '@/app/utils/ValidationSchema'
 import { getDepartments } from '@/app/lib/getDepartments'
-import { CreateCareerAction } from '@/app/_actions/_actions'
+import { CreateCareerAction, EditCareerAction } from '@/app/_actions/_actions'
 import toast from 'react-hot-toast'
 import Loader from './Loader'
+import { getSingleCareer } from '@/app/lib/getCareers'
 
 interface Department {
   id: number
@@ -15,8 +16,9 @@ interface Department {
   description: string
 }
 
-const EditCareer = () => {
+const EditCareer = ({ id }: { id: number }) => {
   const [departments, setDepartments] = useState<Department[]>([])
+
   const [myForm, setMyForm] = useState<CreateCareerSchema>({
     position: '',
     department_id: '',
@@ -42,6 +44,21 @@ const EditCareer = () => {
     }
   }
 
+  const getCareerData = async () => {
+    const res = await getSingleCareer(id)
+    if (res.status === 'success') {
+      setMyForm({
+        position: res.data.position,
+        department_id: res.data.department_id,
+        description: res.data.description,
+        open_date: res.data.open_date.split('T')[0],
+        close_date: res.data.close_date.split('T')[0],
+      })
+    } else {
+      toast.error(res.message)
+    }
+  }
+
   const getAllDepartments = async () => {
     setLoading(true)
     const res = await getDepartments()
@@ -51,6 +68,7 @@ const EditCareer = () => {
 
   useEffect(() => {
     getAllDepartments()
+    getCareerData()
   }, [])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -65,17 +83,10 @@ const EditCareer = () => {
       formData.append('open_date', myForm.open_date)
       formData.append('close_date', myForm.close_date)
 
-      const res = await CreateCareerAction(formData)
+      const res = await EditCareerAction(id, formData)
       if (res.status === 'success') {
         setLoading(false)
         toast.success(res.message)
-        setMyForm({
-          position: '',
-          department_id: '',
-          description: '',
-          open_date: '',
-          close_date: '',
-        })
       } else {
         setLoading(false)
         toast.error(res.message)
@@ -95,7 +106,7 @@ const EditCareer = () => {
     <div className="contact-card">
       {loading && <Loader />}
       <div className="contact-body">
-        <h5 className="card-heading mb-5">Create a Career Post</h5>
+        <h5 className="card-heading mb-5">Edit a Career Post</h5>
         <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-12 col-md-6">
@@ -183,12 +194,8 @@ const EditCareer = () => {
             </div>
 
             <div className="col-12">
-              <button
-                type="submit"
-                className="btn btn--secondary"
-                style={{ width: '200px' }}
-              >
-                <span>Create</span>
+              <button type="submit" className="btn btn--secondary">
+                <span>Update</span>
               </button>
             </div>
           </div>

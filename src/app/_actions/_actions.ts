@@ -679,6 +679,33 @@ export const CreateCareerAction = async (formData: FormData) => {
     }
 }
 
+export const EditCareerAction = async (id: number, formData: FormData) => {
+    const token = (await cookies()).get('token')?.value
+    const position = formData.get('position')
+    const department_id = formData.get('department_id')
+    const open_date = formData.get('open_date')
+    const close_date = formData.get('close_date')
+    const description = formData.get('description')
+
+    try {
+        const response = await fetch(`${url}careers/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ position, department_id, open_date, close_date, description })
+        })
+        const data = await response.json();
+        return data
+    } catch (error) {
+        console.log("Error:", error)
+        return error
+
+    }
+}
+
 
 export const CareerDeleteAction = async (id: number) => {
     const token = (await cookies()).get('token')?.value
