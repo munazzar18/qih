@@ -40,11 +40,11 @@ const CarousalComponent = async () => {
                   alt="Background"
                 />
               </div>
-              {slide.title.length || slide.description.length ? (
+              {slide?.title?.length || slide?.description?.length ? (
                 <div className="container">
                   <div className="slide-content">
                     <div className="row">
-                      {slide.title.length && (
+                      {slide?.title?.length && (
                         <div className="col-12 col-lg-7">
                           <h1
                             className="slide-headline"
@@ -54,11 +54,11 @@ const CarousalComponent = async () => {
                               borderRadius: '10px',
                             }}
                           >
-                            {slide.title}
+                            {slide?.title}
                           </h1>
                         </div>
                       )}
-                      {slide.description.length && (
+                      {slide?.description.length && (
                         <div className="col-12 col-lg-6">
                           <p
                             className="slide-desc"
@@ -68,7 +68,7 @@ const CarousalComponent = async () => {
                               borderRadius: '10px',
                             }}
                           >
-                            {slide.description}
+                            {slide?.description}
                           </p>
                           <div className="slide-list">
                             <div className="icon">
