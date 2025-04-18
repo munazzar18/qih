@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 import Image from 'next/image'
-import { getSingleCareer } from '@/app/lib/getCareers'
+import { getPublicSingleCareer, getSingleCareer } from '@/app/lib/getCareers'
 import ApplyToJob from '@/components/ApplyToJob'
 
 interface Career {
@@ -24,8 +24,7 @@ interface Career {
 const SingleCareerPage = async (props: { params: Promise<{ id: number }> }) => {
   const params = await props.params
   const id = params.id
-  const singleCareer: Career = await getSingleCareer(id)
-  console.log(singleCareer)
+  const singleCareer: Career = await getPublicSingleCareer(id)
 
   return (
     <div>
@@ -35,15 +34,15 @@ const SingleCareerPage = async (props: { params: Promise<{ id: number }> }) => {
             <div className="col-12 col-lg-8">
               <div className="entry-infos doctors-prief">
                 <h5 className="entry-heading">
-                  Position Title: {singleCareer.data.position}
+                  Position Title: {singleCareer?.data?.position}
                 </h5>
                 <p className="">
-                  Position Description: {singleCareer.data.description}
+                  Position Description: {singleCareer?.data?.description}
                 </p>
                 <p>
                   Position Department :{' '}
-                  {singleCareer.data.department
-                    ? singleCareer.data.department.name
+                  {singleCareer?.data?.department
+                    ? singleCareer?.data?.department?.name
                     : 'N/A'}
                 </p>
               </div>

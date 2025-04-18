@@ -10,9 +10,10 @@ import Loader from './Loader'
 
 const ApplyToJob = ({ careerId }: { careerId: number }) => {
   const [loading, setLoading] = useState(false)
+  const [isFormVisible, setIsFormVisible] = useState(false)
   const [myForm, setMyForm] = useState<ApplyToJobSchema>({
     name: '',
-    career_id: '',
+    career_id: careerId.toString(),
     email: '',
     phone: '',
     address: '',
@@ -25,17 +26,21 @@ const ApplyToJob = ({ careerId }: { careerId: number }) => {
   }>({})
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLoading(true)
     const files = e.target.files
     if (!files) return
     const filePath = files[0]
     const formData = new FormData()
     formData.append('file', filePath)
     const res = await UploadFileAction(formData)
+    console.log('res: ', res)
     if (res.status === 'success') {
       toast.success(res.message)
       setMyForm({ ...myForm, resume: res.data.file_path })
+      setLoading(false)
     } else {
       toast.error(res.message)
+      setLoading(false)
     }
   }
 
@@ -48,6 +53,10 @@ const ApplyToJob = ({ careerId }: { careerId: number }) => {
     if (errors[name as keyof ApplyToJobSchema]) {
       setErrors({ ...errors, [name]: undefined })
     }
+  }
+
+  const toggleForm = () => {
+    setIsFormVisible(!isFormVisible)
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -94,32 +103,108 @@ const ApplyToJob = ({ careerId }: { careerId: number }) => {
   }
 
   return (
-    <div className="contact-card">
-      {loading && <Loader />}
-      <div className="contact-body">
-        <h5 className="card-heading mb-5">Apply Now</h5>
-        <form onSubmit={handleSubmit}>
-          <div className="row">
-            <div className="col-12 col-md-6">
-              <input
-                className="form-control"
-                type="text"
-                name="name"
-                value={myForm.name}
-                onChange={handleChange}
-                placeholder="Your Name"
-              />
-              {errors.name && <p className="text-danger">{errors.name}</p>}
-            </div>
-
-            <div className="col-12">
-              <button type="submit" className="btn btn--secondary">
-                <span>Submit</span>
-              </button>
-            </div>
-          </div>
-        </form>
+    <div className="contact-card ">
+      <div className="btn btn--primary mb-2" onClick={toggleForm}>
+        Apply
       </div>
+      {loading && <Loader />}
+      {isFormVisible && (
+        <div className="contact-body border border-2 border-primary p-5 border-rounded-5">
+          <h5 className="card-heading mb-5">Apply Now</h5>
+          <form onSubmit={handleSubmit}>
+            <div className="row">
+              <div className="col-12 col-md-6">
+                <label className="form-label">Name</label>
+                <input
+                  className="form-control"
+                  type="text"
+                  name="name"
+                  value={myForm.name}
+                  onChange={handleChange}
+                  placeholder="Your Name"
+                />
+                {errors.name && <p className="text-danger">{errors.name}</p>}
+              </div>
+
+              <div className="col-12 col-md-6">
+                <label className="form-label">Email</label>
+                <input
+                  className="form-control"
+                  type="email"
+                  name="email"
+                  value={myForm.email}
+                  onChange={handleChange}
+                  placeholder="Your email"
+                />
+                {errors.email && <p className="text-danger">{errors.email}</p>}
+              </div>
+
+              <div className="col-12 col-md-6">
+                <label className="form-label">Phone</label>
+                <input
+                  className="form-control"
+                  type="text"
+                  name="phone"
+                  value={myForm.phone}
+                  onChange={handleChange}
+                  placeholder="Your Phone"
+                />
+                {errors.phone && <p className="text-danger">{errors.phone}</p>}
+              </div>
+
+              <div className="col-12 col-md-6">
+                <label className="form-label">Address</label>
+                <input
+                  className="form-control"
+                  type="text"
+                  name="address"
+                  value={myForm.address}
+                  onChange={handleChange}
+                  placeholder="Your Address"
+                />
+                {errors.address && (
+                  <p className="text-danger">{errors.address}</p>
+                )}
+              </div>
+
+              <div className="col-12 col-md-6">
+                <label className="form-label">City</label>
+                <input
+                  className="form-control"
+                  type="text"
+                  name="city"
+                  value={myForm.city}
+                  onChange={handleChange}
+                  placeholder="Your City"
+                />
+                {errors.city && <p className="text-danger">{errors.city}</p>}
+              </div>
+
+              <div className="col-12 col-md-6">
+                <label className="form-label">Upload Resume</label>
+                <input
+                  accept="application/pdf"
+                  className="form-control"
+                  type="file"
+                  name="resume"
+                  onChange={handleUpload}
+                  placeholder="Upload Resume"
+                  disabled={loading}
+                />
+                {errors.resume && (
+                  <p className="text-danger">{errors.resume}</p>
+                )}
+              </div>
+
+              <div className="col-12">
+                <button type="submit" className="btn btn--secondary">
+                  <span>Submit</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      )}
     </div>
   )
 }

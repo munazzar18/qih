@@ -418,6 +418,27 @@ export const UploadFileAction = async (formData: FormData) => {
     }
 }
 
+export const UploadPublicFileAction = async (formData: FormData) => {
+    try {
+
+        const file = formData.get('file')
+        if (!file) {
+            throw new Error('No file provided')
+        }
+        const formDataWithFile = new FormData()
+        formDataWithFile.append('file', file)
+        const response = await fetch(`${url}upload/test`, {
+            method: 'POST',
+
+            body: formDataWithFile
+        })
+        const data = await response.json()
+        return data
+    } catch (error) {
+        return error
+    }
+}
+
 export const MakeAppointmentAction = async (formData: FormData) => {
     const token = (await cookies()).get('token')?.value
     const mr_no = formData.get('mr_no')
@@ -765,7 +786,7 @@ export const CareerDeleteAction = async (id: number) => {
 
 
 export const ApplyToJobAction = async (formData: FormData) => {
-    const token = (await cookies()).get('token')?.value
+
     const name = formData.get('name')
     const email = formData.get('email')
     const phone = formData.get('phone')
@@ -775,20 +796,37 @@ export const ApplyToJobAction = async (formData: FormData) => {
     const career_id = Number(formData.get('career_id'))
 
     try {
-        const response = await fetch(`${url}applications`, {
+        const response = await fetch(`${url}public/applications`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({ name, email, phone, resume, address, city, career_id })
         })
         const data = await response.json();
+        console.log("data: ", data)
         return data
     } catch (error) {
         console.log("Error:", error)
         return error
 
+    }
+}
+
+
+export const JobApplicationDeleteAction = async (id: number) => {
+    try {
+        const response = await fetch(`${url}public/applications/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+        })
+        const data = await response.json();
+        return data
+    } catch (error) {
+        return error
     }
 }

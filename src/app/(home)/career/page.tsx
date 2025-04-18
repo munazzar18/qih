@@ -1,4 +1,4 @@
-import { getCareers, getPublicCareers } from '@/app/lib/getCareers'
+import { getPublicCareers } from '@/app/lib/getCareers'
 import Link from 'next/link'
 
 interface Careers {
@@ -21,7 +21,7 @@ interface Careers {
 }
 
 const CareerPage = async () => {
-  const careers: Careers = await getCareers()
+  const careers: Careers = await getPublicCareers()
 
   return (
     <div className="wrapper clearfix" id="wrapperParallax">

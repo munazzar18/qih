@@ -60,3 +60,22 @@ export const getSingleCareer = async (id: number) => {
         return error
     }
 }
+
+export const getPublicSingleCareer = async (id: number) => {
+
+    try {
+        const res = await fetch(`${url}public/careers/${id}`,
+            {
+                cache: 'no-cache',
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+            })
+        const data = await res.json()
+        return data
+    } catch (error) {
+        return error
+    }
+}

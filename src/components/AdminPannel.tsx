@@ -9,6 +9,7 @@ import {
 import Sidebar from './Sidebar'
 import { FaBars, FaBuilding, FaClipboard, FaFile } from 'react-icons/fa'
 import {
+  FaBriefcase,
   FaBusinessTime,
   FaDollarSign,
   FaGear,
@@ -84,30 +85,36 @@ const AdminSideBar = async () => {
     },
     {
       id: 6,
+      name: 'Job Applications',
+      link: `/admin/job-applications`,
+      icon: <FaBriefcase />,
+    },
+    {
+      id: 7,
       name: 'Pages',
       link: `/admin/pages`,
       icon: <FaRegWindowMaximize />,
     },
     {
-      id: 7,
+      id: 8,
       name: 'Slides',
       link: `/admin/slides`,
       icon: <FiSliders />,
     },
     {
-      id: 8,
+      id: 9,
       name: 'Tickers',
       link: `/admin/tickers`,
       icon: <FaTicket />,
     },
     {
-      id: 9,
+      id: 10,
       name: 'Settings',
       link: `/admin/settings`,
       icon: <FaGear />,
     },
     {
-      id: 10,
+      id: 11,
       name: 'Users',
       link: `/admin/users`,
       icon: <FaUser />,
