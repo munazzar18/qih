@@ -181,13 +181,22 @@ const MakeAppointment = () => {
 
   const timesForPicker = useMemo(() => {
     if (!selectedDate) return []
+
     return availableTimeSlots.map((t) => {
       const [hhmm, mod] = t.split(' ')
       let [h, m] = hhmm.split(':').map(Number)
+
       if (mod === 'PM' && h < 12) h += 12
       if (mod === 'AM' && h === 12) h = 0
+
+      // Create a new date object with the correct date
       const dt = new Date(selectedDate)
-      dt.setHours(h, m, 0, 0)
+      // Set hours and minutes
+      dt.setHours(h)
+      dt.setMinutes(m)
+      dt.setSeconds(0)
+      dt.setMilliseconds(0)
+
       return dt
     })
   }, [availableTimeSlots, selectedDate])
@@ -327,20 +336,28 @@ const MakeAppointment = () => {
                   />
                 </div>
                 <div className="col-6 ">
-                  <DatePicker
-                    wrapperClassName="w-100"
-                    selected={selectedTimeSlot}
-                    onChange={handleTimeChange}
-                    showTimeSelect
-                    showTimeSelectOnly
-                    timeCaption="Time"
-                    dateFormat="h:mm aa"
-                    includeTimes={timesForPicker}
-                    placeholderText="Select an available time"
+                  <select
                     className="form-control"
-                    timeIntervals={examineDuration}
-                    filterTime={filterTime}
-                  />
+                    value={
+                      selectedTimeSlot
+                        ? format(selectedTimeSlot, 'h:mm aa')
+                        : ''
+                    }
+                    onChange={(e) => {
+                      const selectedTime = e.target.value
+                      const selectedDate = timesForPicker.find(
+                        (date) => format(date, 'h:mm aa') === selectedTime
+                      )
+                      handleTimeChange(selectedDate ?? null)
+                    }}
+                  >
+                    <option value="">Select an available time</option>
+                    {availableTimeSlots.map((time, index) => (
+                      <option key={index} value={time}>
+                        {time}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
               {errors.appointment_dateTime && (
