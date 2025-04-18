@@ -72,42 +72,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
               <i className="icon-search" data-hover=""></i>
             </div>
           </div>
-          <div className="module module-language">
-            <div className="selected">
-              <Image
-                src="/assets/images/module-language/en.png"
-                width={30}
-                height={30}
-                alt="alt"
-              />
-              <span>english</span>
-              <i className="fas fa-chevron-down"></i>
-            </div>
-            <div className="lang-list">
-              <ul>
-                <li>
-                  {' '}
-                  <Image
-                    src="/assets/images/module-language/en.png"
-                    width={400}
-                    height={400}
-                    alt="alt"
-                  />
-                  <a href="#">english</a>
-                </li>
-                <li>
-                  {' '}
-                  <Image
-                    src="/assets/images/module-language/ar.png"
-                    width={400}
-                    height={400}
-                    alt="alt"
-                  />
-                  <a href="#">arabic</a>
-                </li>
-              </ul>
-            </div>
-          </div>
+
           <button
             onClick={() => setdrop(!drop)}
             className={`navbar-toggler ${drop ? '' : 'collapsed'}`}
@@ -126,16 +91,6 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
           id="navbarContent"
         >
           <ul className="navbar-nav ">
-            {/* <li
-              className={`nav-item ${currentPath === '/' ? 'active' : ''}`}
-              id="contact"
-              data-hover=""
-            >
-              <Link className="" href="/">
-                Home
-              </Link>
-            </li> */}
-
             <li
               onMouseEnter={() => setIsOpen(true)}
               onMouseLeave={() => setIsOpen(false)}
@@ -153,10 +108,10 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                   style={{
                     position: 'absolute',
                     top: '100%',
-                    left: '-200%',
+                    left: '-50%',
                     width: '100%',
-                    minWidth: '1150px',
-                    maxWidth: '1150px',
+                    minWidth: '900px',
+                    maxWidth: '900px',
                     boxShadow: '0px 4px 8px rgba(0,0,0,0.2)',
                     zIndex: 1000,
                     padding: '20px',

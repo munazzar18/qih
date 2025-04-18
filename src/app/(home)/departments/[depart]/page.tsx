@@ -8,6 +8,8 @@ const Page = async (props: { params: Promise<{ depart: number }> }) => {
 
   const department = await getPublicDepartmentById(params.depart)
 
+  console.log('Deparmtnet:', department.consultants)
+
   return (
     <div>
       <section
@@ -34,7 +36,7 @@ const Page = async (props: { params: Promise<{ depart: number }> }) => {
                     <a href="">services</a>
                   </li>
                   <li className="breadcrumb-item active" aria-current="page">
-                    {department.data.title}
+                    {department?.data?.title}
                   </li>
                 </ol>
                 <div className="title-card">
@@ -44,7 +46,7 @@ const Page = async (props: { params: Promise<{ depart: number }> }) => {
                   </div>
                   <div className="card-content">
                     <div className="title-heading">
-                      <h1>{department.data.title}</h1>
+                      <h1>{department?.data?.title}</h1>
                     </div>
                   </div>
                 </div>
@@ -60,7 +62,7 @@ const Page = async (props: { params: Promise<{ depart: number }> }) => {
               <div className="entry-infos doctors-prief mb-4">
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: department?.data.description,
+                    __html: department?.data?.description,
                   }}
                 ></div>
               </div>
@@ -74,7 +76,7 @@ const Page = async (props: { params: Promise<{ depart: number }> }) => {
                 </p>
                 <div className="row team-grid team-grid-4" id="team-all">
                   {department ? (
-                    department.data.consultants.map(
+                    department?.data?.consultants.map(
                       (consultant: any, index: number) => {
                         return (
                           <div key={index} className="col-12 col-md-6 col-lg-4">
@@ -85,7 +87,7 @@ const Page = async (props: { params: Promise<{ depart: number }> }) => {
                                 <div className="team-member-holder">
                                   <div className="team-img">
                                     <Image
-                                      src="/assets/images/departments/1.jpg"
+                                      src={`https://qih.driveo.pk/${consultant.photo}`}
                                       width={500}
                                       height={500}
                                       alt="team member"
