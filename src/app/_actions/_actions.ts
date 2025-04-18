@@ -647,7 +647,7 @@ export const CreateScheduleAction = async (formData: FormData) => {
     }
 
     const payload = {
-        consultant_id: user.id,
+        consultant_id: user.consultant_id,
         examine_duration: Number(examine_duration),
         schedule_days
     }
