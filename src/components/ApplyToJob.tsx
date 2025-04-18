@@ -36,7 +36,6 @@ const ApplyToJob = ({ careerId }: { careerId: number }) => {
     const formData = new FormData()
     formData.append('file', filePath)
     const res = await UploadPublicFileAction(formData)
-    console.log('res: ', res)
     if (res.status === 'success') {
       toast.success(res.message)
       setMyForm({ ...myForm, resume: res.data.file_path })
