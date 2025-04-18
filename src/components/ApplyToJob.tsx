@@ -1,5 +1,8 @@
 'use client'
-import { ApplyToJobAction, UploadFileAction } from '@/app/_actions/_actions'
+import {
+  ApplyToJobAction,
+  UploadPublicFileAction,
+} from '@/app/_actions/_actions'
 import {
   applyToJobSchema,
   ApplyToJobSchema,
@@ -32,7 +35,7 @@ const ApplyToJob = ({ careerId }: { careerId: number }) => {
     const filePath = files[0]
     const formData = new FormData()
     formData.append('file', filePath)
-    const res = await UploadFileAction(formData)
+    const res = await UploadPublicFileAction(formData)
     console.log('res: ', res)
     if (res.status === 'success') {
       toast.success(res.message)

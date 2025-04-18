@@ -427,7 +427,7 @@ export const UploadPublicFileAction = async (formData: FormData) => {
         }
         const formDataWithFile = new FormData()
         formDataWithFile.append('file', file)
-        const response = await fetch(`${url}upload/test`, {
+        const response = await fetch(`${url}public/upload/test`, {
             method: 'POST',
 
             body: formDataWithFile
