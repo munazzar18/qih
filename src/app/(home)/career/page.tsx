@@ -31,7 +31,7 @@ const CareerPage = async () => {
           <div className="entry-table">
             <table className="table table-striped">
               <tbody>
-                {careers && careers.data.length > 0 ? (
+                {careers && careers?.data?.length > 0 ? (
                   careers.data
                     .filter((career) => career.is_active)
                     .map((career) => (
