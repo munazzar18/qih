@@ -43,6 +43,7 @@ const JobApplicationsPage = async () => {
           <thead>
             <tr>
               <th scope="col">Sr.</th>
+              <th scope="col">Job Opening</th>
               <th scope="col">Name</th>
               <th scope="col">Email</th>
               <th scope="col">Phone</th>
@@ -56,6 +57,7 @@ const JobApplicationsPage = async () => {
               ? applications?.data?.map((app, index) => (
                   <tr key={app.id}>
                     <th scope="row">{index + 1}</th>
+                    <td>{app?.career?.position}</td>
                     <td>{app?.name}</td>
                     <td>{app?.email}</td>
                     <td>{app?.phone}</td>
