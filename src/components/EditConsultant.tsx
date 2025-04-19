@@ -279,6 +279,7 @@ const EditConsultant = ({ id }: { id: number }) => {
         fieldErrors[fieldName] = error.message
       })
       setErrors(fieldErrors)
+      console.log('Field errors:', fieldErrors)
     }
   }
 
@@ -467,6 +468,9 @@ const EditConsultant = ({ id }: { id: number }) => {
                           )}
                         </div>
                       ))}
+                      {errors.education && (
+                        <p className="text-danger">{errors.education}</p>
+                      )}
                     </div>
                     {/* Membership using ReactQuill */}
                     <div className="col-12 mb-5">
@@ -484,6 +488,9 @@ const EditConsultant = ({ id }: { id: number }) => {
                           }))
                         }
                       />
+                      {errors.membership && (
+                        <p className="text-danger">{errors.membership}</p>
+                      )}
                     </div>
                     {/* Work Experience using ReactQuill */}
                     <div className="col-12 mb-5">
@@ -503,6 +510,9 @@ const EditConsultant = ({ id }: { id: number }) => {
                           }))
                         }
                       />
+                      {errors.work_experience && (
+                        <p className="text-danger">{errors.work_experience}</p>
+                      )}
                     </div>
 
                     <div className="col-12 mb-5">
@@ -520,6 +530,9 @@ const EditConsultant = ({ id }: { id: number }) => {
                           }))
                         }
                       />
+                      {errors.residency && (
+                        <p className="text-danger">{errors.residency}</p>
+                      )}
                     </div>
                     {/* Diploma using ReactQuill */}
                     <div className="col-12 mb-5">
@@ -537,6 +550,9 @@ const EditConsultant = ({ id }: { id: number }) => {
                           }))
                         }
                       />
+                      {errors.diploma && (
+                        <p className="text-danger">{errors.diploma}</p>
+                      )}
                     </div>
                     {/* Certifications using ReactQuill */}
                     <div className="col-12 mb-5">
@@ -556,6 +572,9 @@ const EditConsultant = ({ id }: { id: number }) => {
                           }))
                         }
                       />
+                      {errors.certification && (
+                        <p className="text-danger">{errors.certification}</p>
+                      )}
                       {/* Awards using ReactQuill */}
                       <div className="col-12 mb-5 mt-5">
                         <label className="fw-bold text-black">Awards</label>
@@ -572,6 +591,9 @@ const EditConsultant = ({ id }: { id: number }) => {
                             }))
                           }
                         />
+                        {errors.award && (
+                          <p className="text-danger">{errors.award}</p>
+                        )}
                         {/* Extra-info usin ReactQuill */}
                         <div className="col-12 mb-5 mt-5">
                           <label className="fw-bold text-black">
@@ -590,6 +612,9 @@ const EditConsultant = ({ id }: { id: number }) => {
                               }))
                             }
                           />
+                          {errors.extra_info && (
+                            <p className="text-danger">{errors.extra_info}</p>
+                          )}
                         </div>
                         {/* Submit Button */}
                         <div className="col-12">
