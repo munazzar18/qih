@@ -104,24 +104,23 @@ const EditConsultant = ({ id }: { id: number }) => {
         if (consultantRes.status === 'success') {
           const consultantData = consultantRes.data
 
-          // Ensure education is not empty
           const education =
-            consultantData.education.length > 0
-              ? consultantData.education
+            consultantData?.education?.length > 0
+              ? consultantData?.education
               : [{ degree: '', institute: '', year: 0 }]
 
           // Update form state with loaded data
           setMyForm({
-            name: consultantData.name || '',
-            email: consultantData.email || '',
-            office_extension: consultantData.office_extension.toString() || '',
-            work_experience: consultantData.work_experience || '',
-            membership: consultantData.membership || '',
+            name: consultantData?.name || '',
+            email: consultantData?.email || '',
+            office_extension: consultantData?.office_extension.toString() || '',
+            work_experience: consultantData?.work_experience || '',
+            membership: consultantData?.membership || '',
             education: education,
-            photo: consultantData.photo || '',
-            residency: consultantData.residency || '',
-            diploma: consultantData.diploma || '',
-            departments: consultantData.departments.map((item) =>
+            photo: consultantData?.photo || '',
+            residency: consultantData?.residency || '',
+            diploma: consultantData?.diploma || '',
+            departments: consultantData?.departments?.map((item) =>
               item.id.toString()
             ),
             certification: consultantData.certification || '',
@@ -129,7 +128,6 @@ const EditConsultant = ({ id }: { id: number }) => {
             extra_info: consultantData.extra_info || '',
           })
 
-          // Set selected departments
           setSelectedDepartments(consultantData.departments)
         }
       } catch (error) {
