@@ -344,6 +344,9 @@ const CreateConsultant = () => {
                           setMyForm({ ...myForm, work_experience: value })
                         }
                       />
+                      {errors.work_experience && (
+                        <p className="text-danger">{errors.work_experience}</p>
+                      )}
                     </div>
                     {/* Dynamic Education Fields */}
                     <div className="col-12 mb-5">
@@ -413,6 +416,9 @@ const CreateConsultant = () => {
                           )}
                         </div>
                       ))}
+                      {errors.education && (
+                        <p className="text-danger">{errors.education}</p>
+                      )}
                     </div>
                     {/* Membership using ReactQuill */}
                     <div className="col-12 mb-5">
@@ -427,6 +433,9 @@ const CreateConsultant = () => {
                           setMyForm({ ...myForm, membership: value })
                         }
                       />
+                      {errors.membership && (
+                        <p className="text-danger">{errors.membership}</p>
+                      )}
                     </div>
                     <div className="col-12 mb-5">
                       <label className="fw-bold text-black">Residency</label>
@@ -440,6 +449,9 @@ const CreateConsultant = () => {
                           setMyForm({ ...myForm, residency: value })
                         }
                       />
+                      {errors.residency && (
+                        <p className="text-danger">{errors.residency}</p>
+                      )}
                     </div>
                     {/* Diploma using ReactQuill */}
                     <div className="col-12 mb-5">
@@ -454,6 +466,9 @@ const CreateConsultant = () => {
                           setMyForm({ ...myForm, diploma: value })
                         }
                       />
+                      {errors.diploma && (
+                        <p className="text-danger">{errors.diploma}</p>
+                      )}
                     </div>
                     {/* Certifications using ReactQuill */}
                     <div className="col-12 mb-5">
@@ -470,6 +485,9 @@ const CreateConsultant = () => {
                           setMyForm({ ...myForm, certification: value })
                         }
                       />
+                      {errors.certification && (
+                        <p className="text-danger">{errors.certification}</p>
+                      )}
                       {/* Awards using ReactQuill */}
                       <div className="col-12 mb-5 mt-5">
                         <label className="fw-bold text-black">Awards</label>
@@ -483,6 +501,9 @@ const CreateConsultant = () => {
                             setMyForm({ ...myForm, award: value })
                           }
                         />
+                        {errors.award && (
+                          <p className="text-danger">{errors.award}</p>
+                        )}
                         {/* Extra-info usin ReactQuill */}
                         <div className="col-12 mb-5 mt-5">
                           <label className="fw-bold text-black">
@@ -498,6 +519,9 @@ const CreateConsultant = () => {
                               setMyForm({ ...myForm, extra_info: value })
                             }
                           />
+                          {errors.extra_info && (
+                            <p className="text-danger">{errors.extra_info}</p>
+                          )}
 
                           {/* Submit Button */}
                           <div className="col-12">
