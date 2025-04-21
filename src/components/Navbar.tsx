@@ -445,6 +445,11 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                     </Link>
                     <ul className="dropdown-menu">
                       <li className="nav-item">
+                        <Link href="/admin">
+                          <span>Dashboard</span>
+                        </Link>
+                      </li>
+                      <li className="nav-item">
                         <Link href="/admin/departments">
                           <span>Departments</span>
                         </Link>

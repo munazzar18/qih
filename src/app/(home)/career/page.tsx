@@ -11,7 +11,7 @@ interface Careers {
       description: string
       department: {
         id: number
-        name: string
+        title: string
       }
       open_date: string
       close_date: string
@@ -37,7 +37,9 @@ const CareerPage = async () => {
                     .map((career) => (
                       <tr key={career.id}>
                         <td>
-                          <div className="content head">{career.position}</div>
+                          <div className="content head mb-3">
+                            {career.position} - job Id: {career.id}
+                          </div>
                         </td>
                         <td>
                           <div className="content">
@@ -45,19 +47,28 @@ const CareerPage = async () => {
                               <div className="widget-content">
                                 <ul className="list-unstyled">
                                   <li>
-                                    <a href="">
-                                      <span>{career.description}</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="">
+                                    <Link href={`/career/${career.id}`}>
                                       <span>
-                                        {career.department
-                                          ? career.department.name
-                                          : ''}
+                                        {career.description.length > 100
+                                          ? `${career.description.substring(
+                                              0,
+                                              100
+                                            )}...`
+                                          : career.description}
                                       </span>
-                                    </a>
+                                    </Link>
                                   </li>
+                                  {career.department && (
+                                    <li>
+                                      <Link href={`/career/${career.id}`}>
+                                        <span>
+                                          {career.department
+                                            ? career.department.title
+                                            : ''}
+                                        </span>
+                                      </Link>
+                                    </li>
+                                  )}
                                   <li>
                                     <Link href={`/career/${career.id}`}>
                                       {' '}

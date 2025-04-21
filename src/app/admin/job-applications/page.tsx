@@ -1,5 +1,6 @@
 import { getPublicApplications } from '@/app/lib/getApplications'
 import DeleteJobApplication from '@/components/DeleteJobApplication'
+import JobApplicationFilter from '@/components/JobApplicationFilter'
 import React from 'react'
 import { FaDownload } from 'react-icons/fa6'
 
@@ -28,8 +29,12 @@ interface Application {
   ]
 }
 
-const JobApplicationsPage = async () => {
-  const applications: Application = await getPublicApplications()
+const JobApplicationsPage = async (props: {
+  searchParams: Promise<{ careerId: string }>
+}) => {
+  const { careerId } = await props.searchParams
+  const careerIdNumber = careerId ? parseInt(careerId, 10) : 0
+  const applications: Application = await getPublicApplications(careerIdNumber)
 
   return (
     <div className="container">
@@ -39,10 +44,14 @@ const JobApplicationsPage = async () => {
             <h4>Job Applications</h4>
           </div>
         </div>
+        <div>
+          <JobApplicationFilter />
+        </div>
         <table className="table">
           <thead>
             <tr>
               <th scope="col">Sr.</th>
+              <th scope="col">Job Id</th>
               <th scope="col">Job Opening</th>
               <th scope="col">Name</th>
               <th scope="col">Email</th>
@@ -57,6 +66,7 @@ const JobApplicationsPage = async () => {
               ? applications?.data?.map((app, index) => (
                   <tr key={app.id}>
                     <th scope="row">{index + 1}</th>
+                    <td>{app?.career?.id}</td>
                     <td>{app?.career?.position}</td>
                     <td>{app?.name}</td>
                     <td>{app?.email}</td>

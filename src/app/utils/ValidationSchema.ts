@@ -222,19 +222,18 @@ export type AddNewSlideSchema = z.infer<typeof addNewSlideSchema>
 export const createCareerSchema = z.object({
     position: z
         .string()
-        .min(1, "Title is required"),
+        .min(1, "Positiion is required"),
     department_id: z
-        .string()
-        .min(1, "Department is required"),
+        .string(),
     description: z
         .string()
         .min(1, "description is required"),
     open_date: z
         .string()
-        .min(1, "image is required"),
+        .min(1, "open date is required"),
     close_date: z
         .string()
-        .min(1, "url is required")
+        .min(1, "close date is required")
 })
 
 export type CreateCareerSchema = z.infer<typeof createCareerSchema>
