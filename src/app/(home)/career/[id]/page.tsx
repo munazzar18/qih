@@ -13,7 +13,7 @@ interface Career {
     description: string
     department: {
       id: number
-      name: string
+      title: string
     }
     open_date: string
     close_date: string
@@ -42,7 +42,7 @@ const SingleCareerPage = async (props: { params: Promise<{ id: number }> }) => {
                 <p>
                   Position Department :{' '}
                   {singleCareer?.data?.department
-                    ? singleCareer?.data?.department?.name
+                    ? singleCareer?.data?.department?.title
                     : 'N/A'}
                 </p>
               </div>
