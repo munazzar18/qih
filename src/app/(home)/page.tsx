@@ -76,70 +76,7 @@ const page = async () => {
         </div>
         <div className="container">
           <div className="row g-0 features-holder">
-            <div className="col-12 col-lg-3">
-              <div className="feature-panel feature-reservation">
-                <Link href="/about-us/message-from-ceo">
-                  <div
-                    className="feature-content"
-                    style={{
-                      position: 'relative',
-                      width: '100%',
-                      height: '265px',
-                    }}
-                  >
-                    {/* Image fills the whole container */}
-                    <div
-                      style={{
-                        position: 'absolute',
-                        top: -28,
-                        left: -45,
-                        width: '332px',
-                        height: '332px',
-                        borderRadius: '50%',
-                      }}
-                    >
-                      <Image
-                        src="/assets/photos/DrShb.jpeg"
-                        alt="Dr. Shaukat A. Bangash, M.D"
-                        fill
-                        objectFit="cover"
-                      />
-                    </div>
-
-                    {/* Text overlay positioned at the bottom */}
-                    <div
-                      style={{
-                        position: 'absolute',
-                        bottom: -40,
-                        left: -45,
-                        width: '332px',
-                        padding: '10px',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        zIndex: 2,
-                        background: 'rgba(0, 0, 0, 0.7)',
-                      }}
-                    >
-                      <h5
-                        className="text-center"
-                        style={{ margin: 0, color: '#fff' }}
-                      >
-                        Dr. Shaukat A. Bangash, M.D
-                      </h5>
-                      <h6
-                        className="text-center"
-                        style={{ margin: 0, color: '#fff' }}
-                      >
-                        Founder, Chairman, Ceo
-                      </h6>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            </div>
-            <div className="col-12 col-lg-3">
+            <div className="col-12 col-lg-4">
               <div
                 className="feature-panel feature-timetable bg-secondary"
                 style={{ height: '333px', minHeight: '333px' }}
@@ -162,7 +99,7 @@ const page = async () => {
                 </div>
               </div>
             </div>
-            <div className="col-12 col-lg-3">
+            <div className="col-12 col-lg-4">
               <div className="feature-panel feature-opening-hours ">
                 <div className="feature-content">
                   <i className="flaticon-014-uniform"></i>
@@ -192,7 +129,7 @@ const page = async () => {
                 </div>
               </div>
             </div>
-            <div className="col-12 col-lg-3">
+            <div className="col-12 col-lg-4">
               <div
                 className="feature-panel feature-location"
                 style={{ height: '333px', minHeight: '333px' }}
