@@ -25,7 +25,6 @@ const Topbar = () => {
   return (
     <div className="top-bar py-2">
       <div className="container d-flex justify-content-between align-items-center">
-        {/* Ticker Section (Left) */}
         <div className="ticker-container">
           <div className="ticker-content">
             {tickers?.length > 0 ? (
@@ -45,8 +44,7 @@ const Topbar = () => {
           </div>
         </div>
 
-        {/* Contact Section (Right) */}
-        <div className="d-flex align-items-center contact-info">
+        <div className="d-none d-lg-flex align-items-center contact-info hidden lg:flex">
           <div className="contact-item">
             <i className="fas fa-phone-alt"></i>
             <a href="tel:+92518449100">+92 (051) 8449100</a>

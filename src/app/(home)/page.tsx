@@ -65,6 +65,7 @@ const page = async () => {
       <section className="slider slider-2" id="slider-2">
         <CarousalComponent />
       </section>
+
       <section
         className="features-bar"
         id="featuresBar-1"

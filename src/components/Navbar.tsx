@@ -143,6 +143,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                           <Link
                             href={`/departments/${item.id}`}
                             className="dropdown-item"
+                            onClick={() => setdrop(!drop)}
                           >
                             <span
                               style={{
@@ -170,7 +171,11 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                             width: '100%',
                           }}
                         >
-                          <Link href="/departments" className="dropdown-item">
+                          <Link
+                            href="/departments"
+                            className="dropdown-item"
+                            onClick={() => setdrop(!drop)}
+                          >
                             <span
                               style={{
                                 textDecoration: 'none',
@@ -204,52 +209,77 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                 className="dropdown-toggle"
                 href="/services"
                 data-toggle="dropdown"
+                onClick={() => setdrop(!drop)}
               >
                 <span>Services</span>
               </Link>
               <ul className="dropdown-menu">
                 <li className="nav-item">
-                  <Link href="/services/dialysis">
+                  <Link
+                    href="/services/dialysis"
+                    onClick={() => setdrop(!drop)}
+                  >
                     <span>Dialysis</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link href="/services/radiology">
+                  <Link
+                    href="/services/radiology"
+                    onClick={() => setdrop(!drop)}
+                  >
                     <span>Radiology</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link href="/services/speech-therapy">
+                  <Link
+                    href="/services/speech-therapy"
+                    onClick={() => setdrop(!drop)}
+                  >
                     <span>Speech Therapy</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link href="/services/bone-marrow-transplant">
+                  <Link
+                    href="/services/bone-marrow-transplant"
+                    onClick={() => setdrop(!drop)}
+                  >
                     <span>Bone marrow transplant</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link href="/services/teleconsultation-services">
+                  <Link
+                    href="/services/teleconsultation-services"
+                    onClick={() => setdrop(!drop)}
+                  >
                     <span>Teleconsultation Services</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link href="/services/patient-charges">
+                  <Link
+                    href="/services/patient-charges"
+                    onClick={() => setdrop(!drop)}
+                  >
                     <span>Patient Charges (COVID-19)</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link href="/make-appointment">
+                  <Link href="/make-appointment" onClick={() => setdrop(!drop)}>
                     <span>Online Appointment</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link href="/services/salient-features">
+                  <Link
+                    href="/services/salient-features"
+                    onClick={() => setdrop(!drop)}
+                  >
                     <span>Salient Features</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link href="/services/hospital-facilities">
+                  <Link
+                    href="/services/hospital-facilities"
+                    onClick={() => setdrop(!drop)}
+                  >
                     <span>Hospital Facilities</span>
                   </Link>
                 </li>
@@ -259,7 +289,10 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                   </a>
                 </li> */}
                 <li className="nav-item">
-                  <Link href="/services/live-transplant">
+                  <Link
+                    href="/services/live-transplant"
+                    onClick={() => setdrop(!drop)}
+                  >
                     <span>Liver Transplant</span>
                   </Link>
                 </li>
@@ -281,17 +314,23 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
               </Link>
               <ul className="dropdown-menu">
                 <li className="nav-item">
-                  <Link href="/gallery">
+                  <Link href="/gallery" onClick={() => setdrop(!drop)}>
                     <span>Photo Gallery</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link href="/gallery/earthquake-2005">
+                  <Link
+                    href="/gallery/earthquake-2005"
+                    onClick={() => setdrop(!drop)}
+                  >
                     <span>Earthquake 2005</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link href="/gallery/video-gallery">
+                  <Link
+                    href="/gallery/video-gallery"
+                    onClick={() => setdrop(!drop)}
+                  >
                     <span>Videos</span>
                   </Link>
                 </li>
@@ -303,6 +342,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                 className=""
                 href="https://quaid-e-azam-digital-library.web.app/"
                 target="_blank"
+                onClick={() => setdrop(!drop)}
               >
                 <span>Digital Library</span>
               </a>
@@ -313,13 +353,18 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                 className=""
                 href="https://qih-portal-cbe58.web.app/"
                 target="_blank"
+                onClick={() => setdrop(!drop)}
               >
                 <span>QIH Portal</span>
               </a>
             </li>
 
             <li className="nav-item text-nowrap" id="contact" data-hover="">
-              <a href="https://portal.qih.com.pk/" target="_blank">
+              <a
+                href="https://portal.qih.com.pk/"
+                target="_blank"
+                onClick={() => setdrop(!drop)}
+              >
                 <span>Lab Reports</span>
               </a>
             </li>
@@ -331,7 +376,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
               id="contact"
               data-hover=""
             >
-              <Link className="" href="/career">
+              <Link className="" href="/career" onClick={() => setdrop(!drop)}>
                 <span>Career</span>
               </Link>
             </li>
@@ -346,22 +391,34 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                 className="dropdown-toggle"
                 href="/about-us"
                 data-toggle="dropdown"
+                onClick={() => setdrop(!drop)}
               >
                 <span>Updates</span>
               </Link>
               <ul className="dropdown-menu">
                 <li className="nav-item">
-                  <Link href="/about-us/highlights">
+                  <Link
+                    href="/about-us/highlights"
+                    onClick={() => setdrop(!drop)}
+                  >
                     <span>Highlights</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="" href="/#events">
+                  <Link
+                    className=""
+                    href="/#events"
+                    onClick={() => setdrop(!drop)}
+                  >
                     <span>Events</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="" href="/#latestNews">
+                  <Link
+                    className=""
+                    href="/#latestNews"
+                    onClick={() => setdrop(!drop)}
+                  >
                     <span>News</span>
                   </Link>
                 </li>
@@ -378,23 +435,30 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                 className="dropdown-toggle"
                 href="/about-us"
                 data-toggle="dropdown"
+                onClick={() => setdrop(!drop)}
               >
                 <span>about us</span>
               </Link>
               <ul className="dropdown-menu">
                 <li className="nav-item">
-                  <Link href="/about-us/message-from-ceo">
+                  <Link
+                    href="/about-us/message-from-ceo"
+                    onClick={() => setdrop(!drop)}
+                  >
                     <span>Message from ceo</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link href="/about-us/company-profile">
+                  <Link
+                    href="/about-us/company-profile"
+                    onClick={() => setdrop(!drop)}
+                  >
                     <span>Company Profile</span>
                   </Link>
                 </li>
 
                 <li className="nav-item">
-                  <a href="/about-us/sitemap">
+                  <a href="/about-us/sitemap" onClick={() => setdrop(!drop)}>
                     <span>Sitemaps</span>
                   </a>
                 </li>
@@ -411,17 +475,24 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                 className="dropdown-toggle"
                 href="/contact"
                 data-toggle="dropdown"
+                onClick={() => setdrop(!drop)}
               >
                 <span>Contact</span>
               </Link>
               <ul className="dropdown-menu">
                 <li className="nav-item">
-                  <Link href="/contact/management">
+                  <Link
+                    href="/contact/management"
+                    onClick={() => setdrop(!drop)}
+                  >
                     <span>Management</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link href="/contact/feedback-complaint">
+                  <Link
+                    href="/contact/feedback-complaint"
+                    onClick={() => setdrop(!drop)}
+                  >
                     <span>Feedback / complaint</span>
                   </Link>
                 </li>
@@ -440,6 +511,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                       className="dropdown-toggle"
                       href="/admin"
                       data-toggle="dropdown"
+                      onClick={() => setdrop(!drop)}
                     >
                       <span>Admin Dashboard</span>
                     </Link>
@@ -562,7 +634,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
               </div>
             </div> */}
             <div className="module-contact">
-              <span className="btn btn--secondary btn-line btn-line-after"></span>
+              <span className="!hidden lg:!inline "></span>
               <Link
                 className="btn btn--danger btn-line btn-line-after"
                 href="/make-appointment"
