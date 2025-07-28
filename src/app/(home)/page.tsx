@@ -77,14 +77,14 @@ const page = async () => {
         </div>
         <div className="container">
           <div className="row g-0 features-holder">
-            <div className="col-12 col-lg-4">
+            <div className="col-12 col-lg-3">
               <div
                 className="feature-panel feature-timetable bg-secondary"
                 style={{ height: '333px', minHeight: '333px' }}
               >
                 <div className="feature-content">
                   <i className="flaticon-028-book"></i>
-                  <h5>Evening Clinic</h5>
+                  <h5>Evening Clinic / Morning Clinic</h5>
                   <p>Evening clininc is open from 7:00 pm to 10:00 pm</p>
                   <a
                     className="btn btn--transparent btn-line btn-line-before"
@@ -100,37 +100,53 @@ const page = async () => {
                 </div>
               </div>
             </div>
-            <div className="col-12 col-lg-4">
+            <div className="col-12 col-lg-3">
               <div className="feature-panel feature-opening-hours ">
                 <div className="feature-content">
                   <i className="flaticon-014-uniform"></i>
-                  <h5>opening hours </h5>
+                  <h5>Organ Transplants </h5>
                   <ul className="list-unstyled">
                     <li>
                       {' '}
-                      <span>monday-friday</span>
-                      <span>8:00 - 7:00 pm</span>
+                      <span>
+                        <Link
+                          style={{ color: 'inherit' }}
+                          href="/services/liver-transplant"
+                        >
+                          Liver transplant
+                        </Link>
+                      </span>
                     </li>
                     <li>
                       {' '}
-                      <span>saturday</span>
-                      <span>9:00 - 8:00 pm</span>
+                      <span>
+                        <Link
+                          style={{ color: 'inherit' }}
+                          href="/services/bone-marrow-transplant"
+                        >
+                          Bone marrow transplant
+                        </Link>
+                      </span>
                     </li>
                     <li>
                       {' '}
-                      <span>sunday</span>
-                      <span>10:00 - 9:00 pm</span>
+                      <span>
+                        <Link
+                          style={{ color: 'inherit' }}
+                          href="/services/kidney-transplant"
+                        >
+                          Kidney transplant
+                        </Link>
+                      </span>
                     </li>
                     <li>
-                      {' '}
-                      <span>emergency</span>
-                      <span>24HR / 7DAYS</span>
+                      <span>Organ Transplant services </span>
                     </li>
                   </ul>
                 </div>
               </div>
             </div>
-            <div className="col-12 col-lg-4">
+            <div className="col-12 col-lg-3">
               <div
                 className="feature-panel feature-location"
                 style={{ height: '333px', minHeight: '333px' }}
@@ -138,13 +154,30 @@ const page = async () => {
                 <a href="https://portal.qih.com.pk/" target="_blank">
                   <div className="feature-content">
                     <i className="flaticon-042-clinic"></i>
-                    <h5>Lab Reports</h5>
+                    <h5>Lab Reports & Radiology</h5>
                     <p>Get your lab reports in one click</p>
                     <p>
                       <span className="fas fa-phone-alt"></span> (051) 8449100
                     </p>
                   </div>
                 </a>
+              </div>
+            </div>
+            <div className="col-12 col-lg-3">
+              <div
+                className="feature-panel feature-opening-hours"
+                style={{ height: '333px', minHeight: '333px' }}
+              >
+                <Link href="/make-appointment">
+                  <div className="feature-content">
+                    <i className="flaticon-042-clinic"></i>
+                    <h5>Make Appointment</h5>
+                    <p>Get your doctor appointment in one click</p>
+                    <p>
+                      <span className="fas fa-phone-alt"></span> (051) 8449100
+                    </p>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>

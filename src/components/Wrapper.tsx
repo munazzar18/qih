@@ -15,8 +15,8 @@ export default function Wrapper({ children }: { children: React.ReactNode }) {
 
     // Cleanup: only remove the script if it is still in the DOM
     return () => {
-      if (script.parentNode) {
-        script.parentNode.removeChild(script)
+      if (document.body.contains(script)) {
+        document.body.removeChild(script)
       }
     }
   }, [pathname]) // Run effect when pathname changes

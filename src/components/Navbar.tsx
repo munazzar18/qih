@@ -262,11 +262,11 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                     <span>Patient Charges (COVID-19)</span>
                   </Link>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <Link href="/make-appointment" onClick={() => setdrop(!drop)}>
                     <span>Online Appointment</span>
                   </Link>
-                </li>
+                </li> */}
                 <li className="nav-item">
                   <Link
                     href="/services/salient-features"
@@ -290,7 +290,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                 </li> */}
                 <li className="nav-item">
                   <Link
-                    href="/services/live-transplant"
+                    href="/services/liver-transplant"
                     onClick={() => setdrop(!drop)}
                   >
                     <span>Liver Transplant</span>
@@ -633,7 +633,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                 <FaMagnifyingGlass />
               </div>
             </div> */}
-            <div className="module-contact">
+            {/* <div className="module-contact">
               <span className="!hidden lg:!inline "></span>
               <Link
                 className="btn btn--danger btn-line btn-line-after"
@@ -642,7 +642,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                 make appointment
                 <span className="line"></span>
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </nav>
