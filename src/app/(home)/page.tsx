@@ -79,6 +79,23 @@ const page = async () => {
           <div className="row g-0 features-holder">
             <div className="col-12 col-lg-3">
               <div
+                className="feature-panel feature-opening-hours"
+                style={{ height: '333px', minHeight: '333px' }}
+              >
+                <Link href="/make-appointment">
+                  <div className="feature-content">
+                    <i className="flaticon-042-clinic"></i>
+                    <h5>Make Appointment</h5>
+                    <p>Get your doctor appointment in one click</p>
+                    <p>
+                      <span className="fas fa-phone-alt"></span> (051) 8449100
+                    </p>
+                  </div>
+                </Link>
+              </div>
+            </div>
+            <div className="col-12 col-lg-3">
+              <div
                 className="feature-panel feature-timetable bg-secondary"
                 style={{ height: '333px', minHeight: '333px' }}
               >
@@ -161,23 +178,6 @@ const page = async () => {
                     </p>
                   </div>
                 </a>
-              </div>
-            </div>
-            <div className="col-12 col-lg-3">
-              <div
-                className="feature-panel feature-opening-hours"
-                style={{ height: '333px', minHeight: '333px' }}
-              >
-                <Link href="/make-appointment">
-                  <div className="feature-content">
-                    <i className="flaticon-042-clinic"></i>
-                    <h5>Make Appointment</h5>
-                    <p>Get your doctor appointment in one click</p>
-                    <p>
-                      <span className="fas fa-phone-alt"></span> (051) 8449100
-                    </p>
-                  </div>
-                </Link>
               </div>
             </div>
           </div>
@@ -398,8 +398,8 @@ const page = async () => {
             data-loop="true"
             data-speed="200"
           >
-            {departments && departments.data.length ? (
-              departments.data
+            {departments && departments?.data?.length ? (
+              departments?.data
                 .filter((dept) => dept?.is_featured === 1)
                 .map((dept, index) => (
                   <div key={dept.id}>

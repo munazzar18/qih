@@ -105,12 +105,11 @@ const MakeAppointment = () => {
     setLoading(true)
     // const res = await getConsultantSchedules(consultantId)
     const res = await getPublicConsultantSchedules(consultantId)
-
-    setAvailableWeekDays(res.days_at_work)
-    setExamineDuration(res.examine_duration)
+    setAvailableWeekDays(res?.data?.days_at_work)
+    setExamineDuration(res?.data?.examine_duration)
 
     setAllowedDays(
-      res?.days_at_work?.map(
+      res?.data?.days_at_work?.map(
         (day: keyof typeof dayNameToNumber) => dayNameToNumber[day]
       )
     )
@@ -118,15 +117,16 @@ const MakeAppointment = () => {
   }
 
   const filterDate = (date: Date) => {
-    return allowedDays.includes(date.getDay())
+    return Array.isArray(allowedDays) && allowedDays.length > 0
+      ? allowedDays.includes(date.getDay())
+      : false
   }
 
   const getTimeSlots = async (date: string) => {
     if (!myForm.consultant_id) return
     setLoading(true)
     const res = await getSlotsByDate(+myForm.consultant_id, date)
-    console.log('Res: ', res)
-    setAvailableTimeSlots(res)
+    setAvailableTimeSlots(res.data)
     setLoading(false)
   }
 
@@ -174,24 +174,23 @@ const MakeAppointment = () => {
     if (selectedDate && myForm.consultant_id) {
       const dateStr = format(selectedDate, 'yyyy-MM-dd')
       getSlotsByDate(+myForm.consultant_id, dateStr)
-        .then((res) => setAvailableTimeSlots(res))
+        .then((res) => setAvailableTimeSlots(res.data))
         .finally(() => setLoading(false))
     }
   }, [selectedDate, myForm.consultant_id])
 
   const timesForPicker = useMemo(() => {
     if (!selectedDate) return []
+    const slots = Array.isArray(availableTimeSlots) ? availableTimeSlots : []
 
-    return availableTimeSlots.map((t) => {
+    return slots.map((t) => {
       const [hhmm, mod] = t.split(' ')
       let [h, m] = hhmm.split(':').map(Number)
 
       if (mod === 'PM' && h < 12) h += 12
       if (mod === 'AM' && h === 12) h = 0
 
-      // Create a new date object with the correct date
       const dt = new Date(selectedDate)
-      // Set hours and minutes
       dt.setHours(h)
       dt.setMinutes(m)
       dt.setSeconds(0)
