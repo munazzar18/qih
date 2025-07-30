@@ -1,10 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { FaMagnifyingGlass } from 'react-icons/fa6'
-import departmentArray from '../../public/assets/department'
 import Image from 'next/image'
 import Logout from './Logout'
 import { getDepartments } from '@/app/lib/getDepartments'
@@ -13,12 +10,7 @@ interface User {
   id: number
   name: string
   email: string
-  roles: [
-    {
-      id: number
-      name: string
-    }
-  ]
+  roles: [{ id: number; name: string }]
 }
 
 interface Department {
@@ -32,19 +24,40 @@ interface Department {
 
 const Navbar = ({ token, user }: { token: string; user: User | null }) => {
   const currentPath = usePathname()
+  const [drop, setDrop] = useState(false)
+  const [hoverMenu, setHoverMenu] = useState<string | null>(null)
+  const [hoverDepartments, setHoverDepartments] = useState(false)
+  const [hoverServices, setHoverServices] = useState(false)
+  const [hoverUpdates, setHoverUpdates] = useState(false)
   const [departments, setDepartments] = useState<Department[]>([])
 
-  const [drop, setdrop] = useState(false)
-  const [isOpen, setIsOpen] = useState(false)
+  useEffect(() => {
+    const fetchDepartments = async () => {
+      const res = await getDepartments()
+      setDepartments(res.data || [])
+    }
+    fetchDepartments()
+  }, [])
 
-  const getAllDepartments = async () => {
-    const res = await getDepartments()
-    setDepartments(res.data)
+  // Debug function - remove after fixing
+  useEffect(() => {
+    console.log('Hover states:', {
+      hoverMenu,
+      hoverDepartments,
+      hoverServices,
+      hoverUpdates,
+    })
+  }, [hoverMenu, hoverDepartments, hoverServices, hoverUpdates])
+
+  const handleMouseEnterServices = () => {
+    console.log('Mouse entered Services')
+    setHoverServices(true)
   }
 
-  useEffect(() => {
-    getAllDepartments()
-  }, [])
+  const handleMouseEnterUpdates = () => {
+    console.log('Mouse entered Updates')
+    setHoverUpdates(true)
+  }
 
   return (
     <header className="header header-light header-topbar" id="navbar-spy">
@@ -57,7 +70,6 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
             height={400}
             alt="QIH logo"
           />
-
           <Image
             className="logo logo-mobile"
             src="/assets/photos/logo_dark.png"
@@ -66,584 +78,446 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
             alt="QIH logo"
           />
         </Link>
-        <div className="module-holder module-holder-phone">
-          <div className="module module-search float-left">
-            <div className="module-icon search-icon">
-              <i className="icon-search" data-hover=""></i>
-            </div>
-          </div>
 
-          <button
-            onClick={() => setdrop(!drop)}
-            className={`navbar-toggler ${drop ? '' : 'collapsed'}`}
-            type="button"
-            data-bs-toggle="collapse"
-            aria-controls="navbarContent"
-            aria-expanded={!drop}
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-        </div>
+        <button
+          onClick={() => setDrop(!drop)}
+          className={`navbar-toggler ${drop ? '' : 'collapsed'}`}
+          type="button"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
 
         <div
           className={`collapse navbar-collapse ${drop ? 'show' : ''}`}
           id="navbarContent"
         >
-          <ul className="navbar-nav ">
+          <ul className="navbar-nav">
+            {/* === Education === */}
             <li
-              onMouseEnter={() => setIsOpen(true)}
-              onMouseLeave={() => setIsOpen(false)}
-              style={{ position: 'relative' }}
               className="nav-item has-dropdown"
-              id=""
+              onMouseEnter={() => setHoverMenu('education')}
+              onMouseLeave={() => setHoverMenu(null)}
             >
-              <Link className="dropdown-toggle nav-link" href="/departments">
-                <span>Departments</span>
+              <Link href="#" className="nav-link">
+                Education
               </Link>
-
-              {isOpen && (
-                <ul
-                  className="dropdown-menu"
-                  style={{
-                    position: 'absolute',
-                    top: '100%',
-                    left: '-50%',
-                    width: '100%',
-                    minWidth: '900px',
-                    maxWidth: '900px',
-                    boxShadow: '0px 4px 8px rgba(0,0,0,0.2)',
-                    zIndex: 1000,
-                    padding: '20px',
-                    backgroundColor: '#fff',
-                    overflowWrap: 'break-word',
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(3, 1fr)',
-                    gridTemplateRows: 'repeat(5, auto)',
-                    gridGap: '15px',
-                    transition: 'all 0.3s ease',
-                  }}
-                >
-                  {departments?.length ? (
-                    <>
-                      {/* Display first 20 items */}
-                      {departments?.slice(0, 20).map((item) => (
-                        <li
-                          key={item.id}
-                          style={{
-                            listStyle: 'none',
-                            borderRadius: '8px 8px 0 8px',
-                            border: '1px solid #ccc',
-                            backgroundColor: '#f9f9f9',
-                            height: '40px',
-                            width: '100%',
-                            marginBottom: '10px', // Adds spacing between items
-                          }}
-                        >
-                          <Link
-                            href={`/departments/${item.id}`}
-                            className="dropdown-item"
-                            onClick={() => setdrop(!drop)}
-                          >
-                            <span
-                              style={{
-                                textDecoration: 'none',
-                                color: '#616161',
-                                fontWeight: 'bold',
-                                cursor: 'pointer',
-                              }}
-                            >
-                              {item.title}
-                            </span>
-                          </Link>
-                        </li>
-                      ))}
-
-                      {/* Display the 21st item as "More" link */}
-                      {departments?.length > 19 && (
-                        <li
-                          style={{
-                            listStyle: 'none',
-                            borderRadius: '8px 8px 0 8px',
-                            border: '1px solid #ccc',
-                            backgroundColor: '#B8DDD7',
-                            height: '40px',
-                            width: '100%',
-                          }}
-                        >
-                          <Link
-                            href="/departments"
-                            className="dropdown-item"
-                            onClick={() => setdrop(!drop)}
-                          >
-                            <span
-                              style={{
-                                textDecoration: 'none',
-                                color: '#616161',
-                                fontWeight: 'bold',
-                                cursor: 'pointer',
-                              }}
-                            >
-                              All Departments
-                            </span>
-                          </Link>
-                        </li>
-                      )}
-                    </>
-                  ) : (
-                    <li style={{ color: 'gray', padding: '10px' }}>
-                      Please wait...
-                    </li>
-                  )}
+              {hoverMenu === 'education' && (
+                <ul className="dropdown-menu">
+                  <li>
+                    <a
+                      className="dropdown-item"
+                      href="https://quaid-e-azam-digital-library.web.app/"
+                      target="_blank"
+                    >
+                      Digital Library
+                    </a>
+                  </li>
                 </ul>
               )}
             </li>
 
+            {/* === For Patients === */}
             <li
-              className={`nav-item has-dropdown ${
-                currentPath.includes('services') ? 'active' : ''
-              } `}
-              data-hover=""
+              className="nav-item has-dropdown"
+              onMouseEnter={() => setHoverMenu('patients')}
+              onMouseLeave={() => setHoverMenu(null)}
             >
-              <Link
-                className="dropdown-toggle"
-                href="/services"
-                data-toggle="dropdown"
-                onClick={() => setdrop(!drop)}
-              >
-                <span>Services</span>
+              <Link href="#" className="nav-link">
+                For Patients
               </Link>
-              <ul className="dropdown-menu">
-                <li className="nav-item">
-                  <Link
-                    href="/services/dialysis"
-                    onClick={() => setdrop(!drop)}
+              {hoverMenu === 'patients' && (
+                <ul className="dropdown-menu">
+                  {/* Departments */}
+                  <li
+                    className="dropdown-item has-dropdown"
+                    onMouseEnter={() => setHoverDepartments(true)}
+                    onMouseLeave={() => setHoverDepartments(false)}
+                    style={{ position: 'relative' }}
                   >
-                    <span>Dialysis</span>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link
-                    href="/services/radiology"
-                    onClick={() => setdrop(!drop)}
+                    <span>Departments</span>
+                    {hoverDepartments && (
+                      <ul
+                        className="dropdown-menu"
+                        style={{
+                          position: 'absolute',
+                          top: 0,
+                          left: '100%',
+                          width: '900px',
+                          display: 'grid',
+                          gridTemplateColumns: 'repeat(3, 1fr)',
+                          padding: '20px',
+                          backgroundColor: '#fff',
+                          boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+                          zIndex: 1000,
+                          visibility: 'visible',
+                          opacity: 1,
+                        }}
+                      >
+                        {departments.slice(0, 20).map((dep) => (
+                          <li
+                            key={dep.id}
+                            style={{
+                              listStyle: 'none',
+                              height: '40px',
+                              backgroundColor: '#f9f9f9',
+                              borderRadius: '8px',
+                              padding: '5px',
+                            }}
+                          >
+                            <Link
+                              href={`/departments/${dep.id}`}
+                              className="dropdown-item"
+                            >
+                              <span
+                                style={{ fontWeight: 'bold', color: '#616161' }}
+                              >
+                                {dep.title}
+                              </span>
+                            </Link>
+                          </li>
+                        ))}
+                        <li>
+                          <Link
+                            href="/departments"
+                            className="dropdown-item text-primary"
+                          >
+                            All Departments
+                          </Link>
+                        </li>
+                      </ul>
+                    )}
+                  </li>
+
+                  {/* Services */}
+                  <li
+                    className="dropdown-item has-dropdown"
+                    onMouseEnter={handleMouseEnterServices}
+                    onMouseLeave={() => setHoverServices(false)}
+                    style={{ position: 'relative' }}
                   >
-                    <span>Radiology</span>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link
-                    href="/services/speech-therapy"
-                    onClick={() => setdrop(!drop)}
+                    <span>Services</span>
+                    {hoverServices && (
+                      <ul
+                        className="dropdown-menu"
+                        style={{
+                          position: 'absolute',
+                          top: 0,
+                          left: '100%',
+                          backgroundColor: '#fff',
+                          boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+                          zIndex: 1000,
+                          display: 'block',
+                          visibility: 'visible',
+                          opacity: 1,
+                          minWidth: '200px',
+                          padding: '10px 0',
+                        }}
+                      >
+                        <li>
+                          <Link
+                            className="dropdown-item"
+                            href="/services/dialysis"
+                          >
+                            Dialysis
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className="dropdown-item"
+                            href="/services/radiology"
+                          >
+                            Radiology
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className="dropdown-item"
+                            href="/services/laboratory"
+                          >
+                            Laboratory
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className="dropdown-item"
+                            href="/services/emergency"
+                          >
+                            Emergency
+                          </Link>
+                        </li>
+                      </ul>
+                    )}
+                  </li>
+
+                  <li>
+                    <Link className="dropdown-item" href="/make-appointment">
+                      Appointments
+                    </Link>
+                  </li>
+
+                  {/* Updates */}
+                  <li
+                    className="dropdown-item has-dropdown"
+                    onMouseEnter={handleMouseEnterUpdates}
+                    onMouseLeave={() => setHoverUpdates(false)}
+                    style={{ position: 'relative' }}
                   >
-                    <span>Speech Therapy</span>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link
-                    href="/services/bone-marrow-transplant"
-                    onClick={() => setdrop(!drop)}
-                  >
-                    <span>Bone marrow transplant</span>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link
-                    href="/services/teleconsultation-services"
-                    onClick={() => setdrop(!drop)}
-                  >
-                    <span>Teleconsultation Services</span>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link
-                    href="/services/patient-charges"
-                    onClick={() => setdrop(!drop)}
-                  >
-                    <span>Patient Charges (COVID-19)</span>
-                  </Link>
-                </li>
-                {/* <li className="nav-item">
-                  <Link href="/make-appointment" onClick={() => setdrop(!drop)}>
-                    <span>Online Appointment</span>
-                  </Link>
-                </li> */}
-                <li className="nav-item">
-                  <Link
-                    href="/services/salient-features"
-                    onClick={() => setdrop(!drop)}
-                  >
-                    <span>Salient Features</span>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link
-                    href="/services/hospital-facilities"
-                    onClick={() => setdrop(!drop)}
-                  >
-                    <span>Hospital Facilities</span>
-                  </Link>
-                </li>
-                {/* <li className="nav-item">
-                  <a href="https://portal.qih.com.pk/" target="_blank">
-                    <span>Lab Reports</span>
-                  </a>
-                </li> */}
-                <li className="nav-item">
-                  <Link
-                    href="/services/liver-transplant"
-                    onClick={() => setdrop(!drop)}
-                  >
-                    <span>Liver Transplant</span>
-                  </Link>
-                </li>
-              </ul>
+                    <span>Updates</span>
+                    {hoverUpdates && (
+                      <ul
+                        className="dropdown-menu"
+                        style={{
+                          position: 'absolute',
+                          top: 0,
+                          left: '100%',
+                          backgroundColor: '#fff',
+                          boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+                          zIndex: 1000,
+                          display: 'block',
+                          visibility: 'visible',
+                          opacity: 1,
+                          minWidth: '200px',
+                          padding: '10px 0',
+                        }}
+                      >
+                        <li>
+                          <Link
+                            className="dropdown-item"
+                            href="/about-us/highlights"
+                          >
+                            Highlights
+                          </Link>
+                        </li>
+                        <li>
+                          <Link className="dropdown-item" href="/#latestNews">
+                            News
+                          </Link>
+                        </li>
+                        <li>
+                          <Link className="dropdown-item" href="/#events">
+                            Events
+                          </Link>
+                        </li>
+                      </ul>
+                    )}
+                  </li>
+                </ul>
+              )}
             </li>
 
+            {/* === For Physicians === */}
             <li
-              className={`nav-item has-dropdown ${
-                currentPath.includes('gallery') ? 'active' : ''
-              } `}
-              data-hover=""
+              className="nav-item has-dropdown"
+              onMouseEnter={() => setHoverMenu('physicians')}
+              onMouseLeave={() => setHoverMenu(null)}
             >
-              <Link
-                className="dropdown-toggle"
-                href="/gallery"
-                data-toggle="dropdown"
-              >
-                <span>Gallery</span>
+              <Link href="#" className="nav-link">
+                For Physicians
               </Link>
-              <ul className="dropdown-menu">
-                <li className="nav-item">
-                  <Link href="/gallery" onClick={() => setdrop(!drop)}>
-                    <span>Photo Gallery</span>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link
-                    href="/gallery/earthquake-2005"
-                    onClick={() => setdrop(!drop)}
-                  >
-                    <span>Earthquake 2005</span>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link
-                    href="/gallery/video-gallery"
-                    onClick={() => setdrop(!drop)}
-                  >
-                    <span>Videos</span>
-                  </Link>
-                </li>
-              </ul>
+              {hoverMenu === 'physicians' && (
+                <ul className="dropdown-menu">
+                  <li>
+                    <a
+                      className="dropdown-item"
+                      href="https://qih-portal-cbe58.web.app/"
+                      target="_blank"
+                    >
+                      QIH Portal
+                    </a>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" href="/auth/login">
+                      Login
+                    </Link>
+                  </li>
+                </ul>
+              )}
             </li>
 
-            <li className="nav-item text-nowrap" id="contact" data-hover="">
-              <a
-                className=""
-                href="https://quaid-e-azam-digital-library.web.app/"
-                target="_blank"
-                onClick={() => setdrop(!drop)}
-              >
-                <span>Digital Library</span>
-              </a>
-            </li>
-
-            <li className="nav-item text-nowrap" id="contact" data-hover="">
-              <a
-                className=""
-                href="https://qih-portal-cbe58.web.app/"
-                target="_blank"
-                onClick={() => setdrop(!drop)}
-              >
-                <span>QIH Portal</span>
-              </a>
-            </li>
-
-            <li className="nav-item text-nowrap" id="contact" data-hover="">
-              <a
-                href="https://portal.qih.com.pk/"
-                target="_blank"
-                onClick={() => setdrop(!drop)}
-              >
-                <span>Lab Reports</span>
-              </a>
-            </li>
-
+            {/* Careers */}
             <li
-              className={`nav-item  ${
+              className={`nav-item ${
                 currentPath.includes('career') ? 'active' : ''
-              } `}
-              id="contact"
-              data-hover=""
+              }`}
             >
-              <Link className="" href="/career" onClick={() => setdrop(!drop)}>
-                <span>Career</span>
+              <Link className="nav-link" href="/career">
+                Careers
               </Link>
             </li>
 
+            {/* About Us */}
             <li
-              className={`nav-item has-dropdown ${
-                currentPath.includes('about-us') ? 'active' : ''
-              } `}
-              data-hover=""
+              className="nav-item has-dropdown"
+              onMouseEnter={() => setHoverMenu('about')}
+              onMouseLeave={() => setHoverMenu(null)}
             >
-              <Link
-                className="dropdown-toggle"
-                href="/about-us"
-                data-toggle="dropdown"
-                onClick={() => setdrop(!drop)}
-              >
-                <span>Updates</span>
+              <Link href="#" className="nav-link">
+                About Us
               </Link>
-              <ul className="dropdown-menu">
-                <li className="nav-item">
-                  <Link
-                    href="/about-us/highlights"
-                    onClick={() => setdrop(!drop)}
-                  >
-                    <span>Highlights</span>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link
-                    className=""
-                    href="/#events"
-                    onClick={() => setdrop(!drop)}
-                  >
-                    <span>Events</span>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link
-                    className=""
-                    href="/#latestNews"
-                    onClick={() => setdrop(!drop)}
-                  >
-                    <span>News</span>
-                  </Link>
-                </li>
-              </ul>
+              {hoverMenu === 'about' && (
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link className="dropdown-item" href="/gallery">
+                      Gallery
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="dropdown-item"
+                      href="/about-us/message-from-ceo"
+                    >
+                      Message from CEO
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="dropdown-item"
+                      href="/about-us/company-profile"
+                    >
+                      Company Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" href="/about-us/sitemap">
+                      Sitemaps
+                    </Link>
+                  </li>
+                </ul>
+              )}
             </li>
 
+            {/* Contact */}
             <li
-              className={`nav-item has-dropdown ${
-                currentPath.includes('about-us') ? 'active' : ''
-              } `}
-              data-hover=""
-            >
-              <Link
-                className="dropdown-toggle"
-                href="/about-us"
-                data-toggle="dropdown"
-                onClick={() => setdrop(!drop)}
-              >
-                <span>about us</span>
-              </Link>
-              <ul className="dropdown-menu">
-                <li className="nav-item">
-                  <Link
-                    href="/about-us/message-from-ceo"
-                    onClick={() => setdrop(!drop)}
-                  >
-                    <span>Message from ceo</span>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link
-                    href="/about-us/company-profile"
-                    onClick={() => setdrop(!drop)}
-                  >
-                    <span>Company Profile</span>
-                  </Link>
-                </li>
-
-                <li className="nav-item">
-                  <a href="/about-us/sitemap" onClick={() => setdrop(!drop)}>
-                    <span>Sitemaps</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-            <li
-              className={`nav-item has-dropdown ${
+              className={`nav-item ${
                 currentPath.includes('contact') ? 'active' : ''
-              } `}
-              data-hover=""
+              }`}
             >
-              <Link
-                className="dropdown-toggle"
-                href="/contact"
-                data-toggle="dropdown"
-                onClick={() => setdrop(!drop)}
-              >
-                <span>Contact</span>
+              <Link className="nav-link" href="/contact">
+                Contact
               </Link>
-              <ul className="dropdown-menu">
-                <li className="nav-item">
-                  <Link
-                    href="/contact/management"
-                    onClick={() => setdrop(!drop)}
-                  >
-                    <span>Management</span>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link
-                    href="/contact/feedback-complaint"
-                    onClick={() => setdrop(!drop)}
-                  >
-                    <span>Feedback / complaint</span>
-                  </Link>
-                </li>
-              </ul>
             </li>
+
+            {/* Dashboard */}
             {token ? (
               <li
-                className={`nav-item has-dropdown ${
-                  currentPath.includes('auth') ? 'active' : ''
-                }`}
-                data-hover=""
+                className="nav-item has-dropdown"
+                onMouseEnter={() => setHoverMenu('dashboard')}
+                onMouseLeave={() => setHoverMenu(null)}
               >
-                {user && user.roles[0].name === 'admin' ? (
-                  <>
-                    <Link
-                      className="dropdown-toggle"
-                      href="/admin"
-                      data-toggle="dropdown"
-                      onClick={() => setdrop(!drop)}
-                    >
-                      <span>Admin Dashboard</span>
-                    </Link>
-                    <ul className="dropdown-menu">
-                      <li className="nav-item">
-                        <Link href="/admin">
-                          <span>Dashboard</span>
-                        </Link>
-                      </li>
-                      <li className="nav-item">
-                        <Link href="/admin/departments">
-                          <span>Departments</span>
-                        </Link>
-                      </li>
-                      <li className="nav-item">
-                        <Link href="/admin/consultants">
-                          <span>Consultants</span>
-                        </Link>
-                      </li>
-                      <li className="nav-item">
-                        <Link href="/admin/tickers">
-                          <span>Tickers</span>
-                        </Link>
-                      </li>
-                      <li className="nav-item">
-                        <Link href="/admin/pages">
-                          <span>Pages</span>
-                        </Link>
-                      </li>
-                      <li className="nav-item">
-                        <a href="">
-                          <Logout />
-                        </a>
-                      </li>
-                    </ul>
-                  </>
-                ) : user && user.roles[0].name === 'consultant' ? (
-                  <>
-                    <Link
-                      className="dropdown-toggle"
-                      href="/consultant-dashboard"
-                      data-toggle="dropdown"
-                    >
-                      <span>Consultant Dashboard</span>
-                    </Link>
-                    <ul className="dropdown-menu">
-                      <li className="nav-item">
-                        <Link href="/consultant-dashboard">
-                          <span>Dashboard</span>
-                        </Link>
-                      </li>
-                      <li className="nav-item">
-                        <Link href="/consultant-dashboard/appointments">
-                          <span>Appointments</span>
-                        </Link>
-                      </li>
-                      <li className="nav-item">
-                        <Link href="/consultant-dashboard/schedules">
-                          <span>Schedules</span>
-                        </Link>
-                      </li>
-                      <li className="nav-item">
-                        <a href="">
-                          <Logout />
-                        </a>
-                      </li>
-                    </ul>
-                  </>
-                ) : user && user.roles[0].name === 'patient' ? (
-                  <>
-                    <Link
-                      className="dropdown-toggle"
-                      href="/patient-dashboard"
-                      data-toggle="dropdown"
-                    >
-                      <span>Patient Dashboard</span>
-                    </Link>
-                    <ul className="dropdown-menu">
-                      <li className="nav-item">
-                        <Link href="/patient-dashboard/profile">
-                          <span>Profile</span>
-                        </Link>
-                      </li>
-                      <li className="nav-item">
-                        <Link href="/patient-dashboard/settings">
-                          <span>Settings</span>
-                        </Link>
-                      </li>
-                      <li className="nav-item">
-                        <a href="">
-                          <Logout />
-                        </a>
-                      </li>
-                    </ul>
-                  </>
-                ) : (
-                  <a href="">
-                    <Logout />
-                  </a>
+                <Link href="#" className="nav-link">
+                  Dashboard
+                </Link>
+                {hoverMenu === 'dashboard' && (
+                  <ul className="dropdown-menu">
+                    {user?.roles[0].name === 'admin' && (
+                      <>
+                        <li>
+                          <Link className="dropdown-item" href="/admin">
+                            Admin Dashboard
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className="dropdown-item"
+                            href="/admin/departments"
+                          >
+                            Departments
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className="dropdown-item"
+                            href="/admin/consultants"
+                          >
+                            Consultants
+                          </Link>
+                        </li>
+                        <li>
+                          <Link className="dropdown-item" href="/admin/tickers">
+                            Tickers
+                          </Link>
+                        </li>
+                        <li>
+                          <Link className="dropdown-item" href="/admin/pages">
+                            Pages
+                          </Link>
+                        </li>
+                        <li>
+                          <a className="dropdown-item" href="#">
+                            <Logout />
+                          </a>
+                        </li>
+                      </>
+                    )}
+                    {user?.roles[0].name === 'consultant' && (
+                      <>
+                        <li>
+                          <Link
+                            className="dropdown-item"
+                            href="/consultant-dashboard"
+                          >
+                            Dashboard
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className="dropdown-item"
+                            href="/consultant-dashboard/appointments"
+                          >
+                            Appointments
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className="dropdown-item"
+                            href="/consultant-dashboard/schedules"
+                          >
+                            Schedules
+                          </Link>
+                        </li>
+                        <li>
+                          <a className="dropdown-item" href="#">
+                            <Logout />
+                          </a>
+                        </li>
+                      </>
+                    )}
+                    {user?.roles[0].name === 'patient' && (
+                      <>
+                        <li>
+                          <Link
+                            className="dropdown-item"
+                            href="/patient-dashboard/profile"
+                          >
+                            Profile
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className="dropdown-item"
+                            href="/patient-dashboard/settings"
+                          >
+                            Settings
+                          </Link>
+                        </li>
+                        <li>
+                          <a className="dropdown-item" href="#">
+                            <Logout />
+                          </a>
+                        </li>
+                      </>
+                    )}
+                  </ul>
                 )}
               </li>
             ) : (
-              <li
-                className={`nav-item  ${
-                  currentPath.includes('auth') ? 'active' : ''
-                }`}
-                data-hover=""
-              >
-                <Link href="/auth/login" data-toggle="dropdown">
-                  <span>Login</span>
+              <li className="nav-item">
+                <Link className="nav-link" href="/auth/login">
+                  Login
                 </Link>
               </li>
             )}
           </ul>
-
-          <div className="module-holder">
-            {/* <div className="module module-search float-left">
-              <div className="module-icon search-icon">
-                <FaMagnifyingGlass />
-              </div>
-            </div> */}
-            {/* <div className="module-contact">
-              <span className="!hidden lg:!inline "></span>
-              <Link
-                className="btn btn--danger btn-line btn-line-after"
-                href="/make-appointment"
-              >
-                make appointment
-                <span className="line"></span>
-              </Link>
-            </div> */}
-          </div>
         </div>
       </nav>
     </header>
