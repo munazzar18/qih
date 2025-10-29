@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Logout from './Logout'
@@ -27,6 +27,8 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
   const currentPath = usePathname()
   const [drop, setDrop] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+
+  const router = useRouter()
 
   // Separate states for each top-level menu
   const [hoverEducation, setHoverEducation] = useState(false)
@@ -67,6 +69,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
     setHoverDepartments(false)
     setHoverServices(false)
     setHoverUpdates(false)
+    router.push('/')
   }
 
   const toggleSubmenu = (menu: string) => {
@@ -449,7 +452,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
               </ul>
             </li>
 
-            {/* === For Physicians === */}
+            {/* === For  health professionals === */}
             <li
               className={`nav-item has-dropdown ${
                 hoverPhysicians ? 'show' : ''
@@ -468,7 +471,7 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                   isMobile && (e.preventDefault(), toggleSubmenu('physicians'))
                 }
               >
-                For Physicians
+                For health professionals
               </Link>
               <ul className={`dropdown-menu ${hoverPhysicians ? 'show' : ''}`}>
                 <li>
@@ -721,6 +724,15 @@ const Navbar = ({ token, user }: { token: string; user: User | null }) => {
                     onClick={closeAllMenus}
                   >
                     Company Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="dropdown-item"
+                    href="/about-us/our-partners"
+                    onClick={closeAllMenus}
+                  >
+                    Our Partners
                   </Link>
                 </li>
                 <li>

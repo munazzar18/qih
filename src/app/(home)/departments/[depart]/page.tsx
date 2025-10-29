@@ -8,8 +8,6 @@ const Page = async (props: { params: Promise<{ depart: number }> }) => {
 
   const department = await getPublicDepartmentById(params.depart)
 
-  console.log('Deparmtnet:', department.consultants)
-
   return (
     <div>
       <section

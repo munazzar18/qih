@@ -358,19 +358,13 @@ const page = async () => {
       <section className="about about-2" id="about-2">
         <div className="container">
           <div className="d-flex justify-content-center">
-            <div className="">
-              <div>
-                <iframe
-                  width="660"
-                  height="415"
-                  src="https://www.youtube.com/embed/Gg70v5uvh-Q?autoplay=1&mute=1"
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; loop"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                ></iframe>
-              </div>
+            <div className="ratio ratio-16x9" style={{ maxWidth: '660px' }}>
+              <iframe
+                src="https://www.youtube.com/embed/Gg70v5uvh-Q?autoplay=1&mute=1"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; loop"
+                allowFullScreen
+              ></iframe>
             </div>
           </div>
         </div>
