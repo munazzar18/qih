@@ -82,8 +82,8 @@ export const consultantSchema = z.object({
                 .string()
                 .min(1, "Institution is required"),
             year: z
-                .string()
-                .min(1, "Year is required"),
+                .any()
+                .optional()
         }))
         .min(1, "Education is required"),
     work_experience: z
@@ -130,8 +130,8 @@ export const editConsultantSchema = z.object({
                 .string()
                 .min(1, "Institution is required"),
             year: z
-                .string()
-                .min(1, "Year is required"),
+                .any()
+                .optional()
         }))
         .min(1, "Education is required"),
     work_experience: z
