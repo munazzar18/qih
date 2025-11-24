@@ -23,7 +23,7 @@ const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false })
 interface Education {
   degree: string
   institute: string
-  year: number
+  year: string
 }
 
 interface DepartmentData {
@@ -64,7 +64,9 @@ const EditConsultant = ({ id }: { id: number }) => {
   >([])
   const [departments, setDepartments] = useState<DepartmentData[]>([])
 
-  const initialEducation: Education[] = [{ degree: '', institute: '', year: 0 }]
+  const initialEducation: Education[] = [
+    { degree: '', institute: '', year: '' },
+  ]
 
   const [isLoading, setIsLoading] = useState(true)
   const [isImageUploaded, setIsImageUploaded] = useState(false)
@@ -107,7 +109,7 @@ const EditConsultant = ({ id }: { id: number }) => {
           const education =
             consultantData?.education?.length > 0
               ? consultantData?.education
-              : [{ degree: '', institute: '', year: 0 }]
+              : [{ degree: '', institute: '', year: '' }]
 
           // Update form state with loaded data
           setMyForm({
@@ -192,7 +194,7 @@ const EditConsultant = ({ id }: { id: number }) => {
       ...prevForm,
       education: [
         ...prevForm.education,
-        { degree: '', institute: '', year: 0 },
+        { degree: '', institute: '', year: '' },
       ],
     }))
   }, [])
